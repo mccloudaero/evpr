@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2985"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   width="1187"
+   height="690"
+   sodipodi:docname="evpr_cover.svg"
+   inkscape:export-filename="C:\Users\Peter\Documents\GitHub\rotors\variable pitch\evpr_cover.png"
+   inkscape:export-xdpi="150.01717"
+   inkscape:export-ydpi="150.01717">
+  <metadata
+     id="metadata2991">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2989" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1536"
+     inkscape:window-height="841"
+     id="namedview2987"
+     showgrid="false"
+     inkscape:zoom="0.94782609"
+     inkscape:cx="593.5"
+     inkscape:cy="345"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <image
+     width="1187"
+     height="690"
+     xlink:href="file:///C:/Users/Peter/Documents/GitHub/rotors/variable%20pitch/design_A/hub.png"
+     id="image2993"
+     x="0"
+     y="0" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="Text">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2996"
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       transform="translate(252.15596,-89.678899)"><flowRegion
+         id="flowRegion2998"><rect
+           id="rect3000"
+           width="478.99084"
+           height="212.06421"
+           x="103.39449"
+           y="109.72477" /></flowRegion><flowPara
+         id="flowPara3002"
+         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Fjalla One;-inkscape-font-specification:Fjalla One">EVPR</flowPara><flowPara
+         style="font-size:144px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ffffff;font-family:Fjalla One;-inkscape-font-specification:Fjalla One"
+         id="flowPara3004" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3006"
+       style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Fjalla One;-inkscape-font-specification:Fjalla One"
+       transform="translate(-1.0550457,279.23853)"><flowRegion
+         id="flowRegion3008"><rect
+           id="rect3010"
+           width="1056.101"
+           height="107.61468"
+           x="70.688072"
+           y="217.33945"
+           style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ffffff;font-family:Fjalla One;-inkscape-font-specification:Fjalla One" /></flowRegion><flowPara
+         id="flowPara3012">Electric Variable Pitch Rotor</flowPara></flowRoot>  </g>
+</svg>
