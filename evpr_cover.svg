@@ -12,11 +12,11 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg2985"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
+   inkscape:version="0.91 r13725"
    width="1187"
    height="690"
    sodipodi:docname="evpr_cover.svg"
-   inkscape:export-filename="C:\Users\Peter\Documents\GitHub\rotors\variable pitch\evpr_cover.png"
+   inkscape:export-filename="C:\Users\Peter\Documents\GitHub\evpr\evpr_cover.png"
    inkscape:export-xdpi="150.01717"
    inkscape:export-ydpi="150.01717">
   <metadata
@@ -27,7 +27,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -47,19 +47,26 @@
      id="namedview2987"
      showgrid="false"
      inkscape:zoom="0.94782609"
-     inkscape:cx="593.5"
+     inkscape:cx="435.77064"
      inkscape:cy="345"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
-  <image
-     width="1187"
-     height="690"
-     xlink:href="file:///C:/Users/Peter/Documents/GitHub/rotors/variable%20pitch/design_A/hub.png"
-     id="image2993"
-     x="0"
-     y="0" />
+     inkscape:current-layer="layer2" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Background">
+    <image
+       sodipodi:absref="C:\Users\Peter\Documents\GitHub\evpr\design_A\rotor_assembly.png"
+       xlink:href="design_A\rotor_assembly.png"
+       width="1185.4219"
+       height="614.53125"
+       preserveAspectRatio="none"
+       id="image3360"
+       x="0.86503792"
+       y="38.107655" />
+  </g>
   <g
      inkscape:groupmode="layer"
      id="layer1"
