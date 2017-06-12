@@ -1,0 +1,2 @@
+# CNC Notes
+Cut stock block to 17"x8"x1.75"
