@@ -3,7 +3,7 @@
 # project subdirectory.
 #
 
-PROJECT_NAME := mcpwm_servo_control
+PROJECT_NAME := app-template
 
 include $(IDF_PATH)/make/project.mk
 
