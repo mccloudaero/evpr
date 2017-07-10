@@ -96,10 +96,28 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
 			char *uri = mgStrToStr(message->uri);
 
 			if (strcmp(uri, "/status") == 0) {
+                                // Get info on connected device info
+				//int station_count = wifi_softap_get_station_num();
+				wifi_sta_list_t station_list;
+    				ESP_ERROR_CHECK(esp_wifi_ap_get_sta_list(&station_list));
+				int num_stations = station_list.num;
+
 				char payload[256];
 				struct timeval tv;
 				gettimeofday(&tv, NULL);
-				sprintf(payload, "EVPR MASTER NODE STATUS\nTime since start: %d.%d secs", (int)tv.tv_sec, (int)tv.tv_usec);
+
+				// Create webpage
+				sprintf(payload, "EVPR MASTER NODE STATUS\n");
+				sprintf(payload+strlen(payload), "Time since start: %d.%d secs\n", (int)tv.tv_sec, (int)tv.tv_usec);
+				if (num_stations > 0) {
+					sprintf(payload+strlen(payload), "\nConnected stations: %d\n", num_stations);
+					for (int i=0;i<num_stations;i++) {
+						wifi_sta_info_t sta = station_list.sta[i];
+						sprintf(payload+strlen(payload), "Station %d MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", i,
+               					sta.mac[0], sta.mac[1], sta.mac[2], sta.mac[3], sta.mac[4], sta.mac[5]);
+					}
+				}
+
 				int length = strlen(payload);
 				mg_send_head(nc, 200, length, "Content-Type: text/plain");
 				mg_printf(nc, "%s", payload);
