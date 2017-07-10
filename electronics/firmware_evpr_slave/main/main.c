@@ -1,20 +1,22 @@
-/* evpr slave
-
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
+/* EVPR SLAVE 
    Unless required by applicable law or agreed to in writing, this
    software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
    CONDITIONS OF ANY KIND, either express or implied.
 */
+
 #include <stdio.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_attr.h"
+#include "esp_wifi.h"
+#include "nvs_flash.h"
 
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
+
+#define WIFI_SSID "Goliath" 
 
 //You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 mocrosecond
 #define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
@@ -74,8 +76,30 @@ void mcpwm_example_servo_control(void *arg)
     }
 }
 
+static void initialise_wifi(void)
+{
+    printf("Initializing WiFi\n");
+    wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
+    ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
+    ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
+    ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
+    wifi_config_t sta_config = {
+        .sta= {
+            .ssid = WIFI_SSID,
+            .password = "",
+            .bssid_set = 0,
+        },
+    };
+    ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_STA, &sta_config) );
+    ESP_ERROR_CHECK( esp_wifi_start() );
+    ESP_ERROR_CHECK( esp_wifi_connect() );
+}
+
 void app_main()
 {
+    nvs_flash_init();
+    tcpip_adapter_init();
+    initialise_wifi();
     printf("Testing servo motor.......\n");
     xTaskCreate(mcpwm_example_servo_control, "mcpwm_example_servo_control", 4096, NULL, 5, NULL);
 }
