@@ -1,4 +1,8 @@
 /* EVPR MASTER 
+
+   Act as WiFi Access Point for EVPR slave nodes
+   Default server IP:192.168.4.1
+
    Unless required by applicable law or agreed to in writing, this
    software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
    CONDITIONS OF ANY KIND, either express or implied.
@@ -15,8 +19,9 @@
 
 #include "mongoose.h"
 
-#define WIFI_SSID "Goliath" 
-#define BLINK_GPIO 5 
+#define WIFI_SSID CONFIG_WIFI_SSID
+#define WIFI_PWD CONFIG_WIFI_PASSWORD
+#define BLINK_GPIO CONFIG_BLINK_GPIO
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -97,7 +102,6 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
 
 			if (strcmp(uri, "/status") == 0) {
                                 // Get info on connected device info
-				//int station_count = wifi_softap_get_station_num();
 				wifi_sta_list_t station_list;
     				ESP_ERROR_CHECK(esp_wifi_ap_get_sta_list(&station_list));
 				int num_stations = station_list.num;
@@ -161,8 +165,10 @@ static void initialise_wifi(void)
     wifi_config_t ap_config = {
         .ap = {
             .ssid = WIFI_SSID,
-            .ssid_len = 0,
+            //.password = WIFI_PWD
+            //.authmode=WIFI_AUTH_WPA_WPA2_PSK
             .authmode = WIFI_AUTH_OPEN,
+            .ssid_len = 0,
             .ssid_hidden = 0,
             .max_connection = 4,
         },
@@ -170,10 +176,6 @@ static void initialise_wifi(void)
     ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_AP, &ap_config) );
     ESP_ERROR_CHECK( esp_wifi_start() );
 }
-
-//    wifi_sta_list_t station_list;
-//    ESP_ERROR_CHECK( esp_wifi_ap_get_sta_list(&station_list) );
-//    printf(station_list);
 
 void blink_task(void *pvParameter)
 {

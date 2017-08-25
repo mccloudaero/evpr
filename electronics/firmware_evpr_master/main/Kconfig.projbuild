@@ -1,0 +1,21 @@
+menu "EVPR Master Node Configuration"
+
+config WIFI_SSID
+    string "WiFi SSID"
+    default "evpr_master"
+    help
+	SSID (network name) for the master node.
+
+config UDP_PERF_WIFI_PASSWORD
+    string "WiFi Password"
+    default "1234567890"
+    help
+	WiFi password (WPA or WPA2) for the master node.
+
+config BLINK_GPIO 
+    int "Status GPIO Pin"
+    default 5
+    help
+	GPIO pin to use for status light.
+		
+endmenu
