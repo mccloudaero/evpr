@@ -11,12 +11,14 @@
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/event_groups.h"
 #include "driver/gpio.h"
 #include "sdkconfig.h"
 #include "esp_err.h"
-#include "esp_wifi.h"
 #include "esp_event.h"
 #include "esp_event_loop.h"
+#include "esp_log.h"
+#include "esp_wifi.h"
 #include "nvs_flash.h"
 
 #include "mongoose.h"
@@ -24,10 +26,62 @@
 #define WIFI_SSID CONFIG_WIFI_SSID
 #define WIFI_PWD CONFIG_WIFI_PASSWORD
 #define BLINK_GPIO CONFIG_BLINK_GPIO
+#define TAG "evpr_master"
+
+/* FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test*/
+EventGroupHandle_t comm_event_group;
+#define WIFI_CONNECTED_BIT BIT0
+#define UDP_CONNCETED_SUCCESS BIT1
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
+    switch(event->event_id) {
+    case SYSTEM_EVENT_AP_STACONNECTED:
+    	ESP_LOGI(TAG, "station:"MACSTR" join,AID=%d\n",
+		MAC2STR(event->event_info.sta_connected.mac),
+		event->event_info.sta_connected.aid);
+    	xEventGroupSetBits(comm_event_group, WIFI_CONNECTED_BIT);
+    	break;
+    default:
+        break;
+    }
     return ESP_OK;
+}
+
+static void udp_server(void *pvParameters)
+{
+    ESP_LOGI(TAG, "udp_server start.");
+
+    //double data = 1.0;
+    //string dest_address = "192.168.4.2";
+    
+    //create udp socket
+    int socket_slave_1;
+    socket_slave_1 = socket(AF_INET, SOCK_DGRAM, 0);
+    if (socket_slave_1 < 0) {
+        ESP_LOGI(TAG, "socket error");
+    }
+
+    // Do Something...
+    gpio_pad_select_gpio(BLINK_GPIO);
+    // Set the GPIO as a push/pull output
+    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
+    while(1) {
+        // Blink off (output low)
+        gpio_set_level(BLINK_GPIO, 0);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        // Blink on (output high)
+        gpio_set_level(BLINK_GPIO, 1);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        
+    }
+    /*
+    while(1) {
+        //sendto(socket, data, size, 0, dest_address, dest_length);
+        sendto(socket_slave_1, data, SEND_BUF_LEN, 0, dest_address, dest_length);
+    }
+    */
+
 }
 
 char *mongoose_eventToString(int ev) {
@@ -160,6 +214,9 @@ void mongooseTask(void *data) {
 static void initialise_wifi(void)
 {
     printf("Initializing WiFi\n");
+
+    comm_event_group = xEventGroupCreate();
+
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
     ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
@@ -192,13 +249,13 @@ void blink_task(void *pvParameter)
        functions.)
     */
     gpio_pad_select_gpio(BLINK_GPIO);
-    /* Set the GPIO as a push/pull output */
+    // Set the GPIO as a push/pull output
     gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
     while(1) {
-        /* Blink off (output low) */
+        // Blink off (output low)
         gpio_set_level(BLINK_GPIO, 0);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
-        /* Blink on (output high) */
+        // Blink on (output high)
         gpio_set_level(BLINK_GPIO, 1);
         vTaskDelay(1000 / portTICK_PERIOD_MS);
         
@@ -211,6 +268,7 @@ void app_main()
     tcpip_adapter_init();
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
-    xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
+    //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
     xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
+    xTaskCreate(&udp_server, "udp_server", 2048, NULL, 5, NULL);
 }
