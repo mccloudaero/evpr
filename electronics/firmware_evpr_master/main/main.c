@@ -13,7 +13,9 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 #include "sdkconfig.h"
+#include "esp_err.h"
 #include "esp_wifi.h"
+#include "esp_event.h"
 #include "esp_event_loop.h"
 #include "nvs_flash.h"
 
@@ -165,9 +167,9 @@ static void initialise_wifi(void)
     wifi_config_t ap_config = {
         .ap = {
             .ssid = WIFI_SSID,
-            //.password = WIFI_PWD
-            //.authmode=WIFI_AUTH_WPA_WPA2_PSK
-            .authmode = WIFI_AUTH_OPEN,
+            .password = WIFI_PWD,
+            .authmode=WIFI_AUTH_WPA_WPA2_PSK,
+            //.authmode = WIFI_AUTH_OPEN,
             .ssid_len = 0,
             .ssid_hidden = 0,
             .max_connection = 4,
@@ -175,6 +177,8 @@ static void initialise_wifi(void)
     };
     ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_AP, &ap_config) );
     ESP_ERROR_CHECK( esp_wifi_start() );
+    // DHCP
+    //ESP_ERROR_CHECK( wifi_softap_dhcps_start() );
 }
 
 void blink_task(void *pvParameter)
