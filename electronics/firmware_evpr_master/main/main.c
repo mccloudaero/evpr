@@ -23,15 +23,15 @@
 
 #include "mongoose.h"
 
-#define WIFI_SSID CONFIG_WIFI_SSID
-#define WIFI_PWD CONFIG_WIFI_PASSWORD
-#define BLINK_GPIO CONFIG_BLINK_GPIO
-#define TAG "evpr_master"
+#include "main.h"
 
-/* FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test*/
+// FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
 EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define UDP_CONNCETED_SUCCESS BIT1
+
+static struct sockaddr_in remote_addr;
+static unsigned int socklen;
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -52,8 +52,8 @@ static void udp_server(void *pvParameters)
 {
     ESP_LOGI(TAG, "udp_server start.");
 
-    //double data = 1.0;
-    //string dest_address = "192.168.4.2";
+    //int len;
+    char databuff[UDP_PKTSIZE];
     
     //create udp socket
     int socket_slave_1;
@@ -61,6 +61,15 @@ static void udp_server(void *pvParameters)
     if (socket_slave_1 < 0) {
         ESP_LOGI(TAG, "socket error");
     }
+
+    remote_addr.sin_family = AF_INET;
+    remote_addr.sin_port = htons(ROTOR_1_PORT);
+    remote_addr.sin_addr.s_addr = inet_addr(ROTOR_1_IP);
+    socklen = sizeof(remote_addr);
+
+    ESP_LOGI(TAG, "first sendto:");
+    //len = sendto(socket_slave_1, databuff, UDP_PKTSIZE, 0, (struct sockaddr *)&remote_addr, sizeof(remote_addr));
+    sendto(socket_slave_1, databuff, UDP_PKTSIZE, 0, (struct sockaddr *)&remote_addr, sizeof(remote_addr));
 
     // Do Something...
     gpio_pad_select_gpio(BLINK_GPIO);
@@ -75,10 +84,11 @@ static void udp_server(void *pvParameters)
         vTaskDelay(1000 / portTICK_PERIOD_MS);
         
     }
+
     /*
     while(1) {
-        //sendto(socket, data, size, 0, dest_address, dest_length);
-        sendto(socket_slave_1, data, SEND_BUF_LEN, 0, dest_address, dest_length);
+        memset(databuff, PACK_BYTE_IS, UDP_PKTSIZE);
+        len = sendto(socket_slave_1, databuff, UDP_PKTSIZE, 0, (struct sockaddr *)&remote_addr, sizeof(remote_addr));
     }
     */
 
