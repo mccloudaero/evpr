@@ -12,15 +12,9 @@ config WIFI_PASSWORD
     help
 	WiFi password (WPA or WPA2) for the master node.
 
-config BLINK_GPIO 
-    int "Status GPIO Pin"
-    default 5
-    help
-	GPIO pin to use for status light.
-
 config UDP_PKT_SIZE
     int "Size of UDP packet"
-    default 4096
+    default 4096 
     help
 	the data send&recv packet size. 
 		

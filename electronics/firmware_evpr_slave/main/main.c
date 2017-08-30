@@ -16,9 +16,9 @@
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
 
-#define WIFI_SSID "Goliath" 
+#include "main.h"
 
-#define MODE 0 // Options 0=self_test, 1=position_hold
+#define MODE 1 // Options 0=self_test, 1=position_hold
 
 //You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 mocrosecond
 #define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
@@ -113,7 +113,8 @@ static void initialise_wifi(void)
     wifi_config_t sta_config = {
         .sta= {
             .ssid = WIFI_SSID,
-            .password = "",
+            //.password = "",
+            .password = WIFI_PWD,
             .bssid_set = 0,
         },
     };
