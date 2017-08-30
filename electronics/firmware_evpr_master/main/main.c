@@ -52,8 +52,12 @@ static void udp_server(void *pvParameters)
 {
     ESP_LOGI(TAG, "udp_server start.");
 
+    // wait for stations to connect
+    xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
+    ESP_LOGI(TAG, "sta has connected to ap.");
+
     //int len;
-    char databuff[UDP_PKTSIZE];
+    //char databuff[UDP_PKTSIZE];
     
     //create udp socket
     int socket_slave_1;
@@ -67,9 +71,11 @@ static void udp_server(void *pvParameters)
     remote_addr.sin_addr.s_addr = inet_addr(ROTOR_1_IP);
     socklen = sizeof(remote_addr);
 
+    /*
     ESP_LOGI(TAG, "first sendto:");
     //len = sendto(socket_slave_1, databuff, UDP_PKTSIZE, 0, (struct sockaddr *)&remote_addr, sizeof(remote_addr));
     sendto(socket_slave_1, databuff, UDP_PKTSIZE, 0, (struct sockaddr *)&remote_addr, sizeof(remote_addr));
+    */
 
     // Do Something...
     gpio_pad_select_gpio(BLINK_GPIO);
@@ -202,28 +208,27 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
 }
 
 void mongooseTask(void *data) {
-	printf("Mongoose task starting\n");
-	struct mg_mgr mgr;
-	printf("Mongoose: Starting setup\n");
-	mg_mgr_init(&mgr, NULL);
-	printf("Mongoose: Succesfully inited\n");
-	struct mg_connection *c = mg_bind(&mgr, ":80", mongoose_event_handler);
-	printf("Mongoose Successfully bound\n");
-	if (c == NULL) {
-		printf("No connection from the mg_bind()\n");
-		vTaskDelete(NULL);
-		return;
-	}
-	mg_set_protocol_http_websocket(c);
-
-	while (1) {
-		mg_mgr_poll(&mgr, 1000);
-	}
+    ESP_LOGI(TAG, "Mongoose task starting");
+    struct mg_mgr mgr;
+    ESP_LOGI(TAG, "Mongoose: Starting setup");
+    mg_mgr_init(&mgr, NULL);
+    ESP_LOGI(TAG, "Mongoose: Succesfully inited");
+    struct mg_connection *c = mg_bind(&mgr, ":80", mongoose_event_handler);
+    ESP_LOGI(TAG, "Mongoose: Succesfully bound");
+    if (c == NULL) {
+    	ESP_LOGI(TAG, "No connection from the mg_bind()");
+	vTaskDelete(NULL);
+	return;
+    }
+    mg_set_protocol_http_websocket(c);
+    while (1) {
+	mg_mgr_poll(&mgr, 1000);
+    }
 }
 
 static void initialise_wifi(void)
 {
-    printf("Initializing WiFi\n");
+    ESP_LOGI(TAG, "Initializing WiFI");
 
     comm_event_group = xEventGroupCreate();
 
