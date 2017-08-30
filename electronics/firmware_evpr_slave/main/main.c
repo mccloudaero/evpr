@@ -9,6 +9,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_attr.h"
+#include "esp_log.h"
 #include "esp_wifi.h"
 #include "nvs_flash.h"
 
@@ -16,9 +17,10 @@
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
 
+#include <lwip/sockets.h>
 #include "main.h"
 
-#define MODE 1 // Options 0=self_test, 1=position_hold
+#define MODE 0 // Options 0=self_test, 1=position_hold
 
 //You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 mocrosecond
 #define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
@@ -65,9 +67,9 @@ void servo_self_test(void *arg)
     mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_1, &pwm_config);    //Configure PWM0A & PWM0B with above settings
     while (1) {
         for (count = 0; count < SERVO_MAX_DEGREE; count++) {
-            printf("Angle of rotation: %d\n", count);
+            //printf("Angle of rotation: %d\n", count);
             angle = servo_per_degree_init(count);
-            printf("pulse width: %dus\n", angle);
+            //printf("pulse width: %dus\n", angle);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, angle);
             vTaskDelay(10);     //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
@@ -105,7 +107,17 @@ void position_hold(void *arg)
 
 static void initialise_wifi(void)
 {
-    printf("Initializing WiFi\n");
+    ESP_LOGI(TAG, "Initializing WiFI");
+
+    tcpip_adapter_init();
+    tcpip_adapter_dhcpc_stop(TCPIP_ADAPTER_IF_STA);	// Don't run a DHCP client
+    tcpip_adapter_ip_info_t ipInfo;
+
+    inet_pton(AF_INET, DEVICE_IP, &ipInfo.ip);
+    inet_pton(AF_INET, DEVICE_GATEWAY, &ipInfo.gw);
+    inet_pton(AF_INET, DEVICE_NETMASK, &ipInfo.netmask);
+    tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_STA, &ipInfo);
+
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
     ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
@@ -113,7 +125,6 @@ static void initialise_wifi(void)
     wifi_config_t sta_config = {
         .sta= {
             .ssid = WIFI_SSID,
-            //.password = "",
             .password = WIFI_PWD,
             .bssid_set = 0,
         },

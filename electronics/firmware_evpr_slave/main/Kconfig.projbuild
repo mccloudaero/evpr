@@ -12,6 +12,24 @@ config WIFI_PASSWORD
     help
 	WiFi password (WPA or WPA2) for the master node.
 
+config DEVICE_GATEWAY 
+    string "Device Gateway"
+    default "192.168.4.1"
+    help
+	IP address for Access Point.
+
+config DEVICE_IP 
+    string "Device IP"
+    default "192.168.4.2"
+    help
+	IP address for device.
+
+config DEVICE_NETMASK 
+    string "Device Netmask"
+    default "255.255.255.0"
+    help
+	Netmask for device.
+
 config UDP_PKT_SIZE
     int "Size of UDP packet"
     default 4096 
