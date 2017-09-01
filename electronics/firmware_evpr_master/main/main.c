@@ -53,6 +53,30 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
+void blink_task(void *pvParameter)
+{
+    
+
+    /* Configure the IOMUX register for pad BLINK_GPIO (some pads are
+       muxed to GPIO on reset already, but some default to other
+       functions and need to be switched to GPIO. Consult the
+       Technical Reference for a list of pads and their default
+       functions.)
+    */
+    gpio_pad_select_gpio(BLINK_GPIO);
+    // Set the GPIO as a push/pull output
+    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
+    while(1) {
+        // Blink off (output low)
+        gpio_set_level(BLINK_GPIO, 0);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        // Blink on (output high)
+        gpio_set_level(BLINK_GPIO, 1);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        
+    }
+}
+
 void send_data(void *pvParameters)
 {
     ESP_LOGI(TAG, "task send_data start!\n");
@@ -127,19 +151,24 @@ static void udp_server(void *pvParameters)
     TaskHandle_t tx_task;
     xTaskCreate(&send_data, "send_data", 4096, NULL, 4, &tx_task);
 
-    // Do Something...
-    gpio_pad_select_gpio(BLINK_GPIO);
-    // Set the GPIO as a push/pull output
-    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
-    while(1) {
-        // Blink off (output low)
-        gpio_set_level(BLINK_GPIO, 0);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        // Blink on (output high)
-        gpio_set_level(BLINK_GPIO, 1);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        
+    //waiting udp connected success
+    xEventGroupWaitBits(comm_event_group, UDP_CONNECTED_SUCCESS,false, true, portMAX_DELAY);
+    //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
+    int bps;
+    while (1) {
+	total_data = 0;
+	vTaskDelay(3000 / portTICK_RATE_MS);//every 3s
+	bps = total_data / 3;
+
+	if (total_data <= 0) {
+	    ESP_LOGW(TAG, "udp send & recv stop.\n");
+	    break;
+	}
+	ESP_LOGI(TAG, "udp send %d byte per sec! total pack: %d \n", bps, success_pack);
     }
+    close(socket_slave_1);
+    vTaskDelete(tx_task);
+    vTaskDelete(NULL);
 
 }
 
@@ -294,30 +323,6 @@ static void initialise_wifi(void)
     ESP_ERROR_CHECK( esp_wifi_start() );
     // DHCP
     //ESP_ERROR_CHECK( wifi_softap_dhcps_start() );
-}
-
-void blink_task(void *pvParameter)
-{
-    
-
-    /* Configure the IOMUX register for pad BLINK_GPIO (some pads are
-       muxed to GPIO on reset already, but some default to other
-       functions and need to be switched to GPIO. Consult the
-       Technical Reference for a list of pads and their default
-       functions.)
-    */
-    gpio_pad_select_gpio(BLINK_GPIO);
-    // Set the GPIO as a push/pull output
-    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
-    while(1) {
-        // Blink off (output low)
-        gpio_set_level(BLINK_GPIO, 0);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        // Blink on (output high)
-        gpio_set_level(BLINK_GPIO, 1);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        
-    }
 }
 
 void app_main()
