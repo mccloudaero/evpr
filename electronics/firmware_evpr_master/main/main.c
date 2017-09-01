@@ -53,77 +53,52 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-/*
 void send_data(void *pvParameters)
 {
     ESP_LOGI(TAG, "task send_data start!\n");
-    
+
     int len;
-    char data_buffer[UDP_PKTSIZE];
+    char data_buffer[80];
 
-    // Do Something...
-    gpio_pad_select_gpio(BLINK_GPIO);
-    // Set the GPIO as a push/pull output
-    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
-    while(1) {
-        // Blink off (output low)
-        gpio_set_level(BLINK_GPIO, 0);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        // Blink on (output high)
-        gpio_set_level(BLINK_GPIO, 1);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        
-    }
-
-
-    //first packet
-    socklen = sizeof(master_address);
-    memset(data_buffer, PACK_BYTE_IS, UDP_PKTSIZE);
+    strcpy(data_buffer, "Hello World");
     ESP_LOGI(TAG, "first sendto:");
-    len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, sizeof(master_address));
-    
+    len = sendto(socket_slave_1, data_buffer, sizeof("Hello World"), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+
     if (len > 0) {
 	ESP_LOGI(TAG, "transfer data with %s:%u\n",
-		inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
+		inet_ntoa(rotor_1_address.sin_addr), ntohs(rotor_1_address.sin_port));
 	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
     } else {
-    	//show_socket_error_reason(socket_slave_1);
         ESP_LOGI(TAG, "socket error");
 	close(socket_slave_1);
 	vTaskDelete(NULL);
-    } //if (len > 0)
-    
+    }
+
     vTaskDelay(500 / portTICK_RATE_MS);
     ESP_LOGI(TAG, "start count!\n");
     while(1) {
-	len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, sizeof(master_address));
+    	len = sendto(socket_slave_1, data_buffer, sizeof("Hello World"), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
 	if (len > 0) {
 	    total_data += len;
 	    success_pack++;
 	} else {
 	    if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
-		//show_socket_error_reason(socket_slave_1);
                 ESP_LOGI(TAG, "socket error");
 	    }
-	} //if (len > 0)
-    } //while(1)
+	}
+    }
+    
 }
-*/
 
 static void udp_server(void *pvParameters)
 {
     ESP_LOGI(TAG, "udp_server start.");
-
-    int len;
-    //char data_buffer[UDP_PKTSIZE];
-    char data_buffer[80];
 
     // wait for stations to connect
     xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
     ESP_LOGI(TAG, "sta has connected to ap.");
 
     //create udp socket
-    //int socket_slave_1;
     socket_slave_1 = socket(AF_INET, SOCK_DGRAM, 0);
     if (socket_slave_1 < 0) {
         ESP_LOGI(TAG, "socket error");
@@ -149,13 +124,8 @@ static void udp_server(void *pvParameters)
     rotor_1_address.sin_addr.s_addr = inet_addr(ROTOR_1_IP);
     rotor_1_address.sin_port = htons(ROTOR_1_PORT);
 
-    strcpy(data_buffer, "Hello World");
-    ESP_LOGI(TAG, "first sendto:");
-    len = sendto(socket_slave_1, data_buffer, sizeof("Hello World"), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
-
-    //create a task to tx/rx data
-    //TaskHandle_t tx_task;
-    //xTaskCreate(&send_data, "send_data", 4096, NULL, 4, &tx_task);
+    TaskHandle_t tx_task;
+    xTaskCreate(&send_data, "send_data", 4096, NULL, 4, &tx_task);
 
     // Do Something...
     gpio_pad_select_gpio(BLINK_GPIO);
