@@ -5,7 +5,10 @@
 #define UDP_PKTSIZE CONFIG_UDP_PKT_SIZE
 #define PACK_BYTE_IS 97 //'a'
 
-// Rotor IPs and ports
+
+// IPs and ports
+#define MASTER_IP "192.168.4.1"
+#define MASTER_PORT 6000  
 #define ROTOR_1_IP "192.168.4.2" 
-#define ROTOR_1_PORT 4001  
+#define ROTOR_1_PORT 6001  
 

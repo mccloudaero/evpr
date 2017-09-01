@@ -28,10 +28,15 @@
 // FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
 EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
-#define UDP_CONNCETED_SUCCESS BIT1
+#define UDP_CONNECTED_SUCCESS BIT1
 
-static struct sockaddr_in remote_addr;
+static int socket_slave_1;
+static struct sockaddr_in master_address;
+static struct sockaddr_in rotor_1_address;
 static unsigned int socklen;
+
+int total_data = 0;
+int success_pack = 0;
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -48,34 +53,13 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-static void udp_server(void *pvParameters)
+/*
+void send_data(void *pvParameters)
 {
-    ESP_LOGI(TAG, "udp_server start.");
-
-    // wait for stations to connect
-    xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
-    ESP_LOGI(TAG, "sta has connected to ap.");
-
-    //int len;
-    //char databuff[UDP_PKTSIZE];
+    ESP_LOGI(TAG, "task send_data start!\n");
     
-    //create udp socket
-    int socket_slave_1;
-    socket_slave_1 = socket(AF_INET, SOCK_DGRAM, 0);
-    if (socket_slave_1 < 0) {
-        ESP_LOGI(TAG, "socket error");
-    }
-
-    remote_addr.sin_family = AF_INET;
-    remote_addr.sin_port = htons(ROTOR_1_PORT);
-    remote_addr.sin_addr.s_addr = inet_addr(ROTOR_1_IP);
-    socklen = sizeof(remote_addr);
-
-    /*
-    ESP_LOGI(TAG, "first sendto:");
-    //len = sendto(socket_slave_1, databuff, UDP_PKTSIZE, 0, (struct sockaddr *)&remote_addr, sizeof(remote_addr));
-    sendto(socket_slave_1, databuff, UDP_PKTSIZE, 0, (struct sockaddr *)&remote_addr, sizeof(remote_addr));
-    */
+    int len;
+    char data_buffer[UDP_PKTSIZE];
 
     // Do Something...
     gpio_pad_select_gpio(BLINK_GPIO);
@@ -91,12 +75,101 @@ static void udp_server(void *pvParameters)
         
     }
 
-    /*
+
+    //first packet
+    socklen = sizeof(master_address);
+    memset(data_buffer, PACK_BYTE_IS, UDP_PKTSIZE);
+    ESP_LOGI(TAG, "first sendto:");
+    len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, sizeof(master_address));
+    
+    if (len > 0) {
+	ESP_LOGI(TAG, "transfer data with %s:%u\n",
+		inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
+	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
+    } else {
+    	//show_socket_error_reason(socket_slave_1);
+        ESP_LOGI(TAG, "socket error");
+	close(socket_slave_1);
+	vTaskDelete(NULL);
+    } //if (len > 0)
+    
+    vTaskDelay(500 / portTICK_RATE_MS);
+    ESP_LOGI(TAG, "start count!\n");
     while(1) {
-        memset(databuff, PACK_BYTE_IS, UDP_PKTSIZE);
-        len = sendto(socket_slave_1, databuff, UDP_PKTSIZE, 0, (struct sockaddr *)&remote_addr, sizeof(remote_addr));
+	len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, sizeof(master_address));
+	if (len > 0) {
+	    total_data += len;
+	    success_pack++;
+	} else {
+	    if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
+		//show_socket_error_reason(socket_slave_1);
+                ESP_LOGI(TAG, "socket error");
+	    }
+	} //if (len > 0)
+    } //while(1)
+}
+*/
+
+static void udp_server(void *pvParameters)
+{
+    ESP_LOGI(TAG, "udp_server start.");
+
+    int len;
+    //char data_buffer[UDP_PKTSIZE];
+    char data_buffer[80];
+
+    // wait for stations to connect
+    xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
+    ESP_LOGI(TAG, "sta has connected to ap.");
+
+    //create udp socket
+    //int socket_slave_1;
+    socket_slave_1 = socket(AF_INET, SOCK_DGRAM, 0);
+    if (socket_slave_1 < 0) {
+        ESP_LOGI(TAG, "socket error");
     }
-    */
+
+    memset(&master_address, 0, sizeof(struct sockaddr_in));
+    master_address.sin_family = AF_INET;
+    master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
+    master_address.sin_port = htons(MASTER_PORT);
+
+    //Bind the socket
+    if (bind(socket_slave_1, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) == -1)
+    {
+    	ESP_LOGI(TAG,"Bind Failed");
+	close(socket_slave_1);
+	exit(1);
+    }
+    ESP_LOGI(TAG,"Bind Successful");
+    socklen = sizeof(master_address);
+
+    memset(&rotor_1_address, 0, sizeof(struct sockaddr_in));
+    rotor_1_address.sin_family = AF_INET;
+    rotor_1_address.sin_addr.s_addr = inet_addr(ROTOR_1_IP);
+    rotor_1_address.sin_port = htons(ROTOR_1_PORT);
+
+    strcpy(data_buffer, "Hello World");
+    ESP_LOGI(TAG, "first sendto:");
+    len = sendto(socket_slave_1, data_buffer, sizeof("Hello World"), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+
+    //create a task to tx/rx data
+    //TaskHandle_t tx_task;
+    //xTaskCreate(&send_data, "send_data", 4096, NULL, 4, &tx_task);
+
+    // Do Something...
+    gpio_pad_select_gpio(BLINK_GPIO);
+    // Set the GPIO as a push/pull output
+    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
+    while(1) {
+        // Blink off (output low)
+        gpio_set_level(BLINK_GPIO, 0);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        // Blink on (output high)
+        gpio_set_level(BLINK_GPIO, 1);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        
+    }
 
 }
 
@@ -284,6 +357,6 @@ void app_main()
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
     //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
-    xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
+    //xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
     xTaskCreate(&udp_server, "udp_server", 2048, NULL, 5, NULL);
 }
