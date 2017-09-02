@@ -82,11 +82,11 @@ void send_data(void *pvParameters)
     ESP_LOGI(TAG, "task send_data start!\n");
 
     int len;
-    char data_buffer[80];
+    char data_buffer[UDP_PKTSIZE];
 
     strcpy(data_buffer, "Hello World");
     ESP_LOGI(TAG, "first sendto:");
-    len = sendto(socket_slave_1, data_buffer, sizeof("Hello World"), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
 
     if (len > 0) {
 	ESP_LOGI(TAG, "transfer data with %s:%u\n",
@@ -101,7 +101,7 @@ void send_data(void *pvParameters)
     vTaskDelay(500 / portTICK_RATE_MS);
     ESP_LOGI(TAG, "start count!\n");
     while(1) {
-    	len = sendto(socket_slave_1, data_buffer, sizeof("Hello World"), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    	len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
 	if (len > 0) {
 	    total_data += len;
 	    success_pack++;
