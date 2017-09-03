@@ -1,4 +1,4 @@
-menu "EVPR Master Node Configuration"
+menu "EVPR Slave Node Configuration"
 
 config WIFI_SSID
     string "WiFi SSID"
@@ -24,6 +24,12 @@ config DEVICE_IP
     help
 	IP address for device.
 
+config DEVICE_PORT 
+    int "Device Port"
+    default 6000
+    help
+	Port for UDP communication.
+
 config DEVICE_NETMASK 
     string "Device Netmask"
     default "255.255.255.0"
@@ -32,7 +38,7 @@ config DEVICE_NETMASK
 
 config UDP_PKT_SIZE
     int "Size of UDP packet"
-    default 4096 
+    default 80 
     help
 	the data send&recv packet size. 
 		

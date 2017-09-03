@@ -146,14 +146,15 @@ static void udp_server(void *pvParameters)
     memset(&rotor_1_address, 0, sizeof(struct sockaddr_in));
     rotor_1_address.sin_family = AF_INET;
     rotor_1_address.sin_addr.s_addr = inet_addr(ROTOR_1_IP);
-    rotor_1_address.sin_port = htons(ROTOR_1_PORT);
+    //rotor_1_address.sin_port = htons(ROTOR_1_PORT);
+    rotor_1_address.sin_port = htons(MASTER_PORT);
 
     TaskHandle_t tx_task;
     xTaskCreate(&send_data, "send_data", 4096, NULL, 4, &tx_task);
 
     //waiting udp connected success
     xEventGroupWaitBits(comm_event_group, UDP_CONNECTED_SUCCESS,false, true, portMAX_DELAY);
-    //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
+    xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
     int bps;
     while (1) {
 	total_data = 0;
