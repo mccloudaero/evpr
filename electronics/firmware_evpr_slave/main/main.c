@@ -74,6 +74,7 @@ void receive_data(void *pvParameters)
 	ESP_LOGI(TAG, "transfer data with %s:%u\n",
 		inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
 	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
+        printf("%s\n",data_buffer);
     } else {
         ESP_LOGI(TAG, "socket error");
 	close(slave_socket);
