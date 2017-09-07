@@ -21,6 +21,67 @@
 
 static QueueHandle_t uart0_queue;
 
+void uart_event_task(void *pvParameters)
+{
+    uart_event_t event;
+    size_t buffered_size;
+    uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
+    for(;;) {
+        //Waiting for UART event.
+        if(xQueueReceive(uart0_queue, (void * )&event, (portTickType)portMAX_DELAY)) {
+            ESP_LOGI(TAG, "uart[%d] event:", FC_UART_NUM);
+            switch(event.type) {
+                //Event of UART receving data
+                /*We'd better handler data event fast, there would be much more data events than
+                other types of events. If we take too much time on data event, the queue might
+                be full.
+                in this example, we don't process data in event, but read data outside.*/
+                case UART_DATA:
+                    uart_get_buffered_data_len(FC_UART_NUM, &buffered_size);
+                    ESP_LOGI(TAG, "data, len: %d; buffered len: %d", event.size, buffered_size);
+                    break;
+                //Event of HW FIFO overflow detected
+                case UART_FIFO_OVF:
+                    ESP_LOGI(TAG, "hw fifo overflow\n");
+                    //If fifo overflow happened, you should consider adding flow control for your application.
+                    //We can read data out out the buffer, or directly flush the rx buffer.
+                    uart_flush(FC_UART_NUM);
+                    break;
+                //Event of UART ring buffer full
+                case UART_BUFFER_FULL:
+                    ESP_LOGI(TAG, "ring buffer full\n");
+                    //If buffer full happened, you should consider encreasing your buffer size
+                    //We can read data out out the buffer, or directly flush the rx buffer.
+                    uart_flush(FC_UART_NUM);
+                    break;
+                //Event of UART RX break detected
+                case UART_BREAK:
+                    ESP_LOGI(TAG, "uart rx break\n");
+                    break;
+                //Event of UART parity check error
+                case UART_PARITY_ERR:
+                    ESP_LOGI(TAG, "uart parity error\n");
+                    break;
+                //Event of UART frame error
+                case UART_FRAME_ERR:
+                    ESP_LOGI(TAG, "uart frame error\n");
+                    break;
+                //UART_PATTERN_DET
+                case UART_PATTERN_DET:
+                    ESP_LOGI(TAG, "uart pattern detected\n");
+                    break;
+                //Others
+                default:
+                    ESP_LOGI(TAG, "uart event type: %d\n", event.type);
+                    break;
+            }
+        }
+    }
+    free(dtmp);
+    dtmp = NULL;
+    vTaskDelete(NULL);
+}
+
 void initialise_uart()
 {
     ESP_LOGI(TAG, "Initializing UART");

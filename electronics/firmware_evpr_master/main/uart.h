@@ -5,5 +5,6 @@
 
 #define BUF_SIZE (1024)
 
+void uart_event_task(void *pvParameters);
 void initialise_uart();
 void echo_task();
