@@ -24,6 +24,7 @@
 #include "mongoose.h"
 
 #include "main.h"
+#include "uart.h"
 
 // FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
 EventGroupHandle_t comm_event_group;
@@ -332,7 +333,10 @@ void app_main()
     tcpip_adapter_init();
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
+    initialise_uart();
     //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
     //xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
+    xTaskCreate(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL);
     xTaskCreate(&udp_server, "udp_server", 2048, NULL, 5, NULL);
+    //xTaskCreate(&echo_task, "uart_echo_task", 1024, NULL, 10, NULL);
 }
