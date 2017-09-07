@@ -338,5 +338,5 @@ void app_main()
     //xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
     xTaskCreate(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL);
     xTaskCreate(&udp_server, "udp_server", 2048, NULL, 5, NULL);
-    //xTaskCreate(&echo_task, "uart_echo_task", 1024, NULL, 10, NULL);
+    xTaskCreate(&echo_task, "uart_echo_task", 1024, NULL, 10, NULL);
 }
