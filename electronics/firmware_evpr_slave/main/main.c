@@ -269,7 +269,6 @@ void app_main()
     tcpip_adapter_init();
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
-    /*
     #if MODE == 0
       printf("Self Test Mode\n");
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
@@ -277,6 +276,5 @@ void app_main()
       printf("Position Hold Mode\n");
       xTaskCreate(position_hold, "position_hold", 4096, NULL, 5, NULL);
     #endif
-    */
     xTaskCreate(udp_recieve, "udp_recieve", 4096, NULL, 5, NULL);
 }
