@@ -88,6 +88,7 @@ void initialise_uart()
 
     uart_config_t uart_config = {
         .baud_rate = 115200,
+        //.baud_rate = 921600,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
@@ -111,7 +112,8 @@ void echo_task()
     while(1) {
         //Read data from UART
         int len = uart_read_bytes(FC_UART_NUM, data, BUF_SIZE, 20 / portTICK_RATE_MS);
+        ESP_LOGI(TAG, "uart read : %d", len);
         //Write data back to UART
-        uart_write_bytes(FC_UART_NUM, (const char*) data, len);
+        //uart_write_bytes(FC_UART_NUM, (const char*) data, len);
     }
 }

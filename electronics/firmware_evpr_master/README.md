@@ -9,6 +9,10 @@ FC -> EVPR Master
 4) UART - Possible Pixhawk has similar driver for sending PWM through UART
 	PX4 https://github.com/PX4/Firmware/blob/master/src/drivers/tap_esc/tap_esc.cpp
 
+# For Pixhawk 2.1
+Use Telem2 Port 921600 Baud
+
+
 # Compile Notes
 make menuconfig
 make

@@ -335,10 +335,9 @@ void app_main()
     initialise_wifi();
     initialise_uart();
     //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
-    //xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
     xTaskCreate(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL);
     xTaskCreate(&udp_server, "udp_server", 2048, NULL, 5, NULL);
     //Task to handle UART events
     xTaskCreate(uart_event_task, "uart_event_task", 2048, NULL, 12, NULL);
-    //xTaskCreate(&echo_task, "uart_echo_task", 1024, NULL, 10, NULL);
+    xTaskCreate(&echo_task, "uart_echo_task", 4096, NULL, 10, NULL);
 }
