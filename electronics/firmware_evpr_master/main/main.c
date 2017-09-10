@@ -37,6 +37,7 @@ static struct sockaddr_in rotor_1_address;
 static unsigned int socklen;
 
 int total_data = 0;
+int bps = 0;
 int success_pack = 0;
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
@@ -153,20 +154,18 @@ static void udp_server(void *pvParameters)
     TaskHandle_t tx_task;
     xTaskCreate(&send_data, "send_data", 4096, NULL, 4, &tx_task);
 
-    //waiting udp connected success
+    // Wait for udp connected success
     xEventGroupWaitBits(comm_event_group, UDP_CONNECTED_SUCCESS,false, true, portMAX_DELAY);
     xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
-    int bps;
     while (1) {
 	total_data = 0;
-	vTaskDelay(3000 / portTICK_RATE_MS);//every 3s
-	bps = total_data / 3;
+	vTaskDelay(3000 / portTICK_RATE_MS);	//wait 3s
+	bps = total_data / 3;	// Compute bytes per second
 
 	if (total_data <= 0) {
 	    ESP_LOGW(TAG, "udp send & recv stop.\n");
 	    break;
 	}
-	ESP_LOGI(TAG, "udp send %d byte per sec! total pack: %d \n", bps, success_pack);
     }
     close(socket_slave_1);
     vTaskDelete(tx_task);
@@ -267,7 +266,9 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
                					sta.mac[0], sta.mac[1], sta.mac[2], sta.mac[3], sta.mac[4], sta.mac[5]);
 					}
 				}
-
+				if (success_pack > 0) {
+					sprintf(payload+strlen(payload), "\nUDP send %d byte per sec\nTotal packets: %d \n", bps, success_pack);
+				}
 				int length = strlen(payload);
 				mg_send_head(nc, 200, length, "Content-Type: text/plain");
 				mg_printf(nc, "%s", payload);
@@ -333,9 +334,10 @@ void app_main()
     tcpip_adapter_init();
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
-    initialise_uart();
+    //initialise_uart();
     //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
-    xTaskCreate(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL);
+    xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
+    //xTaskCreate(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL);
     xTaskCreate(&udp_server, "udp_server", 2048, NULL, 5, NULL);
     //Task to handle UART events
     xTaskCreate(uart_event_task, "uart_event_task", 2048, NULL, 12, NULL);
