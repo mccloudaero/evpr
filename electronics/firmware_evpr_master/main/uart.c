@@ -19,7 +19,7 @@
 #include "main.h"
 #include "uart.h"
 
-static QueueHandle_t uart0_queue;
+static QueueHandle_t fc_uart_queue;
 
 void uart_event_task(void *pvParameters)
 {
@@ -28,7 +28,7 @@ void uart_event_task(void *pvParameters)
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
     for(;;) {
         //Waiting for UART event.
-        if(xQueueReceive(uart0_queue, (void * )&event, (portTickType)portMAX_DELAY)) {
+        if(xQueueReceive(fc_uart_queue, (void * )&event, (portTickType)portMAX_DELAY)) {
             ESP_LOGI(TAG, "uart[%d] event:", FC_UART_NUM);
             switch(event.type) {
                 //Event of UART receving data
@@ -99,10 +99,12 @@ void initialise_uart()
     //Set UART parameters
     uart_param_config(FC_UART_NUM, &uart_config);
     //Install UART driver, and get the queue.
-    uart_driver_install(FC_UART_NUM, BUF_SIZE * 2, BUF_SIZE * 2, 10, &uart0_queue, 0);
+    uart_driver_install(FC_UART_NUM, BUF_SIZE * 2, BUF_SIZE * 2, 10, &fc_uart_queue, 0);
 
-    //Set UART pins (using UART0 default pins ie no changes.)
-    uart_set_pin(FC_UART_NUM, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    //Set UART pins
+    //uart_set_pin(FC_UART_NUM, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
+    //uart_set_pin(FC_UART_NUM, 16, 17, 18, 19);
+    uart_set_pin(FC_UART_NUM, 17, 16, 18, 19); // Miswired TX/RX
 }
 
 //an example of echo test with hardware flow control on UART1
