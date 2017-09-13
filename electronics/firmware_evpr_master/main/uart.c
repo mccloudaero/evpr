@@ -21,24 +21,49 @@
 
 static QueueHandle_t fc_uart_queue;
 
+char *readLine(uart_port_t uart) {
+	static char line[256];
+	int size;
+	char *ptr = line;
+	while(1) {
+		size = uart_read_bytes(FC_UART_NUM, (unsigned char *)ptr, 1, portMAX_DELAY);
+		if (size == 1) {
+			if (*ptr == '\n') {
+				ptr++;
+				*ptr = 0;
+				return line;
+			}
+			ptr++;
+		} // End of read a character
+	} // End of loop
+} // End of readLine
+
 void uart_event_task(void *pvParameters)
 {
     uart_event_t event;
-    size_t buffered_size;
-    uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
+    size_t size = 1024;
+    uint8_t* dtmp = (uint8_t*) malloc(size);
     for(;;) {
         //Waiting for UART event.
         if(xQueueReceive(fc_uart_queue, (void * )&event, (portTickType)portMAX_DELAY)) {
             ESP_LOGI(TAG, "uart[%d] event:", FC_UART_NUM);
             switch(event.type) {
+                memset(dtmp, 0, size);
                 //Event of UART receving data
-                /*We'd better handler data event fast, there would be much more data events than
-                other types of events. If we take too much time on data event, the queue might
-                be full.
-                in this example, we don't process data in event, but read data outside.*/
                 case UART_DATA:
-                    uart_get_buffered_data_len(FC_UART_NUM, &buffered_size);
-                    ESP_LOGI(TAG, "data, len: %d; buffered len: %d", event.size, buffered_size);
+                    /*
+                    uart_get_buffered_data_len(FC_UART_NUM, &size);
+                    ESP_LOGI(TAG, "data, len: %d; buffered len: %d", event.size, size);
+                    */
+                    //int len = uart_read_bytes(FC_UART_NUM, dtmp, event.size, 10);
+                    //ESP_LOGI(TAG, "uart read: %d", len);
+                    /*uart_read_bytes(FC_UART_NUM, dtmp, event.size, 10);
+                    ESP_LOGI(TAG, "uart read");
+                    printf((char*) dtmp);
+                    ESP_LOGI(TAG, "uart print end");*/
+                    ESP_LOGI(TAG, "uart read");
+                    char *line = readLine(FC_UART_NUM);
+                    ESP_LOGI(TAG, "%s", line);
                     break;
                 //Event of HW FIFO overflow detected
                 case UART_FIFO_OVF:
@@ -87,13 +112,13 @@ void initialise_uart()
     ESP_LOGI(TAG, "Initializing UART");
 
     uart_config_t uart_config = {
-        .baud_rate = 115200,
-        //.baud_rate = 921600,
+        //.baud_rate = 115200,
+        .baud_rate = 921600,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
-        //.flow_ctrl = UART_HW_FLOWCTRL_CTS_RTS,  //Enabling flow control hangs output
-        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+        .flow_ctrl = UART_HW_FLOWCTRL_CTS_RTS,
+        //.flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
         .rx_flow_ctrl_thresh = 122,
     };
     //Set UART parameters
@@ -103,19 +128,21 @@ void initialise_uart()
 
     //Set UART pins
     //uart_set_pin(FC_UART_NUM, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
-    //uart_set_pin(FC_UART_NUM, 16, 17, 18, 19);
-    uart_set_pin(FC_UART_NUM, 17, 16, 18, 19); // Miswired TX/RX
+    uart_set_pin(FC_UART_NUM, 16, 17, 18, 19);
+    //uart_set_pin(FC_UART_NUM, 17, 16, 18, 19); // Miswired TX/RX
 }
 
 //an example of echo test with hardware flow control on UART1
-void echo_task()
+void uart_read_task()
 {
-    uint8_t* data = (uint8_t*) malloc(BUF_SIZE);
+    //uint8_t* data = (uint8_t*) malloc(BUF_SIZE);
     while(1) {
         //Read data from UART
-        int len = uart_read_bytes(FC_UART_NUM, data, BUF_SIZE, 20 / portTICK_RATE_MS);
-        ESP_LOGI(TAG, "uart read : %d", len);
+        //int len = uart_read_bytes(FC_UART_NUM, data, BUF_SIZE, 20 / portTICK_RATE_MS);
+        char *line = readLine(FC_UART_NUM);
+        ESP_LOGI(TAG, "%s", line);
+        //ESP_LOGI(TAG, "uart read : %d", len);
         //Write data back to UART
-        //uart_write_bytes(FC_UART_NUM, (const char*) data, len);
+        //uart_write_bytes(CONSOLE_UART_NUM, (const char*) data, len);
     }
 }
