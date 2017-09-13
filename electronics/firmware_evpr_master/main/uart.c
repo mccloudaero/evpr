@@ -19,26 +19,49 @@
 #include "main.h"
 #include "uart.h"
 
+#include "common/mavlink.h"
+
 static QueueHandle_t fc_uart_queue;
 
 void uart_event_task(void *pvParameters)
 {
     uart_event_t event;
-    size_t buffered_size;
+    int result;
+    //size_t buffered_size;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
+
+    // mavlink vars
+    mavlink_message_t message;
+    mavlink_status_t status;
+    uint8_t          msgReceived = false;
+
     for(;;) {
         //Waiting for UART event.
         if(xQueueReceive(fc_uart_queue, (void * )&event, (portTickType)portMAX_DELAY)) {
             ESP_LOGI(TAG, "uart[%d] event:", FC_UART_NUM);
             switch(event.type) {
                 //Event of UART receving data
-                /*We'd better handler data event fast, there would be much more data events than
-                other types of events. If we take too much time on data event, the queue might
-                be full.
-                in this example, we don't process data in event, but read data outside.*/
                 case UART_DATA:
-                    uart_get_buffered_data_len(FC_UART_NUM, &buffered_size);
-                    ESP_LOGI(TAG, "data, len: %d; buffered len: %d", event.size, buffered_size);
+                    // Read from port
+                    result = uart_read_bytes(FC_UART_NUM, dtmp, BUF_SIZE, 20 / portTICK_RATE_MS);
+                    // Parse message
+                    if (result > 0)
+                    {
+                        ESP_LOGI(TAG, "Parse Message");
+                        msgReceived = mavlink_parse_char(MAVLINK_COMM_1, *dtmp, &message, &status);
+
+                        /*
+                        // check for dropped packets
+                        if ( (lastStatus.packet_rx_drop_count != status.packet_rx_drop_count) && debug )
+                        {
+                            printf("ERROR: DROPPED %d PACKETS\n", status.packet_rx_drop_count);
+                            unsigned char v=cp;
+                            fprintf(stderr,"%02x ", v);
+                        }
+                        */
+                        lastStatus = status;
+                    }
+
                     break;
                 //Event of HW FIFO overflow detected
                 case UART_FIFO_OVF:
@@ -87,13 +110,13 @@ void initialise_uart()
     ESP_LOGI(TAG, "Initializing UART");
 
     uart_config_t uart_config = {
-        .baud_rate = 115200,
-        //.baud_rate = 921600,
+        //.baud_rate = 115200,
+        .baud_rate = 921600,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
-        //.flow_ctrl = UART_HW_FLOWCTRL_CTS_RTS,  //Enabling flow control hangs output
-        .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
+        .flow_ctrl = UART_HW_FLOWCTRL_CTS_RTS,  //Enabling flow control hangs output
+        //.flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
         .rx_flow_ctrl_thresh = 122,
     };
     //Set UART parameters
@@ -102,20 +125,5 @@ void initialise_uart()
     uart_driver_install(FC_UART_NUM, BUF_SIZE * 2, BUF_SIZE * 2, 10, &fc_uart_queue, 0);
 
     //Set UART pins
-    //uart_set_pin(FC_UART_NUM, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE);
-    //uart_set_pin(FC_UART_NUM, 16, 17, 18, 19);
-    uart_set_pin(FC_UART_NUM, 17, 16, 18, 19); // Miswired TX/RX
-}
-
-//an example of echo test with hardware flow control on UART1
-void echo_task()
-{
-    uint8_t* data = (uint8_t*) malloc(BUF_SIZE);
-    while(1) {
-        //Read data from UART
-        int len = uart_read_bytes(FC_UART_NUM, data, BUF_SIZE, 20 / portTICK_RATE_MS);
-        ESP_LOGI(TAG, "uart read : %d", len);
-        //Write data back to UART
-        //uart_write_bytes(FC_UART_NUM, (const char*) data, len);
-    }
+    uart_set_pin(FC_UART_NUM, 16, 17, 18, 19);
 }
