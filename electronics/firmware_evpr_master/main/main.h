@@ -11,6 +11,19 @@
 #define ROTOR_1_IP "192.168.4.2" 
 //#define ROTOR_1_PORT 6001  
 
+//extern EventGroupHandle_t comm_event_group;
+extern bool broadcast_packets;
+
+// UDP socket info
+extern int socket_slave_1;
+extern struct sockaddr_in master_address;
+extern struct sockaddr_in rotor_1_address;
+
+// UDP stats
+extern int total_data;
+extern int bps;
+extern int success_pack;
+
 // mavlink common vars
 mavlink_message_t current_message;
 mavlink_status_t mavlink_status;

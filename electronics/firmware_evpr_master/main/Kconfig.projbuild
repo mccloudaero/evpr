@@ -20,7 +20,7 @@ config BLINK_GPIO
 
 config UDP_PKT_SIZE
     int "Size of UDP packet"
-    default 80 
+    default 512 
     help
 	the data send&recv packet size. 
 		

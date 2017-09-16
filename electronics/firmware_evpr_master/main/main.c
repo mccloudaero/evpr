@@ -32,9 +32,11 @@ EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define UDP_CONNECTED_SUCCESS BIT1
 
-static int socket_slave_1;
-static struct sockaddr_in master_address;
-static struct sockaddr_in rotor_1_address;
+bool broadcast_packets = false;
+
+int socket_slave_1;
+struct sockaddr_in master_address;
+struct sockaddr_in rotor_1_address;
 static unsigned int socklen;
 
 int total_data = 0;
@@ -162,6 +164,7 @@ static void initialise_udp(void)
 	ESP_LOGI(TAG, "Packet successfully sent to %s:%u\n",
 		inet_ntoa(rotor_1_address.sin_addr), ntohs(rotor_1_address.sin_port));
 	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
+        broadcast_packets = true;
     } else {
         ESP_LOGI(TAG, "socket error");
 	close(socket_slave_1);

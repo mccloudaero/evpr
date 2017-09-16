@@ -21,6 +21,23 @@
 #include "main.h"
 #include "uart.h"
 
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/event_groups.h"
+#include "driver/gpio.h"
+#include "sdkconfig.h"
+#include "esp_err.h"
+#include "esp_event.h"
+#include "esp_event_loop.h"
+#include "esp_log.h"
+#include "esp_wifi.h"
+#include "nvs_flash.h"
+
+#include "mongoose.h"
+#include "common/mavlink.h"
+
+#include "main.h"
 
 static QueueHandle_t fc_uart_queue;
 
@@ -35,6 +52,9 @@ void uart_event_task(void *pvParameters)
     uint8_t sys_id;
     uint8_t comp_id;
     uint8_t message_id;
+
+    // UDP Vars
+    int len;
 
     // mavlink vars
     mavlink_message_t message;
@@ -76,6 +96,20 @@ void uart_event_task(void *pvParameters)
                             case 1:
                                 ESP_LOGI(TAG, "SYSTEM_STATUS");
                         }
+                        if(broadcast_packets);
+                        {
+                            // Send the mavlink data to the rotors via UDP
+    	                    len = sendto(socket_slave_1, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+	                    if (len > 0) {
+	                        total_data += len;
+	                        success_pack++;
+                                ESP_LOGI(TAG, "Packet Broadcasted");
+	                    } else {
+	                        if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
+                                    ESP_LOGI(TAG, "socket error");
+                                }
+                            }
+                        }
 
                         /* MAVLINK PARSING DOESN'T SEEM TO BE WORKING
                         if(message_id > 0)
@@ -109,10 +143,10 @@ void uart_event_task(void *pvParameters)
                         */
 
                     }
-                    else
+                    /*else
                     {
                         ESP_LOGE(TAG, "Could not read from UART");
-                    }
+                    }*/
 
 
                     break;
