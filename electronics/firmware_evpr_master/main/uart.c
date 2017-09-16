@@ -16,10 +16,11 @@
 #include "esp_log.h"
 #include "soc/uart_struct.h"
 
+#include "common/mavlink.h"
+
 #include "main.h"
 #include "uart.h"
 
-#include "common/mavlink.h"
 
 static QueueHandle_t fc_uart_queue;
 
@@ -27,40 +28,50 @@ void uart_event_task(void *pvParameters)
 {
     uart_event_t event;
     int result;
-    //size_t buffered_size;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
 
     // mavlink vars
     mavlink_message_t message;
-    mavlink_status_t status;
     uint8_t          msgReceived = false;
 
     for(;;) {
         //Waiting for UART event.
         if(xQueueReceive(fc_uart_queue, (void * )&event, (portTickType)portMAX_DELAY)) {
-            ESP_LOGI(TAG, "uart[%d] event:", FC_UART_NUM);
+            ESP_LOGV(TAG, "uart[%d] event:", FC_UART_NUM);
             switch(event.type) {
                 //Event of UART receving data
                 case UART_DATA:
                     // Read from port
                     result = uart_read_bytes(FC_UART_NUM, dtmp, BUF_SIZE, 20 / portTICK_RATE_MS);
-                    // Parse message
-                    if (result > 0)
+                    if(result > 0)
                     {
-                        ESP_LOGI(TAG, "Parse Message");
-                        msgReceived = mavlink_parse_char(MAVLINK_COMM_1, *dtmp, &message, &status);
+                        // Parse message
+                        ESP_LOGV(TAG, "Parse Message");
+                        msgReceived = mavlink_parse_char(MAVLINK_COMM_1, *dtmp, &message, &mavlink_status);
+                        mavlink_last_status = mavlink_status;
 
-                        /*
-                        // check for dropped packets
-                        if ( (lastStatus.packet_rx_drop_count != status.packet_rx_drop_count) && debug )
+                        if(mavlink_status.packet_rx_drop_count > 0)
                         {
-                            printf("ERROR: DROPPED %d PACKETS\n", status.packet_rx_drop_count);
-                            unsigned char v=cp;
-                            fprintf(stderr,"%02x ", v);
+                            ESP_LOGE(TAG, "Packets Dropped %d", mavlink_status.packet_rx_drop_count);
                         }
-                        */
-                        lastStatus = status;
+                        ESP_LOGI(TAG, "Message Received: %d", msgReceived);
+                        ESP_LOGI(TAG, "System ID %d", message.sysid);
+                        ESP_LOGI(TAG, "Comp ID %d", message.compid);
+                        ESP_LOGI(TAG, "Message ID %d", message.msgid);
+                        if(msgReceived)
+                        {
+                            // Store message sysid and compid.
+                            // Note this doesn't handle multiple message sources.
+                            current_message.sysid  = message.sysid;
+                            current_message.compid = message.compid;
+                            ESP_LOGI(TAG, "System ID %d", message.sysid);
+                        }
                     }
+                    else
+                    {
+                        ESP_LOGE(TAG, "Could not read from UART");
+                    }
+
 
                     break;
                 //Event of HW FIFO overflow detected
@@ -110,7 +121,6 @@ void initialise_uart()
     ESP_LOGI(TAG, "Initializing UART");
 
     uart_config_t uart_config = {
-        //.baud_rate = 115200,
         .baud_rate = 921600,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,

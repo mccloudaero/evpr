@@ -10,3 +10,9 @@
 #define MASTER_PORT 6000  
 #define ROTOR_1_IP "192.168.4.2" 
 //#define ROTOR_1_PORT 6001  
+
+// mavlink common vars
+mavlink_message_t current_message;
+mavlink_status_t mavlink_status;
+mavlink_status_t mavlink_last_status;
+

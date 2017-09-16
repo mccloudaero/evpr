@@ -1,3 +1,5 @@
+#include "common/mavlink.h"
+#include "main.h"
 
 #define FC_UART_NUM UART_NUM_2 // Note: UART0 connected to USB and used for bootloader
 

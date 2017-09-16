@@ -22,6 +22,7 @@
 #include "nvs_flash.h"
 
 #include "mongoose.h"
+#include "common/mavlink.h"
 
 #include "main.h"
 #include "uart.h"
@@ -330,16 +331,30 @@ static void initialise_wifi(void)
 
 void app_main()
 {
+    // Initialize
     nvs_flash_init();
     tcpip_adapter_init();
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
     initialise_uart();
+
+    //Task to handle UART events
+    xTaskCreate(uart_event_task, "uart_event_task", 4096, NULL, 12, NULL);
+
+    // Start 
+    mavlink_last_status.packet_rx_drop_count = 0;
+    ESP_LOGI(TAG,"Waiting for message from Flight Controller");
+    ESP_LOGI(TAG, "System ID %d", current_message.sysid);
+    while ( !current_message.sysid )
+    {
+	vTaskDelay(500 / portTICK_RATE_MS);	// check at 2Hz
+        ESP_LOGI(TAG,"Waiting...");
+    }
+    ESP_LOGI(TAG,"Connected to Flight Controller");
+
     //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
     //xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
     //xTaskCreate(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL);
     //xTaskCreate(&udp_server, "udp_server", 2048, NULL, 5, NULL);
-    //Task to handle UART events
-    xTaskCreate(uart_event_task, "uart_event_task", 2048, NULL, 12, NULL);
     //xTaskCreate(&echo_task, "uart_echo_task", 4096, NULL, 10, NULL);
 }
