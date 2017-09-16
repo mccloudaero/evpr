@@ -82,43 +82,6 @@ void blink_task(void *pvParameter)
     }
 }
 
-void send_data(void *pvParameters)
-{
-    ESP_LOGI(TAG, "task send_data start!\n");
-
-    int len;
-    char data_buffer[UDP_PKTSIZE];
-
-    strcpy(data_buffer, "Hello World");
-    ESP_LOGI(TAG, "first sendto:");
-    len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
-
-    if (len > 0) {
-	ESP_LOGI(TAG, "transfer data with %s:%u\n",
-		inet_ntoa(rotor_1_address.sin_addr), ntohs(rotor_1_address.sin_port));
-	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
-    } else {
-        ESP_LOGI(TAG, "socket error");
-	close(socket_slave_1);
-	vTaskDelete(NULL);
-    }
-
-    vTaskDelay(500 / portTICK_RATE_MS);
-    ESP_LOGI(TAG, "start count!\n");
-    while(1) {
-    	len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
-	if (len > 0) {
-	    total_data += len;
-	    success_pack++;
-	} else {
-	    if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
-                ESP_LOGI(TAG, "socket error");
-	    }
-	}
-    }
-    
-}
-
 static void initialise_udp(void)
 {
     ESP_LOGI(TAG, "Initializing UDP");

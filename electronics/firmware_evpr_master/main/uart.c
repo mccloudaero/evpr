@@ -103,7 +103,7 @@ void uart_event_task(void *pvParameters)
 	                    if (len > 0) {
 	                        total_data += len;
 	                        success_pack++;
-                                ESP_LOGI(TAG, "Packet Broadcasted");
+                                //ESP_LOGI(TAG, "Packet Broadcasted");
 	                    } else {
 	                        if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
                                     ESP_LOGI(TAG, "socket error");
