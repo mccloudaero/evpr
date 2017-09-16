@@ -29,10 +29,18 @@ void uart_event_task(void *pvParameters)
     uart_event_t event;
     int result;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
+    uint8_t start_byte;
+    uint8_t payload_length;
+    uint8_t seq;
+    uint8_t sys_id;
+    uint8_t comp_id;
+    uint8_t message_id;
 
     // mavlink vars
     mavlink_message_t message;
-    uint8_t          msgReceived = false;
+    int position;
+    uint8_t current_byte;
+    uint8_t msgReceived = false;
 
     for(;;) {
         //Waiting for UART event.
@@ -45,27 +53,54 @@ void uart_event_task(void *pvParameters)
                     result = uart_read_bytes(FC_UART_NUM, dtmp, BUF_SIZE, 20 / portTICK_RATE_MS);
                     if(result > 0)
                     {
-                        // Parse message
-                        ESP_LOGV(TAG, "Parse Message");
-                        msgReceived = mavlink_parse_char(MAVLINK_COMM_1, *dtmp, &message, &mavlink_status);
-                        mavlink_last_status = mavlink_status;
+                        // Examine mavlink header 
+                        start_byte = dtmp[0];
+                        payload_length = dtmp[1];
+                        seq = dtmp[2];
+                        sys_id = dtmp[5];
+                        comp_id = dtmp[5];
+                        message_id = dtmp[5];
 
-                        if(mavlink_status.packet_rx_drop_count > 0)
+                        current_message.sysid  = message.sysid;
+                        current_message.compid = message.compid;
+
+                        ESP_LOGI(TAG, "buffer first byte:%x, len:%d, seq:%d", start_byte,payload_length,seq);
+                        ESP_LOGI(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", sys_id,comp_id,message_id);
+                        // Check the message ID. For now only care about:
+                        // MAVLINK_MSG_ID_HEARTBEAT 0
+                        // MAVLINK_MSG_ID_SERVO_OUTPUT_RAW 36 
+                        //if(message_id == 0 || message_id == 36)
+                        if(message_id > 0)
                         {
-                            ESP_LOGE(TAG, "Packets Dropped %d", mavlink_status.packet_rx_drop_count);
+                            /* MAVLINK PARSING DOESN'T SEEM TO BE WORKING
+                            // Parse message using mavlink
+                            // Note: the parse function just reads one byte at a time until the message is complete
+                            ESP_LOGV(TAG, "Parse Message");
+                            position = 0;
+                            for(position=0;position<BUF_SIZE;position++) 
+                            {
+                                current_byte = dtmp[position]; 
+                                msgReceived = mavlink_parse_char(0, *dtmp, &message, &mavlink_status);
+                                mavlink_last_status = mavlink_status;
+                                if(msgReceived)
+                                {
+                                    // Store message sysid and compid.
+                                    // Note this doesn't handle multiple message sources.
+                                    current_message.sysid  = message.sysid;
+                                    current_message.compid = message.compid;
+                                    ESP_LOGI(TAG, "System ID %d", message.sysid);
+                                    break;
+                                }
+
+                                if(mavlink_status.packet_rx_drop_count > 0)
+                                {
+                                    ESP_LOGE(TAG, "Packets Dropped %d", mavlink_status.packet_rx_drop_count);
+                                }
+                                position += 1;
+                            }
+                            */
                         }
-                        ESP_LOGI(TAG, "Message Received: %d", msgReceived);
-                        ESP_LOGI(TAG, "System ID %d", message.sysid);
-                        ESP_LOGI(TAG, "Comp ID %d", message.compid);
-                        ESP_LOGI(TAG, "Message ID %d", message.msgid);
-                        if(msgReceived)
-                        {
-                            // Store message sysid and compid.
-                            // Note this doesn't handle multiple message sources.
-                            current_message.sysid  = message.sysid;
-                            current_message.compid = message.compid;
-                            ESP_LOGI(TAG, "System ID %d", message.sysid);
-                        }
+
                     }
                     else
                     {
@@ -125,7 +160,7 @@ void initialise_uart()
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
-        .flow_ctrl = UART_HW_FLOWCTRL_CTS_RTS,  //Enabling flow control hangs output
+        .flow_ctrl = UART_HW_FLOWCTRL_CTS_RTS,
         //.flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
         .rx_flow_ctrl_thresh = 122,
     };
