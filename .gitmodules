@@ -1,3 +1,0 @@
-[submodule "electronics/firmware_evpr_master/components/mavlink"]
-	path = electronics/firmware_evpr_master/components/mavlink
-	url = git://github.com/mavlink/c_library.git
