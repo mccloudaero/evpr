@@ -117,13 +117,13 @@ void send_data(void *pvParameters)
     
 }
 
-static void udp_server(void *pvParameters)
+static void initialise_udp(void)
 {
-    ESP_LOGI(TAG, "udp_server start.");
+    ESP_LOGI(TAG, "Initializing UDP");
 
     // wait for stations to connect
     xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
-    ESP_LOGI(TAG, "sta has connected to ap.");
+    ESP_LOGI(TAG, "Stations connected, creating sockets");
 
     //create udp socket
     socket_slave_1 = socket(AF_INET, SOCK_DGRAM, 0);
@@ -149,28 +149,24 @@ static void udp_server(void *pvParameters)
     memset(&rotor_1_address, 0, sizeof(struct sockaddr_in));
     rotor_1_address.sin_family = AF_INET;
     rotor_1_address.sin_addr.s_addr = inet_addr(ROTOR_1_IP);
-    //rotor_1_address.sin_port = htons(ROTOR_1_PORT);
     rotor_1_address.sin_port = htons(MASTER_PORT);
 
-    TaskHandle_t tx_task;
-    xTaskCreate(&send_data, "send_data", 4096, NULL, 4, &tx_task);
+    // Send Test Packet
+    int len;
+    char data_buffer[UDP_PKTSIZE];
 
-    // Wait for udp connected success
-    xEventGroupWaitBits(comm_event_group, UDP_CONNECTED_SUCCESS,false, true, portMAX_DELAY);
-    xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
-    while (1) {
-	total_data = 0;
-	vTaskDelay(3000 / portTICK_RATE_MS);	//wait 3s
-	bps = total_data / 3;	// Compute bytes per second
-
-	if (total_data <= 0) {
-	    ESP_LOGW(TAG, "udp send & recv stop.\n");
-	    break;
-	}
+    strcpy(data_buffer, "Test packet");
+    ESP_LOGI(TAG, "Sending test packet");
+    len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    if (len > 0) {
+	ESP_LOGI(TAG, "Packet successfully sent to %s:%u\n",
+		inet_ntoa(rotor_1_address.sin_addr), ntohs(rotor_1_address.sin_port));
+	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
+    } else {
+        ESP_LOGI(TAG, "socket error");
+	close(socket_slave_1);
+	vTaskDelete(NULL);
     }
-    close(socket_slave_1);
-    vTaskDelete(tx_task);
-    vTaskDelete(NULL);
 
 }
 
@@ -341,7 +337,7 @@ void app_main()
     // Task to handle UART events
     xTaskCreate(uart_event_task, "uart_event_task", 4096, NULL, 12, NULL);
 
-    // Start 
+    // Start Listening for mavlink messages on the UART and wait until recieved 
     mavlink_last_status.packet_rx_drop_count = 0;
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
     while ( !current_message.sysid )
@@ -352,6 +348,7 @@ void app_main()
     ESP_LOGI(TAG, "Connected to Flight Controller");
     ESP_LOGI(TAG, "System ID %d", current_message.sysid);
 
+    initialise_udp();
     //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
     //xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
     //xTaskCreate(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL);
