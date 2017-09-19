@@ -14,6 +14,10 @@
 //extern EventGroupHandle_t comm_event_group;
 extern bool broadcast_packets;
 
+extern int fc_packets_total;
+extern int fc_packets_lost;
+extern double fc_packets_failure;
+
 // UDP socket info
 extern int socket_slave_1;
 extern struct sockaddr_in master_address;

@@ -70,7 +70,8 @@ void uart_event_task(void *pvParameters)
                 //Event of UART receving data
                 case UART_DATA:
                     // Read from port
-                    result = uart_read_bytes(FC_UART_NUM, dtmp, BUF_SIZE, 20 / portTICK_RATE_MS);
+                    result = uart_read_bytes(FC_UART_NUM, dtmp, BUF_SIZE, 5 / portTICK_RATE_MS);
+                    fc_packets_total++;
                     if(result > 0)
                     {
                         // Examine mavlink header 
@@ -95,6 +96,8 @@ void uart_event_task(void *pvParameters)
                                 ESP_LOGI(TAG, "HEARTBEAT");
                             case 1:
                                 ESP_LOGI(TAG, "SYSTEM_STATUS");
+                            case 36:
+                                ESP_LOGI(TAG, "SERVO SETTINGS");
                         }
                         if(broadcast_packets);
                         {
@@ -143,10 +146,12 @@ void uart_event_task(void *pvParameters)
                         */
 
                     }
-                    /*else
+                    else
                     {
-                        ESP_LOGE(TAG, "Could not read from UART");
-                    }*/
+                        fc_packets_lost++;
+                        fc_packets_failure = 100.0*(float)fc_packets_lost/(float)fc_packets_total;
+                        ESP_LOGE(TAG, "Could not read from UART. Failure rate %f percent",fc_packets_failure);
+                    }
 
 
                     break;

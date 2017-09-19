@@ -43,6 +43,10 @@ int total_data = 0;
 int bps = 0;
 int success_pack = 0;
 
+int fc_packets_total = 0;
+int fc_packets_lost = 0;
+double fc_packets_failure;
+
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
     switch(event->event_id) {
