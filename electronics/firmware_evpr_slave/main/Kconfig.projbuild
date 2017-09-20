@@ -38,7 +38,7 @@ config DEVICE_NETMASK
 
 config UDP_PKT_SIZE
     int "Size of UDP packet"
-    default 80 
+    default 1024 
     help
 	the data send&recv packet size. 
 		

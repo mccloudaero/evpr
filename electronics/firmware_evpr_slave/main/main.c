@@ -37,7 +37,7 @@ static unsigned int socklen;
 int total_data = 0;
 int success_pack = 0;
 
-#define MODE 0 // Options 0=self_test, 1=position_hold
+#define MODE 2 // Options 0=self_test, 1=position_hold, 2=normal
 
 //You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 mocrosecond
 #define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
@@ -265,16 +265,22 @@ static void initialise_wifi(void)
 
 void app_main()
 {
+    // Initialize
     nvs_flash_init();
     tcpip_adapter_init();
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
+
+    // Choose Run Mode
     #if MODE == 0
       printf("Self Test Mode\n");
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
-    #else
+    #endif
+    #if MODE == 1 
       printf("Position Hold Mode\n");
       xTaskCreate(position_hold, "position_hold", 4096, NULL, 5, NULL);
     #endif
-    xTaskCreate(udp_recieve, "udp_recieve", 4096, NULL, 5, NULL);
+    #if MODE == 2 
+      xTaskCreate(udp_recieve, "udp_recieve", 4096, NULL, 5, NULL);
+    #endif
 }
