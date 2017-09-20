@@ -308,7 +308,7 @@ void app_main()
     xTaskCreate(uart_event_task, "uart event handler", 4096, NULL, 12, NULL);
 
     // Start webserver
-    //xTaskCreate(&mongooseTask, "mongoose web server", 20000, NULL, 5, NULL);
+    xTaskCreate(&mongooseTask, "mongoose web server", 4096, NULL, 5, NULL);
 
     // Start Listening for mavlink messages on the UART and wait until recieved 
     mavlink_last_status.packet_rx_drop_count = 0;
