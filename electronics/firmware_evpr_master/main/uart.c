@@ -62,19 +62,13 @@ void uart_event_task(void *pvParameters)
     uart_event_t event;
     int result;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
-    uint8_t start_byte;
-    uint8_t payload_length;
-    uint8_t seq;
-    uint8_t sys_id;
-    uint8_t comp_id;
     uint8_t message_id;
 
-
     // mavlink vars
-    mavlink_message_t message;
-    int position;
-    uint8_t current_byte;
-    uint8_t msgReceived = false;
+    //mavlink_message_t message;
+    //int position;
+    //uint8_t current_byte;
+    //uint8_t msgReceived = false;
 
     for(;;) {
         //Waiting for UART event.
@@ -88,26 +82,19 @@ void uart_event_task(void *pvParameters)
                     fc_packets_total++;
                     if(result > 0)
                     {
-                        // Examine mavlink header 
-                        start_byte = dtmp[0];
-                        payload_length = dtmp[1];
-                        seq = dtmp[2];
-                        sys_id = dtmp[5];
-                        comp_id = dtmp[5];
-                        message_id = dtmp[5];
+                        // Debug Info if needed
+                        ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
+                        ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
 
-                        current_message.sysid  = message.sysid;
-                        current_message.compid = message.compid;
-
-                        ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", start_byte,payload_length,seq);
-                        ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", sys_id,comp_id,message_id);
                         // Check the message ID. For now only care about:
                         // MAVLINK_MSG_ID_HEARTBEAT 0
                         // MAVLINK_MSG_ID_SERVO_OUTPUT_RAW 36 
-                        //if(message_id == 0 || message_id == 36)
+                        message_id = dtmp[5];
                         switch(message_id) {
                             case 0:
                                 ESP_LOGV(TAG, "HEARTBEAT");
+                                current_message.sysid  = dtmp[3];
+                                current_message.compid = dtmp[4];
                             case 1:
                                 ESP_LOGV(TAG, "SYSTEM_STATUS");
                             case 36:
