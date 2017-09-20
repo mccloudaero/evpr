@@ -24,11 +24,21 @@
 #include <lwip/sockets.h>
 #include "main.h"
 
+// Slave Node Mode
+// Options 0=self_test, 1=position_hold, 2=nominal
+#define MODE 2
+
+// Servo Settings
+#define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
+#define SERVO_MAX_PULSEWIDTH 2000 //Maximum pulse width in microsecond
+#define SERVO_MAX_DEGREE 90 //Maximum angle in degree upto which servo can rotate
+
 // FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
 EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define UDP_CONNECTED_SUCCESS BIT1
 
+// UDP vars
 static int slave_socket;
 static struct sockaddr_in master_address;
 static struct sockaddr_in slave_address;
@@ -37,12 +47,9 @@ static unsigned int socklen;
 int total_data = 0;
 int success_pack = 0;
 
-#define MODE 2 // Options 0=self_test, 1=position_hold, 2=nominal
+// servo vars 
+uint32_t pulse_width = 0;
 
-//You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 mocrosecond
-#define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
-#define SERVO_MAX_PULSEWIDTH 2000 //Maximum pulse width in microsecond
-#define SERVO_MAX_DEGREE 90 //Maximum angle in degree upto which servo can rotate
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -61,24 +68,29 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 
 void receive_data(void *pvParameters)
 {
-    ESP_LOGI(TAG, "task receive_data start!\n");
+    ESP_LOGV(TAG, "Task receive_data start");
 
     int num_bytes;
     char data_buffer[UDP_PKTSIZE];
 
-    ESP_LOGI(TAG, "first recvfrom:");
-    num_bytes = recvfrom(slave_socket, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
-    //num_bytes = recv(slave_socket, data_buffer, UDP_PKTSIZE, 0);
- 
-    if (num_bytes > 0) {
-	ESP_LOGI(TAG, "transfer data with %s:%u\n",
-		inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
-	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
-        printf("%s\n",data_buffer);
-    } else {
-        ESP_LOGI(TAG, "socket error");
-	close(slave_socket);
-	vTaskDelete(NULL);
+    ESP_LOGV(TAG, "Listening for first packet");
+    bool first_message_listen = true; 
+    while(first_message_listen) { 
+        num_bytes = recvfrom(slave_socket, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
+        if (num_bytes > 0) {
+            // Check packet contents
+            ESP_LOGI(TAG, "Packet: %s",data_buffer);
+            if(strcmp(data_buffer,"Test packet") == 0) {
+                first_message_listen = false; 
+	        ESP_LOGI(TAG, "transfer data with %s:%u\n",
+		    inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
+	        xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
+            }
+        } else {
+            ESP_LOGI(TAG, "socket error");
+	    close(slave_socket);
+	    vTaskDelete(NULL);
+        }
     }
 
     vTaskDelay(500 / portTICK_RATE_MS);
@@ -156,20 +168,25 @@ static void udp_recieve(void *pvParameters)
 
 static void mcpwm_gpio_initialize()
 {
-    printf("initializing mcpwm servo control gpio......\n");
+    ESP_LOGI(TAG, "Initializing MCPWM servo GPIO");
+
+    // Set Pins
     mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, 16);    //Set GPIO 16 as PWM0A, to which servo is connected
     mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, 17);    //Set GPIO 17 as PWM0B, to which servo is connected
+
+    // Configure 
+    mcpwm_config_t pwm_config;
+    pwm_config.frequency = 50;    //frequency = 50Hz, i.e. for every servo motor time period should be 20ms
+    pwm_config.cmpr_a = 0;    //duty cycle of PWMxA = 0
+    pwm_config.cmpr_b = 0;    //duty cycle of PWMxb = 0
+    pwm_config.counter_mode = MCPWM_UP_COUNTER;
+    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
+    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);    //Configure PWM0A & PWM0B with above settings
+    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_1, &pwm_config);    //Configure PWM0A & PWM0B with above settings
 }
 
-/**
- * @brief Use this function to calcute pulse width for per degree rotation
- *
- * @param  degree_of_rotation the angle in degree to which servo has to rotate
- *
- * @return
- *     - calculated pulse width
- */
-static uint32_t servo_per_degree_init(uint32_t degree_of_rotation)
+// Compute Pulse width from desired angle(degrees)
+static uint32_t pulse_width_from_angle(uint32_t degree_of_rotation)
 {
     uint32_t cal_pulsewidth = 0;
     cal_pulsewidth = (SERVO_MIN_PULSEWIDTH + (((SERVO_MAX_PULSEWIDTH - SERVO_MIN_PULSEWIDTH) * (degree_of_rotation)) / (SERVO_MAX_DEGREE)));
@@ -178,57 +195,27 @@ static uint32_t servo_per_degree_init(uint32_t degree_of_rotation)
 
 void servo_self_test(void *arg)
 {
-    uint32_t angle, count;
-    //1. mcpwm gpio initialization
-    mcpwm_gpio_initialize();
+    uint32_t count;
 
-    //2. initial mcpwm configuration
-    printf("Configuring Initial Parameters of mcpwm......\n");
-    mcpwm_config_t pwm_config;
-    pwm_config.frequency = 50;    //frequency = 50Hz, i.e. for every servo motor time period should be 20ms
-    pwm_config.cmpr_a = 0;    //duty cycle of PWMxA = 0
-    pwm_config.cmpr_b = 0;    //duty cycle of PWMxb = 0
-    pwm_config.counter_mode = MCPWM_UP_COUNTER;
-    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
-    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);    //Configure PWM0A & PWM0B with above settings
-    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_1, &pwm_config);    //Configure PWM0A & PWM0B with above settings
+    // Rotate servo continously
     while (1) {
         for (count = 0; count < SERVO_MAX_DEGREE; count++) {
             //printf("Angle of rotation: %d\n", count);
-            angle = servo_per_degree_init(count);
+            pulse_width = pulse_width_from_angle(count);
             //printf("pulse width: %dus\n", angle);
-            mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);
-            mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, angle);
+            mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
+            mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
             vTaskDelay(10);     //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
         }
     }
 }
 
-void position_hold(void *arg)
+static void servo_control(void *pvParameters)
 {
-    uint32_t angle, count;
-    //1. mcpwm gpio initialization
-    mcpwm_gpio_initialize();
-
-    //2. initial mcpwm configuration
-    printf("Configuring Initial Parameters of mcpwm......\n");
-    mcpwm_config_t pwm_config;
-    pwm_config.frequency = 50;    //frequency = 50Hz, i.e. for every servo motor time period should be 20ms
-    pwm_config.cmpr_a = 0;    //duty cycle of PWMxA = 0
-    pwm_config.cmpr_b = 0;    //duty cycle of PWMxb = 0
-    pwm_config.counter_mode = MCPWM_UP_COUNTER;
-    pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
-    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);    //Configure PWM0A & PWM0B with above settings
-    mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_1, &pwm_config);    //Configure PWM0A & PWM0B with above settings
-
-    //3. Hold position at specified angle
-    count = 0;
-    printf("Angle of rotation: %d\n", count);
-    angle = servo_per_degree_init(count);
-    printf("pulse width: %dus\n", angle);
+    // Loop for setting servo positions
     while (1) {
-        mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, angle);
-        mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, angle);
+        mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
+        mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
     }
 }
 
@@ -270,19 +257,22 @@ void app_main()
     tcpip_adapter_init();
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
+    mcpwm_gpio_initialize();
 
     // Choose Run Mode
     #if MODE == 0
       ESP_LOGI(TAG,"Self Test Mode (0)");
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
+      xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
     #if MODE == 1 
       ESP_LOGI(TAG,"Position Hold Mode (1)");
       printf("Position Hold Mode\n");
-      xTaskCreate(position_hold, "position_hold", 4096, NULL, 5, NULL);
+      xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
     #if MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
-      xTaskCreate(udp_recieve, "udp_recieve", 4096, NULL, 5, NULL);
+      xTaskCreate(udp_recieve, "udp recieve task", 4096, NULL, 5, NULL);
+      xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
 }
