@@ -37,7 +37,7 @@ static unsigned int socklen;
 int total_data = 0;
 int success_pack = 0;
 
-#define MODE 2 // Options 0=self_test, 1=position_hold, 2=normal
+#define MODE 2 // Options 0=self_test, 1=position_hold, 2=nominal
 
 //You can get these value from the datasheet of servo you use, in general pulse width varies between 1000 to 2000 mocrosecond
 #define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
@@ -99,7 +99,7 @@ void receive_data(void *pvParameters)
 
 static void udp_recieve(void *pvParameters)
 {
-    ESP_LOGI(TAG, "udp receive start.");
+    ESP_LOGI(TAG, "udp receive start");
 
     // wait for stations to connect
     xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
@@ -273,14 +273,16 @@ void app_main()
 
     // Choose Run Mode
     #if MODE == 0
-      printf("Self Test Mode\n");
+      ESP_LOGI(TAG,"Self Test Mode (0)");
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
     #endif
     #if MODE == 1 
+      ESP_LOGI(TAG,"Position Hold Mode (1)");
       printf("Position Hold Mode\n");
       xTaskCreate(position_hold, "position_hold", 4096, NULL, 5, NULL);
     #endif
     #if MODE == 2 
+      ESP_LOGI(TAG,"Nominal Mode (2)");
       xTaskCreate(udp_recieve, "udp_recieve", 4096, NULL, 5, NULL);
     #endif
 }
