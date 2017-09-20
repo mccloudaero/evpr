@@ -41,6 +41,22 @@
 
 static QueueHandle_t fc_uart_queue;
 
+void udp_broadcast_data(uint8_t* dtmp)
+{
+    int len;
+
+    // Send the mavlink data to the rotors via UDP
+    len = sendto(socket_slave_1, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    if (len > 0) {
+        total_data += len;
+        success_pack++;
+    } else {
+        if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
+            ESP_LOGI(TAG, "socket error");
+        }
+    }
+}
+
 void uart_event_task(void *pvParameters)
 {
     uart_event_t event;
@@ -53,8 +69,6 @@ void uart_event_task(void *pvParameters)
     uint8_t comp_id;
     uint8_t message_id;
 
-    // UDP Vars
-    int len;
 
     // mavlink vars
     mavlink_message_t message;
@@ -93,25 +107,12 @@ void uart_event_task(void *pvParameters)
                         //if(message_id == 0 || message_id == 36)
                         switch(message_id) {
                             case 0:
-                                ESP_LOGI(TAG, "HEARTBEAT");
+                                ESP_LOGV(TAG, "HEARTBEAT");
                             case 1:
-                                ESP_LOGI(TAG, "SYSTEM_STATUS");
+                                ESP_LOGV(TAG, "SYSTEM_STATUS");
                             case 36:
-                                ESP_LOGI(TAG, "SERVO SETTINGS");
-                        }
-                        if(broadcast_packets);
-                        {
-                            // Send the mavlink data to the rotors via UDP
-    	                    len = sendto(socket_slave_1, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
-	                    if (len > 0) {
-	                        total_data += len;
-	                        success_pack++;
-                                //ESP_LOGI(TAG, "Packet Broadcasted");
-	                    } else {
-	                        if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
-                                    ESP_LOGI(TAG, "socket error");
-                                }
-                            }
+                                ESP_LOGV(TAG, "SERVO SETTINGS");
+                                if(broadcast_packets) udp_broadcast_data(dtmp);
                         }
 
                         /* MAVLINK PARSING DOESN'T SEEM TO BE WORKING
