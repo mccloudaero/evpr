@@ -104,6 +104,7 @@ static void udp_recieve(void *pvParameters)
     int num_bytes;
     char dtmp[UDP_PKTSIZE];
 
+    /*
     // Listen for first packet
     ESP_LOGV(TAG, "Listening for first packet");
     bool first_message_listen = true; 
@@ -124,6 +125,7 @@ static void udp_recieve(void *pvParameters)
 	    vTaskDelete(NULL);
         }
     }
+    */
 
     // Listen for mavlink packets
     ESP_LOGI(TAG, "Listening for mavlink packets");
