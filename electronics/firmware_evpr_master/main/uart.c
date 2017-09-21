@@ -68,6 +68,7 @@ void uart_event_task(void *pvParameters)
     mavlink_message_t message;
     message.sysid = 0;
     message.compid = 0;
+    message.msgid = 0;
     uint16_t position;
     uint8_t current_byte;
     uint8_t msgReceived = false;
@@ -84,31 +85,6 @@ void uart_event_task(void *pvParameters)
                     fc_packets_total++;
                     if(result > 0)
                     {
-                        /*
-                        // Debug Info if needed
-                        ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
-                        ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
-
-                        // Check the message ID. For now only care about:
-                        // MAVLINK_MSG_ID_HEARTBEAT 0
-                        // MAVLINK_MSG_ID_SERVO_OUTPUT_RAW 36 
-                        message_id = dtmp[5];
-                        switch(message_id) {
-                            case 0:
-                                ESP_LOGV(TAG, "HEARTBEAT");
-                                current_message.sysid  = dtmp[3];
-                                current_message.compid = dtmp[4];
-                                ESP_LOGI(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
-                                ESP_LOGI(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
-                            case 1:
-                                ESP_LOGV(TAG, "SYSTEM_STATUS");
-                            case 36:
-                                ESP_LOGV(TAG, "SERVO SETTINGS");
-                                if(broadcast_packets) udp_broadcast_data(dtmp);
-                        }
-                        */
-
-                        // MAVLINK PARSING DOESN'T SEEM TO BE WORKING
                         // Parse message using mavlink
                         // Note: the parse function just reads one byte at a time until the message is complete
                         ESP_LOGV(TAG, "Parse Message");
@@ -120,11 +96,21 @@ void uart_event_task(void *pvParameters)
                             mavlink_last_status = mavlink_status;
                             if(msgReceived)
                             {
-                                // Store message sysid and compid.
-                                // Note this doesn't handle multiple message sources.
-                                current_message.sysid  = message.sysid;
-                                current_message.compid = message.compid;
-                                ESP_LOGI(TAG, "Message Received, System ID %d", message.sysid);
+                                ESP_LOGV(TAG, "Message Received, System ID %d", message.sysid);
+                                switch(message.msgid) {
+                                    case 0:
+                                        // Store message sysid and compid.
+                                        current_message.sysid  = message.sysid;
+                                        current_message.compid = message.compid;
+                                        ESP_LOGI(TAG, "HEARTBEAT");
+                                        ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
+                                        ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
+                                    case 1:
+                                        ESP_LOGI(TAG, "SYSTEM_STATUS");
+                                    case 36:
+                                        ESP_LOGI(TAG, "SERVO SETTINGS");
+                                        if(broadcast_packets) udp_broadcast_data(dtmp);
+                                }
                                 break;
                             }
                             /*
