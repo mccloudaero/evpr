@@ -62,13 +62,15 @@ void uart_event_task(void *pvParameters)
     uart_event_t event;
     int result;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
-    uint8_t message_id;
+    //uint8_t message_id;
 
     // mavlink vars
-    //mavlink_message_t message;
-    //int position;
-    //uint8_t current_byte;
-    //uint8_t msgReceived = false;
+    mavlink_message_t message;
+    message.sysid = 0;
+    message.compid = 0;
+    uint16_t position;
+    uint8_t current_byte;
+    uint8_t msgReceived = false;
 
     for(;;) {
         //Waiting for UART event.
@@ -82,6 +84,7 @@ void uart_event_task(void *pvParameters)
                     fc_packets_total++;
                     if(result > 0)
                     {
+                        /*
                         // Debug Info if needed
                         ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
                         ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
@@ -103,37 +106,35 @@ void uart_event_task(void *pvParameters)
                                 ESP_LOGV(TAG, "SERVO SETTINGS");
                                 if(broadcast_packets) udp_broadcast_data(dtmp);
                         }
-
-                        /* MAVLINK PARSING DOESN'T SEEM TO BE WORKING
-                        if(message_id > 0)
-                        {
-                            // Parse message using mavlink
-                            // Note: the parse function just reads one byte at a time until the message is complete
-                            ESP_LOGV(TAG, "Parse Message");
-                            position = 0;
-                            for(position=0;position<BUF_SIZE;position++) 
-                            {
-                                current_byte = dtmp[position]; 
-                                msgReceived = mavlink_parse_char(0, *dtmp, &message, &mavlink_status);
-                                mavlink_last_status = mavlink_status;
-                                if(msgReceived)
-                                {
-                                    // Store message sysid and compid.
-                                    // Note this doesn't handle multiple message sources.
-                                    current_message.sysid  = message.sysid;
-                                    current_message.compid = message.compid;
-                                    ESP_LOGI(TAG, "System ID %d", message.sysid);
-                                    break;
-                                }
-
-                                if(mavlink_status.packet_rx_drop_count > 0)
-                                {
-                                    ESP_LOGE(TAG, "Packets Dropped %d", mavlink_status.packet_rx_drop_count);
-                                }
-                                position += 1;
-                            }
-                        }
                         */
+
+                        // MAVLINK PARSING DOESN'T SEEM TO BE WORKING
+                        // Parse message using mavlink
+                        // Note: the parse function just reads one byte at a time until the message is complete
+                        ESP_LOGV(TAG, "Parse Message");
+                        position = 0;
+                        for(position=0;position<BUF_SIZE;position++) 
+                        {
+                            current_byte = dtmp[position]; 
+                            msgReceived = mavlink_parse_char(0, current_byte, &message, &mavlink_status);
+                            mavlink_last_status = mavlink_status;
+                            if(msgReceived)
+                            {
+                                // Store message sysid and compid.
+                                // Note this doesn't handle multiple message sources.
+                                current_message.sysid  = message.sysid;
+                                current_message.compid = message.compid;
+                                ESP_LOGI(TAG, "Message Received, System ID %d", message.sysid);
+                                break;
+                            }
+                            /*
+                            if(mavlink_status.packet_rx_drop_count > 0)
+                            {
+                                ESP_LOGE(TAG, "Packets Dropped %d", mavlink_status.packet_rx_drop_count);
+                            }
+                            position += 1;
+                            */
+                        }
 
                     }
                     else
