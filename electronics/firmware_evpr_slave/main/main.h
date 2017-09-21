@@ -1,3 +1,5 @@
+#include "common/mavlink.h"
+
 #define TAG "evpr_slave"
 #define WIFI_SSID CONFIG_WIFI_SSID
 #define WIFI_PWD CONFIG_WIFI_PASSWORD
@@ -10,3 +12,11 @@
 // IPs and ports
 #define MASTER_IP "192.168.4.1"
 #define MASTER_PORT 6000  
+
+// UDP 
+#define BUF_SIZE (1024)
+
+// mavlink common vars
+mavlink_message_t current_message;
+mavlink_status_t mavlink_status;
+mavlink_status_t mavlink_last_status;

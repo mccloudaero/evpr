@@ -24,6 +24,8 @@
 #include <lwip/sockets.h>
 #include "main.h"
 
+#include "common/mavlink.h"
+
 // Slave Node Mode
 // Options 0=self_test, 1=position_hold, 2=nominal
 #define MODE 2
@@ -64,49 +66,6 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
         break;
     }
     return ESP_OK;
-}
-
-void receive_data(void *pvParameters)
-{
-    ESP_LOGV(TAG, "Task receive_data start");
-
-    int num_bytes;
-    char dtmp[UDP_PKTSIZE];
-
-    ESP_LOGV(TAG, "Listening for first packet");
-    bool first_message_listen = true; 
-    while(first_message_listen) { 
-        num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
-        if (num_bytes > 0) {
-            // Check packet contents
-            ESP_LOGI(TAG, "Packet: %s",dtmp);
-            if(strcmp(dtmp,"Test packet") == 0) {
-                first_message_listen = false; 
-	        ESP_LOGI(TAG, "Correct packet recieved from %s:%u\n",
-		    inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
-	        xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
-            }
-        } else {
-            ESP_LOGI(TAG, "socket error");
-	    close(slave_socket);
-	    vTaskDelete(NULL);
-        }
-    }
-
-    ESP_LOGI(TAG, "Listening for mavlink packets");
-    uint8_t message_id;
-    while(1) {
-        num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
-	if (num_bytes > 0) {
-	    total_data += num_bytes;
-	    success_pack++;
-            message_id = dtmp[5];
-            ESP_LOGI(TAG, "%d",message_id);
-	} else {
-            ESP_LOGE(TAG, "socket error");
-	}
-    }
-    
 }
 
 static void udp_recieve(void *pvParameters)
@@ -168,17 +127,51 @@ static void udp_recieve(void *pvParameters)
 
     // Listen for mavlink packets
     ESP_LOGI(TAG, "Listening for mavlink packets");
-    uint8_t message_id;
+
+    // mavlink vars
+    mavlink_message_t message;
+    message.sysid = 0;
+    message.compid = 0;
+    message.msgid = 0;
+    uint16_t position;
+    uint8_t current_byte;
+    uint8_t msgReceived = false;
+
     while(1) {
         num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
 	if (num_bytes > 0) {
 	    total_data += num_bytes;
 	    success_pack++;
             // Debug Info if needed
-            ESP_LOGI(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
-            ESP_LOGI(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
-            message_id = dtmp[5];
-            ESP_LOGI(TAG, "%d",message_id);
+            ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
+            ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
+            // Parse message using mavlink
+            // Note: the parse function just reads one byte at a time until the message is complete
+            ESP_LOGV(TAG, "Parse Message");
+            position = 0;
+            for(position=0;position<BUF_SIZE;position++) 
+            {
+                current_byte = dtmp[position]; 
+                msgReceived = mavlink_parse_char(0, current_byte, &message, &mavlink_status);
+                mavlink_last_status = mavlink_status;
+                if(msgReceived)
+                {
+                    ESP_LOGI(TAG, "Message Received from System ID %d with MSG ID:%d", message.sysid, message.msgid);
+                    switch(message.msgid) {
+                        case 0:
+                            // Store message sysid and compid.
+                            current_message.sysid  = message.sysid;
+                            current_message.compid = message.compid;
+                            ESP_LOGI(TAG, "HEARTBEAT");
+                            ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
+                            ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
+                        case 1:
+                            ESP_LOGI(TAG, "SYSTEM_STATUS");
+                        case 36:
+                            ESP_LOGI(TAG, "SERVO SETTINGS");
+                    }
+                }
+            }
 	} else {
             ESP_LOGE(TAG, "socket error");
 	}
