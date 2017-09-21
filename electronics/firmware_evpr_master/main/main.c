@@ -121,12 +121,17 @@ static void initialise_udp(void)
     rotor_1_address.sin_port = htons(MASTER_PORT);
 
     // Send Test Packet
+    int i;
     int len;
     char data_buffer[UDP_PKTSIZE];
 
     strcpy(data_buffer, "Test packet");
     ESP_LOGI(TAG, "Sending test packet");
-    len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    
+    for(i=0;i<10;i++) {
+     len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    }
+
     if (len > 0) {
 	ESP_LOGI(TAG, "Packet successfully sent to %s:%u\n",
 		inet_ntoa(rotor_1_address.sin_addr), ntohs(rotor_1_address.sin_port));

@@ -55,8 +55,8 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 {
     switch(event->event_id) {
     case SYSTEM_EVENT_STA_GOT_IP:
-    	ESP_LOGI(TAG, "event_handler:SYSTEM_EVENT_STA_GOT_IP!");
-    	ESP_LOGI(TAG, "got ip:%s\n",
+    	ESP_LOGV(TAG, "event_handler:SYSTEM_EVENT_STA_GOT_IP!");
+    	ESP_LOGV(TAG, "got ip:%s\n",
 		ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
     	xEventGroupSetBits(comm_event_group, WIFI_CONNECTED_BIT);
         break;
@@ -71,18 +71,18 @@ void receive_data(void *pvParameters)
     ESP_LOGV(TAG, "Task receive_data start");
 
     int num_bytes;
-    char data_buffer[UDP_PKTSIZE];
+    char dtmp[UDP_PKTSIZE];
 
     ESP_LOGV(TAG, "Listening for first packet");
     bool first_message_listen = true; 
     while(first_message_listen) { 
-        num_bytes = recvfrom(slave_socket, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
+        num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
         if (num_bytes > 0) {
             // Check packet contents
-            ESP_LOGI(TAG, "Packet: %s",data_buffer);
-            if(strcmp(data_buffer,"Test packet") == 0) {
+            ESP_LOGI(TAG, "Packet: %s",dtmp);
+            if(strcmp(dtmp,"Test packet") == 0) {
                 first_message_listen = false; 
-	        ESP_LOGI(TAG, "transfer data with %s:%u\n",
+	        ESP_LOGI(TAG, "Correct packet recieved from %s:%u\n",
 		    inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
 	        xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
             }
@@ -93,17 +93,17 @@ void receive_data(void *pvParameters)
         }
     }
 
-    vTaskDelay(500 / portTICK_RATE_MS);
-    ESP_LOGI(TAG, "start count!\n");
+    ESP_LOGI(TAG, "Listening for mavlink packets");
+    uint8_t message_id;
     while(1) {
-        num_bytes = recvfrom(slave_socket, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
+        num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
 	if (num_bytes > 0) {
 	    total_data += num_bytes;
 	    success_pack++;
+            message_id = dtmp[5];
+            ESP_LOGI(TAG, "%d",message_id);
 	} else {
-	    if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
-                ESP_LOGI(TAG, "socket error");
-	    }
+            ESP_LOGE(TAG, "socket error");
 	}
     }
     
@@ -142,12 +142,54 @@ static void udp_recieve(void *pvParameters)
     master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
     master_address.sin_port = htons(MASTER_PORT);
 
+    int num_bytes;
+    char dtmp[UDP_PKTSIZE];
+
+    // Listen for first packet
+    ESP_LOGV(TAG, "Listening for first packet");
+    bool first_message_listen = true; 
+    while(first_message_listen) { 
+        num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
+        if (num_bytes > 0) {
+            // Check packet contents
+            ESP_LOGI(TAG, "Packet: %s",dtmp);
+            if(strcmp(dtmp,"Test packet") == 0) {
+                first_message_listen = false; 
+	        ESP_LOGI(TAG, "Correct packet recieved from %s:%u\n",
+		    inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
+	        xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
+            }
+        } else {
+            ESP_LOGI(TAG, "socket error");
+	    close(slave_socket);
+	    vTaskDelete(NULL);
+        }
+    }
+
+    // Listen for mavlink packets
+    ESP_LOGI(TAG, "Listening for mavlink packets");
+    uint8_t message_id;
+    while(1) {
+        num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
+	if (num_bytes > 0) {
+	    total_data += num_bytes;
+	    success_pack++;
+            // Debug Info if needed
+            ESP_LOGI(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
+            ESP_LOGI(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
+            message_id = dtmp[5];
+            ESP_LOGI(TAG, "%d",message_id);
+	} else {
+            ESP_LOGE(TAG, "socket error");
+	}
+    }
+
+    /*
     TaskHandle_t rx_task;
     xTaskCreate(&receive_data, "receive_data", 4096, NULL, 4, &rx_task);
 
-    //waiting udp connected success
+    // Waiting udp connected success
     xEventGroupWaitBits(comm_event_group, UDP_CONNECTED_SUCCESS,false, true, portMAX_DELAY);
-    //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
     int bps;
     while (1) {
 	total_data = 0;
@@ -163,6 +205,7 @@ static void udp_recieve(void *pvParameters)
     close(slave_socket);
     vTaskDelete(rx_task);
     vTaskDelete(NULL);
+    */
 
 }
 
