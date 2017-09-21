@@ -97,7 +97,7 @@ static void initialise_udp(void)
     //create udp socket
     socket_slave_1 = socket(AF_INET, SOCK_DGRAM, 0);
     if (socket_slave_1 < 0) {
-        ESP_LOGI(TAG, "socket error");
+        ESP_LOGE(TAG, "socket error");
     }
 
     memset(&master_address, 0, sizeof(struct sockaddr_in));
@@ -108,7 +108,7 @@ static void initialise_udp(void)
     //Bind the socket
     if (bind(socket_slave_1, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) == -1)
     {
-    	ESP_LOGI(TAG,"Bind Failed");
+    	ESP_LOGE(TAG,"Bind Failed");
 	close(socket_slave_1);
 	exit(1);
     }
@@ -121,16 +121,13 @@ static void initialise_udp(void)
     rotor_1_address.sin_port = htons(MASTER_PORT);
 
     // Send Test Packet
-    int i;
     int len;
-    char data_buffer[UDP_PKTSIZE];
+    char data_buffer[MAVLINK_MAX_PACKET_LEN];
 
     strcpy(data_buffer, "Test packet");
     ESP_LOGI(TAG, "Sending test packet");
     
-    for(i=0;i<10;i++) {
-     len = sendto(socket_slave_1, data_buffer, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
-    }
+    len = sendto(socket_slave_1, data_buffer, MAVLINK_MAX_PACKET_LEN, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
 
     if (len > 0) {
 	ESP_LOGI(TAG, "Packet successfully sent to %s:%u\n",
@@ -138,7 +135,7 @@ static void initialise_udp(void)
 	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
         broadcast_packets = true;
     } else {
-        ESP_LOGI(TAG, "socket error");
+        ESP_LOGE(TAG, "socket error");
 	close(socket_slave_1);
 	vTaskDelete(NULL);
     }

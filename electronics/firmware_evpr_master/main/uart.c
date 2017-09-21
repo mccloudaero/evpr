@@ -48,6 +48,8 @@ void udp_broadcast_data(mavlink_message_t message)
 
     // Translate message to buffer
     len = mavlink_msg_to_send_buffer(buffer, &message);
+    ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", buffer[0],buffer[1],buffer[2]);
+    ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", buffer[3],buffer[4],buffer[5]);
 
     // Send the mavlink data to the rotors via UDP
     len = sendto(socket_slave_1, buffer, MAVLINK_MAX_PACKET_LEN, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
