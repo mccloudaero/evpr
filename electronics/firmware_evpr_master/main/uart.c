@@ -95,6 +95,8 @@ void uart_event_task(void *pvParameters)
                                 ESP_LOGV(TAG, "HEARTBEAT");
                                 current_message.sysid  = dtmp[3];
                                 current_message.compid = dtmp[4];
+                                ESP_LOGI(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
+                                ESP_LOGI(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
                             case 1:
                                 ESP_LOGV(TAG, "SYSTEM_STATUS");
                             case 36:

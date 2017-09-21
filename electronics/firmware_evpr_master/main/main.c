@@ -238,6 +238,12 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
                					sta.mac[0], sta.mac[1], sta.mac[2], sta.mac[3], sta.mac[4], sta.mac[5]);
 					}
 				}
+                                if (current_message.sysid == 0) {
+					sprintf(payload+strlen(payload), "\nWaiting to connect to Flight Controller");
+				} else {
+					sprintf(payload+strlen(payload), "\nConnected to Flight Controller");
+					sprintf(payload+strlen(payload), "\nSystem ID: %d",current_message.sysid);
+				}
 				if (success_pack > 0) {
 					sprintf(payload+strlen(payload), "\nUDP send %d byte per sec\nTotal packets: %d \n", bps, success_pack);
 				}
@@ -315,10 +321,10 @@ void app_main()
     // Start webserver
     xTaskCreate(&mongooseTask, "mongoose web server", 4096, NULL, 5, NULL);
 
-    // Start Listening for mavlink messages on the UART and wait until recieved 
+    // Start listening for mavlink messages on the UART and wait until recieved 
     mavlink_last_status.packet_rx_drop_count = 0;
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
-    while ( !current_message.sysid )
+    while (!current_message.sysid)
     {
 	vTaskDelay(500 / portTICK_RATE_MS);	// check at 2Hz
         ESP_LOGI(TAG,"Waiting...");
