@@ -41,12 +41,16 @@
 
 static QueueHandle_t fc_uart_queue;
 
-void udp_broadcast_data(uint8_t* dtmp)
+void udp_broadcast_data(mavlink_message_t message)
 {
     int len;
+    uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+
+    // Translate message to buffer
+    len = mavlink_msg_to_send_buffer(buffer, &message);
 
     // Send the mavlink data to the rotors via UDP
-    len = sendto(socket_slave_1, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    len = sendto(socket_slave_1, buffer, MAVLINK_MAX_PACKET_LEN, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
     if (len > 0) {
         total_data += len;
         success_pack++;
@@ -106,20 +110,12 @@ void uart_event_task(void *pvParameters)
                                         ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
                                         ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
                                     case 1:
-                                        ESP_LOGI(TAG, "SYSTEM_STATUS");
+                                        ESP_LOGV(TAG, "SYSTEM_STATUS");
                                     case 36:
-                                        ESP_LOGI(TAG, "SERVO SETTINGS");
-                                        if(broadcast_packets) udp_broadcast_data(dtmp);
+                                        ESP_LOGV(TAG, "SERVO SETTINGS");
+                                        if(broadcast_packets) udp_broadcast_data(message);
                                 }
-                                break;
                             }
-                            /*
-                            if(mavlink_status.packet_rx_drop_count > 0)
-                            {
-                                ESP_LOGE(TAG, "Packets Dropped %d", mavlink_status.packet_rx_drop_count);
-                            }
-                            position += 1;
-                            */
                         }
 
                     }
