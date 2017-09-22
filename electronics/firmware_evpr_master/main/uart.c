@@ -104,16 +104,16 @@ void uart_event_task(void *pvParameters)
                             {
                                 ESP_LOGV(TAG, "Message Received, System ID %d", message.sysid);
                                 switch(message.msgid) {
-                                    case 0:
+                                    case MAVLINK_MSG_ID_HEARTBEAT:
                                         // Store message sysid and compid.
                                         current_message.sysid  = message.sysid;
                                         current_message.compid = message.compid;
                                         ESP_LOGI(TAG, "HEARTBEAT");
                                         ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
                                         ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
-                                    case 1:
+                                    case MAVLINK_MSG_ID_SYS_STATUS:
                                         ESP_LOGV(TAG, "SYSTEM_STATUS");
-                                    case 36:
+                                    case MAVLINK_MSG_ID_SERVO_OUTPUT_RAW:
                                         ESP_LOGV(TAG, "SERVO SETTINGS");
                                         if(broadcast_packets) udp_broadcast_data(message);
                                 }

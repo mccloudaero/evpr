@@ -18,10 +18,4 @@ config BLINK_GPIO
     help
 	GPIO pin to use for status light.
 
-config UDP_PKT_SIZE
-    int "Size of UDP packet"
-    default 1024 
-    help
-	the data send&recv packet size. 
-		
 endmenu

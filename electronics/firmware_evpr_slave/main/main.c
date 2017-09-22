@@ -158,7 +158,7 @@ static void udp_recieve(void *pvParameters)
                 mavlink_last_status = mavlink_status;
                 if(msgReceived)
                 {
-                    ESP_LOGI(TAG, "Message Received from System ID %d with MSG ID:%d", message.sysid, message.msgid);
+                    ESP_LOGV(TAG, "Message Received from System ID %d with MSG ID:%d", message.sysid, message.msgid);
                     switch(message.msgid) {
                         case MAVLINK_MSG_ID_HEARTBEAT:
                         {
@@ -170,12 +170,12 @@ static void udp_recieve(void *pvParameters)
                             ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
                             break;
                         }
-                        case 1:
+                        case MAVLINK_MSG_ID_SYS_STATUS:
                         {
                             ESP_LOGV(TAG, "SYSTEM_STATUS");
                             break;
                         }
-                        case 36:
+                        case MAVLINK_MSG_ID_SERVO_OUTPUT_RAW:
                         {
                             ESP_LOGV(TAG, "SERVO SETTINGS");
                             #if ROTOR_NUM == 1 
