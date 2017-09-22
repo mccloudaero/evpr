@@ -104,29 +104,6 @@ static void udp_recieve(void *pvParameters)
     int num_bytes;
     char dtmp[UDP_PKTSIZE];
 
-    /*
-    // Listen for first packet
-    ESP_LOGV(TAG, "Listening for first packet");
-    bool first_message_listen = true; 
-    while(first_message_listen) { 
-        num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
-        if (num_bytes > 0) {
-            // Check packet contents
-            ESP_LOGI(TAG, "Packet: %s",dtmp);
-            if(strcmp(dtmp,"Test packet") == 0) {
-                first_message_listen = false; 
-	        ESP_LOGI(TAG, "Correct packet recieved from %s:%u\n",
-		    inet_ntoa(master_address.sin_addr), ntohs(master_address.sin_port));
-	        xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
-            }
-        } else {
-            ESP_LOGI(TAG, "socket error");
-	    close(slave_socket);
-	    vTaskDelete(NULL);
-        }
-    }
-    */
-
     // Listen for mavlink packets
     ESP_LOGI(TAG, "Listening for mavlink packets");
 
@@ -160,17 +137,28 @@ static void udp_recieve(void *pvParameters)
                 {
                     ESP_LOGI(TAG, "Message Received from System ID %d with MSG ID:%d", message.sysid, message.msgid);
                     switch(message.msgid) {
-                        case 0:
+                        case MAVLINK_MSG_ID_HEARTBEAT:
+                        {
                             // Store message sysid and compid.
                             current_message.sysid  = message.sysid;
                             current_message.compid = message.compid;
                             ESP_LOGI(TAG, "HEARTBEAT");
                             ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
                             ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
+                            break;
+                        }
                         case 1:
+                        {
                             ESP_LOGI(TAG, "SYSTEM_STATUS");
+                            break;
+                        }
                         case 36:
+                        {
                             ESP_LOGI(TAG, "SERVO SETTINGS");
+                            pulse_width = mavlink_msg_servo_output_raw_get_servo1_raw(&message);
+                            ESP_LOGI(TAG, "Servo 1 pulse width: %d",pulse_width);
+                            break;
+                        }
                     }
                 }
             }
