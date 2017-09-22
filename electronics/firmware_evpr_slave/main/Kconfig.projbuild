@@ -36,10 +36,10 @@ config DEVICE_NETMASK
     help
 	Netmask for device.
 
-config UDP_PKT_SIZE
-    int "Size of UDP packet"
-    default 1024 
+config BLINK_GPIO 
+    int "Status GPIO Pin"
+    default 5
     help
-	the data send&recv packet size. 
+	GPIO pin to use for status light.
 		
 endmenu

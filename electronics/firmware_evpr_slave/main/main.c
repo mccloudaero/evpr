@@ -52,6 +52,20 @@ int success_pack = 0;
 // servo vars 
 uint32_t pulse_width = 0;
 
+void blink(void *pvParameter)
+{
+    gpio_pad_select_gpio(BLINK_GPIO);
+    // Set the GPIO as a push/pull output
+    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
+    while(1) {
+        // Blink off (output low)
+        gpio_set_level(BLINK_GPIO, 0);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+        // Blink on (output high)
+        gpio_set_level(BLINK_GPIO, 1);
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+}
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -72,9 +86,18 @@ static void udp_recieve(void *pvParameters)
 {
     ESP_LOGI(TAG, "udp receive start");
 
-    // wait for stations to connect
+    // blink while waiting
+    TaskHandle_t blink_task;
+    xTaskCreate(&blink, "blink task", 2096, NULL, 4, &blink_task);
+    // wait for connect
     xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
+    
+    // connected 
     ESP_LOGI(TAG, "Connected to Access Point");
+    // stop blinking
+    vTaskDelete(blink_task);
+    // leave LED on
+    gpio_set_level(BLINK_GPIO, 1);
 
     //create udp socket
     slave_socket = socket(AF_INET, SOCK_DGRAM, 0);
@@ -102,7 +125,7 @@ static void udp_recieve(void *pvParameters)
     master_address.sin_port = htons(MASTER_PORT);
 
     int num_bytes;
-    char dtmp[UDP_PKTSIZE];
+    char dtmp[BUF_SIZE];
 
     // Listen for mavlink packets
     ESP_LOGI(TAG, "Listening for mavlink packets");
@@ -117,7 +140,7 @@ static void udp_recieve(void *pvParameters)
     uint8_t msgReceived = false;
 
     while(1) {
-        num_bytes = recvfrom(slave_socket, dtmp, UDP_PKTSIZE, 0, (struct sockaddr *)&master_address, &socklen);
+        num_bytes = recvfrom(slave_socket, dtmp, BUF_SIZE, 0, (struct sockaddr *)&master_address, &socklen);
 	if (num_bytes > 0) {
 	    total_data += num_bytes;
 	    success_pack++;
@@ -149,14 +172,25 @@ static void udp_recieve(void *pvParameters)
                         }
                         case 1:
                         {
-                            ESP_LOGI(TAG, "SYSTEM_STATUS");
+                            ESP_LOGV(TAG, "SYSTEM_STATUS");
                             break;
                         }
                         case 36:
                         {
-                            ESP_LOGI(TAG, "SERVO SETTINGS");
-                            pulse_width = mavlink_msg_servo_output_raw_get_servo1_raw(&message);
-                            ESP_LOGI(TAG, "Servo 1 pulse width: %d",pulse_width);
+                            ESP_LOGV(TAG, "SERVO SETTINGS");
+                            #if ROTOR_NUM == 1 
+                             pulse_width = mavlink_msg_servo_output_raw_get_servo1_raw(&message);
+                            #endif
+                            #if ROTOR_NUM == 2 
+                             pulse_width = mavlink_msg_servo_output_raw_get_servo2_raw(&message);
+                            #endif
+                            #if ROTOR_NUM == 3 
+                             pulse_width = mavlink_msg_servo_output_raw_get_servo3_raw(&message);
+                            #endif
+                            #if ROTOR_NUM == 4 
+                             pulse_width = mavlink_msg_servo_output_raw_get_servo4_raw(&message);
+                            #endif
+                            ESP_LOGI(TAG, "Servo pulse width: %d",pulse_width);
                             break;
                         }
                     }
@@ -166,30 +200,6 @@ static void udp_recieve(void *pvParameters)
             ESP_LOGE(TAG, "socket error");
 	}
     }
-
-    /*
-    TaskHandle_t rx_task;
-    xTaskCreate(&receive_data, "receive_data", 4096, NULL, 4, &rx_task);
-
-    // Waiting udp connected success
-    xEventGroupWaitBits(comm_event_group, UDP_CONNECTED_SUCCESS,false, true, portMAX_DELAY);
-    int bps;
-    while (1) {
-	total_data = 0;
-	vTaskDelay(3000 / portTICK_RATE_MS);//every 3s
-	bps = total_data / 3;
-
-	if (total_data <= 0) {
-	    ESP_LOGW(TAG, "udp send & recv stop.\n");
-	    break;
-	}
-	ESP_LOGI(TAG, "udp send %d byte per sec! total pack: %d \n", bps, success_pack);
-    }
-    close(slave_socket);
-    vTaskDelete(rx_task);
-    vTaskDelete(NULL);
-    */
-
 }
 
 static void mcpwm_gpio_initialize()
