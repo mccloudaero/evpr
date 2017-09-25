@@ -236,13 +236,15 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
 					}
 				}
                                 if (current_message.sysid == 0) {
-					sprintf(payload+strlen(payload), "\nWaiting to connect to Flight Controller");
+					sprintf(payload+strlen(payload), "\nWaiting to connect to Flight Controller\n");
 				} else {
-					sprintf(payload+strlen(payload), "\nConnected to Flight Controller");
-					sprintf(payload+strlen(payload), "\nSystem ID: %d",current_message.sysid);
+					sprintf(payload+strlen(payload), "\nConnected to Flight Controller\n");
+					sprintf(payload+strlen(payload), "System ID: %d\n",current_message.sysid);
+					sprintf(payload+strlen(payload), "Packets Lost: %d, Failure percentage: %f\n",fc_packets_lost,fc_packets_failure);
 				}
 				if (success_pack > 0) {
-					sprintf(payload+strlen(payload), "\nUDP send %d byte per sec\nTotal packets: %d \n", bps, success_pack);
+					sprintf(payload+strlen(payload), "\nUDP broadcast stats:\n");
+                                        sprintf(payload+strlen(payload), " %d byte per sec\nTotal packets: %d \n", bps, success_pack);
 				}
 				int length = strlen(payload);
 				mg_send_head(nc, 200, length, "Content-Type: text/plain");
