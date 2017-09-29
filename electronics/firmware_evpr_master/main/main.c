@@ -32,6 +32,7 @@ EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define UDP_CONNECTED_SUCCESS BIT1
 
+bool message_recieved = false;
 bool broadcast_packets = false;
 
 int socket_slave_1;
@@ -235,11 +236,10 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
                					sta.mac[0], sta.mac[1], sta.mac[2], sta.mac[3], sta.mac[4], sta.mac[5]);
 					}
 				}
-                                if (current_message.sysid == 0) {
+                                if (message_recieved == false) {
 					sprintf(payload+strlen(payload), "\nWaiting to connect to Flight Controller\n");
 				} else {
 					sprintf(payload+strlen(payload), "\nConnected to Flight Controller\n");
-					sprintf(payload+strlen(payload), "System ID: %d\n",current_message.sysid);
 					sprintf(payload+strlen(payload), "Packets Lost: %d, Failure percentage: %f\n",fc_packets_lost,fc_packets_failure);
 				}
 				if (success_pack > 0) {
@@ -321,15 +321,15 @@ void app_main()
     xTaskCreate(&mongooseTask, "mongoose web server", 4096, NULL, 5, NULL);
 
     // Start listening for mavlink messages on the UART and wait until recieved 
-    mavlink_last_status.packet_rx_drop_count = 0;
+    //mavlink_last_status.packet_rx_drop_count = 0;
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
-    while (!current_message.sysid)
+    while (message_recieved == false)
     {
 	vTaskDelay(500 / portTICK_RATE_MS);	// check at 2Hz
         ESP_LOGI(TAG,"Waiting...");
     }
     ESP_LOGI(TAG, "Connected to Flight Controller");
-    ESP_LOGI(TAG, "System ID %d", current_message.sysid);
+    //ESP_LOGI(TAG, "System ID %d", current_message.sysid);
 
     // Configure Sockets
     initialise_udp();

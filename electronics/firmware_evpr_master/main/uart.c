@@ -79,6 +79,11 @@ void uart_event_task(void *pvParameters)
     uint8_t current_byte;
     uint8_t msgReceived = false;
 
+    // parse
+    uint8_t payload_length;
+    uint8_t data_index = 0;
+    pwm_packet data_packet;
+    data_packet.len = 0;
     for(;;) {
         //Waiting for UART event.
         if(xQueueReceive(fc_uart_queue, (void * )&event, (portTickType)portMAX_DELAY)) {
@@ -93,42 +98,37 @@ void uart_event_task(void *pvParameters)
                     {
                         // Parse message using mavlink
                         // Note: the parse function just reads one byte at a time until the message is complete
-                        ESP_LOGV(TAG, "Parse Message");
+                        ESP_LOGI(TAG, "Parse Message");
+                        //ESP_LOGI(TAG, "%s",dtmp); // raw message
                         position = 0;
+                        static PARSER_STATE parse_state = HEAD;
                         for(position=0;position<BUF_SIZE;position++) 
                         {
-                            current_byte = dtmp[position]; 
-                            msgReceived = mavlink_parse_char(0, current_byte, &message, &mavlink_status);
-                            mavlink_last_status = mavlink_status;
-                            if(msgReceived)
-                            {
-                                ESP_LOGV(TAG, "Message Received, System ID %d", message.sysid);
-                                switch(message.msgid) {
-                                    case MAVLINK_MSG_ID_HEARTBEAT:
-                                    {
-                                        // Store message sysid and compid.
-                                        current_message.sysid  = message.sysid;
-                                        current_message.compid = message.compid;
-                                        ESP_LOGV(TAG, "HEARTBEAT");
-                                        ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
-                                        ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
-                                        break;
-                                    }
-                                    case MAVLINK_MSG_ID_SYS_STATUS:
-                                    {
-                                        ESP_LOGV(TAG, "SYSTEM_STATUS");
-                                        break;
-                                    }
-                                    case MAVLINK_MSG_ID_SERVO_OUTPUT_RAW:
-                                    {
-                                        ESP_LOGV(TAG, "SERVO SETTINGS");
-                                        uint16_t pulse_width;
-                                        pulse_width = mavlink_msg_servo_output_raw_get_servo4_raw(&message);
-                                        ESP_LOGI(TAG, "Servo pulse width: %d",pulse_width);
-                                        if(broadcast_packets) udp_broadcast_data(message);
-                                        break;
-                                    }
+                            current_byte = dtmp[position];
+			    switch (parse_state) {
+		            case HEAD:
+                                if (current_byte == 0xFE){
+                                    parse_state = LEN;
+                                    data_packet.head = current_byte;
                                 }
+                                break;
+		            case LEN:
+                                data_packet.len = current_byte;
+                                ESP_LOGI(TAG, "%d",data_packet.len);
+                                data_index = 0;
+                                parse_state = DATA;
+                                break;
+		            case DATA:
+                                data_packet.bytes[data_index++] = current_byte;
+                                if (data_index++ >= data_packet.len){
+                                    // End of data reached
+                                    parse_state = HEAD; //Change to CRC later
+                                    message_recieved = true;
+                                }
+                                break;
+		            default:
+                                parse_state = HEAD;
+                                break;
                             }
                         }
 
@@ -189,8 +189,9 @@ void initialise_uart()
     ESP_LOGI(TAG, "Initializing UART");
 
     uart_config_t uart_config = {
+        //.baud_rate = 57600,
+        .baud_rate = 115200,
         //.baud_rate = 921600,
-        .baud_rate = 57600,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
