@@ -41,18 +41,15 @@
 
 static QueueHandle_t fc_uart_queue;
 
-void udp_broadcast_data(mavlink_message_t message)
+void udp_broadcast_data(pwm_packet packet)
 {
     int len;
-    uint8_t buffer[MAVLINK_MAX_PACKET_LEN];
+    uint8_t buffer[sizeof(packet)];
 
-    // Translate message to buffer
-    len = mavlink_msg_to_send_buffer(buffer, &message);
-    ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", buffer[0],buffer[1],buffer[2]);
-    ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", buffer[3],buffer[4],buffer[5]);
+    memcpy(&buffer,&packet, sizeof(packet));
 
-    // Send the mavlink data to the rotors via UDP
-    len = sendto(socket_slave_1, buffer, MAVLINK_MAX_PACKET_LEN, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    // Send the packet to the rotors via UDP
+    len = sendto(socket_slave_1, buffer, sizeof(packet), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
     if (len > 0) {
         total_data += len;
         success_pack++;
@@ -135,6 +132,7 @@ void uart_event_task(void *pvParameters)
                                     ESP_LOGV(TAG, "servo4: %d",(int)servo4_pwm);
                                     parse_state = HEAD; //Change to CRC later
                                     message_recieved = true;
+                                    if(broadcast_packets) udp_broadcast_data(data_packet);
                                 }
                                 break;
 		            default:
