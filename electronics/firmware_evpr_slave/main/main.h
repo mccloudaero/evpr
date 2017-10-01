@@ -19,9 +19,20 @@
 #define MASTER_PORT 6000  
 
 // UDP 
-#define BUF_SIZE (1024)
+#define BUF_SIZE (256)
 
-// mavlink common vars
-mavlink_message_t current_message;
-mavlink_status_t mavlink_status;
-mavlink_status_t mavlink_last_status;
+//parser
+typedef enum {
+	HEAD,
+	LEN,
+	ID,
+	DATA,
+	CRC,
+} PARSER_STATE;
+
+typedef  struct {
+	uint8_t head;
+	uint8_t payload_len;
+	uint8_t payload[16];  //For now just using 8 bytes
+	uint8_t crc_data;     //To be implemented
+} pwm_packet;

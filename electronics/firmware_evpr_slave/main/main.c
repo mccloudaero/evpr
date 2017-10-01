@@ -50,7 +50,7 @@ int total_data = 0;
 int success_pack = 0;
 
 // servo vars 
-uint32_t pulse_width = 0;
+uint16_t pulse_width = 0;
 
 void blink(void *pvParameter)
 {
@@ -130,6 +130,7 @@ static void udp_recieve(void *pvParameters)
     // Listen for mavlink packets
     ESP_LOGI(TAG, "Listening for mavlink packets");
 
+    /*
     // mavlink vars
     mavlink_message_t message;
     message.sysid = 0;
@@ -138,6 +139,13 @@ static void udp_recieve(void *pvParameters)
     uint16_t position;
     uint8_t current_byte;
     uint8_t msgReceived = false;
+    */
+
+    uint16_t position;
+    uint8_t current_byte;
+    uint8_t data_index = 0;
+    pwm_packet data_packet;
+    data_packet.payload_len = 0;
 
     while(1) {
         num_bytes = recvfrom(slave_socket, dtmp, BUF_SIZE, 0, (struct sockaddr *)&master_address, &socklen);
@@ -145,55 +153,49 @@ static void udp_recieve(void *pvParameters)
 	    total_data += num_bytes;
 	    success_pack++;
             // Debug Info if needed
-            ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
-            ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
-            // Parse message using mavlink
-            // Note: the parse function just reads one byte at a time until the message is complete
             ESP_LOGV(TAG, "Parse Message");
+            ESP_LOGV(TAG, "buffer first byte:%x, len:%d", dtmp[0],dtmp[1]);
             position = 0;
+            static PARSER_STATE parse_state = HEAD;
             for(position=0;position<BUF_SIZE;position++) 
             {
                 current_byte = dtmp[position]; 
-                msgReceived = mavlink_parse_char(0, current_byte, &message, &mavlink_status);
-                mavlink_last_status = mavlink_status;
-                if(msgReceived)
-                {
-                    ESP_LOGV(TAG, "Message Received from System ID %d with MSG ID:%d", message.sysid, message.msgid);
-                    switch(message.msgid) {
-                        case MAVLINK_MSG_ID_HEARTBEAT:
-                        {
-                            // Store message sysid and compid.
-                            current_message.sysid  = message.sysid;
-                            current_message.compid = message.compid;
-                            ESP_LOGI(TAG, "HEARTBEAT");
-                            ESP_LOGV(TAG, "buffer first byte:%x, len:%d, seq:%d", dtmp[0],dtmp[1],dtmp[2]);
-                            ESP_LOGV(TAG, "buffer sys_id:%d, comp_id:%d, message_id:%d", dtmp[3],dtmp[4],dtmp[5]);
-                            break;
-                        }
-                        case MAVLINK_MSG_ID_SYS_STATUS:
-                        {
-                            ESP_LOGV(TAG, "SYSTEM_STATUS");
-                            break;
-                        }
-                        case MAVLINK_MSG_ID_SERVO_OUTPUT_RAW:
-                        {
-                            ESP_LOGV(TAG, "SERVO SETTINGS");
-                            #if ROTOR_NUM == 1 
-                             pulse_width = mavlink_msg_servo_output_raw_get_servo1_raw(&message);
-                            #endif
-                            #if ROTOR_NUM == 2 
-                             pulse_width = mavlink_msg_servo_output_raw_get_servo2_raw(&message);
-                            #endif
-                            #if ROTOR_NUM == 3 
-                             pulse_width = mavlink_msg_servo_output_raw_get_servo3_raw(&message);
-                            #endif
-                            #if ROTOR_NUM == 4 
-                             pulse_width = mavlink_msg_servo_output_raw_get_servo4_raw(&message);
-                            #endif
-                            ESP_LOGI(TAG, "Servo pulse width: %d",pulse_width);
-                            break;
-                        }
+                switch (parse_state) {
+                case HEAD:
+                    if (current_byte == 0xFE){
+                        parse_state = LEN;
+                        data_packet.head = current_byte;
                     }
+                    break;
+                case LEN:
+                    data_packet.payload_len = current_byte;
+                    ESP_LOGV(TAG, "%d",data_packet.payload_len);
+                    data_index = 0;
+                    parse_state = DATA;
+                    break;
+                case DATA:
+                    data_packet.payload[data_index++] = current_byte;
+                    if (data_index >= data_packet.payload_len){
+                        // End of data reached
+                        #if ROTOR_NUM == 1 
+                            memcpy(&pulse_width,&data_packet.payload[0], sizeof(uint16_t));
+                        #endif
+                        #if ROTOR_NUM == 2 
+                            memcpy(&pulse_width,&data_packet.payload[2], sizeof(uint16_t));
+                        #endif
+                        #if ROTOR_NUM == 3 
+                            memcpy(&pulse_width,&data_packet.payload[4], sizeof(uint16_t));
+                        #endif
+                        #if ROTOR_NUM == 4 
+                            memcpy(&pulse_width,&data_packet.payload[6], sizeof(uint16_t));
+                        #endif
+                        ESP_LOGV(TAG, "servo1: %d",(int)pulse_width);
+                        parse_state = HEAD; //Change to CRC later
+                    }
+                    break;
+                default:
+                    parse_state = HEAD;
+                    break;
                 }
             }
 	} else {
