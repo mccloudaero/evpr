@@ -18,9 +18,9 @@ typedef enum {
 
 typedef  struct {
 	uint8_t head;
-	uint8_t len;
-	uint8_t bytes[80];
-	uint8_t crc_data;
+	uint8_t payload_len;
+	uint8_t payload[16];  //For now just using 8 bytes
+	uint8_t crc_data;     //To be implemented
 } pwm_packet;
 
 void uart_event_task(void *pvParameters);

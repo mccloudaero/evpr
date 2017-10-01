@@ -71,19 +71,23 @@ void uart_event_task(void *pvParameters)
     //uint8_t message_id;
 
     // mavlink vars
-    mavlink_message_t message;
-    message.sysid = 0;
-    message.compid = 0;
-    message.msgid = 0;
-    uint16_t position;
-    uint8_t current_byte;
-    uint8_t msgReceived = false;
+    //mavlink_message_t message;
+    //message.sysid = 0;
+    //message.compid = 0;
+    //message.msgid = 0;
 
     // parse
-    uint8_t payload_length;
+    uint16_t position;
+    uint8_t current_byte;
     uint8_t data_index = 0;
     pwm_packet data_packet;
-    data_packet.len = 0;
+    data_packet.payload_len = 0;
+
+    uint16_t servo1_pwm;
+    uint16_t servo2_pwm;
+    uint16_t servo3_pwm;
+    uint16_t servo4_pwm;
+
     for(;;) {
         //Waiting for UART event.
         if(xQueueReceive(fc_uart_queue, (void * )&event, (portTickType)portMAX_DELAY)) {
@@ -98,8 +102,7 @@ void uart_event_task(void *pvParameters)
                     {
                         // Parse message using mavlink
                         // Note: the parse function just reads one byte at a time until the message is complete
-                        ESP_LOGI(TAG, "Parse Message");
-                        //ESP_LOGI(TAG, "%s",dtmp); // raw message
+                        ESP_LOGV(TAG, "Parse Message");
                         position = 0;
                         static PARSER_STATE parse_state = HEAD;
                         for(position=0;position<BUF_SIZE;position++) 
@@ -113,15 +116,23 @@ void uart_event_task(void *pvParameters)
                                 }
                                 break;
 		            case LEN:
-                                data_packet.len = current_byte;
-                                ESP_LOGI(TAG, "%d",data_packet.len);
+                                data_packet.payload_len = current_byte;
+                                ESP_LOGV(TAG, "%d",data_packet.payload_len);
                                 data_index = 0;
                                 parse_state = DATA;
                                 break;
 		            case DATA:
-                                data_packet.bytes[data_index++] = current_byte;
-                                if (data_index++ >= data_packet.len){
+                                data_packet.payload[data_index++] = current_byte;
+                                if (data_index >= data_packet.payload_len){
                                     // End of data reached
+                                    memcpy(&servo1_pwm,&data_packet.payload[0], sizeof(uint16_t));
+                                    memcpy(&servo2_pwm,&data_packet.payload[2], sizeof(uint16_t));
+                                    memcpy(&servo3_pwm,&data_packet.payload[4], sizeof(uint16_t));
+                                    memcpy(&servo4_pwm,&data_packet.payload[6], sizeof(uint16_t));
+                                    ESP_LOGV(TAG, "servo1: %d",(int)servo1_pwm);
+                                    ESP_LOGV(TAG, "servo2: %d",(int)servo2_pwm);
+                                    ESP_LOGV(TAG, "servo3: %d",(int)servo3_pwm);
+                                    ESP_LOGV(TAG, "servo4: %d",(int)servo4_pwm);
                                     parse_state = HEAD; //Change to CRC later
                                     message_recieved = true;
                                 }
