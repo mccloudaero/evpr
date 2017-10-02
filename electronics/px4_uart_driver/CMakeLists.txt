@@ -1,6 +1,6 @@
 ############################################################################
 #
-#   Copyright (c) 2016 PX4 Development Team. All rights reserved.
+#   Copyright (c) 2015 PX4 Development Team. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -31,13 +31,12 @@
 #
 ############################################################################
 px4_add_module(
-	MODULE drivers__esp32_uart
-	MAIN esp32_uart
-	COMPILE_FLAGS
+	MODULE examples__pwm_uart
+	MAIN pwm_uart
+	STACK_MAIN 2000
 	SRCS
-		esp32_uart.cpp
-		esp32_uart_common.cpp
+		pwm_uart.c
 	DEPENDS
 		platforms__common
 	)
-# vim: set noet ft=cmake fenc=utf-8 ff=unix :
+# vim: set noet ft=cmake fenc=utf-8 ff=unix : 
