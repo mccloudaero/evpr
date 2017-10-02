@@ -76,6 +76,11 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 		ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
     	xEventGroupSetBits(comm_event_group, WIFI_CONNECTED_BIT);
         break;
+    case SYSTEM_EVENT_STA_DISCONNECTED:
+    	ESP_LOGI(TAG, "event_handler:SYSTEM_EVENT_STA_DISCONNECTED!");
+    	ESP_LOGI(TAG, "Attempting to reconnect");
+        esp_wifi_connect();
+        break;
     default:
         break;
     }
@@ -189,7 +194,7 @@ static void udp_recieve(void *pvParameters)
                         #if ROTOR_NUM == 4 
                             memcpy(&pulse_width,&data_packet.payload[6], sizeof(uint16_t));
                         #endif
-                        ESP_LOGV(TAG, "servo1: %d",(int)pulse_width);
+                        ESP_LOGI(TAG, "servo1: %d",(int)pulse_width);
                         parse_state = HEAD; //Change to CRC later
                     }
                     break;
