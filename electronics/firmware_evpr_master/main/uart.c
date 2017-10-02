@@ -114,7 +114,7 @@ void uart_event_task(void *pvParameters)
                                 break;
 		            case LEN:
                                 data_packet.payload_len = current_byte;
-                                ESP_LOGV(TAG, "%d",data_packet.payload_len);
+                                ESP_LOGI(TAG, "%d",data_packet.payload_len);
                                 data_index = 0;
                                 parse_state = DATA;
                                 break;
@@ -126,7 +126,8 @@ void uart_event_task(void *pvParameters)
                                     memcpy(&servo2_pwm,&data_packet.payload[2], sizeof(uint16_t));
                                     memcpy(&servo3_pwm,&data_packet.payload[4], sizeof(uint16_t));
                                     memcpy(&servo4_pwm,&data_packet.payload[6], sizeof(uint16_t));
-                                    ESP_LOGV(TAG, "servo1: %d",(int)servo1_pwm);
+                                    ESP_LOGI(TAG, "servo1: %d",(int)servo1_pwm);
+                                    ESP_LOGV(TAG, "bytes: %x,%x",data_packet.payload[0],data_packet.payload[1]);
                                     ESP_LOGV(TAG, "servo2: %d",(int)servo2_pwm);
                                     ESP_LOGV(TAG, "servo3: %d",(int)servo3_pwm);
                                     ESP_LOGV(TAG, "servo4: %d",(int)servo4_pwm);
