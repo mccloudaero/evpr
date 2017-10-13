@@ -28,7 +28,7 @@
 
 // Slave Node Mode
 // Options 0=self_test, 1=position_hold, 2=nominal
-#define MODE 2
+#define MODE 2 
 
 // Servo Settings
 #define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
@@ -50,7 +50,7 @@ int total_data = 0;
 int success_pack = 0;
 
 // servo vars 
-uint16_t pulse_width = 0;
+uint16_t pulse_width = 1500; // Center Rotation
 
 void blink(void *pvParameter)
 {
@@ -242,9 +242,10 @@ void servo_self_test(void *arg)
 
     // Rotate servo continously
     while (1) {
-        for (count = 0; count < SERVO_MAX_DEGREE; count++) {
+        //for (count = 0; count < SERVO_MAX_DEGREE; count++) {
+        for (pulse_width = 1400; pulse_width <= 1600; pulse_width+=10) {
             //printf("Angle of rotation: %d\n", count);
-            pulse_width = pulse_width_from_angle(count);
+            //pulse_width = pulse_width_from_angle(count);
             //printf("pulse width: %dus\n", angle);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
