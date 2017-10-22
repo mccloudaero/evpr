@@ -194,7 +194,7 @@ static void udp_recieve(void *pvParameters)
                         #if ROTOR_NUM == 4 
                             memcpy(&pulse_width,&data_packet.payload[6], sizeof(uint16_t));
                         #endif
-                        ESP_LOGI(TAG, "servo1: %d",(int)pulse_width);
+                        ESP_LOGV(TAG, "servo1: %d",(int)pulse_width);
                         parse_state = HEAD; //Change to CRC later
                     }
                     break;
@@ -228,25 +228,11 @@ static void mcpwm_gpio_initialize()
     mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_1, &pwm_config);    //Configure PWM0A & PWM0B with above settings
 }
 
-// Compute Pulse width from desired angle(degrees)
-static uint32_t pulse_width_from_angle(uint32_t degree_of_rotation)
-{
-    uint32_t cal_pulsewidth = 0;
-    cal_pulsewidth = (SERVO_MIN_PULSEWIDTH + (((SERVO_MAX_PULSEWIDTH - SERVO_MIN_PULSEWIDTH) * (degree_of_rotation)) / (SERVO_MAX_DEGREE)));
-    return cal_pulsewidth;
-}
-
 void servo_self_test(void *arg)
 {
-    uint32_t count;
-
     // Rotate servo continously
     while (1) {
-        //for (count = 0; count < SERVO_MAX_DEGREE; count++) {
         for (pulse_width = 1400; pulse_width <= 1600; pulse_width+=10) {
-            //printf("Angle of rotation: %d\n", count);
-            //pulse_width = pulse_width_from_angle(count);
-            //printf("pulse width: %dus\n", angle);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
             vTaskDelay(10);     //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
