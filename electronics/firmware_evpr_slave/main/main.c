@@ -51,6 +51,9 @@ int success_pack = 0;
 // servo vars 
 uint16_t pulse_width = 1500; // Center Rotation
 
+// task vars
+TaskHandle_t blink_task;
+
 void blink(void *pvParameter)
 {
     gpio_pad_select_gpio(BLINK_GPIO);
@@ -70,14 +73,20 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 {
     switch(event->event_id) {
     case SYSTEM_EVENT_STA_GOT_IP:
-    	ESP_LOGV(TAG, "event_handler:SYSTEM_EVENT_STA_GOT_IP!");
+        // Connected 
+        ESP_LOGI(TAG, "Connected to Access Point");
     	ESP_LOGV(TAG, "got ip:%s\n",
 		ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
     	xEventGroupSetBits(comm_event_group, WIFI_CONNECTED_BIT);
+        // Stop blinking and leave LED On
+        vTaskDelete(blink_task);
+        gpio_set_level(BLINK_GPIO, 1);
+        // Start UDP Server
+        xTaskCreate(udp_receive, "udp receive task", 4096, NULL, 5, NULL);
         break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
-    	ESP_LOGI(TAG, "event_handler:SYSTEM_EVENT_STA_DISCONNECTED!");
-    	ESP_LOGI(TAG, "Attempting to reconnect");
+        // Disconnected 
+    	ESP_LOGI(TAG, "Station disconnected, attempting to reconnect");
         // Following is a work around since the ESP32 does not auto reassociate
         esp_wifi_connect();
         break;
@@ -87,22 +96,9 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-static void udp_receive(void *pvParameters)
+void udp_receive(void *pvParameters)
 {
     ESP_LOGI(TAG, "udp receive start");
-
-    // blink while waiting
-    TaskHandle_t blink_task;
-    xTaskCreate(&blink, "blink task", 2096, NULL, 4, &blink_task);
-    // wait for connect
-    xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
-    
-    // connected 
-    ESP_LOGI(TAG, "Connected to Access Point");
-    // stop blinking
-    vTaskDelete(blink_task);
-    // leave LED on
-    gpio_set_level(BLINK_GPIO, 1);
 
     //create udp socket
     slave_socket = socket(AF_INET, SOCK_DGRAM, 0);
@@ -271,9 +267,11 @@ void app_main()
 {
     // Initialize
     nvs_flash_init();
+    // Start event handler
+    ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     tcpip_adapter_init();
     mcpwm_gpio_initialize();
-    // Note: WiFi is only enabled for nominal mode
+    initialise_wifi();
 
     // Start controlling servos
     xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
@@ -288,10 +286,7 @@ void app_main()
     #endif
     #if MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
-      // Start event handler
-      ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
-      // Initialize WiFi
-      initialise_wifi();
-      xTaskCreate(udp_receive, "udp receive task", 4096, NULL, 5, NULL);
+      // Stat blink task while waiting for WiFi connection
+      xTaskCreate(&blink, "blink task", 2096, NULL, 4, &blink_task);
     #endif
 }
