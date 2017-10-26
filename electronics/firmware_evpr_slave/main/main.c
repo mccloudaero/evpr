@@ -53,6 +53,7 @@ uint16_t pulse_width = 1500; // Center Rotation
 
 // task vars
 TaskHandle_t blink_task;
+TaskHandle_t udp_receive_task;
 
 void blink(void *pvParameter)
 {
@@ -69,6 +70,35 @@ void blink(void *pvParameter)
     }
 }
 
+int get_socket_error_code(int socket)
+{
+    int result;
+    u32_t optlen = sizeof(int);
+    if(getsockopt(socket, SOL_SOCKET, SO_ERROR, &result, &optlen) == -1) {
+	ESP_LOGE(TAG, "getsockopt failed");
+	return -1;
+    }
+    return result;
+}
+
+int show_socket_error_reason(int socket)
+{
+    int err = get_socket_error_code(socket);
+    ESP_LOGW(TAG, "socket error %d %s", err, strerror(err));
+    return err;
+}
+
+int check_connected_socket()
+{
+    int ret;
+    ESP_LOGD(TAG, "check connect_socket");
+    ret = get_socket_error_code(slave_socket);
+    if(ret != 0) {
+    	ESP_LOGW(TAG, "socket error %d %s", ret, strerror(ret));
+    }
+    return ret;
+}
+
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
     switch(event->event_id) {
@@ -82,11 +112,16 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
         vTaskDelete(blink_task);
         gpio_set_level(BLINK_GPIO, 1);
         // Start UDP Server
-        xTaskCreate(udp_receive, "udp receive task", 4096, NULL, 5, NULL);
+        //xTaskCreate(udp_receive, "udp receive task", 4096, NULL, 5, NULL);
+        xTaskCreate(udp_receive, "udp receive task", 4096, NULL, 5, &udp_receive_task);
         break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
         // Disconnected 
     	ESP_LOGI(TAG, "Station disconnected, attempting to reconnect");
+        // Start blink task while waiting for WiFi connection
+        xTaskCreate(&blink, "blink task", 2096, NULL, 4, &blink_task);
+        // Check Socket 
+	int socket_code = check_connected_socket();
         // Following is a work around since the ESP32 does not auto reassociate
         esp_wifi_connect();
         break;
@@ -286,7 +321,7 @@ void app_main()
     #endif
     #if MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
-      // Stat blink task while waiting for WiFi connection
+      // Start blink task while waiting for WiFi connection
       xTaskCreate(&blink, "blink task", 2096, NULL, 4, &blink_task);
     #endif
 }
