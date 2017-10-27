@@ -8,7 +8,7 @@
 // IPs and ports
 #define MASTER_IP "192.168.4.1"
 #define MASTER_PORT 6000  
-#define ROTOR_1_IP "192.168.4.2" 
+#define ROTOR_1_IP "192.168.4.11" 
 //#define ROTOR_1_PORT 6001  
 
 //extern EventGroupHandle_t comm_event_group;
