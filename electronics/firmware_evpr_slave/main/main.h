@@ -36,6 +36,3 @@ typedef  struct {
 	uint8_t payload[16];  //For now just using 8 bytes
 	uint8_t crc_data;     //To be implemented
 } pwm_packet;
-
-
-void udp_receive(void *pvParameters);
