@@ -31,8 +31,9 @@
 #define MODE 2 
 
 // Servo Settings
-#define SERVO_MIN_PULSEWIDTH 1400 //Minimum pulse width in microsecond
-#define SERVO_MAX_PULSEWIDTH 1600 //Maximum pulse width in microsecond
+#define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
+#define SERVO_MAX_PULSEWIDTH 2000 //Maximum pulse width in microsecond
+#define SERVO_MAX_DEGREE 90 //Maximum angle in degree upto which servo can rotate
 
 // FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
 EventGroupHandle_t comm_event_group;
@@ -78,7 +79,6 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     case SYSTEM_EVENT_STA_DISCONNECTED:
     	ESP_LOGI(TAG, "event_handler:SYSTEM_EVENT_STA_DISCONNECTED!");
     	ESP_LOGI(TAG, "Attempting to reconnect");
-        // Following is a work around since the ESP32 does not auto reassociate
         esp_wifi_connect();
         break;
     default:
@@ -87,7 +87,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-static void udp_receive(void *pvParameters)
+static void udp_recieve(void *pvParameters)
 {
     ESP_LOGI(TAG, "udp receive start");
 
@@ -132,8 +132,19 @@ static void udp_receive(void *pvParameters)
     int num_bytes;
     char dtmp[BUF_SIZE];
 
-    // Listen for UDP packets
-    ESP_LOGI(TAG, "Listening for UDP packets");
+    // Listen for mavlink packets
+    ESP_LOGI(TAG, "Listening for mavlink packets");
+
+    /*
+    // mavlink vars
+    mavlink_message_t message;
+    message.sysid = 0;
+    message.compid = 0;
+    message.msgid = 0;
+    uint16_t position;
+    uint8_t current_byte;
+    uint8_t msgReceived = false;
+    */
 
     uint16_t position;
     uint8_t current_byte;
@@ -221,7 +232,9 @@ void servo_self_test(void *arg)
 {
     // Rotate servo continously
     while (1) {
-        for (pulse_width = SERVO_MIN_PULSEWIDTH; pulse_width <= SERVO_MAX_PULSEWIDTH; pulse_width+=1) {
+        for (pulse_width = 1400; pulse_width <= 1600; pulse_width+=10) {
+            mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
+            mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
             vTaskDelay(10);     //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
         }
     }
@@ -272,26 +285,24 @@ void app_main()
     // Initialize
     nvs_flash_init();
     tcpip_adapter_init();
+    ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
+    initialise_wifi();
     mcpwm_gpio_initialize();
-    // Note: WiFi is only enabled for nominal mode
-
-    // Start controlling servos
-    xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
 
     // Choose Run Mode
     #if MODE == 0
       ESP_LOGI(TAG,"Self Test Mode (0)");
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
+      xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
     #if MODE == 1 
       ESP_LOGI(TAG,"Position Hold Mode (1)");
+      printf("Position Hold Mode\n");
+      xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
     #if MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
-      // Start event handler
-      ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
-      // Initialize WiFi
-      initialise_wifi();
-      xTaskCreate(udp_receive, "udp receive task", 4096, NULL, 5, NULL);
+      xTaskCreate(udp_recieve, "udp recieve task", 4096, NULL, 5, NULL);
+      xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
 }
