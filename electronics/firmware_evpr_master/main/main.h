@@ -7,9 +7,11 @@
 
 // IPs and ports
 #define MASTER_IP "192.168.4.1"
-#define MASTER_PORT 6000  
-#define ROTOR_1_IP "192.168.4.11" 
-//#define ROTOR_1_PORT 6001  
+
+// Multicast Address (IPV4)
+// Psudeo address that devices communicate through
+#define MULTICAST_ADDR "232.10.11.12"
+#define UDP_PORT 6000  
 
 //extern EventGroupHandle_t comm_event_group;
 extern bool message_recieved;
@@ -20,7 +22,7 @@ extern int fc_packets_lost;
 extern double fc_packets_failure;
 
 // UDP socket info
-extern int socket_slave_1;
+extern int multicast_socket;
 extern struct sockaddr_in master_address;
 extern struct sockaddr_in rotor_1_address;
 

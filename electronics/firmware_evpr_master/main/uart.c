@@ -49,7 +49,8 @@ void udp_broadcast_data(pwm_packet packet)
     memcpy(&buffer,&packet, sizeof(packet));
 
     // Send the packet to the rotors via UDP
-    len = sendto(socket_slave_1, buffer, sizeof(packet), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    len = sendto(multicast_socket, buffer, sizeof(packet), 0, (struct sockaddr *)&MULTICAST_ADDR, sizeof(MULTICAST_ADDR));
+    //len = sendto(multicast_socket, buffer, sizeof(packet), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
     if (len > 0) {
         total_data += len;
         success_pack++;
@@ -58,6 +59,7 @@ void udp_broadcast_data(pwm_packet packet)
             ESP_LOGI(TAG, "socket error");
         }
     }
+
 }
 
 void uart_event_task(void *pvParameters)
@@ -65,13 +67,6 @@ void uart_event_task(void *pvParameters)
     uart_event_t event;
     int result;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
-    //uint8_t message_id;
-
-    // mavlink vars
-    //mavlink_message_t message;
-    //message.sysid = 0;
-    //message.compid = 0;
-    //message.msgid = 0;
 
     // parse
     uint16_t position;
