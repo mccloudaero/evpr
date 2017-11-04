@@ -11,11 +11,12 @@
 #include "esp_wifi.h"
 #include "nvs_flash.h"
 
-#include "mongoose.h"
-#include "common/mavlink.h"
+#include "lwip/err.h"
+#include "lwip/sockets.h"
+#include "lwip/sys.h"
+#include <lwip/netdb.h>
 
 #include "main.h"
-#include "uart.h"
 #include "multicast.h"
 
 #define MULTICAST_LOOPBACK true 
