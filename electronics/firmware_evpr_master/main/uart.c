@@ -16,28 +16,14 @@
 #include "esp_log.h"
 #include "soc/uart_struct.h"
 
-#include "common/mavlink.h"
+#include "lwip/err.h"
+#include "lwip/sockets.h"
+#include "lwip/sys.h"
+#include <lwip/netdb.h>
 
 #include "main.h"
 #include "uart.h"
 
-#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/event_groups.h"
-#include "driver/gpio.h"
-#include "sdkconfig.h"
-#include "esp_err.h"
-#include "esp_event.h"
-#include "esp_event_loop.h"
-#include "esp_log.h"
-#include "esp_wifi.h"
-#include "nvs_flash.h"
-
-#include "mongoose.h"
-#include "common/mavlink.h"
-
-#include "main.h"
 
 static QueueHandle_t fc_uart_queue;
 
@@ -49,8 +35,7 @@ void udp_broadcast_data(pwm_packet packet)
     memcpy(&buffer,&packet, sizeof(packet));
 
     // Send the packet to the rotors via UDP
-    len = sendto(multicast_socket, buffer, sizeof(packet), 0, (struct sockaddr *)&MULTICAST_ADDR, sizeof(MULTICAST_ADDR));
-    //len = sendto(multicast_socket, buffer, sizeof(packet), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    len = sendto(multicast_socket, buffer, sizeof(packet), 0, res->ai_addr, res->ai_addrlen);
     if (len > 0) {
         total_data += len;
         success_pack++;

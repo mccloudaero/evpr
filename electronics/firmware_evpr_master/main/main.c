@@ -37,8 +37,7 @@ bool message_recieved = false;
 bool broadcast_packets = false;
 
 int multicast_socket = -1;
-struct sockaddr_in master_address;
-struct sockaddr_in rotor_1_address;
+struct addrinfo *res;
 
 int total_data = 0;
 int bps = 0;
@@ -110,7 +109,6 @@ static void initialise_udp_multicast(void)
     inet_aton(MULTICAST_ADDR, &sdestv4.sin_addr.s_addr);
 
     // Create address info
-    struct addrinfo *res;
     struct addrinfo hints = {
         .ai_family = AF_INET, 
         .ai_flags = AI_PASSIVE,
@@ -295,7 +293,6 @@ static void initialise_wifi(void)
             .ssid = WIFI_SSID,
             .password = WIFI_PWD,
             .authmode=WIFI_AUTH_WPA_WPA2_PSK,
-            //.authmode = WIFI_AUTH_OPEN,
             .ssid_len = 0,
             .ssid_hidden = 0,
             .max_connection = 4,
@@ -324,7 +321,7 @@ void app_main()
 
     // Start listening on the UART and wait until recieved 
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
-    message_recieved = true;
+    //message_recieved = true;
     while (message_recieved == false)
     {
 	vTaskDelay(500 / portTICK_RATE_MS);	// check at 2Hz

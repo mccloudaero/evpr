@@ -23,8 +23,7 @@ extern double fc_packets_failure;
 
 // UDP socket info
 extern int multicast_socket;
-extern struct sockaddr_in master_address;
-extern struct sockaddr_in rotor_1_address;
+extern struct addrinfo *res;
 
 // UDP stats
 extern int total_data;
