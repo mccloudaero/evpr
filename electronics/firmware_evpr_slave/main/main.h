@@ -16,9 +16,11 @@
 
 // IPs and ports
 #define MASTER_IP "192.168.4.1"
-#define MASTER_PORT 6000  
 
-// UDP 
+// Multicast Address (IPV4)
+// Psudeo address that devices communicate through
+#define MULTICAST_ADDR "232.10.11.12"
+#define UDP_PORT 6000  
 #define BUF_SIZE (256)
 
 //parser

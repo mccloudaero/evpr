@@ -21,10 +21,13 @@
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
 
-#include <lwip/sockets.h>
-#include "main.h"
+#include "lwip/err.h"
+#include "lwip/sockets.h"
+#include "lwip/sys.h"
+#include <lwip/netdb.h>
 
-#include "common/mavlink.h"
+#include "main.h"
+#include "multicast.h"
 
 // Slave Node Mode
 // Options 0=self_test, 1=position_hold, 2=nominal
@@ -41,10 +44,7 @@ EventGroupHandle_t comm_event_group;
 #define UDP_CONNECTED_SUCCESS BIT1
 
 // UDP vars
-static int slave_socket;
-static struct sockaddr_in master_address;
-static struct sockaddr_in slave_address;
-static unsigned int socklen;
+int multicast_socket = -1;
 
 int total_data = 0;
 int success_pack = 0;
@@ -105,47 +105,37 @@ static void udp_recieve(void *pvParameters)
     gpio_set_level(BLINK_GPIO, 1);
 
     //create udp socket
-    slave_socket = socket(AF_INET, SOCK_DGRAM, 0);
-    if (slave_socket < 0) {
-        ESP_LOGI(TAG, "socket error");
+    multicast_socket = create_multicast_ipv4_socket();
+    if (multicast_socket < 0) {
+        ESP_LOGE(TAG, "Failed to create IPv4 multicast socket");
     }
 
-    memset(&slave_address, 0, sizeof(struct sockaddr_in));
-    slave_address.sin_family = AF_INET;
-    slave_address.sin_addr.s_addr = inet_addr(DEVICE_IP);
-    slave_address.sin_port = htons(DEVICE_PORT);
+    // set destination multicast addresses for sending from these sockets
+    struct sockaddr_in sdestv4 = {
+        .sin_family = PF_INET,		// Address family
+        .sin_port = htons(UDP_PORT),	// Port number
+    };
+    // Convert mulitcast address string to network byte order 
+    inet_aton(MULTICAST_ADDR, &sdestv4.sin_addr.s_addr);
 
-    //Bind the socket
-    if (bind(slave_socket, (struct sockaddr *)&slave_address, sizeof(struct sockaddr_in)) == -1)
-    {
-    	ESP_LOGI(TAG,"Bind Failed");
-	close(slave_socket);
-	exit(1);
+    // Create address info
+    struct addrinfo *res;
+    struct addrinfo hints = {
+        .ai_family = AF_INET, 
+        .ai_flags = AI_PASSIVE,
+        .ai_socktype = SOCK_DGRAM,
+    };
+    int err = getaddrinfo(MULTICAST_ADDR,NULL,&hints,&res);
+    if (err < 0) {
+        ESP_LOGE(TAG, "getaddrinfo() failed for IPV4 destination address. error: %d", err);
     }
-    ESP_LOGI(TAG,"Bind Successful");
+    
+    // Listen for UDP packets
+    ESP_LOGI(TAG, "Listening for UDP packets");
 
-    memset(&master_address, 0, sizeof(struct sockaddr_in));
-    master_address.sin_family = AF_INET;
-    master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
-    master_address.sin_port = htons(MASTER_PORT);
 
     int num_bytes;
     char dtmp[BUF_SIZE];
-
-    // Listen for mavlink packets
-    ESP_LOGI(TAG, "Listening for mavlink packets");
-
-    /*
-    // mavlink vars
-    mavlink_message_t message;
-    message.sysid = 0;
-    message.compid = 0;
-    message.msgid = 0;
-    uint16_t position;
-    uint8_t current_byte;
-    uint8_t msgReceived = false;
-    */
-
     uint16_t position;
     uint8_t current_byte;
     uint8_t data_index = 0;
@@ -153,59 +143,88 @@ static void udp_recieve(void *pvParameters)
     data_packet.payload_len = 0;
 
     while(1) {
-        num_bytes = recvfrom(slave_socket, dtmp, BUF_SIZE, 0, (struct sockaddr *)&master_address, &socklen);
-	if (num_bytes > 0) {
-	    total_data += num_bytes;
-	    success_pack++;
-            // Debug Info if needed
-            ESP_LOGV(TAG, "Parse Message");
-            ESP_LOGV(TAG, "buffer first byte:%x, len:%d", dtmp[0],dtmp[1]);
-            position = 0;
-            static PARSER_STATE parse_state = HEAD;
-            for(position=0;position<BUF_SIZE;position++) 
-            {
-                current_byte = dtmp[position]; 
-                switch (parse_state) {
-                case HEAD:
-                    if (current_byte == 0xFE){
-                        parse_state = LEN;
-                        data_packet.head = current_byte;
-                    }
-                    break;
-                case LEN:
-                    data_packet.payload_len = current_byte;
-                    ESP_LOGV(TAG, "%d",data_packet.payload_len);
-                    data_index = 0;
-                    parse_state = DATA;
-                    break;
-                case DATA:
-                    data_packet.payload[data_index++] = current_byte;
-                    if (data_index >= data_packet.payload_len){
-                        // End of data reached
-                        #if ROTOR_NUM == 1 
-                            memcpy(&pulse_width,&data_packet.payload[0], sizeof(uint16_t));
-                        #endif
-                        #if ROTOR_NUM == 2 
-                            memcpy(&pulse_width,&data_packet.payload[2], sizeof(uint16_t));
-                        #endif
-                        #if ROTOR_NUM == 3 
-                            memcpy(&pulse_width,&data_packet.payload[4], sizeof(uint16_t));
-                        #endif
-                        #if ROTOR_NUM == 4 
-                            memcpy(&pulse_width,&data_packet.payload[6], sizeof(uint16_t));
-                        #endif
-                        ESP_LOGV(TAG, "servo1: %d",(int)pulse_width);
-                        parse_state = HEAD; //Change to CRC later
-                    }
-                    break;
-                default:
-                    parse_state = HEAD;
+        struct timeval tv = {
+            .tv_sec = 2,
+            .tv_usec = 0,
+        };
+        fd_set rfds;
+        FD_ZERO(&rfds);
+        FD_SET(multicast_socket, &rfds);
+        int s = lwip_select(multicast_socket + 1, &rfds, NULL, NULL, &tv);
+        if (s < 0) {
+            ESP_LOGE(TAG, "Select failed: errno %d", errno);
+            err = -1;
+            break;
+        }
+        else if (s > 0) {
+            if (FD_ISSET(multicast_socket, &rfds)) {
+                // Incoming datagram received
+                char raddr_name[32] = { 0 };
+                struct sockaddr_in6 raddr; // Large enough for both IPv4 or IPv6
+                socklen_t socklen = sizeof(raddr);
+                num_bytes = recvfrom(multicast_socket, dtmp, BUF_SIZE, 0,(struct sockaddr *)&raddr, &socklen);
+                if (num_bytes < 0) {
+                    ESP_LOGE(TAG, "multicast recvfrom failed: errno %d", errno);
+                    err = -1;
                     break;
                 }
+                // Check sender address
+                inet_ntoa_r(((struct sockaddr_in *)&raddr)->sin_addr.s_addr,raddr_name, sizeof(raddr_name)-1);
+                ESP_LOGI(TAG, "received %d bytes from %s:", num_bytes, raddr_name);
+                // Parse message
+                // TBD add check for sender address
+                if (num_bytes > 0) {
+                    total_data += num_bytes;
+                    success_pack++;
+                    // Debug Info if needed
+                    ESP_LOGV(TAG, "Parse Message");
+                    ESP_LOGV(TAG, "buffer first byte:%x, len:%d", dtmp[0],dtmp[1]);
+                    position = 0;
+                    static PARSER_STATE parse_state = HEAD;
+                    for(position=0;position<BUF_SIZE;position++) 
+                    {
+                        current_byte = dtmp[position]; 
+                        switch (parse_state) {
+                        case HEAD:
+                            if (current_byte == 0xFE){
+                                parse_state = LEN;
+                                data_packet.head = current_byte;
+                            }
+                            break;
+                        case LEN:
+                            data_packet.payload_len = current_byte;
+                            ESP_LOGV(TAG, "%d",data_packet.payload_len);
+                            data_index = 0;
+                            parse_state = DATA;
+                            break;
+                        case DATA:
+                            data_packet.payload[data_index++] = current_byte;
+                            if (data_index >= data_packet.payload_len){
+                                // End of data reached
+                                #if ROTOR_NUM == 1 
+                                    memcpy(&pulse_width,&data_packet.payload[0], sizeof(uint16_t));
+                                #endif
+                                #if ROTOR_NUM == 2 
+                                    memcpy(&pulse_width,&data_packet.payload[2], sizeof(uint16_t));
+                                #endif
+                                #if ROTOR_NUM == 3 
+                                    memcpy(&pulse_width,&data_packet.payload[4], sizeof(uint16_t));
+                                #endif
+                                #if ROTOR_NUM == 4 
+                                    memcpy(&pulse_width,&data_packet.payload[6], sizeof(uint16_t));
+                                #endif
+                                ESP_LOGV(TAG, "servo1: %d",(int)pulse_width);
+                                parse_state = HEAD; //Change to CRC later
+                            }
+                            break;
+                        default:
+                            parse_state = HEAD;
+                            break;
+                        }
+                    }
+	        }
             }
-	} else {
-            ESP_LOGE(TAG, "socket error");
-	}
+        }
     }
 }
 
