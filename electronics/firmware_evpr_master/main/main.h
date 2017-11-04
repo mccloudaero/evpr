@@ -31,9 +31,3 @@ extern int total_data;
 extern int bps;
 extern int success_pack;
 
-// mavlink common vars
-//mavlink_message_t current_message;
-//mavlink_status_t mavlink_status;
-//mavlink_status_t mavlink_last_status;
-
-// fc common vars
