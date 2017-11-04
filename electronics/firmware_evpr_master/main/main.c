@@ -210,25 +210,38 @@ static void initialise_udp_multicast(void)
 
     // set destination multicast addresses for sending from these sockets
     struct sockaddr_in sdestv4 = {
-        .sin_family = PF_INET,
-        .sin_port = htons(UDP_PORT),
+        .sin_family = PF_INET,		// Address family
+        .sin_port = htons(UDP_PORT),	// Port number
     };
-    // We know this inet_aton will pass because we did it above already
+    // Convert mulitcast address string to network byte order 
     inet_aton(MULTICAST_ADDR, &sdestv4.sin_addr.s_addr);
 
+    // Create address info
+    struct addrinfo *res;
+    struct addrinfo hints = {
+        .ai_family = AF_INET, 
+        .ai_flags = AI_PASSIVE,
+        .ai_socktype = SOCK_DGRAM,
+    };
+    int err = getaddrinfo(MULTICAST_ADDR,NULL,&hints,&res);
+    if (err < 0) {
+        ESP_LOGE(TAG, "getaddrinfo() failed for IPV4 destination address. error: %d", err);
+    }
+    
     // Send Test Packet
     int len;
     char data_buffer[MAVLINK_MAX_PACKET_LEN];
-
     strcpy(data_buffer, "Test packet");
-    ESP_LOGI(TAG, "Sending test packet");
-    
-    //len = sendto(multicast_socket, data_buffer, MAVLINK_MAX_PACKET_LEN, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
-    len = sendto(multicast_socket, data_buffer, MAVLINK_MAX_PACKET_LEN, 0, (struct sockaddr *)&MULTICAST_ADDR, sizeof(MULTICAST_ADDR));
+
+    char addrbuf[32] = { 0 };
+    ((struct sockaddr_in *)res->ai_addr)->sin_port = htons(UDP_PORT);
+    inet_ntoa_r(((struct sockaddr_in *)res->ai_addr)->sin_addr, addrbuf, sizeof(addrbuf)-1);
+    ESP_LOGI(TAG, "Sending to IPV4 multicast address %s...",  addrbuf);
+
+    len = sendto(multicast_socket, data_buffer, MAVLINK_MAX_PACKET_LEN, 0, res->ai_addr, res->ai_addrlen);
 
     if (len > 0) {
-	ESP_LOGI(TAG, "Packet successfully sent to %s:%u\n",
-		inet_ntoa(rotor_1_address.sin_addr), ntohs(rotor_1_address.sin_port));
+	ESP_LOGI(TAG, "Packet sent");
 	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
         broadcast_packets = true;
     } else {
@@ -418,7 +431,7 @@ void app_main()
 
     // Start listening on the UART and wait until recieved 
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
-    //message_recieved = true;
+    message_recieved = true;
     while (message_recieved == false)
     {
 	vTaskDelay(500 / portTICK_RATE_MS);	// check at 2Hz
