@@ -122,20 +122,20 @@ static void tcp_recieve(void *pvParameters)
 	close(slave_socket);
 	exit(1);
     }
-    ESP_LOGI(TAG,"Bind Successful");
+    ESP_LOGV(TAG,"Bind Successful");
 
     memset(&master_address, 0, sizeof(struct sockaddr_in));
     master_address.sin_family = AF_INET;
     master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
     master_address.sin_port = htons(MASTER_PORT);
 
-    ESP_LOGI(TAG, "connecting to server...");
+    ESP_LOGI(TAG, "connecting to master node...");
     if (connect(slave_socket, (struct sockaddr *)&master_address, sizeof(master_address)) < 0) {
     	ESP_LOGI(TAG,"Connection Failed");
 	close(slave_socket);
 	exit(1);
     }
-    ESP_LOGI(TAG, "connect to server success!");
+    ESP_LOGI(TAG, "connect to master node success!");
 
     int num_bytes;
     char dtmp[BUF_SIZE];

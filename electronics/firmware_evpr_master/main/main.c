@@ -107,14 +107,15 @@ static void initialise_tcp(void)
     master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
     master_address.sin_port = htons(MASTER_PORT);
 
-    //Bind the socket
+    // Bind the socket
     if (bind(socket_slave_1, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) < 0) {
     	ESP_LOGE(TAG,"Bind Failed");
 	close(socket_slave_1);
 	exit(1);
     }
-    ESP_LOGI(TAG,"Bind Successful");
+    ESP_LOGV(TAG,"Bind Successful");
 
+    // Establish tcp connections
     if (listen(socket_slave_1, 5) < 0) {
         close(socket_slave_1);
         ESP_LOGE(TAG, "socket error");
@@ -129,8 +130,8 @@ static void initialise_tcp(void)
 	xEventGroupSetBits(comm_event_group, TCP_CONNECTED_SUCCESS);
         broadcast_packets = true;
     }
-    /*connection established，now can send/recv*/
-    ESP_LOGI(TAG, "tcp connection established!");
+    // connections established, now can send/recv*/
+    ESP_LOGI(TAG, "Slave 1 tcp connection established!");
 
 }
 
