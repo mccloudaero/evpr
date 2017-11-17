@@ -30,14 +30,15 @@
 // FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
 EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
-#define UDP_CONNECTED_SUCCESS BIT1
+#define TCP_CONNECTED_SUCCESS BIT1
 
 bool message_recieved = false;
 bool broadcast_packets = false;
 
-int socket_slave_1;
+int socket_slave_1 = ESP_FAIL;
 struct sockaddr_in master_address;
 struct sockaddr_in rotor_1_address;
+static int connect_socket = 0;
 static unsigned int socklen;
 
 int total_data = 0;
@@ -78,9 +79,9 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-static void initialise_udp(void)
+static void initialise_tcp(void)
 {
-    ESP_LOGI(TAG, "Initializing UDP");
+    ESP_LOGI(TAG, "Initializing TCP");
 
     // blink while waiting
     TaskHandle_t blink_task;
@@ -95,8 +96,8 @@ static void initialise_udp(void)
     // leave LED on
     gpio_set_level(BLINK_GPIO, 1);
 
-    //create udp socket
-    socket_slave_1 = socket(AF_INET, SOCK_DGRAM, 0);
+    //create tcp socket
+    socket_slave_1 = socket(AF_INET, SOCK_STREAM, 0);
     if (socket_slave_1 < 0) {
         ESP_LOGE(TAG, "socket error");
     }
@@ -107,39 +108,29 @@ static void initialise_udp(void)
     master_address.sin_port = htons(MASTER_PORT);
 
     //Bind the socket
-    if (bind(socket_slave_1, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) == -1)
-    {
+    if (bind(socket_slave_1, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) < 0) {
     	ESP_LOGE(TAG,"Bind Failed");
 	close(socket_slave_1);
 	exit(1);
     }
     ESP_LOGI(TAG,"Bind Successful");
-    socklen = sizeof(master_address);
 
-    memset(&rotor_1_address, 0, sizeof(struct sockaddr_in));
-    rotor_1_address.sin_family = AF_INET;
-    rotor_1_address.sin_addr.s_addr = inet_addr(ROTOR_1_IP);
-    rotor_1_address.sin_port = htons(MASTER_PORT);
-
-    // Send Test Packet
-    int len;
-    char data_buffer[MAVLINK_MAX_PACKET_LEN];
-
-    strcpy(data_buffer, "Test packet");
-    ESP_LOGI(TAG, "Sending test packet");
-    
-    len = sendto(socket_slave_1, data_buffer, MAVLINK_MAX_PACKET_LEN, 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
-
-    if (len > 0) {
-	ESP_LOGI(TAG, "Packet successfully sent to %s:%u\n",
-		inet_ntoa(rotor_1_address.sin_addr), ntohs(rotor_1_address.sin_port));
-	xEventGroupSetBits(comm_event_group, UDP_CONNECTED_SUCCESS);
-        broadcast_packets = true;
-    } else {
+    if (listen(socket_slave_1, 5) < 0) {
+        close(socket_slave_1);
         ESP_LOGE(TAG, "socket error");
-	close(socket_slave_1);
 	vTaskDelete(NULL);
     }
+    connect_socket = accept(socket_slave_1, (struct sockaddr *)&rotor_1_address, &socklen);
+    if (connect_socket < 0) {
+        close(socket_slave_1);
+        ESP_LOGE(TAG, "socket error");
+	vTaskDelete(NULL);
+    } else {
+	xEventGroupSetBits(comm_event_group, TCP_CONNECTED_SUCCESS);
+        broadcast_packets = true;
+    }
+    /*connection established，now can send/recv*/
+    ESP_LOGI(TAG, "tcp connection established!");
 
 }
 
@@ -321,19 +312,16 @@ void app_main()
     xTaskCreate(&mongooseTask, "mongoose web server", 4096, NULL, 5, NULL);
 
     // Start listening for mavlink messages on the UART and wait until recieved 
-    //mavlink_last_status.packet_rx_drop_count = 0;
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
+    message_recieved = true;
     while (message_recieved == false)
     {
 	vTaskDelay(500 / portTICK_RATE_MS);	// check at 2Hz
         ESP_LOGI(TAG,"Waiting...");
     }
     ESP_LOGI(TAG, "Connected to Flight Controller");
-    //ESP_LOGI(TAG, "System ID %d", current_message.sysid);
 
     // Configure Sockets
-    initialise_udp();
+    initialise_tcp();
 
-    //xTaskCreate(&blink_task, "blink_task", 2048, NULL, 5, NULL);
-    //xTaskCreatePinnedToCore(&mongooseTask, "mongooseTask", 20000, NULL, 5, NULL,0);
 }
