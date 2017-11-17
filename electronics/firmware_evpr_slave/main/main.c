@@ -38,7 +38,7 @@
 // FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
 EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
-#define UDP_CONNECTED_SUCCESS BIT1
+#define TCP_CONNECTED_SUCCESS BIT1
 
 // UDP vars
 static int slave_socket;
@@ -87,9 +87,9 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-static void udp_recieve(void *pvParameters)
+static void tcp_recieve(void *pvParameters)
 {
-    ESP_LOGI(TAG, "udp receive start");
+    ESP_LOGI(TAG, "tcp receive start");
 
     // blink while waiting
     TaskHandle_t blink_task;
@@ -104,8 +104,8 @@ static void udp_recieve(void *pvParameters)
     // leave LED on
     gpio_set_level(BLINK_GPIO, 1);
 
-    //create udp socket
-    slave_socket = socket(AF_INET, SOCK_DGRAM, 0);
+    //create tcp socket
+    slave_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (slave_socket < 0) {
         ESP_LOGI(TAG, "socket error");
     }
@@ -129,22 +129,19 @@ static void udp_recieve(void *pvParameters)
     master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
     master_address.sin_port = htons(MASTER_PORT);
 
+    ESP_LOGI(TAG, "connecting to server...");
+    if (connect(slave_socket, (struct sockaddr *)&master_address, sizeof(master_address)) < 0) {
+    	ESP_LOGI(TAG,"Connection Failed");
+	close(slave_socket);
+	exit(1);
+    }
+    ESP_LOGI(TAG, "connect to server success!");
+
     int num_bytes;
     char dtmp[BUF_SIZE];
 
-    // Listen for mavlink packets
-    ESP_LOGI(TAG, "Listening for mavlink packets");
-
-    /*
-    // mavlink vars
-    mavlink_message_t message;
-    message.sysid = 0;
-    message.compid = 0;
-    message.msgid = 0;
-    uint16_t position;
-    uint8_t current_byte;
-    uint8_t msgReceived = false;
-    */
+    // Listen for tcp packets
+    ESP_LOGI(TAG, "Listening for tcp packets");
 
     uint16_t position;
     uint8_t current_byte;
@@ -302,7 +299,7 @@ void app_main()
     #endif
     #if MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
-      xTaskCreate(udp_recieve, "udp recieve task", 4096, NULL, 5, NULL);
+      xTaskCreate(tcp_recieve, "tcp recieve task", 4096, NULL, 5, NULL);
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
 }
