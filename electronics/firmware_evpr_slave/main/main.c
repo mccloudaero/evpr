@@ -170,7 +170,7 @@ static void udp_recieve(void *pvParameters)
                 }
                 // Check sender address
                 inet_ntoa_r(((struct sockaddr_in *)&raddr)->sin_addr.s_addr,raddr_name, sizeof(raddr_name)-1);
-                ESP_LOGI(TAG, "received %d bytes from %s:", num_bytes, raddr_name);
+                ESP_LOGV(TAG, "received %d bytes from %s:", num_bytes, raddr_name);
                 // Parse message
                 // TBD add check for sender address
                 if (num_bytes > 0) {
