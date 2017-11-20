@@ -38,7 +38,7 @@ bool broadcast_packets = false;
 int socket_slave_1 = ESP_FAIL;
 struct sockaddr_in master_address;
 struct sockaddr_in rotor_1_address;
-static int connect_socket = 0;
+int connect_socket = 0;
 static unsigned int socklen;
 
 int total_data = 0;
@@ -235,8 +235,8 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
 					sprintf(payload+strlen(payload), "Packets Lost: %d, Failure percentage: %f\n",fc_packets_lost,fc_packets_failure);
 				}
 				if (success_pack > 0) {
-					sprintf(payload+strlen(payload), "\nUDP broadcast stats:\n");
-                                        sprintf(payload+strlen(payload), " %d byte per sec\nTotal packets: %d \n", bps, success_pack);
+					sprintf(payload+strlen(payload), "\nNetwork stats:\n");
+                                        sprintf(payload+strlen(payload), "%d byte per sec\nTotal packets: %d \n", bps, success_pack);
 				}
 				int length = strlen(payload);
 				mg_send_head(nc, 200, length, "Content-Type: text/plain");

@@ -41,22 +41,20 @@
 
 static QueueHandle_t fc_uart_queue;
 
-void udp_broadcast_data(pwm_packet packet)
+void tcp_send_data(pwm_packet packet)
 {
     int len;
     uint8_t buffer[sizeof(packet)];
 
     memcpy(&buffer,&packet, sizeof(packet));
 
-    // Send the packet to the rotors via UDP
-    len = sendto(socket_slave_1, buffer, sizeof(packet), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    // Send the packet to the rotors via tcp
+    len = send(connect_socket, buffer, sizeof(buffer), 0);
     if (len > 0) {
         total_data += len;
         success_pack++;
     } else {
-        if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
-            ESP_LOGI(TAG, "socket error");
-        }
+        ESP_LOGE(TAG, "socket error");
     }
 }
 
@@ -66,12 +64,6 @@ void uart_event_task(void *pvParameters)
     int result;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
     //uint8_t message_id;
-
-    // mavlink vars
-    //mavlink_message_t message;
-    //message.sysid = 0;
-    //message.compid = 0;
-    //message.msgid = 0;
 
     // parse
     uint16_t position;
@@ -133,7 +125,7 @@ void uart_event_task(void *pvParameters)
                                     ESP_LOGV(TAG, "servo4: %d",(int)servo4_pwm);
                                     parse_state = HEAD; //Change to CRC later
                                     message_recieved = true;
-                                    if(broadcast_packets) udp_broadcast_data(data_packet);
+                                    if(broadcast_packets) tcp_send_data(data_packet);
                                 }
                                 break;
 		            default:
