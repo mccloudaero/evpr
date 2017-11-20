@@ -44,7 +44,6 @@ EventGroupHandle_t comm_event_group;
 static int slave_socket;
 static struct sockaddr_in master_address;
 static struct sockaddr_in slave_address;
-static unsigned int socklen;
 
 int total_data = 0;
 int success_pack = 0;
@@ -150,7 +149,7 @@ static void tcp_recieve(void *pvParameters)
     data_packet.payload_len = 0;
 
     while(1) {
-        num_bytes = recvfrom(slave_socket, dtmp, BUF_SIZE, 0, (struct sockaddr *)&master_address, &socklen);
+        num_bytes = recv(slave_socket, dtmp, BUF_SIZE, 0);
 	if (num_bytes > 0) {
 	    total_data += num_bytes;
 	    success_pack++;
@@ -191,7 +190,7 @@ static void tcp_recieve(void *pvParameters)
                         #if ROTOR_NUM == 4 
                             memcpy(&pulse_width,&data_packet.payload[6], sizeof(uint16_t));
                         #endif
-                        ESP_LOGV(TAG, "servo1: %d",(int)pulse_width);
+                        ESP_LOGI(TAG, "servo1: %d",(int)pulse_width);
                         parse_state = HEAD; //Change to CRC later
                     }
                     break;
