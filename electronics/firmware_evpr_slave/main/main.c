@@ -86,6 +86,93 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
+static void process_buffer(unsigned char *buffer, int *len)
+{
+    uint16_t position;
+    uint8_t current_byte;
+    uint8_t data_index;
+    uint16_t recv_pulse_width;
+    pwm_packet data_packet;
+    PARSER_STATE parse_state;
+
+    // Check minimum buffer size for parsing
+    // 10 bytes is the minimum packet size
+    //while (*len >= 10) {
+    while (*len >= 20) {
+        // Parse buffer
+        ESP_LOGI(TAG, "Parsing %d bytes",*len);
+        parse_state = HEAD; // Reset parse state
+        data_packet.payload_len = 0; // Reset Payload length
+        for(position=0;position<*len;position++) 
+        {
+            current_byte = buffer[position]; 
+            switch (parse_state) {
+            case HEAD:
+                if (current_byte == 0xFE){
+                    parse_state = LEN;
+                    data_packet.head = current_byte;
+                    ESP_LOGV(TAG, "Message Start");
+                }
+                break;
+            case LEN:
+                data_packet.payload_len = current_byte;	// Should be 8 bytes (4x uint16_t(2 bytes))
+                // Check if buffer has the remaining payload data
+                if (*len < position + data_packet.payload_len) {
+                    // Too short, haven't received whole payload yet
+                    ESP_LOGV(TAG, "Insuffcient data");
+                    return;
+                }
+                ESP_LOGI(TAG, "Payload Length %d",data_packet.payload_len);
+                data_index = 0;
+                parse_state = DATA;
+                break;
+            case DATA:
+                data_packet.payload[data_index++] = current_byte;
+                if (data_index >= data_packet.payload_len){
+                    // End of data reached
+	            success_pack++;
+                    #if ROTOR_NUM == 1 
+                         memcpy(&recv_pulse_width,&data_packet.payload[0], sizeof(uint16_t));
+                    #endif
+                    #if ROTOR_NUM == 2 
+                        memcpy(&recv_pulse_width,&data_packet.payload[2], sizeof(uint16_t));
+                    #endif
+                    #if ROTOR_NUM == 3 
+                        memcpy(&recv_pulse_width,&data_packet.payload[4], sizeof(uint16_t));
+                    #endif
+                    #if ROTOR_NUM == 4 
+                        memcpy(&recv_pulse_width,&data_packet.payload[6], sizeof(uint16_t));
+                    #endif
+                    ESP_LOGI(TAG, "servo1: %d",(int)recv_pulse_width);
+                    if (recv_pulse_width > 800 && recv_pulse_width < 2300){
+                        pulse_width = recv_pulse_width;
+                    } else {
+                        ESP_LOGV(TAG, "Invalid Pulse Width Recieved!:  %d us",(int)recv_pulse_width);
+                    }
+                    parse_state = END; // Add CRC check later
+                }
+                break;
+            default:
+                parse_state = HEAD;
+                break;
+            } // end switch
+            if (parse_state == END){
+               // Shuffle remaining data in the buffer back to the start
+               *len -= position;
+               if (*len > 0){
+                   memmove(buffer, buffer + position, *len);
+               }
+               break; // exit for loop
+            }
+        }
+        //if (parse_state == HEAD){
+        //   // End of data reached without finding packet head
+        //   return;
+        //}
+    }
+}
+
+
 static void tcp_recieve(void *pvParameters)
 {
     ESP_LOGI(TAG, "tcp receive start");
@@ -136,41 +223,52 @@ static void tcp_recieve(void *pvParameters)
     }
     ESP_LOGI(TAG, "connect to master node success!");
 
-    int num_bytes;
-    char dtmp[BUF_SIZE];
-
     // Listen for tcp packets
     ESP_LOGI(TAG, "Listening for tcp packets");
 
+    int bytes_recv;
+    unsigned char recv_buffer[BUF_SIZE];
+    int recv_len=0;
+
+    /*
     uint16_t position;
     uint8_t current_byte;
     uint8_t data_index = 0;
     pwm_packet data_packet;
     data_packet.payload_len = 0;
+    */
 
+    // Start recieve loop
     while(1) {
-        num_bytes = recv(slave_socket, dtmp, BUF_SIZE, 0);
-	if (num_bytes > 0) {
-	    total_data += num_bytes;
-	    success_pack++;
+        // Get tcp data
+        // Note: For tcp, data can be received in unpredictable sizes
+        bytes_recv = recv(slave_socket, recv_buffer+recv_len, BUF_SIZE-recv_len, 0);
+	if (bytes_recv > 0) {
+            // recv was succesful
+            total_data += bytes_recv;
+            recv_len += bytes_recv;
+            process_buffer(recv_buffer, &recv_len);
+
+            /*
             // Debug Info if needed
             ESP_LOGV(TAG, "Parse Message");
-            ESP_LOGV(TAG, "buffer first byte:%x, len:%d", dtmp[0],dtmp[1]);
+            //ESP_LOGV(TAG, "buffer first byte:%x, len:%d", recv_buffer[0],recv_buffer[1]);
             position = 0;
             static PARSER_STATE parse_state = HEAD;
             for(position=0;position<BUF_SIZE;position++) 
             {
-                current_byte = dtmp[position]; 
+                current_byte = recv_buffer[position]; 
                 switch (parse_state) {
                 case HEAD:
                     if (current_byte == 0xFE){
                         parse_state = LEN;
                         data_packet.head = current_byte;
+                        ESP_LOGI(TAG, "Message Start");
                     }
                     break;
                 case LEN:
                     data_packet.payload_len = current_byte;
-                    ESP_LOGV(TAG, "%d",data_packet.payload_len);
+                    ESP_LOGV(TAG, "Message Length %d",data_packet.payload_len);
                     data_index = 0;
                     parse_state = DATA;
                     break;
@@ -178,6 +276,7 @@ static void tcp_recieve(void *pvParameters)
                     data_packet.payload[data_index++] = current_byte;
                     if (data_index >= data_packet.payload_len){
                         // End of data reached
+	                success_pack++;
                         #if ROTOR_NUM == 1 
                             memcpy(&pulse_width,&data_packet.payload[0], sizeof(uint16_t));
                         #endif
@@ -198,7 +297,7 @@ static void tcp_recieve(void *pvParameters)
                     parse_state = HEAD;
                     break;
                 }
-            }
+            }*/
 	} else {
             ESP_LOGE(TAG, "socket error");
 	}

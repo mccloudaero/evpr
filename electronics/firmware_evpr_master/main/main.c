@@ -314,7 +314,7 @@ void app_main()
 
     // Start listening for mavlink messages on the UART and wait until recieved 
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
-    message_recieved = true;
+    //message_recieved = true;
     while (message_recieved == false)
     {
 	vTaskDelay(500 / portTICK_RATE_MS);	// check at 2Hz

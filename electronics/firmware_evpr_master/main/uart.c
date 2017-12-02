@@ -89,7 +89,7 @@ void uart_event_task(void *pvParameters)
                     fc_packets_total++;
                     if(result > 0)
                     {
-                        // Parse message using mavlink
+                        // Parse message
                         // Note: the parse function just reads one byte at a time until the message is complete
                         ESP_LOGV(TAG, "Parse Message");
                         position = 0;
