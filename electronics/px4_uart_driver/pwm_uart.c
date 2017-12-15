@@ -123,8 +123,7 @@ int pwm_uart_thread_main(int argc, char *argv[])
 
 	int serial_fd = open(uart_name, O_RDWR | O_NOCTTY);
 
-	//unsigned speed = 921600;
-	unsigned speed = 115200;
+	unsigned speed = 230400;
 
 	if (serial_fd < 0) {
 		err(1, "failed to open port: %s", uart_name);
