@@ -41,22 +41,20 @@
 
 static QueueHandle_t fc_uart_queue;
 
-void udp_broadcast_data(pwm_packet packet)
+void tcp_send_data(pwm_packet packet)
 {
     int len;
     uint8_t buffer[sizeof(packet)];
 
     memcpy(&buffer,&packet, sizeof(packet));
 
-    // Send the packet to the rotors via UDP
-    len = sendto(socket_slave_1, buffer, sizeof(packet), 0, (struct sockaddr *)&rotor_1_address, sizeof(rotor_1_address));
+    // Send the packet to the rotors via tcp
+    len = send(connect_socket, buffer, sizeof(buffer), 0);
     if (len > 0) {
         total_data += len;
         success_pack++;
     } else {
-        if (LOG_LOCAL_LEVEL >= ESP_LOG_DEBUG) {
-            ESP_LOGI(TAG, "socket error");
-        }
+        ESP_LOGE(TAG, "socket error");
     }
 }
 
@@ -65,13 +63,6 @@ void uart_event_task(void *pvParameters)
     uart_event_t event;
     int result;
     uint8_t* dtmp = (uint8_t*) malloc(BUF_SIZE);
-    //uint8_t message_id;
-
-    // mavlink vars
-    //mavlink_message_t message;
-    //message.sysid = 0;
-    //message.compid = 0;
-    //message.msgid = 0;
 
     // parse
     uint16_t position;
@@ -97,7 +88,7 @@ void uart_event_task(void *pvParameters)
                     fc_packets_total++;
                     if(result > 0)
                     {
-                        // Parse message using mavlink
+                        // Parse message
                         // Note: the parse function just reads one byte at a time until the message is complete
                         ESP_LOGV(TAG, "Parse Message");
                         position = 0;
@@ -114,6 +105,12 @@ void uart_event_task(void *pvParameters)
                                 break;
 		            case LEN:
                                 data_packet.payload_len = current_byte;
+                                if(data_packet.payload_len != 8) {
+                                    // Wrong payload size, restart 
+                                    //ESP_LOGE(TAG, "Packet has wrong payload size!");
+                                    parse_state = HEAD;
+                                    break;
+                                }
                                 ESP_LOGV(TAG, "%d",data_packet.payload_len);
                                 data_index = 0;
                                 parse_state = DATA;
@@ -126,14 +123,14 @@ void uart_event_task(void *pvParameters)
                                     memcpy(&servo2_pwm,&data_packet.payload[2], sizeof(uint16_t));
                                     memcpy(&servo3_pwm,&data_packet.payload[4], sizeof(uint16_t));
                                     memcpy(&servo4_pwm,&data_packet.payload[6], sizeof(uint16_t));
-                                    ESP_LOGV(TAG, "servo1: %d",(int)servo1_pwm);
                                     ESP_LOGV(TAG, "bytes: %x,%x",data_packet.payload[0],data_packet.payload[1]);
+                                    ESP_LOGV(TAG, "servo1: %d",(int)servo1_pwm);
                                     ESP_LOGV(TAG, "servo2: %d",(int)servo2_pwm);
                                     ESP_LOGV(TAG, "servo3: %d",(int)servo3_pwm);
                                     ESP_LOGV(TAG, "servo4: %d",(int)servo4_pwm);
                                     parse_state = HEAD; //Change to CRC later
-                                    message_recieved = true;
-                                    if(broadcast_packets) udp_broadcast_data(data_packet);
+                                    message_received = true;
+                                    if(broadcast_packets) tcp_send_data(data_packet);
                                 }
                                 break;
 		            default:
@@ -147,7 +144,7 @@ void uart_event_task(void *pvParameters)
                     {
                         fc_packets_lost++;
                         fc_packets_failure = 100.0*(float)fc_packets_lost/(float)fc_packets_total;
-                        //ESP_LOGE(TAG, "Could not read from UART. Failure rate %f percent",fc_packets_failure);
+                        ESP_LOGE(TAG, "Could not read from UART. Failure rate %f percent",fc_packets_failure);
                     }
 
 
@@ -199,15 +196,12 @@ void initialise_uart()
     ESP_LOGI(TAG, "Initializing UART");
 
     uart_config_t uart_config = {
-        //.baud_rate = 57600,
         .baud_rate = 115200,
         //.baud_rate = 921600,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
         .flow_ctrl = UART_HW_FLOWCTRL_CTS_RTS,
-        //.flow_ctrl = UART_HW_FLOWCTRL_MAX,
-        //.flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
         .rx_flow_ctrl_thresh = 122,
     };
     //Set UART parameters

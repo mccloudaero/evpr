@@ -18,8 +18,7 @@
 #define MASTER_IP "192.168.4.1"
 #define MASTER_PORT 6000  
 
-// UDP 
-#define BUF_SIZE (256)
+#define BUF_SIZE (512)
 
 //parser
 typedef enum {
@@ -28,6 +27,7 @@ typedef enum {
 	ID,
 	DATA,
 	CRC,
+	END,
 } PARSER_STATE;
 
 typedef  struct {
