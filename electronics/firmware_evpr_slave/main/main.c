@@ -100,7 +100,7 @@ static void process_buffer(unsigned char *buffer, int *len)
     //while (*len >= 10) {
     while (*len >= 20) {
         // Parse buffer
-        ESP_LOGI(TAG, "Parsing %d bytes",*len);
+        ESP_LOGV(TAG, "Parsing %d bytes",*len);
         parse_state = HEAD; // Reset parse state
         data_packet.payload_len = 0; // Reset Payload length
         for(position=0;position<*len;position++) 
@@ -122,7 +122,7 @@ static void process_buffer(unsigned char *buffer, int *len)
                     ESP_LOGV(TAG, "Insuffcient data");
                     return;
                 }
-                ESP_LOGI(TAG, "Payload Length %d",data_packet.payload_len);
+                ESP_LOGV(TAG, "Payload Length %d",data_packet.payload_len);
                 data_index = 0;
                 parse_state = DATA;
                 break;
@@ -165,15 +165,11 @@ static void process_buffer(unsigned char *buffer, int *len)
                break; // exit for loop
             }
         }
-        //if (parse_state == HEAD){
-        //   // End of data reached without finding packet head
-        //   return;
-        //}
     }
 }
 
 
-static void tcp_recieve(void *pvParameters)
+static void tcp_receive(void *pvParameters)
 {
     ESP_LOGI(TAG, "tcp receive start");
 
@@ -230,15 +226,7 @@ static void tcp_recieve(void *pvParameters)
     unsigned char recv_buffer[BUF_SIZE];
     int recv_len=0;
 
-    /*
-    uint16_t position;
-    uint8_t current_byte;
-    uint8_t data_index = 0;
-    pwm_packet data_packet;
-    data_packet.payload_len = 0;
-    */
-
-    // Start recieve loop
+    // Start receive loop
     while(1) {
         // Get tcp data
         // Note: For tcp, data can be received in unpredictable sizes
@@ -248,56 +236,6 @@ static void tcp_recieve(void *pvParameters)
             total_data += bytes_recv;
             recv_len += bytes_recv;
             process_buffer(recv_buffer, &recv_len);
-
-            /*
-            // Debug Info if needed
-            ESP_LOGV(TAG, "Parse Message");
-            //ESP_LOGV(TAG, "buffer first byte:%x, len:%d", recv_buffer[0],recv_buffer[1]);
-            position = 0;
-            static PARSER_STATE parse_state = HEAD;
-            for(position=0;position<BUF_SIZE;position++) 
-            {
-                current_byte = recv_buffer[position]; 
-                switch (parse_state) {
-                case HEAD:
-                    if (current_byte == 0xFE){
-                        parse_state = LEN;
-                        data_packet.head = current_byte;
-                        ESP_LOGI(TAG, "Message Start");
-                    }
-                    break;
-                case LEN:
-                    data_packet.payload_len = current_byte;
-                    ESP_LOGV(TAG, "Message Length %d",data_packet.payload_len);
-                    data_index = 0;
-                    parse_state = DATA;
-                    break;
-                case DATA:
-                    data_packet.payload[data_index++] = current_byte;
-                    if (data_index >= data_packet.payload_len){
-                        // End of data reached
-	                success_pack++;
-                        #if ROTOR_NUM == 1 
-                            memcpy(&pulse_width,&data_packet.payload[0], sizeof(uint16_t));
-                        #endif
-                        #if ROTOR_NUM == 2 
-                            memcpy(&pulse_width,&data_packet.payload[2], sizeof(uint16_t));
-                        #endif
-                        #if ROTOR_NUM == 3 
-                            memcpy(&pulse_width,&data_packet.payload[4], sizeof(uint16_t));
-                        #endif
-                        #if ROTOR_NUM == 4 
-                            memcpy(&pulse_width,&data_packet.payload[6], sizeof(uint16_t));
-                        #endif
-                        ESP_LOGI(TAG, "servo1: %d",(int)pulse_width);
-                        parse_state = HEAD; //Change to CRC later
-                    }
-                    break;
-                default:
-                    parse_state = HEAD;
-                    break;
-                }
-            }*/
 	} else {
             ESP_LOGE(TAG, "socket error");
 	}
@@ -309,8 +247,8 @@ static void mcpwm_gpio_initialize()
     ESP_LOGI(TAG, "Initializing MCPWM servo GPIO");
 
     // Set Pins
-    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, 16);    //Set GPIO 16 as PWM0A, to which servo is connected
-    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, 17);    //Set GPIO 17 as PWM0B, to which servo is connected
+    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, 27);    //Set GPIO 27 as PWM0A, to which servo is connected
+    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, 33);    //Set GPIO 33 as PWM0B, to which servo is connected
 
     // Configure 
     mcpwm_config_t pwm_config;
@@ -397,7 +335,7 @@ void app_main()
     #endif
     #if MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
-      xTaskCreate(tcp_recieve, "tcp recieve task", 4096, NULL, 5, NULL);
+      xTaskCreate(tcp_receive, "tcp recieve task", 4096, NULL, 5, NULL);
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
 }
