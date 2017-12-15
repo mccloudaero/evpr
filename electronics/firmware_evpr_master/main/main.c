@@ -105,7 +105,7 @@ static void initialise_tcp(void)
     memset(&master_address, 0, sizeof(struct sockaddr_in));
     master_address.sin_family = AF_INET;
     master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
-    master_address.sin_port = htons(MASTER_PORT);
+    master_address.sin_port = htons(ROTOR_1_PORT);
 
     // Bind the socket
     if (bind(socket_slave_1, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) < 0) {

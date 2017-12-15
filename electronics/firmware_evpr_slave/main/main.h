@@ -1,22 +1,37 @@
 #include "common/mavlink.h"
 
-#define ROTOR_NUM 1
+#define TAG "evpr_slave"
+#define ROTOR_NUM CONFIG_ROTOR_NUM
 
 // WIFI
-#define TAG "evpr_slave"
 #define WIFI_SSID CONFIG_WIFI_SSID
 #define WIFI_PWD CONFIG_WIFI_PASSWORD
-#define DEVICE_IP CONFIG_DEVICE_IP
-#define DEVICE_PORT CONFIG_DEVICE_PORT
-#define DEVICE_GATEWAY CONFIG_DEVICE_GATEWAY
-#define DEVICE_NETMASK CONFIG_DEVICE_NETMASK
 
 // Status LED
 #define BLINK_GPIO CONFIG_BLINK_GPIO
 
 // IPs and ports
 #define MASTER_IP "192.168.4.1"
-#define MASTER_PORT 6000  
+#define DEVICE_GATEWAY MASTER_IP 
+#define NETMASK "255.255.255.0" 
+
+#if ROTOR_NUM == 1 
+ #define DEVICE_IP "192.168.4.11"
+ #define COMM_PORT 6001 
+#endif
+#if ROTOR_NUM == 2 
+ #define DEVICE_IP "192.168.4.12"
+ #define TCP_PORT 6002 
+ #define COMM_PORT 6002 
+#endif
+#if ROTOR_NUM == 3 
+ #define DEVICE_IP "192.168.4.13"
+ #define COMM_PORT 6003 
+#endif
+#if ROTOR_NUM == 4 
+ #define DEVICE_IP "192.168.4.14"
+ #define COMM_PORT 6004 
+#endif
 
 #define BUF_SIZE (512)
 

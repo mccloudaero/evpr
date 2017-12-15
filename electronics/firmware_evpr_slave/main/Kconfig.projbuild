@@ -1,5 +1,11 @@
 menu "EVPR Slave Node Configuration"
 
+config ROTOR_NUM 
+    int "Rotor Number"
+    default 1 
+    help
+	Device Number (1-4).
+
 config WIFI_SSID
     string "WiFi SSID"
     default "evpr_master"
@@ -11,30 +17,6 @@ config WIFI_PASSWORD
     default "1234567890"
     help
 	WiFi password (WPA or WPA2) for the master node.
-
-config DEVICE_GATEWAY 
-    string "Device Gateway"
-    default "192.168.4.1"
-    help
-	IP address for Access Point.
-
-config DEVICE_IP 
-    string "Device IP"
-    default "192.168.4.2"
-    help
-	IP address for device.
-
-config DEVICE_PORT 
-    int "Device Port"
-    default 6000
-    help
-	Port for UDP communication.
-
-config DEVICE_NETMASK 
-    string "Device Netmask"
-    default "255.255.255.0"
-    help
-	Netmask for device.
 
 config BLINK_GPIO 
     int "Status GPIO Pin"

@@ -143,7 +143,7 @@ static void process_buffer(unsigned char *buffer, int *len)
                     #if ROTOR_NUM == 4 
                         memcpy(&recv_pulse_width,&data_packet.payload[6], sizeof(uint16_t));
                     #endif
-                    ESP_LOGI(TAG, "servo1: %d",(int)recv_pulse_width);
+                    //ESP_LOGI(TAG, "servo1: %d",(int)recv_pulse_width);
                     if (recv_pulse_width > 800 && recv_pulse_width < 2300){
                         pulse_width = recv_pulse_width;
                     } else {
@@ -195,7 +195,7 @@ static void tcp_receive(void *pvParameters)
     memset(&slave_address, 0, sizeof(struct sockaddr_in));
     slave_address.sin_family = AF_INET;
     slave_address.sin_addr.s_addr = inet_addr(DEVICE_IP);
-    slave_address.sin_port = htons(DEVICE_PORT);
+    slave_address.sin_port = htons(COMM_PORT);
 
     //Bind the socket
     if (bind(slave_socket, (struct sockaddr *)&slave_address, sizeof(struct sockaddr_in)) == -1)
@@ -209,7 +209,7 @@ static void tcp_receive(void *pvParameters)
     memset(&master_address, 0, sizeof(struct sockaddr_in));
     master_address.sin_family = AF_INET;
     master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
-    master_address.sin_port = htons(MASTER_PORT);
+    master_address.sin_port = htons(COMM_PORT);
 
     ESP_LOGI(TAG, "connecting to master node...");
     if (connect(slave_socket, (struct sockaddr *)&master_address, sizeof(master_address)) < 0) {
@@ -294,7 +294,7 @@ static void initialise_wifi(void)
 
     inet_pton(AF_INET, DEVICE_IP, &ipInfo.ip);
     inet_pton(AF_INET, DEVICE_GATEWAY, &ipInfo.gw);
-    inet_pton(AF_INET, DEVICE_NETMASK, &ipInfo.netmask);
+    inet_pton(AF_INET, NETMASK, &ipInfo.netmask);
     tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_STA, &ipInfo);
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
