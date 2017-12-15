@@ -14,7 +14,7 @@ config WIFI_PASSWORD
 
 config BLINK_GPIO 
     int "Status GPIO Pin"
-    default 5
+    default 13 
     help
 	GPIO pin to use for status light.
 

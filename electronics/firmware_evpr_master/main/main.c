@@ -32,7 +32,7 @@ EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define TCP_CONNECTED_SUCCESS BIT1
 
-bool message_recieved = false;
+bool message_received = false;
 bool broadcast_packets = false;
 
 int socket_slave_1 = ESP_FAIL;
@@ -228,7 +228,7 @@ void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
                					sta.mac[0], sta.mac[1], sta.mac[2], sta.mac[3], sta.mac[4], sta.mac[5]);
 					}
 				}
-                                if (message_recieved == false) {
+                                if (message_received == false) {
 					sprintf(payload+strlen(payload), "\nWaiting to connect to Flight Controller\n");
 				} else {
 					sprintf(payload+strlen(payload), "\nConnected to Flight Controller\n");
@@ -310,12 +310,11 @@ void app_main()
     xTaskCreate(uart_event_task, "uart event handler", 4096, NULL, 12, NULL);
 
     // Start webserver
-    xTaskCreate(&mongooseTask, "mongoose web server", 4096, NULL, 5, NULL);
+    //xTaskCreate(&mongooseTask, "mongoose web server", 4096, NULL, 5, NULL);
 
     // Start listening for mavlink messages on the UART and wait until recieved 
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
-    //message_recieved = true;
-    while (message_recieved == false)
+    while (message_received == false)
     {
 	vTaskDelay(500 / portTICK_RATE_MS);	// check at 2Hz
         ESP_LOGI(TAG,"Waiting...");

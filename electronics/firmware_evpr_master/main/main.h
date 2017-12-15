@@ -11,7 +11,7 @@
 #define ROTOR_1_IP "192.168.4.11" 
 
 //extern EventGroupHandle_t comm_event_group;
-extern bool message_recieved;
+extern bool message_received;
 extern bool broadcast_packets;
 
 extern int fc_packets_total;
