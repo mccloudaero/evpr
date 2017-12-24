@@ -16,6 +16,7 @@
 #include "esp_log.h"
 #include "esp_wifi.h"
 #include "nvs_flash.h"
+#include "mdns.h"
 
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_reg.h"
@@ -29,6 +30,9 @@
 // Slave Node Mode
 // Options 0=self_test, 1=position_hold, 2=nominal
 #define MODE 2 
+
+// mDNS - Used to advertise device info
+mdns_server_t * mdns = NULL;
 
 // Servo Settings
 #define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
@@ -290,6 +294,22 @@ static void servo_control(void *pvParameters)
 }
 #endif
 
+static void start_mdns_service()
+{
+    ESP_LOGI(TAG, "Initializing mDNS");
+    //initialize mDNS service
+    esp_err_t err = mdns_init(TCPIP_ADAPTER_IF_STA, &mdns);
+    if (err) {
+        printf("MDNS Init failed: %d\n", err);
+        return;
+    }
+
+    //set hostname
+    mdns_set_hostname(mdns, HOSTNAME);
+    //set default instance
+    mdns_set_instance(mdns, "EVPR Rotor, Slave Node");
+}
+
 static void initialise_wifi(void)
 {
     ESP_LOGI(TAG, "Initializing WiFI");
@@ -328,6 +348,7 @@ void app_main()
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
     mcpwm_gpio_initialize();
+    start_mdns_service();
 
     // Choose Run Mode
     #if MODE == 0

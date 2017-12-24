@@ -20,6 +20,7 @@
 #include "esp_log.h"
 #include "esp_wifi.h"
 #include "nvs_flash.h"
+#include "mdns.h"
 
 #include "mongoose.h"
 #include "common/mavlink.h"
@@ -31,6 +32,9 @@
 EventGroupHandle_t comm_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define TCP_CONNECTED_SUCCESS BIT1
+
+// mDNS - Used to advertise device info
+mdns_server_t * mdns = NULL;
 
 bool message_received = false;
 bool broadcast_packets = false;
@@ -64,6 +68,30 @@ void blink(void *pvParameter)
     }
 }
 
+static void resolve_mdns_host(const char * hostname)
+{
+    printf("mDNS Host Lookup: %s.local\n", hostname);
+    //run search for 1000 ms
+    if (mdns_query(mdns, hostname, NULL, 1000)) {
+        //results were found
+        const mdns_result_t * results = mdns_result_get(mdns, 0);
+        //itterate through all results
+        size_t i = 1;
+        while(results) {
+            //print result information
+            printf("  %u: IP:" IPSTR ", IPv6:" IPV6STR "\n", i++,
+                IP2STR(&results->addr), IPV62STR(results->addrv6));
+            //load next result. Will be NULL if this was the last one
+            results = results->next;
+        }
+        //free the results from memory
+        mdns_result_free(mdns);
+    } else {
+        //host was not found
+        printf("  Host Not Found\n");
+    }
+}
+
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
     switch(event->event_id) {
@@ -72,6 +100,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 		MAC2STR(event->event_info.sta_connected.mac),
 		event->event_info.sta_connected.aid);
     	xEventGroupSetBits(comm_event_group, WIFI_CONNECTED_BIT);
+        resolve_mdns_host("ROTOR1");
     	break;
     default:
         break;
@@ -270,6 +299,22 @@ void mongooseTask(void *data) {
     }
 }
 
+static void start_mdns_service()
+{
+    ESP_LOGI(TAG, "Initializing mDNS");
+    //initialize mDNS service
+    esp_err_t err = mdns_init(TCPIP_ADAPTER_IF_AP, &mdns);
+    if (err) {
+        printf("MDNS Init failed: %d\n", err);
+        return;
+    }
+
+    //set hostname
+    mdns_set_hostname(mdns, HOSTNAME);
+    //set default instance
+    mdns_set_instance(mdns, "EVPR Master Node");
+}
+
 static void initialise_wifi(void)
 {
     ESP_LOGI(TAG, "Initializing WiFI");
@@ -293,8 +338,6 @@ static void initialise_wifi(void)
     };
     ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_AP, &ap_config) );
     ESP_ERROR_CHECK( esp_wifi_start() );
-    // DHCP
-    //ESP_ERROR_CHECK( wifi_softap_dhcps_start() );
 }
 
 void app_main()
@@ -304,6 +347,7 @@ void app_main()
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
     initialise_uart();
+    start_mdns_service();
 
     // Task to handle UART events
     xTaskCreate(uart_event_task, "uart event handler", 4096, NULL, 12, NULL);

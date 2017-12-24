@@ -16,19 +16,22 @@
 #define NETMASK "255.255.255.0" 
 
 #if ROTOR_NUM == 1 
+ #define HOSTNAME "ROTOR1"
  #define DEVICE_IP "192.168.4.11"
  #define COMM_PORT 6001 
 #endif
 #if ROTOR_NUM == 2 
+ #define HOSTNAME "ROTOR2"
  #define DEVICE_IP "192.168.4.12"
- #define TCP_PORT 6002 
  #define COMM_PORT 6002 
 #endif
 #if ROTOR_NUM == 3 
+ #define HOSTNAME "ROTOR3"
  #define DEVICE_IP "192.168.4.13"
  #define COMM_PORT 6003 
 #endif
 #if ROTOR_NUM == 4 
+ #define HOSTNAME "ROTOR4"
  #define DEVICE_IP "192.168.4.14"
  #define COMM_PORT 6004 
 #endif

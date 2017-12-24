@@ -6,6 +6,7 @@
 #define PACK_BYTE_IS 97 //'a'
 
 // IPs and ports
+#define HOSTNAME "MASTER"
 #define MASTER_IP "192.168.4.1"
 #define ROTOR_1_IP "192.168.4.11" 
 #define ROTOR_1_PORT 6001 
