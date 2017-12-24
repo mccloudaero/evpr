@@ -276,6 +276,7 @@ static void initialise_wifi(void)
 
     comm_event_group = xEventGroupCreate();
 
+    tcpip_adapter_init();
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
     ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
@@ -285,7 +286,6 @@ static void initialise_wifi(void)
             .ssid = WIFI_SSID,
             .password = WIFI_PWD,
             .authmode=WIFI_AUTH_WPA_WPA2_PSK,
-            //.authmode = WIFI_AUTH_OPEN,
             .ssid_len = 0,
             .ssid_hidden = 0,
             .max_connection = 4,
@@ -300,8 +300,7 @@ static void initialise_wifi(void)
 void app_main()
 {
     // Initialize
-    nvs_flash_init();
-    tcpip_adapter_init();
+    ESP_ERROR_CHECK( nvs_flash_init() );
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
     initialise_uart();

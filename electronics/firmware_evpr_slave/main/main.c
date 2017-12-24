@@ -31,9 +31,9 @@
 #define MODE 2 
 
 // Servo Settings
-#define SERVO_MIN_PULSEWIDTH 1000 //Minimum pulse width in microsecond
-#define SERVO_MAX_PULSEWIDTH 2000 //Maximum pulse width in microsecond
-#define SERVO_MAX_DEGREE 90 //Maximum angle in degree upto which servo can rotate
+#define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
+#define SERVO_MAX_PULSEWIDTH 2100 //Maximum pulse width in microsecond
+//#define SERVO_MAX_DEGREE 90 //Maximum angle in degree upto which servo can rotate
 
 // FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
 EventGroupHandle_t comm_event_group;
@@ -144,8 +144,10 @@ static void process_buffer(unsigned char *buffer, int *len)
                         memcpy(&recv_pulse_width,&data_packet.payload[6], sizeof(uint16_t));
                     #endif
                     //ESP_LOGI(TAG, "servo1: %d",(int)recv_pulse_width);
-                    if (recv_pulse_width > 800 && recv_pulse_width < 2300){
-                        pulse_width = recv_pulse_width;
+                    if (recv_pulse_width > SERVO_MIN_PULSEWIDTH && recv_pulse_width < SERVO_MAX_PULSEWIDTH){
+                        //pulse_width = recv_pulse_width;
+                        mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, recv_pulse_width);
+                        mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, recv_pulse_width);
                     } else {
                         ESP_LOGV(TAG, "Invalid Pulse Width Recieved!:  %d us",(int)recv_pulse_width);
                     }
@@ -259,6 +261,10 @@ static void mcpwm_gpio_initialize()
     pwm_config.duty_mode = MCPWM_DUTY_MODE_0;
     mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);    //Configure PWM0A & PWM0B with above settings
     mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_1, &pwm_config);    //Configure PWM0A & PWM0B with above settings
+
+    // Set initial position
+    mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
+    mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
 }
 
 void servo_self_test(void *arg)
@@ -273,6 +279,7 @@ void servo_self_test(void *arg)
     }
 }
 
+#if (MODE == 0 || MODE == 1)
 static void servo_control(void *pvParameters)
 {
     // Loop for setting servo positions
@@ -281,6 +288,7 @@ static void servo_control(void *pvParameters)
         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
     }
 }
+#endif
 
 static void initialise_wifi(void)
 {
@@ -316,8 +324,7 @@ static void initialise_wifi(void)
 void app_main()
 {
     // Initialize
-    nvs_flash_init();
-    tcpip_adapter_init();
+    ESP_ERROR_CHECK( nvs_flash_init() );
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialise_wifi();
     mcpwm_gpio_initialize();
@@ -336,6 +343,5 @@ void app_main()
     #if MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
       xTaskCreate(tcp_receive, "tcp recieve task", 4096, NULL, 5, NULL);
-      xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
 }
