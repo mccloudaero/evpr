@@ -72,7 +72,7 @@ static void resolve_mdns_host(const char * hostname)
 {
     printf("mDNS Host Lookup: %s.local\n", hostname);
     //run search for 1000 ms
-    if (mdns_query(mdns, hostname, NULL, 1000)) {
+    if (mdns_query(mdns, hostname, NULL, 10000)) {
         //results were found
         const mdns_result_t * results = mdns_result_get(mdns, 0);
         //itterate through all results
@@ -100,6 +100,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 		MAC2STR(event->event_info.sta_connected.mac),
 		event->event_info.sta_connected.aid);
     	xEventGroupSetBits(comm_event_group, WIFI_CONNECTED_BIT);
+	vTaskDelay(3000 / portTICK_RATE_MS);	// Wait 3s 
         resolve_mdns_host("ROTOR1");
     	break;
     default:

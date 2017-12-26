@@ -304,10 +304,9 @@ static void start_mdns_service()
         return;
     }
 
-    //set hostname
-    mdns_set_hostname(mdns, HOSTNAME);
-    //set default instance
-    mdns_set_instance(mdns, "EVPR Rotor, Slave Node");
+    ESP_ERROR_CHECK( mdns_set_hostname(mdns, HOSTNAME) );
+    ESP_ERROR_CHECK( mdns_set_instance(mdns, "EVPR Rotor, Slave Node") );
+    ESP_ERROR_CHECK( mdns_service_add(mdns, "_evpr", "_tcp", COMM_PORT) );
 }
 
 static void initialise_wifi(void)
