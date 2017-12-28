@@ -191,7 +191,7 @@ void uart_event_task(void *pvParameters)
     vTaskDelete(NULL);
 }
 
-void initialise_uart()
+void initialize_uart()
 {
     ESP_LOGI(TAG, "Initializing UART");
 

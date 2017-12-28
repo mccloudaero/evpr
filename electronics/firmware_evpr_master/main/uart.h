@@ -24,5 +24,5 @@ typedef  struct {
 } pwm_packet;
 
 void uart_event_task(void *pvParameters);
-void initialise_uart();
+void initialize_uart();
 void echo_task();

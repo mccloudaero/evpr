@@ -79,24 +79,11 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-static void initialise_tcp(void)
+void initialize_socket(void *pvParameter)
 {
-    ESP_LOGI(TAG, "Initializing TCP");
+    ESP_LOGI(TAG, "Iniializing Socket");
 
-    // blink while waiting
-    TaskHandle_t blink_task;
-    xTaskCreate(&blink, "blink task", 2096, NULL, 4, &blink_task);
-    // wait for stations to connect
-    xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
-
-    // connected 
-    ESP_LOGI(TAG, "Stations connected, creating sockets");
-    // stop blinking
-    vTaskDelete(blink_task);
-    // leave LED on
-    gpio_set_level(BLINK_GPIO, 1);
-
-    //create tcp socket
+    //create socket
     socket_slave_1 = socket(AF_INET, SOCK_STREAM, 0);
     if (socket_slave_1 < 0) {
         ESP_LOGE(TAG, "socket error");
@@ -113,7 +100,7 @@ static void initialise_tcp(void)
 	close(socket_slave_1);
 	exit(1);
     }
-    ESP_LOGV(TAG,"Bind Successful");
+    ESP_LOGI(TAG,"Bind Successful");
 
     // Establish tcp connections
     if (listen(socket_slave_1, 5) < 0) {
@@ -130,8 +117,10 @@ static void initialise_tcp(void)
 	xEventGroupSetBits(comm_event_group, TCP_CONNECTED_SUCCESS);
         broadcast_packets = true;
     }
-    // connections established, now can send/recv*/
-    ESP_LOGI(TAG, "Slave 1 tcp connection established!");
+
+    // connections established, now can send/recv
+    ESP_LOGI(TAG, "Socket established!");
+    vTaskDelete(NULL);
 
 }
 
@@ -270,7 +259,7 @@ void mongooseTask(void *data) {
     }
 }
 
-static void initialise_wifi(void)
+static void initialize_wifi(void)
 {
     ESP_LOGI(TAG, "Initializing WiFI");
 
@@ -293,8 +282,6 @@ static void initialise_wifi(void)
     };
     ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_AP, &ap_config) );
     ESP_ERROR_CHECK( esp_wifi_start() );
-    // DHCP
-    //ESP_ERROR_CHECK( wifi_softap_dhcps_start() );
 }
 
 void app_main()
@@ -302,8 +289,8 @@ void app_main()
     // Initialize
     ESP_ERROR_CHECK( nvs_flash_init() );
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
-    initialise_wifi();
-    initialise_uart();
+    initialize_wifi();
+    initialize_uart();
 
     // Task to handle UART events
     xTaskCreate(uart_event_task, "uart event handler", 4096, NULL, 12, NULL);
@@ -321,6 +308,6 @@ void app_main()
     ESP_LOGI(TAG, "Connected to Flight Controller");
 
     // Configure Sockets
-    initialise_tcp();
+    xTaskCreate(&initialize_socket, "init socket", 2048, NULL, 5, NULL);
 
 }
