@@ -49,7 +49,7 @@ void tcp_send_data(pwm_packet packet)
     memcpy(&buffer,&packet, sizeof(packet));
 
     // Send the packet to the rotors via tcp
-    len = send(connect_socket, buffer, sizeof(buffer), 0);
+    len = send(socket_slave_1, buffer, sizeof(buffer), 0);
     if (len > 0) {
         total_data += len;
         success_pack++;

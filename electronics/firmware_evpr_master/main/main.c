@@ -35,11 +35,10 @@ EventGroupHandle_t comm_event_group;
 bool message_received = false;
 bool broadcast_packets = false;
 
-int socket_slave_1 = ESP_FAIL;
-struct sockaddr_in master_address;
-struct sockaddr_in rotor_1_address;
-int connect_socket = 0;
-static unsigned int socklen;
+int socket_slave_1 = 0;
+int socket_slave_2 = 0;
+int socket_slave_3 = 0;
+int socket_slave_4 = 0;
 
 int total_data = 0;
 int bps = 0;
@@ -79,39 +78,64 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-void initialize_socket(void *pvParameter)
+void initialize_socket(void *parameter)
 {
-    ESP_LOGI(TAG, "Iniializing Socket");
+    int server_socket = 0; 
+    int connect_socket = 0; 
+    struct sockaddr_in master_address;
+    struct sockaddr_in slave_address;
+    static unsigned int socklen;
 
-    //create socket
-    socket_slave_1 = socket(AF_INET, SOCK_STREAM, 0);
-    if (socket_slave_1 < 0) {
-        ESP_LOGE(TAG, "socket error");
+    int slave_num = (int)parameter;
+    ESP_LOGI(TAG, "Iniializing Socket: %d",slave_num);
+    int slave_port = 0;
+    switch (slave_num) {
+    case 1:
+        slave_port = ROTOR_1_PORT;
+        break;
+    case 2:
+        slave_port = ROTOR_2_PORT;
+        break;
+    case 3:
+        slave_port = ROTOR_3_PORT;
+        break;
+    case 4:
+        slave_port = ROTOR_4_PORT;
+        break;
+    }
+ 
+    // create socket
+    server_socket = socket(AF_INET, SOCK_STREAM, 0);
+    ESP_LOGI(TAG, "slave %d, socket %d, port %d",slave_num,server_socket,slave_port);
+    if (server_socket < 0) {
+        ESP_LOGE(TAG, "create_socket failed, slave %d",slave_num);
+	close(server_socket);
+	vTaskDelete(NULL);
     }
 
     memset(&master_address, 0, sizeof(struct sockaddr_in));
     master_address.sin_family = AF_INET;
     master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
-    master_address.sin_port = htons(ROTOR_1_PORT);
+    master_address.sin_port = htons(slave_port);
 
     // Bind the socket
-    if (bind(socket_slave_1, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) < 0) {
-    	ESP_LOGE(TAG,"Bind Failed");
-	close(socket_slave_1);
-	exit(1);
-    }
-    ESP_LOGI(TAG,"Bind Successful");
-
-    // Establish tcp connections
-    if (listen(socket_slave_1, 5) < 0) {
-        close(socket_slave_1);
-        ESP_LOGE(TAG, "socket error");
+    if (bind(server_socket, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) < 0) {
+        ESP_LOGE(TAG,"bind failed, slave %d",slave_num);
+	close(server_socket);
 	vTaskDelete(NULL);
     }
-    connect_socket = accept(socket_slave_1, (struct sockaddr *)&rotor_1_address, &socklen);
+    ESP_LOGI(TAG,"bind succesful, slave %d",slave_num);
+
+    // Establish tcp connections
+    if (listen(server_socket, 5) < 0) {
+        ESP_LOGE(TAG, "socket error, slave %d",slave_num);
+        close(server_socket);
+	vTaskDelete(NULL);
+    }
+    connect_socket = accept(server_socket, (struct sockaddr *)&slave_address, &socklen);
     if (connect_socket < 0) {
-        close(socket_slave_1);
         ESP_LOGE(TAG, "socket error");
+        close(server_socket);
 	vTaskDelete(NULL);
     } else {
 	xEventGroupSetBits(comm_event_group, TCP_CONNECTED_SUCCESS);
@@ -119,7 +143,21 @@ void initialize_socket(void *pvParameter)
     }
 
     // connections established, now can send/recv
-    ESP_LOGI(TAG, "Socket established!");
+    switch (slave_num) {
+    case 1:
+        socket_slave_1 = connect_socket;
+        break;
+    case 2:
+        socket_slave_2 = connect_socket;
+        break;
+    case 3:
+        socket_slave_3 = connect_socket;
+        break;
+    case 4:
+        socket_slave_4 = connect_socket;
+        break;
+    } 
+    ESP_LOGI(TAG,"socket established, slave %d",slave_num);
     vTaskDelete(NULL);
 
 }
@@ -308,6 +346,7 @@ void app_main()
     ESP_LOGI(TAG, "Connected to Flight Controller");
 
     // Configure Sockets
-    xTaskCreate(&initialize_socket, "init socket", 2048, NULL, 5, NULL);
+    xTaskCreate(&initialize_socket, "init socket", 2048, (void*)1, 5, NULL);
+    xTaskCreate(&initialize_socket, "init socket", 2048, (void*)2, 5, NULL);
 
 }
