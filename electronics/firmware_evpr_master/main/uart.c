@@ -41,7 +41,7 @@
 
 static QueueHandle_t fc_uart_queue;
 
-void tcp_send_data(pwm_packet packet)
+void tcp_send_data(pwm_packet packet,int slave_socket)
 {
     int len;
     uint8_t buffer[sizeof(packet)];
@@ -49,12 +49,12 @@ void tcp_send_data(pwm_packet packet)
     memcpy(&buffer,&packet, sizeof(packet));
 
     // Send the packet to the rotors via tcp
-    len = send(socket_slave_1, buffer, sizeof(buffer), 0);
+    len = send(slave_socket, buffer, sizeof(buffer), 0);
     if (len > 0) {
         total_data += len;
         success_pack++;
     } else {
-        ESP_LOGE(TAG, "socket error");
+        ESP_LOGE(TAG, "error on socket: %d",slave_socket);
     }
 }
 
@@ -129,8 +129,8 @@ void uart_event_task(void *pvParameters)
                                     ESP_LOGV(TAG, "servo3: %d",(int)servo3_pwm);
                                     ESP_LOGV(TAG, "servo4: %d",(int)servo4_pwm);
                                     parse_state = HEAD; //Change to CRC later
-                                    message_received = true;
-                                    if(broadcast_packets) tcp_send_data(data_packet);
+                                    message_received = true;  // message recieved from FC
+                                    if(socket_slave_1 > 0) tcp_send_data(data_packet,socket_slave_1);
                                 }
                                 break;
 		            default:

@@ -17,7 +17,6 @@
 
 //extern EventGroupHandle_t comm_event_group;
 extern bool message_received;
-extern bool broadcast_packets;
 
 // socket info
 extern int socket_slave_1;

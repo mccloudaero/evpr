@@ -27,13 +27,7 @@
 #include "main.h"
 #include "uart.h"
 
-// FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
-EventGroupHandle_t comm_event_group;
-#define WIFI_CONNECTED_BIT BIT0
-#define TCP_CONNECTED_SUCCESS BIT1
-
 bool message_received = false;
-bool broadcast_packets = false;
 
 int socket_slave_1 = 0;
 int socket_slave_2 = 0;
@@ -70,7 +64,6 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     	ESP_LOGI(TAG, "station:"MACSTR" join,AID=%d\n",
 		MAC2STR(event->event_info.sta_connected.mac),
 		event->event_info.sta_connected.aid);
-    	xEventGroupSetBits(comm_event_group, WIFI_CONNECTED_BIT);
     	break;
     default:
         break;
@@ -124,7 +117,6 @@ void initialize_socket(void *parameter)
 	close(server_socket);
 	vTaskDelete(NULL);
     }
-    ESP_LOGI(TAG,"bind succesful, slave %d",slave_num);
 
     // Establish tcp connections
     if (listen(server_socket, 5) < 0) {
@@ -137,9 +129,6 @@ void initialize_socket(void *parameter)
         ESP_LOGE(TAG, "socket error");
         close(server_socket);
 	vTaskDelete(NULL);
-    } else {
-	xEventGroupSetBits(comm_event_group, TCP_CONNECTED_SUCCESS);
-        broadcast_packets = true;
     }
 
     // connections established, now can send/recv
@@ -300,8 +289,6 @@ void mongooseTask(void *data) {
 static void initialize_wifi(void)
 {
     ESP_LOGI(TAG, "Initializing WiFI");
-
-    comm_event_group = xEventGroupCreate();
 
     tcpip_adapter_init();
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
