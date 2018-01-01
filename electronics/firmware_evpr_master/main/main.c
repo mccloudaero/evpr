@@ -335,5 +335,7 @@ void app_main()
     // Configure Sockets
     xTaskCreate(&initialize_socket, "init socket", 2048, (void*)1, 5, NULL);
     xTaskCreate(&initialize_socket, "init socket", 2048, (void*)2, 5, NULL);
+    xTaskCreate(&initialize_socket, "init socket", 2048, (void*)3, 5, NULL);
+    xTaskCreate(&initialize_socket, "init socket", 2048, (void*)4, 5, NULL);
 
 }

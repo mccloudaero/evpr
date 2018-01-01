@@ -131,6 +131,9 @@ void uart_event_task(void *pvParameters)
                                     parse_state = HEAD; //Change to CRC later
                                     message_received = true;  // message recieved from FC
                                     if(socket_slave_1 > 0) tcp_send_data(data_packet,socket_slave_1);
+                                    if(socket_slave_2 > 0) tcp_send_data(data_packet,socket_slave_2);
+                                    if(socket_slave_3 > 0) tcp_send_data(data_packet,socket_slave_3);
+                                    if(socket_slave_4 > 0) tcp_send_data(data_packet,socket_slave_4);
                                 }
                                 break;
 		            default:
