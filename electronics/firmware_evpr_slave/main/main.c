@@ -192,21 +192,9 @@ static void tcp_receive(void *pvParameters)
     slave_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (slave_socket < 0) {
         ESP_LOGI(TAG, "socket error");
+	vTaskDelete(NULL);
+	return;
     }
-
-    memset(&slave_address, 0, sizeof(struct sockaddr_in));
-    slave_address.sin_family = AF_INET;
-    slave_address.sin_addr.s_addr = inet_addr(DEVICE_IP);
-    slave_address.sin_port = htons(COMM_PORT);
-
-    //Bind the socket
-    if (bind(slave_socket, (struct sockaddr *)&slave_address, sizeof(struct sockaddr_in)) == -1)
-    {
-    	ESP_LOGI(TAG,"Bind Failed");
-	close(slave_socket);
-	exit(1);
-    }
-    ESP_LOGV(TAG,"Bind Successful");
 
     memset(&master_address, 0, sizeof(struct sockaddr_in));
     master_address.sin_family = AF_INET;
@@ -217,7 +205,8 @@ static void tcp_receive(void *pvParameters)
     if (connect(slave_socket, (struct sockaddr *)&master_address, sizeof(master_address)) < 0) {
     	ESP_LOGI(TAG,"Connection Failed");
 	close(slave_socket);
-	exit(1);
+	vTaskDelete(NULL);
+	return;
     }
     ESP_LOGI(TAG, "connect to master node success!");
 
@@ -240,6 +229,8 @@ static void tcp_receive(void *pvParameters)
             process_buffer(recv_buffer, &recv_len);
 	} else {
             ESP_LOGE(TAG, "socket error");
+	    vTaskDelete(NULL);
+	    return;
 	}
     }
 }

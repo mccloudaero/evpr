@@ -21,7 +21,6 @@
 #endif
 #if ROTOR_NUM == 2 
  #define DEVICE_IP "192.168.4.12"
- #define TCP_PORT 6002 
  #define COMM_PORT 6002 
 #endif
 #if ROTOR_NUM == 3 
