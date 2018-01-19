@@ -27,7 +27,6 @@
 
 #include "main.h"
 #include "uart.h"
-//#include "mongoose.h"
 
 static QueueHandle_t fc_uart_queue;
 

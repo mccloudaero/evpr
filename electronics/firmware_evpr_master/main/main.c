@@ -8,25 +8,26 @@
    CONDITIONS OF ANY KIND, either express or implied.
 */
 
-#include <stdio.h>
-#include <lwip/sockets.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <assert.h>
 #include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "freertos/event_groups.h"
-#include "driver/gpio.h"
-#include "sdkconfig.h"
-#include "esp_err.h"
-#include "esp_event.h"
-#include "esp_event_loop.h"
-#include "esp_log.h"
-#include "esp_wifi.h"
+#include "freertos/semphr.h"
+#include "freertos/timers.h"
 #include "nvs_flash.h"
-
-//#include "mongoose.h"
-//#include "common/mavlink.h"
+#include "esp_event_loop.h"
+#include "tcpip_adapter.h"
+#include "esp_wifi.h"
+#include "esp_log.h"
+#include "esp_system.h"
+#include "esp_now.h"
+#include "rom/ets_sys.h"
+#include "rom/crc.h"
 
 #include "main.h"
 #include "uart.h"
+#include "espnow.h"
 
 bool message_received = false;
 
@@ -43,20 +44,12 @@ int fc_packets_total = 0;
 int fc_packets_lost = 0;
 double fc_packets_failure;
 
-void blink(void *pvParameter)
-{
-    gpio_pad_select_gpio(BLINK_GPIO);
-    // Set the GPIO as a push/pull output
-    gpio_set_direction(BLINK_GPIO, GPIO_MODE_OUTPUT);
-    while(1) {
-        // Blink off (output low)
-        gpio_set_level(BLINK_GPIO, 0);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-        // Blink on (output high)
-        gpio_set_level(BLINK_GPIO, 1);
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
-}
+static xQueueHandle example_espnow_queue;
+
+static uint8_t example_broadcast_mac[ESP_NOW_ETH_ALEN] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+static uint16_t s_example_espnow_seq[EXAMPLE_ESPNOW_DATA_MAX] = { 0, 0 };
+
+static void example_espnow_deinit(example_espnow_send_param_t *send_param);
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -72,222 +65,307 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-void initialize_socket(void *parameter)
+/* ESPNOW sending or receiving callback function is called in WiFi task.
+ * Users should not do lengthy operations from this task. Instead, post
+ * necessary data to a queue and handle it from a lower priority task. */
+static void example_espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status)
 {
-    int server_socket = 0; 
-    int connect_socket = 0; 
-    struct sockaddr_in master_address;
-    struct sockaddr_in slave_address;
-    static unsigned int socklen;
+    example_espnow_event_t evt;
+    example_espnow_event_send_cb_t *send_cb = &evt.info.send_cb;
 
-    int slave_num = (int)parameter;
-    ESP_LOGI(TAG, "Iniializing Socket: %d",slave_num);
-    int slave_port = 0;
-    switch (slave_num) {
-    case 1:
-        slave_port = ROTOR_1_PORT;
-        break;
-    case 2:
-        slave_port = ROTOR_2_PORT;
-        break;
-    case 3:
-        slave_port = ROTOR_3_PORT;
-        break;
-    case 4:
-        slave_port = ROTOR_4_PORT;
-        break;
-    }
- 
-    // create socket
-    server_socket = socket(AF_INET, SOCK_STREAM, 0);
-    ESP_LOGI(TAG, "slave %d, socket %d, port %d",slave_num,server_socket,slave_port);
-    if (server_socket < 0) {
-        ESP_LOGE(TAG, "create_socket failed, slave %d",slave_num);
-	close(server_socket);
-	vTaskDelete(NULL);
+    if (mac_addr == NULL) {
+        ESP_LOGE(TAG, "Send cb arg error");
+        return;
     }
 
-    memset(&master_address, 0, sizeof(struct sockaddr_in));
-    master_address.sin_family = AF_INET;
-    master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
-    master_address.sin_port = htons(slave_port);
-
-    // Bind the socket
-    if (bind(server_socket, (struct sockaddr *)&master_address, sizeof(struct sockaddr_in)) < 0) {
-        ESP_LOGE(TAG,"bind failed, slave %d",slave_num);
-	close(server_socket);
-	vTaskDelete(NULL);
-    }
-
-    // Establish tcp connections
-    if (listen(server_socket, 5) < 0) {
-        ESP_LOGE(TAG, "socket error, slave %d",slave_num);
-        close(server_socket);
-	vTaskDelete(NULL);
-    }
-    connect_socket = accept(server_socket, (struct sockaddr *)&slave_address, &socklen);
-    if (connect_socket < 0) {
-        ESP_LOGE(TAG, "socket error");
-        close(server_socket);
-	vTaskDelete(NULL);
-    }
-
-    // connections established, now can send/recv
-    switch (slave_num) {
-    case 1:
-        socket_slave_1 = connect_socket;
-        break;
-    case 2:
-        socket_slave_2 = connect_socket;
-        break;
-    case 3:
-        socket_slave_3 = connect_socket;
-        break;
-    case 4:
-        socket_slave_4 = connect_socket;
-        break;
-    } 
-    ESP_LOGI(TAG,"socket established, slave %d",slave_num);
-    vTaskDelete(NULL);
-
-}
-
-/*
-char *mongoose_eventToString(int ev) {
-	static char temp[100];
-	switch (ev) {
-	case MG_EV_CONNECT:
-		return "MG_EV_CONNECT";
-	case MG_EV_ACCEPT:
-		return "MG_EV_ACCEPT";
-	case MG_EV_CLOSE:
-		return "MG_EV_CLOSE";
-	case MG_EV_SEND:
-		return "MG_EV_SEND";
-	case MG_EV_RECV:
-		return "MG_EV_RECV";
-	case MG_EV_HTTP_REQUEST:
-		return "MG_EV_HTTP_REQUEST";
-	case MG_EV_HTTP_REPLY:
-		return "MG_EV_HTTP_REPLY";
-	case MG_EV_MQTT_CONNACK:
-		return "MG_EV_MQTT_CONNACK";
-	case MG_EV_MQTT_CONNACK_ACCEPTED:
-		return "MG_EV_MQTT_CONNACK";
-	case MG_EV_MQTT_CONNECT:
-		return "MG_EV_MQTT_CONNECT";
-	case MG_EV_MQTT_DISCONNECT:
-		return "MG_EV_MQTT_DISCONNECT";
-	case MG_EV_MQTT_PINGREQ:
-		return "MG_EV_MQTT_PINGREQ";
-	case MG_EV_MQTT_PINGRESP:
-		return "MG_EV_MQTT_PINGRESP";
-	case MG_EV_MQTT_PUBACK:
-		return "MG_EV_MQTT_PUBACK";
-	case MG_EV_MQTT_PUBCOMP:
-		return "MG_EV_MQTT_PUBCOMP";
-	case MG_EV_MQTT_PUBLISH:
-		return "MG_EV_MQTT_PUBLISH";
-	case MG_EV_MQTT_PUBREC:
-		return "MG_EV_MQTT_PUBREC";
-	case MG_EV_MQTT_PUBREL:
-		return "MG_EV_MQTT_PUBREL";
-	case MG_EV_MQTT_SUBACK:
-		return "MG_EV_MQTT_SUBACK";
-	case MG_EV_MQTT_SUBSCRIBE:
-		return "MG_EV_MQTT_SUBSCRIBE";
-	case MG_EV_MQTT_UNSUBACK:
-		return "MG_EV_MQTT_UNSUBACK";
-	case MG_EV_MQTT_UNSUBSCRIBE:
-		return "MG_EV_MQTT_UNSUBSCRIBE";
-	case MG_EV_WEBSOCKET_HANDSHAKE_REQUEST:
-		return "MG_EV_WEBSOCKET_HANDSHAKE_REQUEST";
-	case MG_EV_WEBSOCKET_HANDSHAKE_DONE:
-		return "MG_EV_WEBSOCKET_HANDSHAKE_DONE";
-	case MG_EV_WEBSOCKET_FRAME:
-		return "MG_EV_WEBSOCKET_FRAME";
-	}
-	sprintf(temp, "Unknown event: %d", ev);
-	return temp;
-}
-
-char *mgStrToStr(struct mg_str mgStr) {
-	char *retStr = (char *) malloc(mgStr.len + 1);
-	memcpy(retStr, mgStr.p, mgStr.len);
-	retStr[mgStr.len] = 0;
-	return retStr;
-}
-
-void mongoose_event_handler(struct mg_connection *nc, int ev, void *evData) {
-	switch (ev) {
-	case MG_EV_HTTP_REQUEST: {
-			struct http_message *message = (struct http_message *) evData;
-
-			char *uri = mgStrToStr(message->uri);
-
-			if (strcmp(uri, "/status") == 0) {
-                                // Get info on connected device info
-				wifi_sta_list_t station_list;
-    				ESP_ERROR_CHECK(esp_wifi_ap_get_sta_list(&station_list));
-				int num_stations = station_list.num;
-
-				char payload[256];
-				struct timeval tv;
-				gettimeofday(&tv, NULL);
-
-				// Create webpage
-				sprintf(payload, "EVPR MASTER NODE STATUS\n");
-				sprintf(payload+strlen(payload), "Time since start: %d.%d secs\n", (int)tv.tv_sec, (int)tv.tv_usec);
-				if (num_stations > 0) {
-					sprintf(payload+strlen(payload), "\nConnected stations: %d\n", num_stations);
-					for (int i=0;i<num_stations;i++) {
-						wifi_sta_info_t sta = station_list.sta[i];
-						sprintf(payload+strlen(payload), "Station %d MAC: %02X:%02X:%02X:%02X:%02X:%02X\n", i,
-               					sta.mac[0], sta.mac[1], sta.mac[2], sta.mac[3], sta.mac[4], sta.mac[5]);
-					}
-				}
-                                if (message_received == false) {
-					sprintf(payload+strlen(payload), "\nWaiting to connect to Flight Controller\n");
-				} else {
-					sprintf(payload+strlen(payload), "\nConnected to Flight Controller\n");
-					sprintf(payload+strlen(payload), "Packets Lost: %d, Failure percentage: %f\n",fc_packets_lost,fc_packets_failure);
-				}
-				if (success_pack > 0) {
-					sprintf(payload+strlen(payload), "\nNetwork stats:\n");
-                                        sprintf(payload+strlen(payload), "%d byte per sec\nTotal packets: %d \n", bps, success_pack);
-				}
-				int length = strlen(payload);
-				mg_send_head(nc, 200, length, "Content-Type: text/plain");
-				mg_printf(nc, "%s", payload);
-			}	else {
-				mg_send_head(nc, 404, 0, "Content-Type: text/plain");
-			}
-			nc->flags |= MG_F_SEND_AND_CLOSE;
-			free(uri);
-			break;
-		}
-	} // End of switch
-}
-
-void mongooseTask(void *data) {
-    ESP_LOGI(TAG, "Mongoose task starting");
-    struct mg_mgr mgr;
-    ESP_LOGI(TAG, "Mongoose: Starting setup");
-    mg_mgr_init(&mgr, NULL);
-    ESP_LOGI(TAG, "Mongoose: Succesfully inited");
-    struct mg_connection *c = mg_bind(&mgr, ":80", mongoose_event_handler);
-    ESP_LOGI(TAG, "Mongoose: Succesfully bound");
-    if (c == NULL) {
-    	ESP_LOGI(TAG, "No connection from the mg_bind()");
-	vTaskDelete(NULL);
-	return;
-    }
-    mg_set_protocol_http_websocket(c);
-    while (1) {
-	mg_mgr_poll(&mgr, 1000);
+    evt.id = EXAMPLE_ESPNOW_SEND_CB;
+    memcpy(send_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
+    send_cb->status = status;
+    if (xQueueSend(example_espnow_queue, &evt, portMAX_DELAY) != pdTRUE) {
+        ESP_LOGW(TAG, "Send send queue fail");
     }
 }
-*/
+
+static void example_espnow_recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len)
+{
+    example_espnow_event_t evt;
+    example_espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
+
+    if (mac_addr == NULL || data == NULL || len <= 0) {
+        ESP_LOGE(TAG, "Receive cb arg error");
+        return;
+    }
+
+    evt.id = EXAMPLE_ESPNOW_RECV_CB;
+    memcpy(recv_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
+    recv_cb->data = malloc(len);
+    if (recv_cb->data == NULL) {
+        ESP_LOGE(TAG, "Malloc receive data fail");
+        return;
+    }
+    memcpy(recv_cb->data, data, len);
+    recv_cb->data_len = len;
+    if (xQueueSend(example_espnow_queue, &evt, portMAX_DELAY) != pdTRUE) {
+        ESP_LOGW(TAG, "Send receive queue fail");
+        free(recv_cb->data);
+    }
+}
+
+/* Parse received ESPNOW data. */
+int example_espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq, int *magic)
+{
+    example_espnow_data_t *buf = (example_espnow_data_t *)data;
+    uint16_t crc, crc_cal = 0;
+
+    if (data_len < sizeof(example_espnow_data_t)) {
+        ESP_LOGE(TAG, "Receive ESPNOW data too short, len:%d", data_len);
+        return -1;
+    }
+
+    *state = buf->state;
+    *seq = buf->seq_num;
+    *magic = buf->magic;
+    crc = buf->crc;
+    buf->crc = 0;
+    crc_cal = crc16_le(UINT16_MAX, (uint8_t const *)buf, data_len);
+
+    if (crc_cal == crc) {
+        return buf->type;
+    }
+
+    return -1;
+}
+
+/* Prepare ESPNOW data to be sent. */
+void example_espnow_data_prepare(example_espnow_send_param_t *send_param)
+{
+    example_espnow_data_t *buf = (example_espnow_data_t *)send_param->buffer;
+    int i = 0;
+
+    assert(send_param->len >= sizeof(example_espnow_data_t));
+
+    buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? EXAMPLE_ESPNOW_DATA_BROADCAST : EXAMPLE_ESPNOW_DATA_UNICAST;
+    buf->state = send_param->state;
+    buf->seq_num = s_example_espnow_seq[buf->type]++;
+    buf->crc = 0;
+    buf->magic = send_param->magic;
+    for (i = 0; i < send_param->len - sizeof(example_espnow_data_t); i++) {
+        buf->payload[i] = (uint8_t)esp_random();
+    }
+    buf->crc = crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
+}
+
+static void example_espnow_task(void *pvParameter)
+{
+    example_espnow_event_t evt;
+    uint8_t recv_state = 0;
+    uint16_t recv_seq = 0;
+    int recv_magic = 0;
+    bool is_broadcast = false;
+    int ret;
+
+    vTaskDelay(5000 / portTICK_RATE_MS);
+    ESP_LOGI(TAG, "Start sending broadcast data");
+
+    /* Start sending broadcast ESPNOW data. */
+    example_espnow_send_param_t *send_param = (example_espnow_send_param_t *)pvParameter;
+    if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
+        ESP_LOGE(TAG, "Send error");
+        example_espnow_deinit(send_param);
+        vTaskDelete(NULL);
+    }
+
+    while (xQueueReceive(example_espnow_queue, &evt, portMAX_DELAY) == pdTRUE) {
+        switch (evt.id) {
+            case EXAMPLE_ESPNOW_SEND_CB:
+            {
+                example_espnow_event_send_cb_t *send_cb = &evt.info.send_cb;
+                is_broadcast = IS_BROADCAST_ADDR(send_cb->mac_addr);
+
+                ESP_LOGD(TAG, "Send data to "MACSTR", status1: %d", MAC2STR(send_cb->mac_addr), send_cb->status);
+
+                if (is_broadcast && (send_param->broadcast == false)) {
+                    break;
+                }
+
+                if (!is_broadcast) {
+                    send_param->count--;
+                    if (send_param->count == 0) {
+                        ESP_LOGI(TAG, "Send done");
+                        example_espnow_deinit(send_param);
+                        vTaskDelete(NULL);
+                    }
+                }
+
+                /* Delay a while before sending the next data. */
+                if (send_param->delay > 0) {
+                    vTaskDelay(send_param->delay/portTICK_RATE_MS);
+                }
+
+                ESP_LOGI(TAG, "send data to "MACSTR"", MAC2STR(send_cb->mac_addr));
+
+                memcpy(send_param->dest_mac, send_cb->mac_addr, ESP_NOW_ETH_ALEN);
+                example_espnow_data_prepare(send_param);
+
+                /* Send the next data after the previous data is sent. */
+                if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
+                    ESP_LOGE(TAG, "Send error");
+                    example_espnow_deinit(send_param);
+                    vTaskDelete(NULL);
+                }
+                break;
+            }
+            case EXAMPLE_ESPNOW_RECV_CB:
+            {
+                example_espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
+
+                ret = example_espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq, &recv_magic);
+                free(recv_cb->data);
+                if (ret == EXAMPLE_ESPNOW_DATA_BROADCAST) {
+                    ESP_LOGI(TAG, "Receive %dth broadcast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
+
+                    /* If MAC address does not exist in peer list, add it to peer list. */
+                    if (esp_now_is_peer_exist(recv_cb->mac_addr) == false) {
+                        esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
+                        if (peer == NULL) {
+                            ESP_LOGE(TAG, "Malloc peer information fail");
+                            example_espnow_deinit(send_param);
+                            vTaskDelete(NULL);
+                        }
+                        memset(peer, 0, sizeof(esp_now_peer_info_t));
+                        peer->channel = CONFIG_ESPNOW_CHANNEL;
+                        peer->ifidx = ESPNOW_WIFI_IF;
+                        peer->encrypt = true;
+                        memcpy(peer->lmk, CONFIG_ESPNOW_LMK, ESP_NOW_KEY_LEN);
+                        memcpy(peer->peer_addr, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
+                        ESP_ERROR_CHECK( esp_now_add_peer(peer) );
+                        free(peer);
+                    }
+
+                    /* Indicates that the device has received broadcast ESPNOW data. */
+                    if (send_param->state == 0) {
+                        send_param->state = 1;
+                    }
+
+                    /* If receive broadcast ESPNOW data which indicates that the other device has received
+                     * broadcast ESPNOW data and the local magic number is bigger than that in the received
+                     * broadcast ESPNOW data, stop sending broadcast ESPNOW data and start sending unicast
+                     * ESPNOW data.
+                     */
+                    if (recv_state == 1) {
+                        /* The device which has the bigger magic number sends ESPNOW data, the other one
+                         * receives ESPNOW data.
+                         */
+                        if (send_param->unicast == false && send_param->magic >= recv_magic) {
+                    	    ESP_LOGI(TAG, "Start sending unicast data");
+                    	    ESP_LOGI(TAG, "send data to "MACSTR"", MAC2STR(recv_cb->mac_addr));
+
+                    	    /* Start sending unicast ESPNOW data. */
+                            memcpy(send_param->dest_mac, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
+                            example_espnow_data_prepare(send_param);
+                            if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
+                                ESP_LOGE(TAG, "Send error");
+                                example_espnow_deinit(send_param);
+                                vTaskDelete(NULL);
+                            }
+                            else {
+                                send_param->broadcast = false;
+                                send_param->unicast = true;
+                            }
+                        }
+                    }
+                }
+                else if (ret == EXAMPLE_ESPNOW_DATA_UNICAST) {
+                    ESP_LOGI(TAG, "Receive %dth unicast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
+
+                    /* If receive unicast ESPNOW data, also stop sending broadcast ESPNOW data. */
+                    send_param->broadcast = false;
+                }
+                else {
+                    ESP_LOGI(TAG, "Receive error data from: "MACSTR"", MAC2STR(recv_cb->mac_addr));
+                }
+                break;
+            }
+            default:
+                ESP_LOGE(TAG, "Callback type error: %d", evt.id);
+                break;
+        }
+    }
+}
+
+static esp_err_t example_espnow_init(void)
+{
+    example_espnow_send_param_t *send_param;
+
+    example_espnow_queue = xQueueCreate(ESPNOW_QUEUE_SIZE, sizeof(example_espnow_event_t));
+    if (example_espnow_queue == NULL) {
+        ESP_LOGE(TAG, "Create mutex fail");
+        return ESP_FAIL;
+    }
+
+    /* Initialize ESPNOW and register sending and receiving callback function. */
+    ESP_ERROR_CHECK( esp_now_init() );
+    ESP_ERROR_CHECK( esp_now_register_send_cb(example_espnow_send_cb) );
+    ESP_ERROR_CHECK( esp_now_register_recv_cb(example_espnow_recv_cb) );
+
+    /* Set primary master key. */
+    ESP_ERROR_CHECK( esp_now_set_pmk((uint8_t *)CONFIG_ESPNOW_PMK) );
+
+    /* Add broadcast peer information to peer list. */
+    esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
+    if (peer == NULL) {
+        ESP_LOGE(TAG, "Malloc peer information fail");
+        vSemaphoreDelete(example_espnow_queue);
+        esp_now_deinit();
+        return ESP_FAIL;
+    }
+    memset(peer, 0, sizeof(esp_now_peer_info_t));
+    peer->channel = CONFIG_ESPNOW_CHANNEL;
+    peer->ifidx = ESPNOW_WIFI_IF;
+    peer->encrypt = false;
+    memcpy(peer->peer_addr, example_broadcast_mac, ESP_NOW_ETH_ALEN);
+    ESP_ERROR_CHECK( esp_now_add_peer(peer) );
+    free(peer);
+
+    /* Initialize sending parameters. */
+    send_param = malloc(sizeof(example_espnow_send_param_t));
+    memset(send_param, 0, sizeof(example_espnow_send_param_t));
+    if (send_param == NULL) {
+        ESP_LOGE(TAG, "Malloc send parameter fail");
+        vSemaphoreDelete(example_espnow_queue);
+        esp_now_deinit();
+        return ESP_FAIL;
+    }
+    send_param->unicast = false;
+    send_param->broadcast = true;
+    send_param->state = 0;
+    send_param->magic = esp_random();
+    send_param->count = CONFIG_ESPNOW_SEND_COUNT;
+    send_param->delay = CONFIG_ESPNOW_SEND_DELAY;
+    send_param->len = CONFIG_ESPNOW_SEND_LEN;
+    send_param->buffer = malloc(CONFIG_ESPNOW_SEND_LEN);
+    if (send_param->buffer == NULL) {
+        ESP_LOGE(TAG, "Malloc send buffer fail");
+        free(send_param);
+        vSemaphoreDelete(example_espnow_queue);
+        esp_now_deinit();
+        return ESP_FAIL;
+    }
+    memcpy(send_param->dest_mac, example_broadcast_mac, ESP_NOW_ETH_ALEN);
+    example_espnow_data_prepare(send_param);
+
+    xTaskCreate(example_espnow_task, "example_espnow_task", 2048, send_param, 4, NULL);
+
+    return ESP_OK;
+}
+
+static void example_espnow_deinit(example_espnow_send_param_t *send_param)
+{
+    free(send_param->buffer);
+    free(send_param);
+    vSemaphoreDelete(example_espnow_queue);
+    esp_now_deinit();
+}
 
 static void initialize_wifi(void)
 {
@@ -297,19 +375,11 @@ static void initialize_wifi(void)
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
     ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
-    ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_AP) );
-    wifi_config_t ap_config = {
-        .ap = {
-            .ssid = WIFI_SSID,
-            .password = WIFI_PWD,
-            .authmode=WIFI_AUTH_WPA_WPA2_PSK,
-            .ssid_len = 0,
-            .ssid_hidden = 0,
-            .max_connection = 4,
-        },
-    };
-    ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_AP, &ap_config) );
+    ESP_ERROR_CHECK( esp_wifi_set_mode(ESPNOW_WIFI_MODE) );
     ESP_ERROR_CHECK( esp_wifi_start() );
+
+    ESP_ERROR_CHECK( esp_wifi_set_channel(CONFIG_ESPNOW_CHANNEL, 0) );
+
 }
 
 void app_main()
@@ -323,10 +393,7 @@ void app_main()
     // Task to handle UART events
     xTaskCreate(uart_event_task, "uart event handler", 4096, NULL, 12, NULL);
 
-    // Start webserver
-    //xTaskCreate(&mongooseTask, "mongoose web server", 4096, NULL, 5, NULL);
-
-    // Start listening for mavlink messages on the UART and wait until recieved 
+    // Start listening for messages on the UART and wait until recieved 
     ESP_LOGI(TAG,"Waiting for message from Flight Controller");
     while (message_received == false)
     {
@@ -334,11 +401,8 @@ void app_main()
         ESP_LOGI(TAG,"Waiting...");
     }
     ESP_LOGI(TAG, "Connected to Flight Controller");
+    
+    example_espnow_init();
 
-    // Configure Sockets
-    xTaskCreate(&initialize_socket, "init socket", 2048, (void*)1, 5, NULL);
-    xTaskCreate(&initialize_socket, "init socket", 2048, (void*)2, 5, NULL);
-    xTaskCreate(&initialize_socket, "init socket", 2048, (void*)3, 5, NULL);
-    xTaskCreate(&initialize_socket, "init socket", 2048, (void*)4, 5, NULL);
 
 }

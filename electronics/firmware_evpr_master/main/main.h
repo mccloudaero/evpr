@@ -32,4 +32,3 @@ extern int success_pack;
 extern int fc_packets_total;
 extern int fc_packets_lost;
 extern double fc_packets_failure;
-
