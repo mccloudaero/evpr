@@ -7,37 +7,27 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <lwip/sockets.h>
 #include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
-#include "esp_system.h"
-#include "nvs_flash.h"
-#include "driver/uart.h"
-#include "freertos/queue.h"
-#include "esp_log.h"
-#include "soc/uart_struct.h"
-
-#include "common/mavlink.h"
-
-#include "main.h"
-#include "uart.h"
-
-#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
 #include "freertos/event_groups.h"
-#include "driver/gpio.h"
-#include "sdkconfig.h"
+#include "freertos/queue.h"
+#include "freertos/task.h"
 #include "esp_err.h"
 #include "esp_event.h"
 #include "esp_event_loop.h"
 #include "esp_log.h"
+#include "esp_system.h"
 #include "esp_wifi.h"
+#include "driver/gpio.h"
+#include "driver/uart.h"
+#include "esp_log.h"
 #include "nvs_flash.h"
-
-#include "mongoose.h"
-#include "common/mavlink.h"
+#include "sdkconfig.h"
+#include "soc/uart_struct.h"
 
 #include "main.h"
+#include "uart.h"
+//#include "mongoose.h"
 
 static QueueHandle_t fc_uart_queue;
 

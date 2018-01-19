@@ -9,6 +9,7 @@
 */
 
 #include <stdio.h>
+#include <lwip/sockets.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/event_groups.h"
@@ -21,8 +22,8 @@
 #include "esp_wifi.h"
 #include "nvs_flash.h"
 
-#include "mongoose.h"
-#include "common/mavlink.h"
+//#include "mongoose.h"
+//#include "common/mavlink.h"
 
 #include "main.h"
 #include "uart.h"
@@ -151,6 +152,7 @@ void initialize_socket(void *parameter)
 
 }
 
+/*
 char *mongoose_eventToString(int ev) {
 	static char temp[100];
 	switch (ev) {
@@ -285,6 +287,7 @@ void mongooseTask(void *data) {
 	mg_mgr_poll(&mgr, 1000);
     }
 }
+*/
 
 static void initialize_wifi(void)
 {

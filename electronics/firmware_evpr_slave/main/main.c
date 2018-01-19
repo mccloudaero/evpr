@@ -24,7 +24,7 @@
 #include <lwip/sockets.h>
 #include "main.h"
 
-#include "common/mavlink.h"
+//#include "common/mavlink.h"
 
 // Slave Node Mode
 // Options 0=self_test, 1=position_hold, 2=nominal
