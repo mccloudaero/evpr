@@ -229,11 +229,13 @@ static void espnow_task(void *pvParameter)
             }
             case EXAMPLE_ESPNOW_RECV_CB:
             {
+                // Recieved ESPNOW data
                 example_espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
 
                 ret = example_espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq, &recv_magic);
                 free(recv_cb->data);
                 if (ret == EXAMPLE_ESPNOW_DATA_BROADCAST) {
+                    // To be used for heartbeat data
                     ESP_LOGI(TAG, "Receive %dth broadcast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
 
                     /* If MAC address does not exist in peer list, add it to peer list. */
@@ -254,46 +256,10 @@ static void espnow_task(void *pvParameter)
                         free(peer);
                     }
 
-                    /* Indicates that the device has received broadcast ESPNOW data. */
-                    //if (send_param->state == 0) {
-                    //    send_param->state = 1;
-                    //}
-
-                    /* If receive broadcast ESPNOW data which indicates that the other device has received
-                     * broadcast ESPNOW data and the local magic number is bigger than that in the received
-                     * broadcast ESPNOW data, stop sending broadcast ESPNOW data and start sending unicast
-                     * ESPNOW data.
-                     */
-                    if (recv_state == 1) {
-                        /* The device which has the bigger magic number sends ESPNOW data, the other one
-                         * receives ESPNOW data.
-                         */
-                        /*
-                        if (send_param->unicast == false && send_param->magic >= recv_magic) {
-                    	    ESP_LOGI(TAG, "Start sending unicast data");
-                    	    ESP_LOGI(TAG, "send data to "MACSTR"", MAC2STR(recv_cb->mac_addr));
-
-                    	    // Start sending unicast ESPNOW data.
-                            memcpy(send_param->dest_mac, recv_cb->mac_addr, ESP_NOW_ETH_ALEN);
-                            example_espnow_data_prepare(send_param);
-                            if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
-                                ESP_LOGE(TAG, "Send error");
-                                example_espnow_deinit(send_param);
-                                vTaskDelete(NULL);
-                            }
-                            else {
-                                send_param->broadcast = false;
-                                send_param->unicast = true;
-                            }
-                        }
-                        */
-                    }
                 }
                 else if (ret == EXAMPLE_ESPNOW_DATA_UNICAST) {
+                    // Not used currently
                     ESP_LOGI(TAG, "Receive %dth unicast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
-
-                    /* If receive unicast ESPNOW data, also stop sending broadcast ESPNOW data. */
-                    //send_param->broadcast = false;
                 }
                 else {
                     ESP_LOGI(TAG, "Receive error data from: "MACSTR"", MAC2STR(recv_cb->mac_addr));
