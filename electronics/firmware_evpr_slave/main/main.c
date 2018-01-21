@@ -314,6 +314,25 @@ int example_espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, 
     return -1;
 }
 
+/* Prepare ESPNOW data to be sent. */
+void example_espnow_data_prepare(example_espnow_send_param_t *send_param)
+{
+    example_espnow_data_t *buf = (example_espnow_data_t *)send_param->buffer;
+    int i = 0;
+
+    assert(send_param->len >= sizeof(example_espnow_data_t));
+
+    buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? EXAMPLE_ESPNOW_DATA_BROADCAST : EXAMPLE_ESPNOW_DATA_UNICAST;
+    buf->state = send_param->state;
+    buf->seq_num = s_example_espnow_seq[buf->type]++;
+    buf->crc = 0;
+    buf->magic = send_param->magic;
+    for (i = 0; i < send_param->len - sizeof(example_espnow_data_t); i++) {
+        buf->payload[i] = (uint8_t)esp_random();
+    }
+    buf->crc = crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
+}
+
 static void espnow_task(void *pvParameter)
 {
     example_espnow_event_t evt;
@@ -325,15 +344,41 @@ static void espnow_task(void *pvParameter)
 
     ESP_LOGI(TAG, "Starting ESPNOW queue");
 
-    /* Start sending broadcast ESPNOW data. */
-    /*
-    example_espnow_send_param_t *send_param = (example_espnow_send_param_t *)pvParameter;
+    // Initialize heartbeat sending parameters
+    example_espnow_send_param_t *send_param;
+    send_param = malloc(sizeof(example_espnow_send_param_t));
+    memset(send_param, 0, sizeof(example_espnow_send_param_t));
+    if (send_param == NULL) {
+        ESP_LOGE(TAG, "Malloc send parameter fail");
+        vSemaphoreDelete(example_espnow_queue);
+        esp_now_deinit();
+        //return ESP_FAIL;
+    }
+    send_param->unicast = false;
+    send_param->broadcast = true;
+    send_param->state = 0;
+    send_param->magic = esp_random();
+    send_param->count = CONFIG_ESPNOW_SEND_COUNT;
+    send_param->delay = CONFIG_ESPNOW_SEND_DELAY;
+    send_param->len = CONFIG_ESPNOW_SEND_LEN;
+    send_param->buffer = malloc(CONFIG_ESPNOW_SEND_LEN);
+    if (send_param->buffer == NULL) {
+        ESP_LOGE(TAG, "Malloc send buffer fail");
+        free(send_param);
+        vSemaphoreDelete(example_espnow_queue);
+        esp_now_deinit();
+        //return ESP_FAIL;
+    }
+    memcpy(send_param->dest_mac, example_broadcast_mac, ESP_NOW_ETH_ALEN);
+    example_espnow_data_prepare(send_param);
+
+    // Start sending heartbeat via ESPNOW
     if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
         ESP_LOGE(TAG, "Send error");
-        example_espnow_deinit(send_param);
+        //example_espnow_deinit(send_param);
         vTaskDelete(NULL);
     }
-    */
+    ESP_LOGI(TAG, "here");
 
     while (xQueueReceive(example_espnow_queue, &evt, portMAX_DELAY) == pdTRUE) {
         switch (evt.id) {
@@ -344,7 +389,6 @@ static void espnow_task(void *pvParameter)
 
                 ESP_LOGD(TAG, "Send data to "MACSTR", status1: %d", MAC2STR(send_cb->mac_addr), send_cb->status);
 
-                /*
                 if (is_broadcast && (send_param->broadcast == false)) {
                     break;
                 }
@@ -353,14 +397,12 @@ static void espnow_task(void *pvParameter)
                     send_param->count--;
                     if (send_param->count == 0) {
                         ESP_LOGI(TAG, "Send done");
-                        example_espnow_deinit(send_param);
+                        //example_espnow_deinit(send_param);
                         vTaskDelete(NULL);
                     }
                 }
-                */
 
                 /* Delay a while before sending the next data. */
-                /*
                 if (send_param->delay > 0) {
                     vTaskDelay(send_param->delay/portTICK_RATE_MS);
                 }
@@ -369,16 +411,13 @@ static void espnow_task(void *pvParameter)
 
                 memcpy(send_param->dest_mac, send_cb->mac_addr, ESP_NOW_ETH_ALEN);
                 example_espnow_data_prepare(send_param);
-                */
 
                 /* Send the next data after the previous data is sent. */
-                /*
                 if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
                     ESP_LOGE(TAG, "Send error");
-                    example_espnow_deinit(send_param);
+                    //example_espnow_deinit(send_param);
                     vTaskDelete(NULL);
                 }
-                */
                 break;
             }
             case EXAMPLE_ESPNOW_RECV_CB:
@@ -510,35 +549,19 @@ static esp_err_t initialize_espnow(void)
     return ESP_OK;
 }
 
-static void initialise_wifi(void)
+static void initialize_wifi(void)
 {
     ESP_LOGI(TAG, "Initializing WiFI");
 
-    comm_event_group = xEventGroupCreate();
-
     tcpip_adapter_init();
-    tcpip_adapter_dhcpc_stop(TCPIP_ADAPTER_IF_STA);	// Don't run a DHCP client
-    tcpip_adapter_ip_info_t ipInfo;
-
-    inet_pton(AF_INET, DEVICE_IP, &ipInfo.ip);
-    inet_pton(AF_INET, DEVICE_GATEWAY, &ipInfo.gw);
-    inet_pton(AF_INET, NETMASK, &ipInfo.netmask);
-    tcpip_adapter_set_ip_info(TCPIP_ADAPTER_IF_STA, &ipInfo);
-
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
     ESP_ERROR_CHECK( esp_wifi_set_storage(WIFI_STORAGE_RAM) );
-    ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
-    wifi_config_t sta_config = {
-        .sta= {
-            .ssid = WIFI_SSID,
-            .password = WIFI_PWD,
-            .bssid_set = 0,
-        },
-    };
-    ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_STA, &sta_config) );
+    ESP_ERROR_CHECK( esp_wifi_set_mode(ESPNOW_WIFI_MODE) );
     ESP_ERROR_CHECK( esp_wifi_start() );
-    ESP_ERROR_CHECK( esp_wifi_connect() );
+
+    ESP_ERROR_CHECK( esp_wifi_set_channel(CONFIG_ESPNOW_CHANNEL, 0) );
+
 }
 
 void app_main()
@@ -546,7 +569,7 @@ void app_main()
     // Initialize
     ESP_ERROR_CHECK( nvs_flash_init() );
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
-    initialise_wifi();
+    initialize_wifi();
     mcpwm_gpio_initialize();
 
     // Choose Run Mode
