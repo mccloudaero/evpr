@@ -10,8 +10,8 @@
 #define IS_BROADCAST_ADDR(addr) (memcmp(addr, espnow_broadcast_mac, ESP_NOW_ETH_ALEN) == 0)
 
 typedef enum {
-    EXAMPLE_ESPNOW_SEND_CB,
-    EXAMPLE_ESPNOW_RECV_CB,
+    ESPNOW_SEND_CB,
+    ESPNOW_RECV_CB,
 } espnow_event_id_t;
 
 typedef struct {
@@ -30,19 +30,19 @@ typedef union {
     espnow_event_recv_cb_t recv_cb;
 } espnow_event_info_t;
 
-/* When ESPNOW sending or receiving callback function is called, post event to ESPNOW task. */
+// When ESPNOW sending or receiving callback function is called, post event to ESPNOW task
 typedef struct {
     espnow_event_id_t id;
     espnow_event_info_t info;
 } espnow_event_t;
 
 enum {
-    EXAMPLE_ESPNOW_DATA_BROADCAST,
-    EXAMPLE_ESPNOW_DATA_UNICAST,
-    EXAMPLE_ESPNOW_DATA_MAX,
+    ESPNOW_DATA_BROADCAST,
+    ESPNOW_DATA_UNICAST,
+    ESPNOW_DATA_MAX,
 };
 
-/* User defined field of ESPNOW data in this example. */
+// EVPR ESPNOW heartbeat data
 typedef struct {
     uint8_t type;                         //Broadcast or unicast ESPNOW data.
     uint8_t state;                        //Indicate that if has received broadcast ESPNOW data or not.
@@ -53,7 +53,7 @@ typedef struct {
 } __attribute__((packed)) espnow_data_t;
 
 
-/* Parameters of sending ESPNOW data. */
+// Parameters of heartbeat ESPNOW data
 typedef struct {
     bool unicast;                         //Send unicast ESPNOW data.
     bool broadcast;                       //Send broadcast ESPNOW data.

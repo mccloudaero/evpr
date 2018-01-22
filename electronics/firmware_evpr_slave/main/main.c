@@ -46,7 +46,6 @@ EventGroupHandle_t comm_event_group;
 // UDP vars
 static int slave_socket;
 static struct sockaddr_in master_address;
-static struct sockaddr_in slave_address;
 
 int total_data = 0;
 int success_pack = 0;
@@ -57,7 +56,7 @@ uint16_t pulse_width = 1500; // Center Rotation
 static xQueueHandle espnow_queue;
 
 static uint8_t espnow_broadcast_mac[ESP_NOW_ETH_ALEN] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-static uint16_t s_espnow_seq[EXAMPLE_ESPNOW_DATA_MAX] = { 0, 0 };
+static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
 
 void blink(void *pvParameter)
 {
@@ -256,7 +255,7 @@ static void espnow_send_cb(const uint8_t *mac_addr, esp_now_send_status_t status
         return;
     }
 
-    evt.id = EXAMPLE_ESPNOW_SEND_CB;
+    evt.id = ESPNOW_SEND_CB;
     memcpy(send_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
     send_cb->status = status;
     if (xQueueSend(espnow_queue, &evt, portMAX_DELAY) != pdTRUE) {
@@ -274,7 +273,7 @@ static void espnow_recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len
         return;
     }
 
-    evt.id = EXAMPLE_ESPNOW_RECV_CB;
+    evt.id = ESPNOW_RECV_CB;
     memcpy(recv_cb->mac_addr, mac_addr, ESP_NOW_ETH_ALEN);
     recv_cb->data = malloc(len);
     if (recv_cb->data == NULL) {
@@ -314,7 +313,7 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
     return -1;
 }
 
-/* Prepare ESPNOW data to be sent. */
+// Prepare ESPNOW heartbeat data to be sent
 void espnow_data_prepare(espnow_send_param_t *send_param)
 {
     espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
@@ -322,7 +321,7 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
 
     assert(send_param->len >= sizeof(espnow_data_t));
 
-    buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? EXAMPLE_ESPNOW_DATA_BROADCAST : EXAMPLE_ESPNOW_DATA_UNICAST;
+    buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? ESPNOW_DATA_BROADCAST : ESPNOW_DATA_UNICAST;
     buf->state = send_param->state;
     buf->seq_num = s_espnow_seq[buf->type]++;
     buf->crc = 0;
@@ -345,35 +344,35 @@ static void espnow_task(void *pvParameter)
     ESP_LOGI(TAG, "Starting ESPNOW queue");
 
     // Initialize heartbeat sending parameters
-    espnow_send_param_t *send_param;
-    send_param = malloc(sizeof(espnow_send_param_t));
-    memset(send_param, 0, sizeof(espnow_send_param_t));
-    if (send_param == NULL) {
-        ESP_LOGE(TAG, "Malloc send parameter fail");
+    espnow_send_param_t *send_hb_param;
+    send_hb_param = malloc(sizeof(espnow_send_param_t));
+    memset(send_hb_param, 0, sizeof(espnow_send_param_t));
+    if (send_hb_param == NULL) {
+        ESP_LOGE(TAG, "Malloc send heartbeat parameter fail");
         vSemaphoreDelete(espnow_queue);
         esp_now_deinit();
         //return ESP_FAIL;
     }
-    send_param->unicast = false;
-    send_param->broadcast = true;
-    send_param->state = 0;
-    send_param->magic = esp_random();
-    send_param->count = CONFIG_ESPNOW_SEND_COUNT;
-    send_param->delay = CONFIG_ESPNOW_SEND_DELAY;
-    send_param->len = CONFIG_ESPNOW_SEND_LEN;
-    send_param->buffer = malloc(CONFIG_ESPNOW_SEND_LEN);
-    if (send_param->buffer == NULL) {
+    send_hb_param->unicast = false;
+    send_hb_param->broadcast = true;
+    send_hb_param->state = 0;
+    send_hb_param->magic = esp_random();
+    send_hb_param->count = CONFIG_ESPNOW_SEND_COUNT;
+    send_hb_param->delay = CONFIG_ESPNOW_SEND_DELAY;
+    send_hb_param->len = CONFIG_ESPNOW_SEND_LEN;
+    send_hb_param->buffer = malloc(CONFIG_ESPNOW_SEND_LEN);
+    if (send_hb_param->buffer == NULL) {
         ESP_LOGE(TAG, "Malloc send buffer fail");
-        free(send_param);
+        free(send_hb_param);
         vSemaphoreDelete(espnow_queue);
         esp_now_deinit();
         //return ESP_FAIL;
     }
-    memcpy(send_param->dest_mac, espnow_broadcast_mac, ESP_NOW_ETH_ALEN);
-    espnow_data_prepare(send_param);
+    memcpy(send_hb_param->dest_mac, espnow_broadcast_mac, ESP_NOW_ETH_ALEN);
+    espnow_data_prepare(send_hb_param);
 
-    // Start sending heartbeat via ESPNOW
-    if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
+    // Send initial heartbeat via ESPNOW
+    if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
         ESP_LOGE(TAG, "Send error");
         //espnow_deinit(send_param);
         vTaskDelete(NULL);
@@ -381,56 +380,55 @@ static void espnow_task(void *pvParameter)
 
     while (xQueueReceive(espnow_queue, &evt, portMAX_DELAY) == pdTRUE) {
         switch (evt.id) {
-            case EXAMPLE_ESPNOW_SEND_CB:
+            case ESPNOW_SEND_CB:
             {
                 espnow_event_send_cb_t *send_cb = &evt.info.send_cb;
                 is_broadcast = IS_BROADCAST_ADDR(send_cb->mac_addr);
 
                 ESP_LOGD(TAG, "Send heartbeat to "MACSTR", status1: %d", MAC2STR(send_cb->mac_addr), send_cb->status);
 
-                if (is_broadcast && (send_param->broadcast == false)) {
+                if (is_broadcast && (send_hb_param->broadcast == false)) {
                     break;
                 }
 
                 if (!is_broadcast) {
-                    send_param->count--;
-                    if (send_param->count == 0) {
+                    send_hb_param->count--;
+                    if (send_hb_param->count == 0) {
                         ESP_LOGI(TAG, "Send done");
                         //espnow_deinit(send_param);
                         vTaskDelete(NULL);
                     }
                 }
 
-                /* Delay a while before sending the next data. */
-                if (send_param->delay > 0) {
-                    vTaskDelay(send_param->delay/portTICK_RATE_MS);
+                // Delay a while before sending the next data
+                if (send_hb_param->delay > 0) {
+                    vTaskDelay(send_hb_param->delay/portTICK_RATE_MS);
                 }
 
                 ESP_LOGI(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_cb->mac_addr));
 
-                memcpy(send_param->dest_mac, send_cb->mac_addr, ESP_NOW_ETH_ALEN);
-                espnow_data_prepare(send_param);
+                memcpy(send_hb_param->dest_mac, send_cb->mac_addr, ESP_NOW_ETH_ALEN);
+                espnow_data_prepare(send_hb_param);
 
-                /* Send the next data after the previous data is sent. */
-                if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
+                // Send the next heartbeat after the previous data is sent
+                if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
                     ESP_LOGE(TAG, "Send error");
                     //espnow_deinit(send_param);
                     vTaskDelete(NULL);
                 }
                 break;
             }
-            case EXAMPLE_ESPNOW_RECV_CB:
+            case ESPNOW_RECV_CB:
             {
                 // Recieved ESPNOW data
                 espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
 
                 ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq, &recv_magic);
                 free(recv_cb->data);
-                if (ret == EXAMPLE_ESPNOW_DATA_BROADCAST) {
-                    // To be used for heartbeat data
+                if (ret == ESPNOW_DATA_BROADCAST) {
                     ESP_LOGI(TAG, "Receive %dth broadcast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
 
-                    /* If MAC address does not exist in peer list, add it to peer list. */
+                    // If MAC address does not exist in peer list, add it to peer list
                     if (esp_now_is_peer_exist(recv_cb->mac_addr) == false) {
                         esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
                         if (peer == NULL) {
@@ -449,8 +447,8 @@ static void espnow_task(void *pvParameter)
                     }
 
                 }
-                else if (ret == EXAMPLE_ESPNOW_DATA_UNICAST) {
-                    // Not used currently
+                else if (ret == ESPNOW_DATA_UNICAST) {
+                    // Not used currently for EVPR
                     ESP_LOGI(TAG, "Receive %dth unicast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
                 }
                 else {
@@ -521,15 +519,15 @@ static esp_err_t initialize_espnow(void)
         return ESP_FAIL;
     }
 
-    /* Initialize ESPNOW and register sending and receiving callback function. */
+    // Initialize ESPNOW and register sending and receiving callback function
     ESP_ERROR_CHECK( esp_now_init() );
     ESP_ERROR_CHECK( esp_now_register_send_cb(espnow_send_cb) );
     ESP_ERROR_CHECK( esp_now_register_recv_cb(espnow_recv_cb) );
 
-    /* Set primary master key. */
+    // Set primary master key
     ESP_ERROR_CHECK( esp_now_set_pmk((uint8_t *)CONFIG_ESPNOW_PMK) );
 
-    /* Add broadcast peer information to peer list. */
+    // Add broadcast peer information to peer list
     esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
     if (peer == NULL) {
         ESP_LOGE(TAG, "Malloc peer information fail");
