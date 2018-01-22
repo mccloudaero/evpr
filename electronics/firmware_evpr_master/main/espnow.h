@@ -48,7 +48,10 @@ typedef struct {
     uint16_t seq_num;                     // Sequence number of ESPNOW data.
     uint8_t state;                        // Indicate that if has received broadcast ESPNOW data or not.
     uint16_t crc;                         // CRC16 value of ESPNOW data.
-    uint8_t payload[0];                   // Real payload of ESPNOW data.
+    uint16_t servo1;                      // Servo 1 PWM.
+    uint16_t servo2;                      // Servo 2 PWM.
+    uint16_t servo3;                      // Servo 3 PWM.
+    uint16_t servo4;                      // Servo 4 PWM.
 } __attribute__((packed)) espnow_data_t;
 
 

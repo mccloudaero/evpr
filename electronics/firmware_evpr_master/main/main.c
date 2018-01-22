@@ -139,7 +139,7 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
 }
 
 /* Prepare ESPNOW data to be sent. */
-void espnow_data_prepare(espnow_send_param_t *send_param)
+void espnow_data_prepare(espnow_send_param_t *send_param, uint16_t servo1, uint16_t servo2, uint16_t servo3, uint16_t servo4)
 {
     espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
     int i = 0;
@@ -150,9 +150,10 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
     buf->state = send_param->state;
     buf->seq_num = espnow_broadcast_seq++;
     buf->crc = 0;
-    for (i = 0; i < send_param->len - sizeof(espnow_data_t); i++) {
-        buf->payload[i] = (uint8_t)esp_random();
-    }
+    buf->servo1 = servo1;
+    buf->servo2 = servo2;
+    buf->servo3 = servo3;
+    buf->servo4 = servo4;
     buf->crc = crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
 
@@ -367,7 +368,7 @@ void uart_event_task(void *pvParameters)
                                     ESP_LOGV(TAG, "servo4: %d",(int)servo4_pwm);
                                     parse_state = HEAD; //Change to CRC later
                                     message_received = true;  // message recieved from FC
-                                    espnow_data_prepare(send_param);
+                                    espnow_data_prepare(send_param,servo1_pwm,servo2_pwm,servo3_pwm,servo4_pwm);
                                     if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
                                         ESP_LOGE(TAG, "Send error");
                                     }
