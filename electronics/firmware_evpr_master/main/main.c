@@ -52,9 +52,7 @@ static QueueHandle_t fc_uart_queue;
 static xQueueHandle espnow_queue;
 
 static uint8_t espnow_broadcast_mac[ESP_NOW_ETH_ALEN] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
-
-static void espnow_deinit(espnow_send_param_t *send_param);
+static uint16_t espnow_broadcast_seq = 0;
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -150,7 +148,7 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
 
     buf->node_num = 0;
     buf->state = send_param->state;
-    buf->seq_num = 0;
+    buf->seq_num = espnow_broadcast_seq++;
     buf->crc = 0;
     for (i = 0; i < send_param->len - sizeof(espnow_data_t); i++) {
         buf->payload[i] = (uint8_t)esp_random();
@@ -168,16 +166,6 @@ static void espnow_task(void *pvParameter)
 
     ESP_LOGI(TAG, "Starting ESPNOW queue");
 
-    /* Start sending broadcast ESPNOW data. */
-    /*
-    espnow_send_param_t *send_param = (espnow_send_param_t *)pvParameter;
-    if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
-        ESP_LOGE(TAG, "Send error");
-        espnow_deinit(send_param);
-        vTaskDelete(NULL);
-    }
-    */
-
     while (xQueueReceive(espnow_queue, &evt, portMAX_DELAY) == pdTRUE) {
         switch (evt.id) {
             case ESPNOW_SEND_CB:
@@ -187,41 +175,6 @@ static void espnow_task(void *pvParameter)
 
                 ESP_LOGD(TAG, "Send data to "MACSTR", status1: %d", MAC2STR(send_cb->mac_addr), send_cb->status);
 
-                /*
-                if (is_broadcast && (send_param->broadcast == false)) {
-                    break;
-                }
-
-                if (!is_broadcast) {
-                    send_param->count--;
-                    if (send_param->count == 0) {
-                        ESP_LOGI(TAG, "Send done");
-                        espnow_deinit(send_param);
-                        vTaskDelete(NULL);
-                    }
-                }
-                */
-
-                /* Delay a while before sending the next data. */
-                /*
-                if (send_param->delay > 0) {
-                    vTaskDelay(send_param->delay/portTICK_RATE_MS);
-                }
-
-                ESP_LOGI(TAG, "send data to "MACSTR"", MAC2STR(send_cb->mac_addr));
-
-                memcpy(send_param->dest_mac, send_cb->mac_addr, ESP_NOW_ETH_ALEN);
-                espnow_data_prepare(send_param);
-                */
-
-                /* Send the next data after the previous data is sent. */
-                /*
-                if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
-                    ESP_LOGE(TAG, "Send error");
-                    espnow_deinit(send_param);
-                    vTaskDelete(NULL);
-                }
-                */
                 break;
             }
             case ESPNOW_RECV_CB:
@@ -232,10 +185,9 @@ static void espnow_task(void *pvParameter)
                 ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq); // Returns node_num
                 free(recv_cb->data);
                 if (ret > 0 && ret <= 4) {
-                    // To be used for heartbeat data
-                    ESP_LOGI(TAG, "Receive %dth heartbeat from node: %d, "MACSTR", len: %d", recv_seq, ret,MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
+                    ESP_LOGI(TAG, "Received %dth heartbeat from node: %d, "MACSTR", len: %d", recv_seq, ret,MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
 
-                    /* If MAC address does not exist in peer list, add it to peer list. */
+                    // If MAC address does not exist in peer list, add it to peer list
                     if (esp_now_is_peer_exist(recv_cb->mac_addr) == false) {
                         esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
                         if (peer == NULL) {
@@ -274,20 +226,20 @@ static esp_err_t initialize_espnow(void)
         return ESP_FAIL;
     }
 
-    /* Initialize ESPNOW and register sending and receiving callback function. */
+    // Initialize ESPNOW and register sending and receiving callback function
     ESP_ERROR_CHECK( esp_now_init() );
     ESP_ERROR_CHECK( esp_now_register_send_cb(espnow_send_cb) );
     ESP_ERROR_CHECK( esp_now_register_recv_cb(espnow_recv_cb) );
 
-    /* Set primary master key. */
+    // Set primary master key
     ESP_ERROR_CHECK( esp_now_set_pmk((uint8_t *)CONFIG_ESPNOW_PMK) );
 
-    /* Add broadcast peer information to peer list. */
+    // Add broadcast peer information to peer list
     esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
     if (peer == NULL) {
         ESP_LOGE(TAG, "Malloc peer information fail");
         vSemaphoreDelete(espnow_queue);
-        esp_now_deinit();
+        //esp_now_deinit();
         return ESP_FAIL;
     }
     memset(peer, 0, sizeof(esp_now_peer_info_t));
@@ -299,14 +251,6 @@ static esp_err_t initialize_espnow(void)
     free(peer);
 
     return ESP_OK;
-}
-
-static void espnow_deinit(espnow_send_param_t *send_param)
-{
-    free(send_param->buffer);
-    free(send_param);
-    vSemaphoreDelete(espnow_queue);
-    esp_now_deinit();
 }
 
 static void initialize_wifi(void)
@@ -342,7 +286,7 @@ void uart_event_task(void *pvParameters)
     uint16_t servo3_pwm;
     uint16_t servo4_pwm;
 
-    /* Initialize espnow sending parameters. */
+    // Initialize espnow sending parameters
     espnow_send_param_t *send_param;
     send_param = malloc(sizeof(espnow_send_param_t));
     memset(send_param, 0, sizeof(espnow_send_param_t));
@@ -367,7 +311,7 @@ void uart_event_task(void *pvParameters)
         //return ESP_FAIL;
     }
     memcpy(send_param->dest_mac, espnow_broadcast_mac, ESP_NOW_ETH_ALEN);
-    espnow_data_prepare(send_param);
+    //espnow_data_prepare(send_param);
 
     for(;;) {
         //Waiting for UART event.
@@ -423,12 +367,10 @@ void uart_event_task(void *pvParameters)
                                     ESP_LOGV(TAG, "servo4: %d",(int)servo4_pwm);
                                     parse_state = HEAD; //Change to CRC later
                                     message_received = true;  // message recieved from FC
+                                    espnow_data_prepare(send_param);
                                     if (esp_now_send(send_param->dest_mac, send_param->buffer, send_param->len) != ESP_OK) {
                                         ESP_LOGE(TAG, "Send error");
                                     }
-                                    //else{
-                                    //    ESP_LOGI(TAG, "Send ok");
-                                    //}
                                 }
                                 break;
 		            default:

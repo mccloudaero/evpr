@@ -44,8 +44,8 @@ EventGroupHandle_t comm_event_group;
 #define TCP_CONNECTED_SUCCESS BIT1
 
 // UDP vars
-static int slave_socket;
-static struct sockaddr_in master_address;
+//static int slave_socket;
+//static struct sockaddr_in master_address;
 
 int total_data = 0;
 int success_pack = 0;
@@ -93,6 +93,7 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
+/*
 static void process_buffer(unsigned char *buffer, int *len)
 {
     uint16_t position;
@@ -176,8 +177,9 @@ static void process_buffer(unsigned char *buffer, int *len)
         }
     }
 }
+*/
 
-
+/*
 static void tcp_receive(void *pvParameters)
 {
     ESP_LOGI(TAG, "tcp receive start");
@@ -241,6 +243,7 @@ static void tcp_receive(void *pvParameters)
 	}
     }
 }
+*/
 
 /* ESPNOW sending or receiving callback function is called in WiFi task.
  * Users should not do lengthy operations from this task. Instead, post
@@ -288,7 +291,7 @@ static void espnow_recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len
     }
 }
 
-/* Parse received ESPNOW data. */
+// Parse received ESPNOW data
 int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq)
 {
     espnow_data_t *buf = (espnow_data_t *)data;
@@ -370,7 +373,6 @@ static void espnow_task(void *pvParameter)
     // Send initial heartbeat via ESPNOW
     if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
         ESP_LOGE(TAG, "Send error");
-        //espnow_deinit(send_param);
         vTaskDelete(NULL);
     }
 
@@ -391,7 +393,6 @@ static void espnow_task(void *pvParameter)
                     send_hb_param->count--;
                     if (send_hb_param->count == 0) {
                         ESP_LOGI(TAG, "Send done");
-                        //espnow_deinit(send_param);
                         vTaskDelete(NULL);
                     }
                 }
@@ -409,7 +410,6 @@ static void espnow_task(void *pvParameter)
                 // Send the next heartbeat after the previous data is sent
                 if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
                     ESP_LOGE(TAG, "Send error");
-                    //espnow_deinit(send_param);
                     vTaskDelete(NULL);
                 }
                 break;
@@ -419,17 +419,16 @@ static void espnow_task(void *pvParameter)
                 // Recieved ESPNOW data
                 espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
 
-                ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq);
+                ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq);  // Returns node number
                 free(recv_cb->data);
-                if (ret == ESPNOW_DATA_BROADCAST) {
-                    ESP_LOGI(TAG, "Receive %dth broadcast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
+                if (ret >= 0 && ret <=4) {
+                    if (ret == 0) ESP_LOGI(TAG, "Received %dth broadcast data from master node: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
 
                     // If MAC address does not exist in peer list, add it to peer list
                     if (esp_now_is_peer_exist(recv_cb->mac_addr) == false) {
                         esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
                         if (peer == NULL) {
                             ESP_LOGE(TAG, "Malloc peer information fail");
-                            //espnow_deinit(send_param);
                             vTaskDelete(NULL);
                         }
                         memset(peer, 0, sizeof(esp_now_peer_info_t));
@@ -442,10 +441,6 @@ static void espnow_task(void *pvParameter)
                         free(peer);
                     }
 
-                }
-                else if (ret == ESPNOW_DATA_UNICAST) {
-                    // Not used currently for EVPR
-                    ESP_LOGI(TAG, "Receive %dth unicast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
                 }
                 else {
                     ESP_LOGI(TAG, "Receive error data from: "MACSTR"", MAC2STR(recv_cb->mac_addr));
