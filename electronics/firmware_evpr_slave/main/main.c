@@ -333,16 +333,8 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
     buf->crc = crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
 }
 
-static void espnow_task(void *pvParameter)
+static void espnow_heartbeat_task(void *pvParameter)
 {
-    espnow_event_t evt;
-    uint8_t recv_state = 0;
-    uint16_t recv_seq = 0;
-    bool is_broadcast = false;
-    int ret;
-
-    ESP_LOGI(TAG, "Starting ESPNOW queue");
-
     // Initialize heartbeat sending parameters
     espnow_send_param_t *send_hb_param;
     send_hb_param = malloc(sizeof(espnow_send_param_t));
@@ -370,11 +362,28 @@ static void espnow_task(void *pvParameter)
     memcpy(send_hb_param->dest_mac, espnow_broadcast_mac, ESP_NOW_ETH_ALEN);
     espnow_data_prepare(send_hb_param);
 
-    // Send initial heartbeat via ESPNOW
-    if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
-        ESP_LOGE(TAG, "Send error");
-        vTaskDelete(NULL);
+
+    while (1) {
+        // Send heartbeat via ESPNOW
+        if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
+            ESP_LOGE(TAG, "Send error");
+            vTaskDelete(NULL);
+        }
+        ESP_LOGI(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
+        // Wait to send next heartbeat
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
+}
+
+static void espnow_event_task(void *pvParameter)
+{
+    espnow_event_t evt;
+    uint8_t recv_state = 0;
+    uint16_t recv_seq = 0;
+    bool is_broadcast = false;
+    int ret;
+
+    ESP_LOGI(TAG, "Starting ESPNOW queue");
 
     while (xQueueReceive(espnow_queue, &evt, portMAX_DELAY) == pdTRUE) {
         switch (evt.id) {
@@ -385,33 +394,6 @@ static void espnow_task(void *pvParameter)
 
                 ESP_LOGD(TAG, "Send heartbeat to "MACSTR", status1: %d", MAC2STR(send_cb->mac_addr), send_cb->status);
 
-                if (is_broadcast && (send_hb_param->broadcast == false)) {
-                    break;
-                }
-
-                if (!is_broadcast) {
-                    send_hb_param->count--;
-                    if (send_hb_param->count == 0) {
-                        ESP_LOGI(TAG, "Send done");
-                        vTaskDelete(NULL);
-                    }
-                }
-
-                // Delay a while before sending the next data
-                if (send_hb_param->delay > 0) {
-                    vTaskDelay(send_hb_param->delay/portTICK_RATE_MS);
-                }
-
-                ESP_LOGI(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_cb->mac_addr));
-
-                memcpy(send_hb_param->dest_mac, send_cb->mac_addr, ESP_NOW_ETH_ALEN);
-                espnow_data_prepare(send_hb_param);
-
-                // Send the next heartbeat after the previous data is sent
-                if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
-                    ESP_LOGE(TAG, "Send error");
-                    vTaskDelete(NULL);
-                }
                 break;
             }
             case ESPNOW_RECV_CB:
@@ -574,7 +556,9 @@ void app_main()
     #if MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
       ESP_ERROR_CHECK( initialize_espnow() );
+      // ESP-NOW heartbeat task
+      xTaskCreate(espnow_heartbeat_task, "espnow_heartbeat_task", 2048, NULL, 4, NULL);
       // Task to handle ESP-NOW events
-      xTaskCreate(espnow_task, "espnow_task", 2048, NULL, 4, NULL);
+      xTaskCreate(espnow_event_task, "espnow_event_task", 2048, NULL, 4, NULL);
     #endif
 }
