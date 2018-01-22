@@ -56,7 +56,7 @@ uint16_t pulse_width = 1500; // Center Rotation
 static xQueueHandle espnow_queue;
 
 static uint8_t espnow_broadcast_mac[ESP_NOW_ETH_ALEN] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-static uint16_t s_espnow_seq[ESPNOW_DATA_MAX] = { 0, 0 };
+static uint16_t espnow_heartbeat_seq = 0;
 
 void blink(void *pvParameter)
 {
@@ -289,7 +289,7 @@ static void espnow_recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len
 }
 
 /* Parse received ESPNOW data. */
-int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq, int *magic)
+int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq)
 {
     espnow_data_t *buf = (espnow_data_t *)data;
     uint16_t crc, crc_cal = 0;
@@ -301,13 +301,12 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
 
     *state = buf->state;
     *seq = buf->seq_num;
-    *magic = buf->magic;
     crc = buf->crc;
     buf->crc = 0;
     crc_cal = crc16_le(UINT16_MAX, (uint8_t const *)buf, data_len);
 
     if (crc_cal == crc) {
-        return buf->type;
+        return buf->node_num;
     }
 
     return -1;
@@ -321,11 +320,10 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
 
     assert(send_param->len >= sizeof(espnow_data_t));
 
-    buf->type = IS_BROADCAST_ADDR(send_param->dest_mac) ? ESPNOW_DATA_BROADCAST : ESPNOW_DATA_UNICAST;
+    buf->node_num = ROTOR_NUM;
     buf->state = send_param->state;
-    buf->seq_num = s_espnow_seq[buf->type]++;
+    buf->seq_num = espnow_heartbeat_seq++;
     buf->crc = 0;
-    buf->magic = send_param->magic;
     for (i = 0; i < send_param->len - sizeof(espnow_data_t); i++) {
         buf->payload[i] = (uint8_t)esp_random();
     }
@@ -337,7 +335,6 @@ static void espnow_task(void *pvParameter)
     espnow_event_t evt;
     uint8_t recv_state = 0;
     uint16_t recv_seq = 0;
-    int recv_magic = 0;
     bool is_broadcast = false;
     int ret;
 
@@ -356,7 +353,6 @@ static void espnow_task(void *pvParameter)
     send_hb_param->unicast = false;
     send_hb_param->broadcast = true;
     send_hb_param->state = 0;
-    send_hb_param->magic = esp_random();
     send_hb_param->count = CONFIG_ESPNOW_SEND_COUNT;
     send_hb_param->delay = CONFIG_ESPNOW_SEND_DELAY;
     send_hb_param->len = CONFIG_ESPNOW_SEND_LEN;
@@ -423,7 +419,7 @@ static void espnow_task(void *pvParameter)
                 // Recieved ESPNOW data
                 espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
 
-                ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq, &recv_magic);
+                ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq);
                 free(recv_cb->data);
                 if (ret == ESPNOW_DATA_BROADCAST) {
                     ESP_LOGI(TAG, "Receive %dth broadcast data from: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);

@@ -44,12 +44,11 @@ enum {
 
 // EVPR ESPNOW heartbeat data
 typedef struct {
-    uint8_t type;                         //Broadcast or unicast ESPNOW data.
-    uint8_t state;                        //Indicate that if has received broadcast ESPNOW data or not.
-    uint16_t seq_num;                     //Sequence number of ESPNOW data.
-    uint16_t crc;                         //CRC16 value of ESPNOW data.
-    uint32_t magic;                       //Magic number which is used to determine which device to send unicast ESPNOW data.
-    uint8_t payload[0];                   //Real payload of ESPNOW data.
+    uint8_t node_num;                     // Node/Rotor number 0=Master, 1-4 Slave/Rotor
+    uint16_t seq_num;                     // Sequence number of ESPNOW data.
+    uint8_t state;                        // Indicate that if has received broadcast ESPNOW data or not.
+    uint16_t crc;                         // CRC16 value of ESPNOW data.
+    uint8_t payload[0];                   // Real payload of ESPNOW data.
 } __attribute__((packed)) espnow_data_t;
 
 
@@ -58,7 +57,6 @@ typedef struct {
     bool unicast;                         //Send unicast ESPNOW data.
     bool broadcast;                       //Send broadcast ESPNOW data.
     uint8_t state;                        //Indicate that if has received broadcast ESPNOW data or not.
-    uint32_t magic;                       //Magic number which is used to determine which device to send unicast ESPNOW data.
     uint16_t count;                       //Total count of unicast ESPNOW data to be sent.
     uint16_t delay;                       //Delay between sending two ESPNOW data, unit: ms.
     int len;                              //Length of ESPNOW data to be sent, unit: byte.
