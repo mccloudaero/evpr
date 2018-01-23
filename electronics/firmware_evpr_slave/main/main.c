@@ -93,158 +93,6 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
     return ESP_OK;
 }
 
-/*
-static void process_buffer(unsigned char *buffer, int *len)
-{
-    uint16_t position;
-    uint8_t current_byte;
-    uint8_t data_index;
-    uint16_t recv_pulse_width;
-    pwm_packet data_packet;
-    PARSER_STATE parse_state;
-
-    // Check minimum buffer size for parsing
-    // 10 bytes is the minimum packet size
-    //while (*len >= 10) {
-    while (*len >= 20) {
-        // Parse buffer
-        ESP_LOGV(TAG, "Parsing %d bytes",*len);
-        parse_state = HEAD; // Reset parse state
-        data_packet.payload_len = 0; // Reset Payload length
-        for(position=0;position<*len;position++) 
-        {
-            current_byte = buffer[position]; 
-            switch (parse_state) {
-            case HEAD:
-                if (current_byte == 0xFE){
-                    parse_state = LEN;
-                    data_packet.head = current_byte;
-                    ESP_LOGV(TAG, "Message Start");
-                }
-                break;
-            case LEN:
-                data_packet.payload_len = current_byte;	// Should be 8 bytes (4x uint16_t(2 bytes))
-                // Check if buffer has the remaining payload data
-                if (*len < position + data_packet.payload_len) {
-                    // Too short, haven't received whole payload yet
-                    ESP_LOGV(TAG, "Insuffcient data");
-                    return;
-                }
-                ESP_LOGV(TAG, "Payload Length %d",data_packet.payload_len);
-                data_index = 0;
-                parse_state = DATA;
-                break;
-            case DATA:
-                data_packet.payload[data_index++] = current_byte;
-                if (data_index >= data_packet.payload_len){
-                    // End of data reached
-	            success_pack++;
-                    #if ROTOR_NUM == 1 
-                         memcpy(&recv_pulse_width,&data_packet.payload[0], sizeof(uint16_t));
-                    #endif
-                    #if ROTOR_NUM == 2 
-                        memcpy(&recv_pulse_width,&data_packet.payload[2], sizeof(uint16_t));
-                    #endif
-                    #if ROTOR_NUM == 3 
-                        memcpy(&recv_pulse_width,&data_packet.payload[4], sizeof(uint16_t));
-                    #endif
-                    #if ROTOR_NUM == 4 
-                        memcpy(&recv_pulse_width,&data_packet.payload[6], sizeof(uint16_t));
-                    #endif
-                    //ESP_LOGI(TAG, "servo1: %d",(int)recv_pulse_width);
-                    if (recv_pulse_width > SERVO_MIN_PULSEWIDTH && recv_pulse_width < SERVO_MAX_PULSEWIDTH){
-                        //pulse_width = recv_pulse_width;
-                        mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, recv_pulse_width);
-                        mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, recv_pulse_width);
-                    } else {
-                        ESP_LOGV(TAG, "Invalid Pulse Width Recieved!:  %d us",(int)recv_pulse_width);
-                    }
-                    parse_state = END; // Add CRC check later
-                }
-                break;
-            default:
-                parse_state = HEAD;
-                break;
-            } // end switch
-            if (parse_state == END){
-               // Shuffle remaining data in the buffer back to the start
-               *len -= position;
-               if (*len > 0){
-                   memmove(buffer, buffer + position, *len);
-               }
-               break; // exit for loop
-            }
-        }
-    }
-}
-*/
-
-/*
-static void tcp_receive(void *pvParameters)
-{
-    ESP_LOGI(TAG, "tcp receive start");
-
-    // blink while waiting
-    TaskHandle_t blink_task;
-    xTaskCreate(&blink, "blink task", 2096, NULL, 4, &blink_task);
-    // wait for connect
-    xEventGroupWaitBits(comm_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
-    
-    // connected 
-    ESP_LOGI(TAG, "Connected to Access Point");
-    // stop blinking
-    vTaskDelete(blink_task);
-    // leave LED on
-    gpio_set_level(BLINK_GPIO, 1);
-
-    //create tcp socket
-    slave_socket = socket(AF_INET, SOCK_STREAM, 0);
-    if (slave_socket < 0) {
-        ESP_LOGI(TAG, "socket error");
-	vTaskDelete(NULL);
-	return;
-    }
-
-    memset(&master_address, 0, sizeof(struct sockaddr_in));
-    master_address.sin_family = AF_INET;
-    master_address.sin_addr.s_addr = inet_addr(MASTER_IP);
-    master_address.sin_port = htons(COMM_PORT);
-
-    ESP_LOGI(TAG, "connecting to master node...");
-    if (connect(slave_socket, (struct sockaddr *)&master_address, sizeof(master_address)) < 0) {
-    	ESP_LOGI(TAG,"Connection Failed");
-	close(slave_socket);
-	vTaskDelete(NULL);
-	return;
-    }
-    ESP_LOGI(TAG, "connect to master node success!");
-
-    // Listen for tcp packets
-    ESP_LOGI(TAG, "Listening for tcp packets");
-
-    int bytes_recv;
-    unsigned char recv_buffer[BUF_SIZE];
-    int recv_len=0;
-
-    // Start receive loop
-    while(1) {
-        // Get tcp data
-        // Note: For tcp, data can be received in unpredictable sizes
-        bytes_recv = recv(slave_socket, recv_buffer+recv_len, BUF_SIZE-recv_len, 0);
-	if (bytes_recv > 0) {
-            // recv was succesful
-            total_data += bytes_recv;
-            recv_len += bytes_recv;
-            process_buffer(recv_buffer, &recv_len);
-	} else {
-            ESP_LOGE(TAG, "socket error");
-	    vTaskDelete(NULL);
-	    return;
-	}
-    }
-}
-*/
-
 /* ESPNOW sending or receiving callback function is called in WiFi task.
  * Users should not do lengthy operations from this task. Instead, post
  * necessary data to a queue and handle it from a lower priority task. */
@@ -292,7 +140,7 @@ static void espnow_recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len
 }
 
 // Parse received ESPNOW data
-int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq)
+int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq, uint16_t *pulse_width)
 {
     espnow_data_t *buf = (espnow_data_t *)data;
     uint16_t crc, crc_cal = 0;
@@ -309,6 +157,18 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
     crc_cal = crc16_le(UINT16_MAX, (uint8_t const *)buf, data_len);
 
     if (crc_cal == crc) {
+        #if ROTOR_NUM == 1 
+            *pulse_width = buf->servo1;
+        #endif
+        #if ROTOR_NUM == 2 
+            *pulse_width = buf->servo2;
+        #endif
+        #if ROTOR_NUM == 3
+            *pulse_width = buf->servo3;
+        #endif
+        #if ROTOR_NUM == 4
+            *pulse_width = buf->servo4;
+        #endif
         return buf->node_num;
     }
 
@@ -319,7 +179,7 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
 void espnow_data_prepare(espnow_send_param_t *send_param)
 {
     espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
-    int i = 0;
+    //int i = 0;
 
     assert(send_param->len >= sizeof(espnow_data_t));
 
@@ -377,6 +237,7 @@ static void espnow_event_task(void *pvParameter)
     espnow_event_t evt;
     uint8_t recv_state = 0;
     uint16_t recv_seq = 0;
+    uint16_t recv_pulse_width;
     bool is_broadcast = false;
     int ret;
 
@@ -398,10 +259,18 @@ static void espnow_event_task(void *pvParameter)
                 // Recieved ESPNOW data
                 espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
 
-                ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq);  // Returns node number
+                ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq, &recv_pulse_width);  // Returns node number
                 free(recv_cb->data);
                 if (ret >= 0 && ret <=4) {
-                    if (ret == 0) ESP_LOGI(TAG, "Received %dth broadcast data from master node: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
+                    if (ret == 0) {
+                        ESP_LOGI(TAG, "Received %dth broadcast data from master node: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
+                        ESP_LOGI(TAG, "pulse_width: %d", recv_pulse_width);
+                        if (recv_pulse_width > SERVO_MIN_PULSEWIDTH && recv_pulse_width < SERVO_MAX_PULSEWIDTH){
+                         //pulse_width = recv_pulse_width;
+                         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, recv_pulse_width);
+                         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, recv_pulse_width);
+                        }
+                    }
 
                     // If MAC address does not exist in peer list, add it to peer list
                     if (esp_now_is_peer_exist(recv_cb->mac_addr) == false) {
