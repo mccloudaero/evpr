@@ -27,8 +27,6 @@
 #include "main.h"
 #include "espnow.h"
 
-//#include "common/mavlink.h"
-
 // Slave Node Mode
 // Options 0=self_test, 1=position_hold, 2=nominal
 #define MODE 2 
@@ -36,22 +34,12 @@
 // Servo Settings
 #define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
 #define SERVO_MAX_PULSEWIDTH 2100 //Maximum pulse width in microsecond
-//#define SERVO_MAX_DEGREE 90 //Maximum angle in degree upto which servo can rotate
-
-// FreeRTOS event group to signal when we are connected to WiFi and ready to start UDP test
-EventGroupHandle_t comm_event_group;
-#define WIFI_CONNECTED_BIT BIT0
-#define TCP_CONNECTED_SUCCESS BIT1
-
-// UDP vars
-//static int slave_socket;
-//static struct sockaddr_in master_address;
 
 int total_data = 0;
 int success_pack = 0;
 
 // servo vars 
-uint16_t pulse_width = 1500; // Center Rotation
+uint16_t pulse_width = 1500; // Initial position at center
 
 static xQueueHandle espnow_queue;
 
@@ -77,15 +65,8 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
 {
     switch(event->event_id) {
     case SYSTEM_EVENT_STA_GOT_IP:
-    	//ESP_LOGV(TAG, "event_handler:SYSTEM_EVENT_STA_GOT_IP!");
-    	//ESP_LOGV(TAG, "got ip:%s\n",
-	//	ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
-    	//xEventGroupSetBits(comm_event_group, WIFI_CONNECTED_BIT);
         break;
     case SYSTEM_EVENT_STA_DISCONNECTED:
-    	//ESP_LOGI(TAG, "event_handler:SYSTEM_EVENT_STA_DISCONNECTED!");
-    	//ESP_LOGI(TAG, "Attempting to reconnect");
-        //esp_wifi_connect();
         break;
     default:
         break;
