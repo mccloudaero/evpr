@@ -35,8 +35,9 @@
 #define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
 #define SERVO_MAX_PULSEWIDTH 2100 //Maximum pulse width in microsecond
 
-int total_data = 0;
-int success_pack = 0;
+// ESPNOW packet stats
+int missed_packets = 0;
+double error_percent;
 
 // servo vars 
 uint16_t pulse_width = 1500; // Initial position at center
@@ -207,7 +208,7 @@ static void espnow_heartbeat_task(void *pvParameter)
             ESP_LOGE(TAG, "Send error");
             vTaskDelete(NULL);
         }
-        ESP_LOGI(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
+        ESP_LOGV(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
         // Wait to send next heartbeat
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
@@ -217,9 +218,9 @@ static void espnow_event_task(void *pvParameter)
 {
     espnow_event_t evt;
     uint8_t recv_state = 0;
+    uint16_t last_seq = 0;
     uint16_t recv_seq = 0;
     uint16_t recv_pulse_width;
-    bool is_broadcast = false;
     int ret;
 
     ESP_LOGI(TAG, "Starting ESPNOW queue");
@@ -229,10 +230,7 @@ static void espnow_event_task(void *pvParameter)
             case ESPNOW_SEND_CB:
             {
                 espnow_event_send_cb_t *send_cb = &evt.info.send_cb;
-                is_broadcast = IS_BROADCAST_ADDR(send_cb->mac_addr);
-
                 ESP_LOGD(TAG, "Send heartbeat to "MACSTR", status1: %d", MAC2STR(send_cb->mac_addr), send_cb->status);
-
                 break;
             }
             case ESPNOW_RECV_CB:
@@ -244,13 +242,23 @@ static void espnow_event_task(void *pvParameter)
                 free(recv_cb->data);
                 if (ret >= 0 && ret <=4) {
                     if (ret == 0) {
-                        ESP_LOGI(TAG, "Received %dth broadcast data from master node: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
-                        ESP_LOGI(TAG, "pulse_width: %d", recv_pulse_width);
-                        if (recv_pulse_width > SERVO_MIN_PULSEWIDTH && recv_pulse_width < SERVO_MAX_PULSEWIDTH){
-                         //pulse_width = recv_pulse_width;
+                        ESP_LOGV(TAG, "Received %dth broadcast data from master node: "MACSTR", len: %d", recv_seq, MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
+                        ESP_LOGV(TAG, "pulse_width: %d", recv_pulse_width);
+                        // Set servo position
+                        if (recv_pulse_width > SERVO_MIN_PULSEWIDTH && recv_pulse_width < SERVO_MAX_PULSEWIDTH) {
                          mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, recv_pulse_width);
                          mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, recv_pulse_width);
                         }
+                        if (recv_seq % 200 == 0) {
+                          ESP_LOGI(TAG, "current packet sequence: %d", recv_seq);
+                        }
+                        // Check for dropped packets
+                        if (last_seq + 1 != recv_seq) {
+                          missed_packets+=1; 
+                          error_percent = ((float)(missed_packets)/(float)(recv_seq))*100.0; 
+                          ESP_LOGI(TAG, "missed packets: %d, percent missed: %f%%", missed_packets, error_percent);
+                        }
+                        last_seq = recv_seq; 
                     }
 
                     // If MAC address does not exist in peer list, add it to peer list
@@ -282,8 +290,6 @@ static void espnow_event_task(void *pvParameter)
         }
     }
 }
-
-
 
 static void mcpwm_gpio_initialize()
 {
