@@ -16,10 +16,23 @@ usage:
 	tap_esc status
 
 # For Pixhawk 2.1
-Use Telem2 Port 921600 Baud
-
+Use Telem2 Port 230400 Baud
 
 # Compile Notes
 make menuconfig
 make
 make flash monitor 
+
+
+# Data Packet Notes
+EVPR ESPNOW heartbeat data
+typedef struct {
+    uint8_t node_num;                     // Node/Rotor number 0=Master, 1-4 Slave/Rotor
+    uint16_t seq_num;                     // Sequence number of ESPNOW data.
+    uint8_t state;                        // Indicate that if has received broadcast ESPNOW data or not.
+    uint16_t crc;                         // CRC16 value of ESPNOW data.
+    uint16_t servo1;                      // Servo 1 PWM.
+    uint16_t servo2;                      // Servo 2 PWM.
+    uint16_t servo3;                      // Servo 3 PWM.
+    uint16_t servo4;                      // Servo 4 PWM.
+}
