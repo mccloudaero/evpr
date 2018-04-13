@@ -7,6 +7,13 @@ config ROTOR_NUM
     help
 	Device Number (1-4).
 
+config ROTOR_MODE 
+    int "Rotor Mode"
+    default 2 
+    range 0 2 
+    help
+	Device Mode (0-2) 0-Self Test, 1-Position Hold, 2-Nominal.
+
 config BLINK_GPIO 
     int "Status GPIO Pin"
     default 13 

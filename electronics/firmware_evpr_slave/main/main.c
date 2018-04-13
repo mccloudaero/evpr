@@ -27,10 +27,6 @@
 #include "main.h"
 #include "espnow.h"
 
-// Slave Node Mode
-// Options 0=self_test, 1=position_hold, 2=nominal
-#define MODE 2 
-
 // Servo Settings
 #define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
 #define SERVO_MAX_PULSEWIDTH 2100 //Maximum pulse width in microsecond
@@ -161,7 +157,6 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
 void espnow_data_prepare(espnow_send_param_t *send_param)
 {
     espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
-    //int i = 0;
 
     assert(send_param->len >= sizeof(espnow_data_t));
 
@@ -326,7 +321,7 @@ void servo_self_test(void *arg)
     }
 }
 
-#if (MODE == 0 || MODE == 1)
+#if (ROTOR_MODE == 0 || ROTOR_MODE == 1)
 static void servo_control(void *pvParameters)
 {
     // Loop for setting servo positions
@@ -396,17 +391,17 @@ void app_main()
     mcpwm_gpio_initialize();
 
     // Choose Run Mode
-    #if MODE == 0
+    #if ROTOR_MODE == 0
       ESP_LOGI(TAG,"Self Test Mode (0)");
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
-    #if MODE == 1 
+    #if ROTOR_MODE == 1 
       ESP_LOGI(TAG,"Position Hold Mode (1)");
       printf("Position Hold Mode\n");
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
     #endif
-    #if MODE == 2 
+    #if ROTOR_MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
       ESP_ERROR_CHECK( initialize_espnow() );
       // ESP-NOW heartbeat task
