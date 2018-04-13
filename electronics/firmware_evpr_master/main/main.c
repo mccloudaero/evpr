@@ -39,6 +39,11 @@ int socket_slave_2 = 0;
 int socket_slave_3 = 0;
 int socket_slave_4 = 0;
 
+bool slave_1_connected = false;
+bool slave_2_connected = false;
+bool slave_3_connected = false;
+bool slave_4_connected = false;
+
 int total_data = 0;
 int bps = 0;
 int success_pack = 0;
@@ -188,6 +193,23 @@ static void espnow_task(void *pvParameter)
                 if (ret > 0 && ret <= 4) {
                     ESP_LOGI(TAG, "Received %dth heartbeat from node: %d, "MACSTR", len: %d", recv_seq, ret,MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
 
+                    if (ret == 1 && slave_1_connected == false) {
+                        slave_1_connected = true;
+                        ESP_LOGI(TAG, "Slave 1 Connected")
+                    }
+                    else if (ret == 2 && slave_2_connected == false) {
+                        slave_2_connected = true;
+                        ESP_LOGI(TAG, "Slave 2 Connected")
+                    }
+                    else if (ret == 3 && slave_3_connected == false) { 
+                        slave_3_connected = true;
+                        ESP_LOGI(TAG, "Slave 3 Connected")
+                    }
+                    else if (ret == 4 && slave_4_connected == false) { 
+                        slave_4_connected = true;
+                        ESP_LOGI(TAG, "Slave 4 Connected")
+                    }
+                    
                     // If MAC address does not exist in peer list, add it to peer list
                     if (esp_now_is_peer_exist(recv_cb->mac_addr) == false) {
                         esp_now_peer_info_t *peer = malloc(sizeof(esp_now_peer_info_t));
