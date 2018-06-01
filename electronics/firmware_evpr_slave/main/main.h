@@ -2,6 +2,7 @@
 
 #define TAG "evpr_slave"
 #define ROTOR_NUM CONFIG_ROTOR_NUM
+#define ROTOR_MODE CONFIG_ROTOR_MODE
 
 // WIFI
 #define WIFI_SSID CONFIG_WIFI_SSID
