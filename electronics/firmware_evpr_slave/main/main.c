@@ -291,8 +291,8 @@ static void mcpwm_gpio_initialize()
     ESP_LOGI(TAG, "Initializing MCPWM servo GPIO");
 
     // Set Pins
-    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, 27);    //Set GPIO 27 as PWM0A, to which servo is connected
-    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, 33);    //Set GPIO 33 as PWM0B, to which servo is connected
+    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0A, PWMA_PIN);    //Set as PWM0A, to which servo is connected
+    mcpwm_gpio_init(MCPWM_UNIT_0, MCPWM0B, PWMB_PIN);    //Set as PWM0B, to which servo is connected
 
     // Configure 
     mcpwm_config_t pwm_config;

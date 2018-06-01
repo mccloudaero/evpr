@@ -14,6 +14,18 @@ config ROTOR_MODE
     help
 	Device Mode (0-2) 0-Self Test, 1-Position Hold, 2-Nominal.
 
+config PWMA_PIN 
+    int "PWMA Pin"
+    default 27 
+    help
+	Pin to use for PWM A.
+
+config PWMB_PIN 
+    int "PWMB Pin"
+    default 33 
+    help
+	Pin to use for PWM A.
+
 config BLINK_GPIO 
     int "Status GPIO Pin"
     default 13 
