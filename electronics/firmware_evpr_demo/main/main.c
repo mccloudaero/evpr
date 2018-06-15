@@ -23,6 +23,9 @@
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
 
+#include "driver/adc.h"
+#include "esp_adc_cal.h"
+
 #include <lwip/sockets.h>
 #include "main.h"
 #include "espnow.h"
@@ -31,6 +34,7 @@
 #define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
 #define SERVO_MAX_PULSEWIDTH 2100 //Maximum pulse width in microsecond
 
+#define DEFAULT_VREF    1100        //Use adc2_vref_to_gpio() to obtain a better estimate
 #define NO_OF_SAMPLES   64          //Multisampling
 
 // ESPNOW packet stats
@@ -40,6 +44,11 @@ double error_percent;
 // servo vars 
 uint16_t pulse_width = 1500; // Initial position at center
 
+// adc vars
+static esp_adc_cal_characteristics_t *adc_chars;
+static const adc_atten_t atten = ADC_ATTEN_DB_0;
+static const adc_channel_t channel = ADC_CHANNEL_0;     //GPIO35
+static const adc_unit_t unit = ADC_UNIT_1;
 
 void blink(void *pvParameter)
 {
@@ -67,6 +76,34 @@ esp_err_t event_handler(void *ctx, system_event_t *event)
         break;
     }
     return ESP_OK;
+}
+
+static void check_efuse()
+{
+    //Check TP is burned into eFuse
+    if (esp_adc_cal_check_efuse(ESP_ADC_CAL_VAL_EFUSE_TP) == ESP_OK) {
+        printf("eFuse Two Point: Supported\n");
+    } else {
+        printf("eFuse Two Point: NOT supported\n");
+    }
+
+    //Check Vref is burned into eFuse
+    if (esp_adc_cal_check_efuse(ESP_ADC_CAL_VAL_EFUSE_VREF) == ESP_OK) {
+        printf("eFuse Vref: Supported\n");
+    } else {
+        printf("eFuse Vref: NOT supported\n");
+    }
+}
+
+static void print_char_val_type(esp_adc_cal_value_t val_type)
+{
+    if (val_type == ESP_ADC_CAL_VAL_EFUSE_TP) {
+        printf("Characterized using Two Point Value\n");
+    } else if (val_type == ESP_ADC_CAL_VAL_EFUSE_VREF) {
+        printf("Characterized using eFuse Vref\n");
+    } else {
+        printf("Characterized using Default Vref\n");
+    }
 }
 
 static void mcpwm_gpio_initialize()
@@ -104,7 +141,6 @@ void servo_self_test(void *arg)
     }
 }
 
-#if (ROTOR_MODE == 0 || ROTOR_MODE == 1)
 static void servo_control(void *pvParameters)
 {
     // Loop for setting servo positions
@@ -113,11 +149,25 @@ static void servo_control(void *pvParameters)
         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
     }
 }
-#endif
 
-#if (ROTOR_MODE == 3)
 static void watch_adc(void *pvParameters)
 {
+    //Check if Two Point or Vref are burned into eFuse
+    check_efuse();
+
+    //Configure ADC
+    if (unit == ADC_UNIT_1) {
+        adc1_config_width(ADC_WIDTH_BIT_12);
+        adc1_config_channel_atten(channel, atten);
+    } else {
+        adc2_config_channel_atten((adc2_channel_t)channel, atten);
+    }
+
+    //Characterize ADC
+    adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
+    esp_adc_cal_value_t val_type = esp_adc_cal_characterize(unit, atten, ADC_WIDTH_BIT_12, DEFAULT_VREF, adc_chars);
+    print_char_val_type(val_type);
+
     // Loop for checking ADC values 
     while (1) {
         uint32_t adc_reading = 0;
@@ -135,11 +185,14 @@ static void watch_adc(void *pvParameters)
         //Convert adc_reading to voltage in mV
         uint32_t voltage = esp_adc_cal_raw_to_voltage(adc_reading, adc_chars);
         printf("Raw: %d\tVoltage: %dmV\n", adc_reading, voltage);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+
+        // Compute servo position
+        pulse_width = (adc_reading/ADC_WIDTH_BIT_12)*(SERVO_MAX_PULSEWIDTH-SERVO_MIN_PULSEWIDTH)+SERVO_MIN_PULSEWIDTH;
+                
+        vTaskDelay(pdMS_TO_TICKS(100));
     }
 
 }
-#endif
 
 void app_main()
 {
