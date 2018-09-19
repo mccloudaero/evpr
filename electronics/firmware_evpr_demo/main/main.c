@@ -46,8 +46,8 @@ uint16_t pulse_width = 1500; // Initial position at center
 
 // adc vars
 static esp_adc_cal_characteristics_t *adc_chars;
-static const adc_atten_t atten = ADC_ATTEN_DB_0;
-static const adc_channel_t channel = ADC_CHANNEL_0;     //GPIO35
+static const adc_atten_t atten = ADC_ATTEN_DB_11;
+static const adc_channel_t channel = ADC_CHANNEL_1;     //GPIO37
 static const adc_unit_t unit = ADC_UNIT_1;
 
 void blink(void *pvParameter)
@@ -184,10 +184,10 @@ static void watch_adc(void *pvParameters)
         adc_reading /= NO_OF_SAMPLES;
         //Convert adc_reading to voltage in mV
         uint32_t voltage = esp_adc_cal_raw_to_voltage(adc_reading, adc_chars);
-        printf("Raw: %d\tVoltage: %dmV\n", adc_reading, voltage);
 
         // Compute servo position
-        pulse_width = (adc_reading/ADC_WIDTH_BIT_12)*(SERVO_MAX_PULSEWIDTH-SERVO_MIN_PULSEWIDTH)+SERVO_MIN_PULSEWIDTH;
+        pulse_width = ((voltage/3100.0)*(SERVO_MAX_PULSEWIDTH-SERVO_MIN_PULSEWIDTH))+SERVO_MIN_PULSEWIDTH;
+        printf("Raw: %d\tVoltage: %dmV\tPulse: %i\n", adc_reading, voltage, pulse_width);
                 
         vTaskDelay(pdMS_TO_TICKS(100));
     }
@@ -210,7 +210,7 @@ void app_main()
     #if ROTOR_MODE == 3 
       ESP_LOGI(TAG,"Demo Mode (3)");
       printf("Demo Mode\n");
-      xTaskCreate(watch_adc, "watch_adc_task", 4096, NULL, 5, NULL);
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
+      xTaskCreate(watch_adc, "watch_adc_task", 4096, NULL, 5, NULL);
     #endif
 }
