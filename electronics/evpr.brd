@@ -29,9 +29,9 @@
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
@@ -46,8 +46,8 @@
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
-<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
@@ -58,7 +58,7 @@
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
 <layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="88" name="SimResults" color="9" fill="1" visible="no" active="no"/>
 <layer number="89" name="SimProbes" color="9" fill="1" visible="no" active="no"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="no" active="no"/>
@@ -5330,6 +5330,49 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <vertex x="35.052" y="-43.18"/>
 <vertex x="19.558" y="-52.578"/>
 </polygon>
+<via x="2.54" y="-36.068" extent="1-16" drill="0.254"/>
+<via x="8.636" y="-38.608" extent="1-16" drill="0.254"/>
+<via x="4.064" y="-43.18" extent="1-16" drill="0.254"/>
+<via x="1.778" y="-42.926" extent="1-16" drill="0.254"/>
+<via x="11.684" y="-52.832" extent="1-16" drill="0.254"/>
+<via x="18.288" y="-44.45" extent="1-16" drill="0.254"/>
+<via x="22.86" y="-41.91" extent="1-16" drill="0.254"/>
+<via x="23.114" y="-36.068" extent="1-16" drill="0.254"/>
+<via x="23.876" y="-37.846" extent="1-16" drill="0.254"/>
+<via x="14.478" y="-29.464" extent="1-16" drill="0.254"/>
+<via x="18.288" y="-26.162" extent="1-16" drill="0.254"/>
+<via x="14.986" y="-27.686" extent="1-16" drill="0.254"/>
+<via x="35.56" y="-20.828" extent="1-16" drill="0.254"/>
+<via x="33.528" y="-16.51" extent="1-16" drill="0.254"/>
+<via x="32.004" y="-15.748" extent="1-16" drill="0.254"/>
+<via x="33.274" y="-15.494" extent="1-16" drill="0.254"/>
+<via x="28.194" y="-19.812" extent="1-16" drill="0.254"/>
+<via x="43.434" y="-18.796" extent="1-16" drill="0.254"/>
+<via x="45.72" y="-18.796" extent="1-16" drill="0.254"/>
+<via x="44.704" y="-23.368" extent="1-16" drill="0.254"/>
+<via x="47.244" y="-23.622" extent="1-16" drill="0.254"/>
+<via x="48.26" y="-18.034" extent="1-16" drill="0.254"/>
+<via x="49.276" y="-15.494" extent="1-16" drill="0.254"/>
+<via x="50.8" y="-17.018" extent="1-16" drill="0.254"/>
+<via x="57.404" y="-16.51" extent="1-16" drill="0.254"/>
+<via x="54.102" y="-15.748" extent="1-16" drill="0.254"/>
+<via x="52.832" y="-22.606" extent="1-16" drill="0.254"/>
+<via x="59.182" y="-22.86" extent="1-16" drill="0.254"/>
+<via x="61.214" y="-16.002" extent="1-16" drill="0.254"/>
+<via x="60.96" y="-28.194" extent="1-16" drill="0.254"/>
+<via x="58.674" y="-27.686" extent="1-16" drill="0.254"/>
+<via x="58.674" y="-30.226" extent="1-16" drill="0.254"/>
+<via x="51.054" y="-28.956" extent="1-16" drill="0.254"/>
+<via x="49.022" y="-29.464" extent="1-16" drill="0.254"/>
+<via x="49.784" y="-27.432" extent="1-16" drill="0.254"/>
+<via x="45.974" y="-29.464" extent="1-16" drill="0.254"/>
+<via x="8.382" y="-40.386" extent="1-16" drill="0.254"/>
+<via x="4.064" y="-34.544" extent="1-16" drill="0.254"/>
+<via x="-24.638" y="-37.846" extent="1-16" drill="0.254"/>
+<via x="-32.258" y="-29.464" extent="1-16" drill="0.254"/>
+<via x="-32.766" y="-26.67" extent="1-16" drill="0.254"/>
+<via x="-31.242" y="-26.416" extent="1-16" drill="0.254"/>
+<via x="-26.924" y="-23.876" extent="1-16" drill="0.254"/>
 <wire x1="-16.002" y1="-44.45" x2="-16.02741875" y2="-43.66258125" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="VCONV">
