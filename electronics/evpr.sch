@@ -20857,97 +20857,219 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </class>
 </classes>
 <parts>
-<part name="X1" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device=""/>
+<part name="X1" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device="">
+<attribute name="COMPONENT" value="B3P-VH(LF)(SN)"/>
+</part>
 <part name="SUPPLY1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U2" library="BQ2057TTS" deviceset="BQ2057TTS" device=""/>
-<part name="U$3" library="mccloud" deviceset="STD2805" device=""/>
-<part name="C13" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF"/>
-<part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="0.25"/>
-<part name="R4" library="rcl" deviceset="R-US_" device="R0805" value="1k"/>
+<part name="U2" library="BQ2057TTS" deviceset="BQ2057TTS" device="">
+<attribute name="COMPONENT" value="BQ2057TTS"/>
+</part>
+<part name="U$3" library="mccloud" deviceset="STD2805" device="">
+<attribute name="COMPONENT" value="STD2805"/>
+</part>
+<part name="C13" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF">
+<attribute name="COMPONENT" value="06033C104JAT2A"/>
+</part>
+<part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="0.25">
+<spice>
+<pinmapping spiceprefix="R">
+<pinmap gate="G$1" pin="1" pinorder="1"/>
+<pinmap gate="G$1" pin="2" pinorder="2"/>
+</pinmapping>
+</spice>
+<attribute name="COMPONENT" value="CSR0603FKR250"/>
+</part>
+<part name="R4" library="rcl" deviceset="R-US_" device="R0805" value="1k">
+<attribute name="COMPONENT" value="RC0805JR-071KL"/>
+</part>
 <part name="SUPPLY8" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R5" library="rcl" deviceset="R-US_" device="R0805" value="100k"/>
-<part name="R6" library="rcl" deviceset="R-US_" device="R0805" value="100k"/>
+<part name="R5" library="rcl" deviceset="R-US_" device="R0805" value="100k">
+<attribute name="COMPONENT" value="RC0805FR-07100KL"/>
+</part>
+<part name="R6" library="rcl" deviceset="R-US_" device="R0805" value="100k">
+<attribute name="COMPONENT" value="RC0805FR-07100KL"/>
+</part>
 <part name="SUPPLY9" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="XA1" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device=""/>
-<part name="XA2" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device=""/>
-<part name="U1" library="mccloud" deviceset="MC14044BDR2G" device=""/>
+<part name="XA1" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device="">
+<attribute name="COMPONENT" value="B2P-VH(LF)(SN)"/>
+</part>
+<part name="XA2" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device="">
+<attribute name="COMPONENT" value="B2P-VH(LF)(SN)"/>
+</part>
+<part name="U1" library="mccloud" deviceset="MC14044BDR2G" device="">
+<attribute name="COMPONENT" value="MC14044BDR2G"/>
+</part>
 <part name="U$7" library="mccloud" deviceset="R3119N050A-TR-FE" device=""/>
 <part name="C14" library="eagle-ltspice" deviceset="C" device="C0603" value="0.01uF"/>
 <part name="SUPPLY11" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY12" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R8" library="rcl" deviceset="R-US_" device="R0805" value="100k"/>
+<part name="R8" library="rcl" deviceset="R-US_" device="R0805" value="100k">
+<attribute name="COMPONENT" value="RC0805FR-07100KL"/>
+</part>
 <part name="SUPPLY14" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U3" library="mccloud" deviceset="ESP32-WROOM-32D" device=""/>
-<part name="J1" library="mccloud" deviceset="10118193-0001LF" device=""/>
-<part name="C15" library="eagle-ltspice" deviceset="C" device="C1210" value="22uF"/>
-<part name="C17" library="eagle-ltspice" deviceset="C" device="C1210" value="10uF"/>
-<part name="U$8" library="mccloud" deviceset="LSM115J" device=""/>
-<part name="U$10" library="mccloud" deviceset="LSM115J" device=""/>
-<part name="R12" library="rcl" deviceset="R-US_" device="R0805" value="1k"/>
-<part name="U$12" library="mccloud" deviceset="CP2102N-A02-GQFN24R" device=""/>
-<part name="T1" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A"/>
-<part name="T2" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A"/>
-<part name="T3" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A"/>
-<part name="R13" library="rcl" deviceset="R-US_" device="R0805" value="10k"/>
-<part name="R14" library="rcl" deviceset="R-US_" device="R0805" value="10k"/>
-<part name="T5" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A"/>
-<part name="C16" library="eagle-ltspice" deviceset="C" device="C1210" value="10uF"/>
+<part name="U3" library="mccloud" deviceset="ESP32-WROOM-32D" device="">
+<attribute name="COMPONENT" value="ESP32-WROOM-32D"/>
+</part>
+<part name="J1" library="mccloud" deviceset="10118193-0001LF" device="">
+<attribute name="COMPONENT" value="10118193-0001LF"/>
+</part>
+<part name="C15" library="eagle-ltspice" deviceset="C" device="C1210" value="22uF">
+<attribute name="COMPONENT" value="CL32A226MOJNNNE"/>
+</part>
+<part name="C17" library="eagle-ltspice" deviceset="C" device="C1210" value="10uF">
+<attribute name="COMPONENT" value="C1210C106M4PACTU"/>
+</part>
+<part name="U$8" library="mccloud" deviceset="LSM115J" device="">
+<attribute name="COMPONENT" value="LSM115J"/>
+</part>
+<part name="U$10" library="mccloud" deviceset="LSM115J" device="">
+<attribute name="COMPONENT" value="LSM115J"/>
+</part>
+<part name="R12" library="rcl" deviceset="R-US_" device="R0805" value="1k">
+<attribute name="COMPONENT" value="RC0805JR-071KL"/>
+</part>
+<part name="U$12" library="mccloud" deviceset="CP2102N-A02-GQFN24R" device="">
+<attribute name="COMPONENT" value="CP2102N-A02-GQFN24R"/>
+</part>
+<part name="T1" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A">
+<attribute name="COMPONENT" value="MMBT2222A-7-F"/>
+</part>
+<part name="T2" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A">
+<attribute name="COMPONENT" value="MMBT2222A-7-F"/>
+</part>
+<part name="T3" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A">
+<attribute name="COMPONENT" value="MMBT2222A-7-F"/>
+</part>
+<part name="R13" library="rcl" deviceset="R-US_" device="R0805" value="10k">
+<attribute name="COMPONENT" value="CR0805-JW-103ELF"/>
+</part>
+<part name="R14" library="rcl" deviceset="R-US_" device="R0805" value="10k">
+<attribute name="COMPONENT" value="CR0805-JW-103ELF"/>
+</part>
+<part name="T5" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A">
+<attribute name="COMPONENT" value="MMBT2222A-7-F"/>
+</part>
+<part name="C16" library="eagle-ltspice" deviceset="C" device="C1210" value="10uF">
+<attribute name="COMPONENT" value="C1210C106M4PACTU"/>
+</part>
 <part name="SUPPLY17" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="LED2" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
 <attribute name="COMPONENT" value="LTST-C171GKT"/>
 </part>
-<part name="R16" library="rcl" deviceset="R-US_" device="R0805W" value="250Ω"/>
+<part name="R16" library="rcl" deviceset="R-US_" device="R0805W" value="250Ω">
+<attribute name="COMPONENT" value="CRCW0805249RFKEAHP"/>
+</part>
 <part name="SUPPLY19" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R17" library="rcl" deviceset="R-US_" device="R0805W" value="250Ω"/>
+<part name="R17" library="rcl" deviceset="R-US_" device="R0805W" value="250Ω">
+<attribute name="COMPONENT" value="CRCW0805249RFKEAHP"/>
+</part>
 <part name="SUPPLY20" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY21" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R18" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k"/>
-<part name="R19" library="rcl" deviceset="R-US_" device="R0805W" value="47.5K"/>
+<part name="R18" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k">
+<attribute name="COMPONENT" value="RNCP0805FTD22K1"/>
+</part>
+<part name="R19" library="rcl" deviceset="R-US_" device="R0805W" value="47.5K">
+<attribute name="COMPONENT" value="RC0805FR-0747K5L"/>
+</part>
 <part name="SUPPLY22" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2"/>
-<part name="R15" library="rcl" deviceset="R-US_" device="R0805W" value="500"/>
+<part name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
+<attribute name="COMPONENT" value="LTST-C171GKT"/>
+</part>
+<part name="R15" library="rcl" deviceset="R-US_" device="R0805W" value="500">
+<attribute name="COMPONENT" value="CRCW0805499RFKEAHP"/>
+</part>
 <part name="SUPPLY18" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="R20" library="rcl" deviceset="R-US_" device="R0805W" value="100k"/>
-<part name="R21" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k"/>
+<part name="R21" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k">
+<attribute name="COMPONENT" value="RNCP0805FTD22K1"/>
+</part>
 <part name="SUPPLY23" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R22" library="rcl" deviceset="R-US_" device="R0805W" value="100k"/>
-<part name="R23" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k"/>
+<part name="R22" library="rcl" deviceset="R-US_" device="R0805W" value="100k">
+<attribute name="COMPONENT" value="RC0805FR-07100KL"/>
+</part>
+<part name="R23" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k">
+<attribute name="COMPONENT" value="RNCP0805FTD22K1"/>
+</part>
 <part name="SUPPLY24" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R24" library="rcl" deviceset="R-US_" device="R0805W" value="47.5k"/>
-<part name="R25" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k"/>
-<part name="R26" library="rcl" deviceset="R-US_" device="R0805W" value="47.5k"/>
-<part name="R27" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k"/>
-<part name="R28" library="rcl" deviceset="R-US_" device="R0805" value="10k"/>
+<part name="R24" library="rcl" deviceset="R-US_" device="R0805W" value="47.5k">
+<attribute name="COMPONENT" value="RC0805FR-0747K5L"/>
+</part>
+<part name="R25" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k">
+<attribute name="COMPONENT" value="RNCP0805FTD22K1"/>
+</part>
+<part name="R26" library="rcl" deviceset="R-US_" device="R0805W" value="47.5k">
+<attribute name="COMPONENT" value="RC0805FR-0747K5L"/>
+</part>
+<part name="R27" library="rcl" deviceset="R-US_" device="R0805W" value="22.1k">
+<attribute name="COMPONENT" value="RNCP0805FTD22K1"/>
+</part>
+<part name="R28" library="rcl" deviceset="R-US_" device="R0805" value="10k">
+<attribute name="COMPONENT" value="CR0805-JW-103ELF"/>
+</part>
 <part name="SUPPLY25" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY26" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U5" library="mccloud" deviceset="AP2112K-3.3TRG1" device=""/>
-<part name="R29" library="rcl" deviceset="R-US_" device="R0805" value="100k"/>
+<part name="U5" library="mccloud" deviceset="AP2112K-3.3TRG1" device="">
+<attribute name="COMPONENT" value="AP2112K-3.3TRG1"/>
+</part>
+<part name="R29" library="rcl" deviceset="R-US_" device="R0805" value="100k">
+<attribute name="COMPONENT" value="RC0805FR-07100KL"/>
+</part>
 <part name="SUPPLY27" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C18" library="eagle-ltspice" deviceset="C" device="C1210" value="10uF"/>
-<part name="C19" library="eagle-ltspice" deviceset="C" device="C1210" value="1uF"/>
-<part name="U6" library="mccloud" deviceset="SN74AHCT125DR" device=""/>
-<part name="J2" library="mccloud" deviceset="B4P-VH(LF)(SN)" device=""/>
+<part name="C18" library="eagle-ltspice" deviceset="C" device="C1210" value="10uF">
+<attribute name="COMPONENT" value="C1210C106M4PACTU"/>
+</part>
+<part name="C19" library="eagle-ltspice" deviceset="C" device="C1210" value="1uF">
+<attribute name="COMPONENT" value="C1210C105K5RAC7210"/>
+</part>
+<part name="U6" library="mccloud" deviceset="SN74AHCT125DR" device="">
+<attribute name="COMPONENT" value="SN74AHCT125DR"/>
+</part>
+<part name="J2" library="mccloud" deviceset="B4P-VH(LF)(SN)" device="">
+<attribute name="COMPONENT" value="B4P-VH(LF)(SN)"/>
+</part>
 <part name="SUPPLY28" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY29" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="F1" library="mccloud" deviceset="C1Q_1" device="C1-M" value="1A">
-<attribute name="COMPONENT" value="Bel Fuse C1Q 1"/>
+<attribute name="COMPONENT" value="C1Q 1"/>
 </part>
-<part name="JP1" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="/90" package3d_urn="urn:adsk.eagle:package:22437/2"/>
-<part name="X2" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device=""/>
-<part name="X3" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device=""/>
+<part name="JP1" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="/90" package3d_urn="urn:adsk.eagle:package:22437/2">
+<attribute name="COMPONENT" value="61300211021"/>
+</part>
+<part name="X2" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device="">
+<attribute name="COMPONENT" value="B3P-VH(LF)(SN)"/>
+</part>
+<part name="X3" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device="">
+<attribute name="COMPONENT" value="B3P-VH(LF)(SN)"/>
+</part>
 <part name="SUPPLY30" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SJ2" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1"/>
 <part name="SUPPLY31" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U7" library="mccloud" deviceset="TPSM84824MOLR" device=""/>
+<part name="U7" library="mccloud" deviceset="TPSM84824MOLR" device="">
+<attribute name="COMPONENT" value="TPSM84824MOLR"/>
+</part>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY3" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R1" library="rcl" deviceset="R-US_" device="R0805" value="10k 0.1%"/>
-<part name="R2" library="rcl" deviceset="R-US_" device="R0805" value="768Ω 1%"/>
-<part name="R31" library="rcl" deviceset="R-US_" device="R0805" value="37.4kΩ 1%"/>
-<part name="C1" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF"/>
-<part name="C2" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF"/>
-<part name="C3" library="mccloud" deviceset="25SVPF56M" device="" value="56µF"/>
-<part name="C4" library="mccloud" deviceset="25SVPF56M" device="" value="56µF"/>
+<part name="R1" library="rcl" deviceset="R-US_" device="R0805" value="10k 0.1%">
+<attribute name="COMPONENT" value="PTN0805E1002BST1"/>
+</part>
+<part name="R2" library="rcl" deviceset="R-US_" device="R0805" value="768Ω 1%">
+<attribute name="COMPONENT" value="RC0402FR-07768RL"/>
+</part>
+<part name="R31" library="rcl" deviceset="R-US_" device="R0805" value="37.4kΩ 1%">
+<attribute name="COMPONENT" value="RC0201FR-0737K4L"/>
+</part>
+<part name="C1" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF">
+<attribute name="COMPONENT" value="C3225X7R1E106K250AC"/>
+</part>
+<part name="C2" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF">
+<attribute name="COMPONENT" value="C3225X7R1E106K250AC"/>
+</part>
+<part name="C3" library="mccloud" deviceset="25SVPF56M" device="" value="56µF">
+<attribute name="COMPONENT" value="25SVPF56M"/>
+</part>
+<part name="C4" library="mccloud" deviceset="25SVPF56M" device="" value="56µF">
+<attribute name="COMPONENT" value="25SVPF56M"/>
+</part>
 <part name="SUPPLY32" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-US" device="C1210" package3d_urn="urn:adsk.eagle:package:23619/2" value="47µF">
 <spice>
@@ -20958,47 +21080,99 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CL32A476KOJNNNE"/>
 </part>
-<part name="C10" library="mccloud" deviceset="WURTH875115352003" device="" value="270µF"/>
+<part name="C10" library="mccloud" deviceset="WURTH875115352003" device="" value="220µF">
+<attribute name="COMPONENT" value="875075355002"/>
+</part>
 <part name="SUPPLY33" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R32" library="rcl" deviceset="R-US_" device="R0805" value="95.3kΩ"/>
-<part name="U8" library="mccloud" deviceset="LTC4353CMSPBF" device="MSOP-16_MS-M"/>
-<part name="C6" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF"/>
+<part name="R32" library="rcl" deviceset="R-US_" device="R0805" value="95.3kΩ">
+<attribute name="COMPONENT" value="RC0805FR-0795K3L"/>
+</part>
+<part name="U8" library="mccloud" deviceset="LTC4353CMSPBF" device="MSOP-16_MS-M">
+<attribute name="COMPONENT" value="LTC4353CMS#PBF"/>
+</part>
+<part name="C6" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF">
+<attribute name="COMPONENT" value="06033C104JAT2A"/>
+</part>
 <part name="SUPPLY34" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="Q1" library="mccloud" deviceset="AOD4184A" device=""/>
-<part name="Q2" library="mccloud" deviceset="AOD4184A" device=""/>
-<part name="C7" library="eagle-ltspice" deviceset="C" device="C0603" value="56 nF"/>
-<part name="C8" library="eagle-ltspice" deviceset="C" device="C0603" value="56 nF"/>
-<part name="R7" library="rcl" deviceset="R-US_" device="R0805" value="100k"/>
-<part name="U$4" library="mccloud" deviceset="DMN5L06K-7" device=""/>
-<part name="R9" library="rcl" deviceset="R-US_" device="R0805" value="10k"/>
-<part name="R10" library="rcl" deviceset="R-US_" device="R0805" value="10k"/>
+<part name="Q1" library="mccloud" deviceset="AOD4184A" device="">
+<attribute name="COMPONENT" value="AOD4184A"/>
+</part>
+<part name="Q2" library="mccloud" deviceset="AOD4184A" device="">
+<attribute name="COMPONENT" value="AOD4184A"/>
+</part>
+<part name="C7" library="eagle-ltspice" deviceset="C" device="C0603" value="56 nF">
+<attribute name="COMPONENT" value="CL10B562KB8NNNC"/>
+</part>
+<part name="C8" library="eagle-ltspice" deviceset="C" device="C0603" value="56 nF">
+<attribute name="COMPONENT" value="CL10B562KB8NNNC"/>
+</part>
+<part name="R7" library="rcl" deviceset="R-US_" device="R0805" value="100k">
+<attribute name="COMPONENT" value="RC0805FR-07100KL"/>
+</part>
+<part name="U$4" library="mccloud" deviceset="DMN5L06K-7" device="">
+<attribute name="COMPONENT" value="DMN5L06K-7"/>
+</part>
+<part name="R9" library="rcl" deviceset="R-US_" device="R0805" value="10k">
+<attribute name="COMPONENT" value="CR0805-JW-103ELF"/>
+</part>
+<part name="R10" library="rcl" deviceset="R-US_" device="R0805" value="10k">
+<attribute name="COMPONENT" value="CR0805-JW-103ELF"/>
+</part>
 <part name="SV5" library="con-lsta" library_urn="urn:adsk.eagle:library:161" deviceset="FE05-1" device="" package3d_urn="urn:adsk.eagle:package:8190/1"/>
 <part name="SUPPLY10" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C9" library="eagle-ltspice" deviceset="C" device="C0603" value="4.7 nF"/>
-<part name="R30" library="rcl" deviceset="R-US_" device="R0805W" value="1M"/>
+<part name="C9" library="eagle-ltspice" deviceset="C" device="C0603" value="4.7 nF">
+<attribute name="COMPONENT" value="CC0603CRNPO9BN4R7"/>
+</part>
+<part name="R30" library="rcl" deviceset="R-US_" device="R0805W" value="1M">
+<attribute name="COMPONENT" value="RC0805FR-071ML"/>
+</part>
 <part name="SUPPLY39" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U$2" library="mccloud" deviceset="AP63205" device=""/>
-<part name="U$14" library="mccloud" deviceset="LBM2016T4R7J" device="" value="4.7µH "/>
-<part name="C12" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF"/>
-<part name="C20" library="eagle-ltspice" deviceset="C" device="C1210" value="22uF"/>
+<part name="U$2" library="mccloud" deviceset="AP63205" device="">
+<attribute name="COMPONENT" value="AP63205WU-7"/>
+</part>
+<part name="U$14" library="mccloud" deviceset="LBM2016T4R7J" device="" value="4.7µH ">
+<attribute name="COMPONENT" value="LBM2016T4R7J"/>
+</part>
+<part name="C12" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF">
+<attribute name="COMPONENT" value="06033C104JAT2A"/>
+</part>
+<part name="C20" library="eagle-ltspice" deviceset="C" device="C1210" value="22uF">
+<attribute name="COMPONENT" value="CL32A226MOJNNNE"/>
+</part>
 <part name="SUPPLY15" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY16" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY40" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U$1" library="mccloud" deviceset="RSTBTN" device=""/>
+<part name="U$1" library="mccloud" deviceset="RSTBTN" device="">
+<attribute name="COMPONENT" value="PTS645SM43SMTR92 LFS"/>
+</part>
 <part name="LED3" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
 <attribute name="COMPONENT" value="LTST-C171GKT"/>
 </part>
-<part name="U$11" library="mccloud" deviceset="DMN5L06K-7" device=""/>
+<part name="U$11" library="mccloud" deviceset="DMN5L06K-7" device="">
+<attribute name="COMPONENT" value="DMN5L06K-7"/>
+</part>
 <part name="SUPPLY7" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY13" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U$5" library="mccloud" deviceset="BSS84-7-F" device=""/>
-<part name="U$9" library="mccloud" deviceset="BSS84-7-F" device=""/>
-<part name="R33" library="rcl" deviceset="R-US_" device="R0805" value="100k"/>
-<part name="R34" library="rcl" deviceset="R-US_" device="R0805" value="100k"/>
+<part name="U$5" library="mccloud" deviceset="BSS84-7-F" device="">
+<attribute name="COMPONENT" value="BSS84-7-F"/>
+</part>
+<part name="U$9" library="mccloud" deviceset="BSS84-7-F" device="">
+<attribute name="COMPONENT" value="BSS84-7-F"/>
+</part>
+<part name="R33" library="rcl" deviceset="R-US_" device="R0805" value="100k">
+<attribute name="COMPONENT" value="RC0805FR-07100KL"/>
+</part>
+<part name="R34" library="rcl" deviceset="R-US_" device="R0805" value="100k">
+<attribute name="COMPONENT" value="RC0805FR-07100KL"/>
+</part>
 <part name="U$13" library="mccloud" deviceset="SDM40E20LC" device=""/>
-<part name="C11" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF"/>
+<part name="C11" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF">
+<attribute name="COMPONENT" value="06033C104JAT2A"/>
+</part>
 <part name="SUPPLY4" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C21" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF"/>
+<part name="C21" library="eagle-ltspice" deviceset="C" device="C0603" value="0.1uF">
+<attribute name="COMPONENT" value="06033C104JAT2A"/>
+</part>
 <part name="U$15" library="mccloud" deviceset="810RADCAP" device="" value="  1000µF ">
 <attribute name="COMPONENT" value="UWT0J102MNL1GS"/>
 </part>
@@ -21024,7 +21198,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="TP23" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
 <part name="SUPPLY5" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SJ1" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1"/>
-<part name="U$16" library="mccloud" deviceset="VESD16A2-03G-G3-08" device=""/>
+<part name="U$16" library="mccloud" deviceset="VESD16A2-03G-G3-08" device="">
+<attribute name="COMPONENT" value="VESD16A2-03G-G3-08"/>
+</part>
 <part name="SUPPLY6" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 </parts>
 <sheets>
@@ -21090,6 +21266,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="X1" gate="G$1" x="-289.56" y="180.34" smashed="yes" rot="R180">
 <attribute name="NAME" x="-279.3844" y="195.6033" size="1.78071875" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-279.3958" y="198.1274" size="1.778740625" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-289.56" y="180.34" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY1" gate="GND" x="-281.94" y="172.72" smashed="yes">
 <attribute name="VALUE" x="-283.845" y="169.545" size="1.778" layer="96"/>
@@ -21097,22 +21274,27 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U2" gate="G$1" x="-149.86" y="228.6" smashed="yes">
 <attribute name="NAME" x="-160.0281" y="238.7681" size="1.77941875" layer="95"/>
 <attribute name="VALUE" x="-160.0219" y="213.3571" size="1.778340625" layer="96"/>
+<attribute name="COMPONENT" x="-149.86" y="228.6" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U$3" gate="A" x="-93.98" y="246.38" smashed="yes" rot="R90">
 <attribute name="NAME" x="-90.17" y="245.11" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-90.17" y="242.57" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="-93.98" y="246.38" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C13" gate="G$1" x="-119.38" y="226.06" smashed="yes">
 <attribute name="NAME" x="-116.84" y="226.06" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-116.84" y="223.52" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="-119.38" y="226.06" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R3" gate="G$1" x="-124.46" y="248.92" smashed="yes">
 <attribute name="NAME" x="-128.27" y="252.9586" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-128.27" y="250.19" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="-124.46" y="248.92" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R4" gate="G$1" x="-93.98" y="236.22" smashed="yes" rot="R90">
 <attribute name="NAME" x="-91.44" y="237.49" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-91.44" y="234.95" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="-93.98" y="236.22" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY8" gate="GND" x="-132.08" y="215.9" smashed="yes">
 <attribute name="VALUE" x="-130.81" y="215.9" size="1.778" layer="96"/>
@@ -21120,10 +21302,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R5" gate="G$1" x="-182.88" y="231.14" smashed="yes" rot="R90">
 <attribute name="NAME" x="-186.69" y="227.33" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-184.15" y="227.33" size="1.778" layer="96" rot="R90"/>
+<attribute name="COMPONENT" x="-182.88" y="231.14" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
 <instance part="R6" gate="G$1" x="-182.88" y="218.44" smashed="yes" rot="R90">
 <attribute name="NAME" x="-186.69" y="214.63" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-184.15" y="214.63" size="1.778" layer="96" rot="R90"/>
+<attribute name="COMPONENT" x="-182.88" y="218.44" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
 <instance part="SUPPLY9" gate="GND" x="-182.88" y="208.28" smashed="yes">
 <attribute name="VALUE" x="-181.61" y="208.28" size="1.778" layer="96"/>
@@ -21131,14 +21315,17 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="XA1" gate="G$1" x="63.5" y="259.08" smashed="yes">
 <attribute name="NAME" x="60.96" y="265.43" size="1.27081875" layer="95"/>
 <attribute name="VALUE" x="60.96" y="262.89" size="1.270359375" layer="96"/>
+<attribute name="COMPONENT" x="63.5" y="259.08" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="XA2" gate="G$1" x="63.5" y="238.76" smashed="yes">
 <attribute name="NAME" x="60.96" y="245.11" size="1.27081875" layer="95"/>
 <attribute name="VALUE" x="60.96" y="242.57" size="1.270359375" layer="96"/>
+<attribute name="COMPONENT" x="63.5" y="238.76" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U1" gate="A" x="-121.92" y="76.2" smashed="yes">
 <attribute name="NAME" x="-114.3" y="85.09" size="2.0828" layer="95" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="-114.3" y="82.55" size="2.0828" layer="96" ratio="6" rot="SR0"/>
+<attribute name="COMPONENT" x="-121.92" y="76.2" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U$7" gate="A" x="-162.56" y="88.9" smashed="yes">
 <attribute name="NAME" x="-165.1" y="99.06" size="1.778" layer="94"/>
@@ -21157,6 +21344,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R8" gate="G$1" x="-137.16" y="83.82" smashed="yes" rot="R90">
 <attribute name="NAME" x="-138.43" y="87.63" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-138.43" y="85.09" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-137.16" y="83.82" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY14" gate="GND" x="-127" y="38.1" smashed="yes">
 <attribute name="VALUE" x="-125.73" y="38.1" size="1.778" layer="96"/>
@@ -21164,62 +21352,77 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U3" gate="G$1" x="347.98" y="139.7" smashed="yes">
 <attribute name="NAME" x="332.9441" y="176.3745" size="1.783840625" layer="95"/>
 <attribute name="VALUE" x="360.68" y="102.87" size="1.78345" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="347.98" y="139.7" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="J1" gate="G$1" x="-2.54" y="142.24" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-10.16" y="152.4" size="1.778" layer="95" rot="MR270"/>
 <attribute name="VALUE" x="-7.62" y="152.4" size="1.778" layer="96" rot="MR270"/>
+<attribute name="COMPONENT" x="-2.54" y="142.24" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C15" gate="G$1" x="68.58" y="177.8" smashed="yes" rot="MR0">
 <attribute name="NAME" x="67.31" y="177.8" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="67.31" y="180.34" size="1.778" layer="96" rot="MR0"/>
+<attribute name="COMPONENT" x="68.58" y="177.8" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C17" gate="G$1" x="22.86" y="185.42" smashed="yes">
 <attribute name="NAME" x="21.59" y="189.23" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="21.59" y="186.69" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="22.86" y="185.42" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U$8" gate="A" x="81.28" y="154.94" smashed="yes" rot="R270">
 <attribute name="NAME" x="83.82" y="157.48" size="1.778" layer="95"/>
 <attribute name="VALUE" x="83.82" y="154.94" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="81.28" y="154.94" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U$10" gate="A" x="73.66" y="149.86" smashed="yes">
 <attribute name="NAME" x="76.2" y="156.21" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="76.2" y="153.67" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="73.66" y="149.86" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R12" gate="G$1" x="259.08" y="182.88" smashed="yes" rot="R90">
 <attribute name="NAME" x="261.62" y="182.88" size="1.778" layer="95"/>
 <attribute name="VALUE" x="261.62" y="185.42" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="259.08" y="182.88" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U$12" gate="A" x="228.6" y="134.62" smashed="yes">
 <attribute name="NAME" x="215.9" y="147.32" size="1.27" layer="94"/>
 <attribute name="VALUE" x="215.9" y="142.24" size="1.27" layer="94"/>
+<attribute name="COMPONENT" x="228.6" y="134.62" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="T1" gate="G$1" x="-137.16" y="60.96" smashed="yes">
 <attribute name="NAME" x="-138.43" y="63.5" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-138.43" y="66.04" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-137.16" y="60.96" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="T2" gate="G$1" x="-129.54" y="53.34" smashed="yes">
 <attribute name="NAME" x="-130.81" y="52.07" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-130.81" y="49.53" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-129.54" y="53.34" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="T3" gate="G$1" x="271.78" y="127" smashed="yes">
 <attribute name="NAME" x="275.59" y="129.54" size="1.778" layer="95"/>
 <attribute name="VALUE" x="275.59" y="127" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="271.78" y="127" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R13" gate="G$1" x="261.62" y="127" smashed="yes" rot="R180">
 <attribute name="NAME" x="259.08" y="130.81" size="1.778" layer="95"/>
 <attribute name="VALUE" x="259.08" y="128.27" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="261.62" y="127" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R14" gate="G$1" x="261.62" y="106.68" smashed="yes" rot="R180">
 <attribute name="NAME" x="259.08" y="110.49" size="1.778" layer="95"/>
 <attribute name="VALUE" x="259.08" y="107.95" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="261.62" y="106.68" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="T5" gate="G$1" x="271.78" y="106.68" smashed="yes" rot="MR180">
 <attribute name="NAME" x="275.59" y="107.95" size="1.778" layer="95"/>
 <attribute name="VALUE" x="275.59" y="105.41" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="271.78" y="106.68" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C16" gate="G$1" x="198.12" y="154.94" smashed="yes">
 <attribute name="NAME" x="199.39" y="149.86" size="1.778" layer="95"/>
 <attribute name="VALUE" x="199.39" y="147.32" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="198.12" y="154.94" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY17" gate="GND" x="198.12" y="142.24" smashed="yes">
 <attribute name="VALUE" x="199.39" y="142.24" size="1.778" layer="96"/>
@@ -21232,6 +21435,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R16" gate="G$1" x="66.04" y="142.24" smashed="yes" rot="R90">
 <attribute name="NAME" x="63.5" y="144.78" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="63.5" y="142.24" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="66.04" y="142.24" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY19" gate="GND" x="66.04" y="119.38" smashed="yes">
 <attribute name="VALUE" x="67.31" y="119.38" size="1.778" layer="96"/>
@@ -21239,6 +21443,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R17" gate="G$1" x="81.28" y="142.24" smashed="yes" rot="R90">
 <attribute name="NAME" x="78.74" y="144.78" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="78.74" y="142.24" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="81.28" y="142.24" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY20" gate="GND" x="81.28" y="119.38" smashed="yes">
 <attribute name="VALUE" x="82.55" y="119.38" size="1.778" layer="96"/>
@@ -21249,10 +21454,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R18" gate="G$1" x="50.8" y="142.24" smashed="yes" rot="R90">
 <attribute name="NAME" x="48.26" y="144.78" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="48.26" y="142.24" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="50.8" y="142.24" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R19" gate="G$1" x="50.8" y="129.54" smashed="yes" rot="R90">
 <attribute name="NAME" x="48.26" y="132.08" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="48.26" y="129.54" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="50.8" y="129.54" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY22" gate="GND" x="50.8" y="119.38" smashed="yes">
 <attribute name="VALUE" x="52.07" y="119.38" size="1.778" layer="96"/>
@@ -21260,10 +21467,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="LED1" gate="G$1" x="-256.54" y="154.94" smashed="yes">
 <attribute name="NAME" x="-259.08" y="157.48" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-260.985" y="140.208" size="1.778" layer="96" rot="R90"/>
+<attribute name="COMPONENT" x="-256.54" y="154.94" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R15" gate="G$1" x="-256.54" y="167.64" smashed="yes" rot="R90">
 <attribute name="NAME" x="-259.08" y="170.18" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-259.08" y="167.64" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-256.54" y="167.64" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
 <instance part="SUPPLY18" gate="GND" x="-256.54" y="142.24" smashed="yes">
 <attribute name="VALUE" x="-255.27" y="142.24" size="1.778" layer="96"/>
@@ -21275,6 +21484,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R21" gate="G$1" x="-246.38" y="152.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="-248.92" y="154.94" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-248.92" y="152.4" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-246.38" y="152.4" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY23" gate="GND" x="-246.38" y="142.24" smashed="yes">
 <attribute name="VALUE" x="-245.11" y="142.24" size="1.778" layer="96"/>
@@ -21282,10 +21492,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R22" gate="G$1" x="-223.52" y="167.64" smashed="yes" rot="R90">
 <attribute name="NAME" x="-226.06" y="170.18" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-226.06" y="167.64" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-223.52" y="167.64" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R23" gate="G$1" x="-223.52" y="152.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="-226.06" y="154.94" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-226.06" y="152.4" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-223.52" y="152.4" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY24" gate="GND" x="-223.52" y="142.24" smashed="yes">
 <attribute name="VALUE" x="-222.25" y="142.24" size="1.778" layer="96"/>
@@ -21293,22 +21505,27 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R24" gate="G$1" x="0" y="233.68" smashed="yes" rot="R90">
 <attribute name="NAME" x="-2.54" y="236.22" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-2.54" y="233.68" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="0" y="233.68" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R25" gate="G$1" x="0" y="218.44" smashed="yes" rot="R90">
 <attribute name="NAME" x="-2.54" y="220.98" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-2.54" y="218.44" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="0" y="218.44" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R26" gate="G$1" x="12.7" y="233.68" smashed="yes" rot="R90">
 <attribute name="NAME" x="11.43" y="236.22" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="11.43" y="233.68" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="12.7" y="233.68" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R27" gate="G$1" x="12.7" y="218.44" smashed="yes" rot="R90">
 <attribute name="NAME" x="11.43" y="220.98" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="11.43" y="218.44" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="12.7" y="218.44" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R28" gate="G$1" x="254" y="243.84" smashed="yes" rot="R270">
 <attribute name="NAME" x="251.46" y="246.38" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="251.46" y="243.84" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="254" y="243.84" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY25" gate="GND" x="231.14" y="210.82" smashed="yes">
 <attribute name="VALUE" x="232.41" y="210.82" size="1.778" layer="96"/>
@@ -21319,10 +21536,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U5" gate="G$1" x="119.38" y="137.16" smashed="yes">
 <attribute name="NAME" x="111.71705" y="145.807609375" size="2.08946875" layer="95" ratio="10" rot="SR0"/>
 <attribute name="VALUE" x="129.5689" y="128.4907" size="2.0883" layer="96" ratio="10" rot="SR180"/>
+<attribute name="COMPONENT" x="119.38" y="137.16" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R29" gate="G$1" x="99.06" y="137.16" smashed="yes">
 <attribute name="NAME" x="96.52" y="133.35" size="1.778" layer="95"/>
 <attribute name="VALUE" x="96.52" y="130.81" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="99.06" y="137.16" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY27" gate="GND" x="132.08" y="121.92" smashed="yes">
 <attribute name="VALUE" x="133.35" y="121.92" size="1.778" layer="96"/>
@@ -21330,18 +21549,22 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="C18" gate="G$1" x="142.24" y="137.16" smashed="yes">
 <attribute name="NAME" x="143.51" y="132.08" size="1.778" layer="95"/>
 <attribute name="VALUE" x="143.51" y="129.54" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="142.24" y="137.16" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C19" gate="G$1" x="154.94" y="137.16" smashed="yes">
 <attribute name="NAME" x="156.21" y="132.08" size="1.778" layer="95"/>
 <attribute name="VALUE" x="156.21" y="129.54" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="154.94" y="137.16" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U6" gate="A" x="309.88" y="68.58" smashed="yes">
 <attribute name="NAME" x="335.6356" y="77.6986" size="2.0828" layer="95" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="335.0006" y="75.1586" size="2.0828" layer="96" ratio="6" rot="SR0"/>
+<attribute name="COMPONENT" x="309.88" y="68.58" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="J2" gate="G$1" x="416.56" y="58.42" smashed="yes">
 <attribute name="NAME" x="411.476959375" y="64.27201875" size="1.778" layer="95"/>
 <attribute name="VALUE" x="420.37" y="63.5" size="1.778" layer="96" rot="R270"/>
+<attribute name="COMPONENT" x="416.56" y="58.42" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY28" gate="GND" x="309.88" y="43.18" smashed="yes">
 <attribute name="VALUE" x="311.15" y="43.18" size="1.778" layer="96"/>
@@ -21357,14 +21580,17 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="JP1" gate="G$1" x="452.12" y="43.18" smashed="yes" rot="R270">
 <attribute name="NAME" x="449.58" y="40.64" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="447.04" y="49.53" size="1.778" layer="96" rot="R270"/>
+<attribute name="COMPONENT" x="452.12" y="43.18" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="X2" gate="G$1" x="472.44" y="78.74" smashed="yes">
 <attribute name="NAME" x="469.9" y="85.09" size="1.78071875" layer="95"/>
 <attribute name="VALUE" x="477.52" y="85.09" size="1.778740625" layer="96" rot="R270"/>
+<attribute name="COMPONENT" x="472.44" y="78.74" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="X3" gate="G$1" x="472.44" y="58.42" smashed="yes">
 <attribute name="NAME" x="469.9" y="64.77" size="1.78071875" layer="95"/>
 <attribute name="VALUE" x="477.52" y="64.77" size="1.778740625" layer="96" rot="R270"/>
+<attribute name="COMPONENT" x="472.44" y="58.42" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY30" gate="GND" x="439.42" y="43.18" smashed="yes">
 <attribute name="VALUE" x="440.055" y="40.005" size="1.778" layer="96"/>
@@ -21379,6 +21605,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U7" gate="A" x="-101.6" y="160.02" smashed="yes">
 <attribute name="NAME" x="-101.2444" y="176.7586" size="2.0828" layer="95" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="-102.6414" y="155.2194" size="2.0828" layer="96" ratio="6" rot="SR270"/>
+<attribute name="COMPONENT" x="-101.6" y="160.02" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY2" gate="GND" x="-134.62" y="154.94" smashed="yes">
 <attribute name="VALUE" x="-133.35" y="154.94" size="1.778" layer="96"/>
@@ -21389,30 +21616,37 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R1" gate="G$1" x="-58.42" y="162.56" smashed="yes" rot="R270">
 <attribute name="NAME" x="-55.88" y="162.7886" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-55.88" y="160.528" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="-58.42" y="162.56" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R2" gate="G$1" x="-58.42" y="140.97" smashed="yes" rot="R270">
 <attribute name="NAME" x="-55.88" y="141.1986" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-55.88" y="138.938" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="-58.42" y="140.97" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R31" gate="G$1" x="-132.08" y="137.16" smashed="yes" rot="R270">
 <attribute name="NAME" x="-134.62" y="139.7" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-134.62" y="137.16" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-132.08" y="137.16" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C1" gate="G$1" x="-177.8" y="167.64" smashed="yes" rot="R90">
 <attribute name="VALUE" x="-179.07" y="163.83" size="1.78071875" layer="96" ratio="10" rot="SR180"/>
 <attribute name="NAME" x="-179.07" y="166.37" size="1.78071875" layer="95" ratio="10" rot="SR180"/>
+<attribute name="COMPONENT" x="-177.8" y="167.64" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
 <instance part="C2" gate="G$1" x="-165.1" y="167.64" smashed="yes" rot="R90">
 <attribute name="VALUE" x="-166.37" y="163.83" size="1.78071875" layer="96" ratio="10" rot="SR180"/>
 <attribute name="NAME" x="-166.37" y="166.37" size="1.78071875" layer="95" ratio="10" rot="SR180"/>
+<attribute name="COMPONENT" x="-165.1" y="167.64" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
 <instance part="C3" gate="G$1" x="-154.94" y="168.91" smashed="yes">
 <attribute name="NAME" x="-156.21" y="166.37" size="1.78071875" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-156.21" y="163.83" size="1.77813125" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-154.94" y="168.91" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C4" gate="G$1" x="-146.05" y="168.91" smashed="yes">
 <attribute name="NAME" x="-147.32" y="166.37" size="1.78071875" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-147.32" y="163.83" size="1.77813125" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-146.05" y="168.91" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY32" gate="GND" x="-154.94" y="142.24" smashed="yes">
 <attribute name="VALUE" x="-153.67" y="142.24" size="1.778" layer="96"/>
@@ -21425,6 +21659,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="C10" gate="G$1" x="-30.48" y="172.72" smashed="yes">
 <attribute name="NAME" x="-29.21" y="173.99" size="1.78071875" layer="95"/>
 <attribute name="VALUE" x="-29.21" y="176.53" size="1.77813125" layer="96"/>
+<attribute name="COMPONENT" x="-30.48" y="172.72" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY33" gate="GND" x="-38.1" y="134.62" smashed="yes">
 <attribute name="VALUE" x="-37.465" y="131.445" size="1.778" layer="96"/>
@@ -21432,14 +21667,17 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R32" gate="G$1" x="-73.66" y="132.08" smashed="yes" rot="R270">
 <attribute name="NAME" x="-71.12" y="132.3086" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-71.12" y="130.048" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="-73.66" y="132.08" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U8" gate="A" x="-25.4" y="86.36" smashed="yes">
 <attribute name="NAME" x="-16.51" y="95.25" size="2.0828" layer="95" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="-16.51" y="92.71" size="2.0828" layer="96" ratio="6" rot="SR0"/>
+<attribute name="COMPONENT" x="-25.4" y="86.36" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C6" gate="G$1" x="53.34" y="88.9" smashed="yes" rot="R180">
 <attribute name="NAME" x="52.07" y="95.25" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="52.07" y="92.71" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="53.34" y="88.9" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
 <instance part="SUPPLY34" gate="GND" x="60.96" y="88.9" smashed="yes">
 <attribute name="VALUE" x="62.23" y="88.9" size="1.778" layer="96"/>
@@ -21447,34 +21685,42 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="Q1" gate="G$1" x="-40.64" y="73.66" smashed="yes" rot="R180">
 <attribute name="VALUE" x="-45.72" y="72.39" size="1.778" layer="96" rot="R180"/>
 <attribute name="NAME" x="-45.72" y="69.85" size="1.778" layer="95" rot="R180"/>
+<attribute name="COMPONENT" x="-40.64" y="73.66" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="Q2" gate="G$1" x="63.5" y="73.66" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="68.58" y="73.66" size="1.778" layer="96" rot="MR180"/>
 <attribute name="NAME" x="68.58" y="71.12" size="1.778" layer="95" rot="MR180"/>
+<attribute name="COMPONENT" x="63.5" y="73.66" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C7" gate="G$1" x="48.26" y="73.66" smashed="yes" rot="R90">
 <attribute name="NAME" x="53.34" y="73.66" size="1.778" layer="95"/>
 <attribute name="VALUE" x="53.34" y="73.66" size="1.778" layer="96" rot="MR180"/>
+<attribute name="COMPONENT" x="48.26" y="73.66" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C8" gate="G$1" x="-30.48" y="73.66" smashed="yes" rot="R90">
 <attribute name="NAME" x="-30.48" y="73.66" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="-30.48" y="73.66" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-30.48" y="73.66" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R7" gate="G$1" x="-127" y="83.82" smashed="yes" rot="R90">
 <attribute name="NAME" x="-128.27" y="87.63" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-128.27" y="85.09" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-127" y="83.82" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
 <instance part="U$4" gate="G$1" x="228.6" y="223.52" smashed="yes">
 <attribute name="VALUE" x="212.09" y="227.33" size="1.778" layer="96" rot="MR180"/>
 <attribute name="NAME" x="222.25" y="224.79" size="1.778" layer="95" rot="MR180"/>
+<attribute name="COMPONENT" x="228.6" y="223.52" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R9" gate="G$1" x="210.82" y="233.68" smashed="yes" rot="R270">
 <attribute name="NAME" x="208.28" y="236.22" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="208.28" y="233.68" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="210.82" y="233.68" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R10" gate="G$1" x="391.16" y="170.18" smashed="yes">
 <attribute name="NAME" x="387.35" y="171.6786" size="1.778" layer="95"/>
 <attribute name="VALUE" x="387.35" y="166.878" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="391.16" y="170.18" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SV5" gate="G$1" x="317.5" y="134.62" smashed="yes">
 <attribute name="VALUE" x="316.23" y="124.46" size="1.778" layer="96"/>
@@ -21486,10 +21732,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="C9" gate="G$1" x="22.86" y="124.46" smashed="yes" rot="MR90">
 <attribute name="NAME" x="19.05" y="121.92" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="19.05" y="119.38" size="1.778" layer="96" rot="MR180"/>
+<attribute name="COMPONENT" x="22.86" y="124.46" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R30" gate="G$1" x="22.86" y="134.62" smashed="yes" rot="MR0">
 <attribute name="NAME" x="19.05" y="133.35" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="19.05" y="130.81" size="1.778" layer="96" rot="MR180"/>
+<attribute name="COMPONENT" x="22.86" y="134.62" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY39" gate="GND" x="30.48" y="118.11" smashed="yes">
 <attribute name="VALUE" x="31.75" y="118.11" size="1.778" layer="96"/>
@@ -21497,18 +21745,22 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U$2" gate="G$1" x="45.72" y="187.96" smashed="yes">
 <attribute name="VALUE" x="48.26" y="177.8" size="1.778" layer="96"/>
 <attribute name="NAME" x="33.02" y="177.8" size="1.778" layer="95"/>
+<attribute name="COMPONENT" x="45.72" y="187.96" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U$14" gate="G$1" x="83.82" y="187.96" smashed="yes">
 <attribute name="NAME" x="81.28" y="193.04" size="1.778" layer="95"/>
 <attribute name="VALUE" x="81.28" y="190.5" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="83.82" y="187.96" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="C12" gate="G$1" x="71.12" y="193.04" smashed="yes" rot="R90">
 <attribute name="NAME" x="73.66" y="196.85" size="1.778" layer="95"/>
 <attribute name="VALUE" x="73.66" y="194.31" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="71.12" y="193.04" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
 <instance part="C20" gate="G$1" x="73.66" y="177.8" smashed="yes">
 <attribute name="NAME" x="74.93" y="177.8" size="1.778" layer="95"/>
 <attribute name="VALUE" x="74.93" y="180.34" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="73.66" y="177.8" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY15" gate="GND" x="22.86" y="175.26" smashed="yes">
 <attribute name="VALUE" x="24.13" y="175.26" size="1.778" layer="96"/>
@@ -21522,6 +21774,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U$1" gate="G$1" x="238.76" y="233.68" smashed="yes">
 <attribute name="NAME" x="236.22" y="231.14" size="1.778" layer="95"/>
 <attribute name="VALUE" x="236.22" y="228.6" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="238.76" y="233.68" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="LED3" gate="G$1" x="81.28" y="132.08" smashed="yes">
 <attribute name="NAME" x="80.01" y="134.62" size="1.778" layer="95" rot="R180"/>
@@ -21531,6 +21784,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U$11" gate="G$1" x="-20.32" y="254" smashed="yes" rot="R270">
 <attribute name="VALUE" x="-20.32" y="256.54" size="1.778" layer="96" rot="MR90"/>
 <attribute name="NAME" x="-17.78" y="256.54" size="1.778" layer="95" rot="MR90"/>
+<attribute name="COMPONENT" x="-20.32" y="254" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY7" gate="GND" x="27.94" y="205.74" smashed="yes">
 <attribute name="VALUE" x="29.21" y="205.74" size="1.778" layer="96"/>
@@ -21541,18 +21795,22 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U$5" gate="G$1" x="10.16" y="246.38" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="17.78" y="248.92" size="1.778" layer="96" rot="R270"/>
 <attribute name="NAME" x="15.24" y="248.92" size="1.778" layer="95" rot="R270"/>
+<attribute name="COMPONENT" x="10.16" y="246.38" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U$9" gate="G$1" x="-2.54" y="256.54" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="5.08" y="259.08" size="1.778" layer="96" rot="R270"/>
 <attribute name="NAME" x="2.54" y="259.08" size="1.778" layer="95" rot="R270"/>
+<attribute name="COMPONENT" x="-2.54" y="256.54" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R33" gate="G$1" x="-7.62" y="266.7" smashed="yes" rot="R270">
 <attribute name="NAME" x="-11.43" y="269.24" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="-13.97" y="269.24" size="1.778" layer="96" rot="R270"/>
+<attribute name="COMPONENT" x="-7.62" y="266.7" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R34" gate="G$1" x="-33.02" y="248.92" smashed="yes" rot="R270">
 <attribute name="NAME" x="-36.83" y="251.46" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="-39.37" y="251.46" size="1.778" layer="96" rot="R270"/>
+<attribute name="COMPONENT" x="-33.02" y="248.92" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="U$13" gate="G$1" x="-101.6" y="99.06" smashed="yes" rot="R180">
 <attribute name="NAME" x="-102.362" y="97.0534" size="1.778" layer="95" rot="R180"/>
@@ -21561,6 +21819,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="C11" gate="G$1" x="-78.74" y="48.26" smashed="yes" rot="R180">
 <attribute name="NAME" x="-82.55" y="50.8" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-80.01" y="50.8" size="1.778" layer="96" rot="R90"/>
+<attribute name="COMPONENT" x="-78.74" y="48.26" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
 <instance part="SUPPLY4" gate="GND" x="-78.74" y="40.64" smashed="yes">
 <attribute name="VALUE" x="-77.47" y="40.64" size="1.778" layer="96"/>
@@ -21568,6 +21827,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="C21" gate="G$1" x="383.54" y="71.12" smashed="yes" rot="R180">
 <attribute name="NAME" x="381" y="76.2" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="381" y="73.66" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="383.54" y="71.12" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
 <instance part="U$15" gate="G$1" x="398.78" y="73.66" smashed="yes">
 <attribute name="NAME" x="396.24" y="76.2" size="1.78071875" layer="95" rot="R180"/>
@@ -21664,6 +21924,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="U$16" gate="G$1" x="-236.22" y="177.8" smashed="yes" rot="R180">
 <attribute name="NAME" x="-236.22" y="172.72" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-231.902" y="181.7624" size="1.778" layer="96" rot="R180"/>
+<attribute name="COMPONENT" x="-236.22" y="177.8" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY6" gate="GND" x="-236.22" y="165.1" smashed="yes">
 <attribute name="VALUE" x="-234.95" y="165.1" size="1.778" layer="96"/>
