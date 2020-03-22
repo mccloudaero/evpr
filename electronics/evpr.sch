@@ -206,7 +206,7 @@
 <smd name="1" x="-2.28" y="-4.8" dx="1" dy="1.6" layer="1"/>
 <smd name="2" x="0" y="2.5" dx="5.4" dy="6.2" layer="1"/>
 <smd name="3" x="2.28" y="-4.8" dx="1" dy="1.6" layer="1"/>
-<text x="-3.81" y="-2.54" size="1.27" layer="25" rot="R90">&gt;NAME</text>
+<text x="-6.35" y="-2.54" size="1.27" layer="25" rot="R90">&gt;NAME</text>
 <text x="5.08" y="-2.54" size="1.27" layer="27" rot="R90">&gt;VALUE</text>
 <polygon width="0.1998" layer="51">
 <vertex x="-2.5654" y="3.937"/>
@@ -216,6 +216,22 @@
 <vertex x="2.5654" y="4.6482"/>
 <vertex x="2.5654" y="3.937"/>
 </polygon>
+<wire x1="-1.397" y1="-2.54" x2="1.397" y2="-2.54" width="0.1524" layer="39"/>
+<wire x1="1.397" y1="-2.54" x2="1.397" y2="-5.08" width="0.1524" layer="39"/>
+<wire x1="1.397" y1="-5.08" x2="3.175" y2="-5.08" width="0.1524" layer="39"/>
+<wire x1="3.81" y1="4.318" x2="3.048" y2="4.318" width="0.1524" layer="39"/>
+<wire x1="-3.048" y1="4.318" x2="-3.81" y2="4.318" width="0.1524" layer="39"/>
+<wire x1="-3.175" y1="-5.08" x2="-1.397" y2="-5.08" width="0.1524" layer="39"/>
+<wire x1="-1.397" y1="-5.08" x2="-1.397" y2="-2.54" width="0.1524" layer="39"/>
+<wire x1="-3.175" y1="-5.08" x2="-3.175" y2="-2.54" width="0.1524" layer="39"/>
+<wire x1="-3.175" y1="-2.54" x2="-3.81" y2="-2.54" width="0.1524" layer="39"/>
+<wire x1="-3.81" y1="-2.54" x2="-3.81" y2="4.318" width="0.1524" layer="39"/>
+<wire x1="3.81" y1="4.318" x2="3.81" y2="-2.54" width="0.1524" layer="39"/>
+<wire x1="3.81" y1="-2.54" x2="3.175" y2="-2.54" width="0.1524" layer="39"/>
+<wire x1="3.175" y1="-2.54" x2="3.175" y2="-5.08" width="0.1524" layer="39"/>
+<wire x1="-3.048" y1="4.318" x2="-3.048" y2="5.9944" width="0.1524" layer="39"/>
+<wire x1="-3.048" y1="5.9944" x2="3.048" y2="5.9944" width="0.1524" layer="39"/>
+<wire x1="3.048" y1="5.9944" x2="3.048" y2="4.318" width="0.1524" layer="39"/>
 </package>
 <package name="MODULE_ESP32-WROOM-32D">
 <circle x="-10.777" y="5.238" radius="0.1" width="0.3" layer="21"/>
@@ -788,32 +804,6 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <vertex x="-2.0574" y="-2.5781"/>
 <vertex x="-2.0574" y="-2.39903125"/>
 </polygon>
-</package>
-<package name="DPAK228P994X240-4N">
-<circle x="-2.286" y="-6.261" radius="0.1" width="0.2" layer="21"/>
-<circle x="-2.286" y="-6.261" radius="0.1" width="0.2" layer="51"/>
-<wire x1="3.65" y1="5.85" x2="-3.65" y2="5.85" width="0.05" layer="39"/>
-<wire x1="-3.65" y1="5.85" x2="-3.65" y2="-5.85" width="0.05" layer="39"/>
-<wire x1="-3.4" y1="4.176" x2="-3.4" y2="-2.044" width="0.127" layer="21"/>
-<wire x1="3.4" y1="4.176" x2="3.4" y2="-2.044" width="0.127" layer="21"/>
-<wire x1="3.4" y1="-2.044" x2="-3.4" y2="-2.044" width="0.127" layer="21"/>
-<wire x1="3.4" y1="-2.044" x2="-3.4" y2="-2.044" width="0.127" layer="51"/>
-<wire x1="-3.4" y1="-2.044" x2="-3.4" y2="4.176" width="0.127" layer="51"/>
-<wire x1="-3.4" y1="4.176" x2="3.4" y2="4.176" width="0.127" layer="51"/>
-<wire x1="3.4" y1="-2.044" x2="3.4" y2="4.176" width="0.127" layer="51"/>
-<wire x1="-3.65" y1="-5.85" x2="3.65" y2="-5.85" width="0.05" layer="39"/>
-<wire x1="3.65" y1="-5.85" x2="3.65" y2="5.85" width="0.05" layer="39"/>
-<rectangle x1="-2.27" y1="3.87" x2="-0.55" y2="5.23" layer="31"/>
-<rectangle x1="-2.27" y1="1.76" x2="-0.55" y2="3.12" layer="31"/>
-<rectangle x1="-2.27" y1="-0.35" x2="-0.55" y2="1.01" layer="31"/>
-<rectangle x1="0.55" y1="3.87" x2="2.27" y2="5.23" layer="31"/>
-<rectangle x1="0.55" y1="1.76" x2="2.27" y2="3.12" layer="31"/>
-<rectangle x1="0.55" y1="-0.35" x2="2.27" y2="1.01" layer="31"/>
-<smd name="1" x="-2.286" y="-4.09" dx="3.02" dy="0.97" layer="1" rot="R270"/>
-<smd name="3" x="2.286" y="-4.09" dx="3.02" dy="0.97" layer="1" rot="R270"/>
-<smd name="4" x="0" y="2.44" dx="6.32" dy="5.67" layer="1" rot="R90" cream="no"/>
-<text x="-3.70678125" y="6.257440625" size="1.27233125" layer="25" ratio="10">&gt;NAME</text>
-<text x="-4.0066" y="-7.7668" size="1.2721" layer="27" ratio="10">&gt;VALUE</text>
 </package>
 <package name="SOT23">
 <description>&lt;b&gt;SOT-23&lt;/b&gt;</description>
@@ -2519,21 +2509,14 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <gate name="G$1" symbol="AOD4184A" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="DPAK228P994X240-4N">
+<device name="" package="DPACK">
 <connects>
-<connect gate="G$1" pin="D" pad="4"/>
+<connect gate="G$1" pin="D" pad="2"/>
 <connect gate="G$1" pin="G" pad="1"/>
 <connect gate="G$1" pin="S" pad="3"/>
 </connects>
 <technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" Trans MOSFET N-CH 40V 50A 3-Pin_2+Tab_ DPAK "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="785-1221-1-ND"/>
-<attribute name="DIGI-KEY_PURCHASE_URL" value="https://www.digikey.com/product-detail/en/alpha-omega-semiconductor-inc/AOD4184A/785-1221-1-ND/2353939?utm_source=snapeda&amp;utm_medium=aggregator&amp;utm_campaign=symbol"/>
-<attribute name="MF" value="Alpha &amp;"/>
-<attribute name="MP" value="AOD4184A"/>
-<attribute name="PACKAGE" value="TO-252 Alpha &amp;amp; Omega Semiconductor"/>
-</technology>
+<technology name=""/>
 </technologies>
 </device>
 </devices>
