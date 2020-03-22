@@ -661,6 +661,12 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <vertex x="-2.15" y="-2.15"/>
 <vertex x="-2.15" y="2.1"/>
 </polygon>
+<wire x1="-3.81" y1="3.81" x2="-3.81" y2="-3.81" width="0.1524" layer="39"/>
+<wire x1="-3.81" y1="-3.81" x2="2.54" y2="-3.81" width="0.1524" layer="39"/>
+<wire x1="2.54" y1="-3.81" x2="3.81" y2="-2.54" width="0.1524" layer="39"/>
+<wire x1="3.81" y1="-2.54" x2="3.81" y2="2.54" width="0.1524" layer="39"/>
+<wire x1="3.81" y1="2.54" x2="2.54" y2="3.81" width="0.1524" layer="39"/>
+<wire x1="2.54" y1="3.81" x2="-3.81" y2="3.81" width="0.1524" layer="39"/>
 </package>
 <package name="C6CYLCAP">
 <wire x1="-4.15" y1="4.15" x2="-4.15" y2="-4.15" width="0.1524" layer="21"/>
@@ -2322,30 +2328,6 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 </device>
 </devices>
 </deviceset>
-<deviceset name="25SVPF56M" prefix="C" uservalue="yes">
-<description>CAP POLYMER 56UF 25V 20% SMD</description>
-<gates>
-<gate name="G$1" symbol="CPOL_US" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="OSCON_SVPF_6.3MM">
-<connects>
-<connect gate="G$1" pin="+" pad="+"/>
-<connect gate="G$1" pin="-" pad="-"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" Polymer capacitor [Panasonic Automotive &amp; Industrial Systems] 25SVPF56M Polymer capacitor "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="P16514CT-ND"/>
-<attribute name="DIGI-KEY_PURCHASE_URL" value="https://www.digikey.com/product-detail/en/panasonic-electronic-components/25SVPF56M/P16514CT-ND/4204321?utm_source=snapeda&amp;utm_medium=aggregator&amp;utm_campaign=symbol"/>
-<attribute name="MF" value="Panasonic"/>
-<attribute name="MP" value="25SVPF56M"/>
-<attribute name="PACKAGE" value="Radial Panasonic"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
 <deviceset name="WURTH875115352003" uservalue="yes">
 <gates>
 <gate name="G$1" symbol="CPOL_US" x="0" y="0"/>
@@ -2600,6 +2582,22 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <connects>
 <connect gate="G$1" pin="1" pad="P$1"/>
 <connect gate="G$1" pin="2" pad="P$2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="6.3MMCAP" prefix="C" uservalue="yes">
+<gates>
+<gate name="G$1" symbol="CPOL_US" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="OSCON_SVPF_6.3MM">
+<connects>
+<connect gate="G$1" pin="+" pad="+"/>
+<connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -20362,12 +20360,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="C2" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF">
 <attribute name="COMPONENT" value="C3225X7R1E106K250AC"/>
 </part>
-<part name="C3" library="mccloud" deviceset="25SVPF56M" device="" value="56µF">
-<attribute name="COMPONENT" value="25SVPF56M"/>
-</part>
-<part name="C4" library="mccloud" deviceset="25SVPF56M" device="" value="56µF">
-<attribute name="COMPONENT" value="25SVPF56M"/>
-</part>
 <part name="SUPPLY32" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="C5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-US" device="C1210" package3d_urn="urn:adsk.eagle:package:23619/2" value="47µF">
 <spice>
@@ -20545,6 +20537,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
 <part name="TP17" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="C3" library="mccloud" deviceset="6.3MMCAP" device="" value="56µF">
+<attribute name="COMPONENT" value="APXG250ARA560MF61G"/>
+</part>
+<part name="C4" library="mccloud" deviceset="6.3MMCAP" device="" value="56µF">
+<attribute name="COMPONENT" value="APXG250ARA560MF61G"/>
+</part>
 </parts>
 <sheets>
 <sheet>
@@ -20918,16 +20916,6 @@ than in the ESP32 block.</text>
 <attribute name="NAME" x="-181.61" y="-21.59" size="1.78071875" layer="95" ratio="10" rot="SR180"/>
 <attribute name="COMPONENT" x="-180.34" y="-20.32" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="C3" gate="G$1" x="-170.18" y="-19.05" smashed="yes">
-<attribute name="NAME" x="-171.45" y="-21.59" size="1.78071875" layer="95" rot="R180"/>
-<attribute name="VALUE" x="-171.45" y="-24.13" size="1.77813125" layer="96" rot="R180"/>
-<attribute name="COMPONENT" x="-170.18" y="-19.05" size="1.778" layer="96" display="off"/>
-</instance>
-<instance part="C4" gate="G$1" x="-161.29" y="-19.05" smashed="yes">
-<attribute name="NAME" x="-162.56" y="-21.59" size="1.78071875" layer="95" rot="R180"/>
-<attribute name="VALUE" x="-162.56" y="-24.13" size="1.77813125" layer="96" rot="R180"/>
-<attribute name="COMPONENT" x="-161.29" y="-19.05" size="1.778" layer="96" display="off"/>
-</instance>
 <instance part="SUPPLY32" gate="GND" x="-170.18" y="-45.72" smashed="yes">
 <attribute name="VALUE" x="-168.91" y="-45.72" size="1.778" layer="96"/>
 </instance>
@@ -21275,6 +21263,16 @@ than in the ESP32 block.</text>
 <attribute name="NAME" x="110.744" y="19.05" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="113.03" y="22.86" size="1.778" layer="97"/>
 </instance>
+<instance part="C3" gate="G$1" x="-170.18" y="-20.32" smashed="yes">
+<attribute name="NAME" x="-169.162440625" y="-19.684028125" size="1.78071875" layer="95"/>
+<attribute name="VALUE" x="-169.16393125" y="-24.511309375" size="1.77813125" layer="96"/>
+<attribute name="COMPONENT" x="-170.18" y="-20.32" size="1.778" layer="96" display="off"/>
+</instance>
+<instance part="C4" gate="G$1" x="-160.02" y="-20.32" smashed="yes">
+<attribute name="NAME" x="-159.002440625" y="-19.684028125" size="1.78071875" layer="95"/>
+<attribute name="VALUE" x="-159.00393125" y="-24.511309375" size="1.77813125" layer="96"/>
+<attribute name="COMPONENT" x="-160.02" y="-20.32" size="1.778" layer="96" display="off"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -21437,16 +21435,16 @@ than in the ESP32 block.</text>
 <wire x1="-193.04" y1="-35.56" x2="-180.34" y2="-35.56" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="1"/>
 <wire x1="-180.34" y1="-35.56" x2="-180.34" y2="-24.13" width="0.1524" layer="91"/>
-<pinref part="C3" gate="G$1" pin="-"/>
-<wire x1="-170.18" y1="-24.13" x2="-170.18" y2="-35.56" width="0.1524" layer="91"/>
 <wire x1="-170.18" y1="-35.56" x2="-180.34" y2="-35.56" width="0.1524" layer="91"/>
 <junction x="-180.34" y="-35.56"/>
-<pinref part="C4" gate="G$1" pin="-"/>
-<wire x1="-161.29" y1="-24.13" x2="-161.29" y2="-35.56" width="0.1524" layer="91"/>
-<wire x1="-161.29" y1="-35.56" x2="-170.18" y2="-35.56" width="0.1524" layer="91"/>
 <junction x="-170.18" y="-35.56"/>
+<wire x1="-160.02" y1="-35.56" x2="-170.18" y2="-35.56" width="0.1524" layer="91"/>
 <wire x1="-170.18" y1="-35.56" x2="-170.18" y2="-43.18" width="0.1524" layer="91"/>
 <pinref part="SUPPLY32" gate="GND" pin="GND"/>
+<pinref part="C3" gate="G$1" pin="-"/>
+<wire x1="-170.18" y1="-25.4" x2="-170.18" y2="-35.56" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="-"/>
+<wire x1="-160.02" y1="-35.56" x2="-160.02" y2="-25.4" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="C5" gate="G$1" pin="2"/>
@@ -21665,25 +21663,25 @@ than in the ESP32 block.</text>
 <pinref part="U7" gate="A" pin="VIN"/>
 <pinref part="U7" gate="A" pin="VIN_2"/>
 <wire x1="-139.7" y1="-5.08" x2="-139.7" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="-139.7" y1="-2.54" x2="-161.29" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="-139.7" y1="-2.54" x2="-160.02" y2="-2.54" width="0.1524" layer="91"/>
 <junction x="-139.7" y="-2.54"/>
 <pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="-161.29" y1="-2.54" x2="-170.18" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="-160.02" y1="-2.54" x2="-170.18" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="-170.18" y1="-2.54" x2="-180.34" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="-2.54" x2="-193.04" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="-193.04" y1="-2.54" x2="-193.04" y2="-16.51" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="2"/>
 <wire x1="-180.34" y1="-16.51" x2="-180.34" y2="-2.54" width="0.1524" layer="91"/>
 <junction x="-180.34" y="-2.54"/>
-<wire x1="-170.18" y1="-16.51" x2="-170.18" y2="-2.54" width="0.1524" layer="91"/>
 <junction x="-170.18" y="-2.54"/>
-<wire x1="-161.29" y1="-16.51" x2="-161.29" y2="-2.54" width="0.1524" layer="91"/>
-<junction x="-161.29" y="-2.54"/>
-<pinref part="C3" gate="G$1" pin="+"/>
-<pinref part="C4" gate="G$1" pin="+"/>
+<wire x1="-170.18" y1="-17.78" x2="-170.18" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="-193.04" y1="-2.54" x2="-198.12" y2="-2.54" width="0.1524" layer="91"/>
 <junction x="-193.04" y="-2.54"/>
 <label x="-198.12" y="-2.54" size="1.778" layer="95" rot="R180" xref="yes"/>
+<pinref part="C4" gate="G$1" pin="+"/>
+<wire x1="-160.02" y1="-17.78" x2="-160.02" y2="-2.54" width="0.1524" layer="91"/>
+<junction x="-160.02" y="-2.54"/>
+<pinref part="C3" gate="G$1" pin="+"/>
 </segment>
 <segment>
 <pinref part="X1" gate="G$1" pin="2"/>
