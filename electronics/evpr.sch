@@ -1649,6 +1649,10 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <rectangle x1="-0.8382" y1="-0.4699" x2="-0.3381" y2="0.4801" layer="51"/>
 <rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
+<wire x1="-0.889" y1="0.508" x2="0.889" y2="0.508" width="0.127" layer="21"/>
+<wire x1="0.889" y1="0.508" x2="0.889" y2="-0.508" width="0.127" layer="21"/>
+<wire x1="0.889" y1="-0.508" x2="-0.889" y2="-0.508" width="0.127" layer="21"/>
+<wire x1="-0.889" y1="-0.508" x2="-0.889" y2="0.508" width="0.127" layer="21"/>
 </package>
 <package name="R0603">
 <description>&lt;b&gt;RESISTOR&lt;/b&gt;</description>

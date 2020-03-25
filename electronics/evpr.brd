@@ -8,8 +8,8 @@
 </settings>
 <grid distance="10" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="1" altunitdist="mil" altunit="mil"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
-<layer number="2" name="Route2" color="16" fill="1" visible="yes" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
+<layer number="2" name="Route2" color="16" fill="1" visible="no" active="yes"/>
 <layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
 <layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
 <layer number="5" name="Route5" color="19" fill="1" visible="no" active="no"/>
@@ -21,44 +21,44 @@
 <layer number="11" name="Route11" color="30" fill="1" visible="no" active="no"/>
 <layer number="12" name="Route12" color="20" fill="1" visible="no" active="no"/>
 <layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
-<layer number="14" name="Route14" color="22" fill="1" visible="yes" active="yes"/>
-<layer number="15" name="Route15" color="23" fill="1" visible="yes" active="yes"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="14" name="Route14" color="22" fill="1" visible="no" active="yes"/>
+<layer number="15" name="Route15" color="23" fill="1" visible="no" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
-<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="no" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
-<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
-<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
 <layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
-<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="no" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="no" active="yes"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="88" name="SimResults" color="9" fill="1" visible="no" active="no"/>
 <layer number="89" name="SimProbes" color="9" fill="1" visible="no" active="no"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="no" active="no"/>
@@ -1105,6 +1105,10 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <rectangle x1="-0.8382" y1="-0.4699" x2="-0.3381" y2="0.4801" layer="51"/>
 <rectangle x1="0.3302" y1="-0.4699" x2="0.8303" y2="0.4801" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
+<wire x1="-0.889" y1="0.508" x2="0.889" y2="0.508" width="0.127" layer="21"/>
+<wire x1="0.889" y1="0.508" x2="0.889" y2="-0.508" width="0.127" layer="21"/>
+<wire x1="0.889" y1="-0.508" x2="-0.889" y2="-0.508" width="0.127" layer="21"/>
+<wire x1="-0.889" y1="-0.508" x2="-0.889" y2="0.508" width="0.127" layer="21"/>
 </package>
 <package name="R0603">
 <description>&lt;b&gt;RESISTOR&lt;/b&gt;</description>
@@ -2673,22 +2677,22 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <elements>
 <element name="C.B1" library="mccloud" package="C0603" value="0.1uF" x="-18.796" y="-32.0548" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-18.796" y="-32.0548" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-17.502628125" y="-33.400509375" size="1.27" layer="26" rot="MR270"/>
+<attribute name="NAME" x="-19.534628125" y="-31.546309375" size="0.508" layer="26" font="vector" rot="MR270"/>
 </element>
 <element name="C.F3" library="mccloud" package="C0603" value="22uF" x="40.6654" y="-16.8148" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="CL10A226MO7JZNC" x="40.6654" y="-16.8148" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="42.5704" y="-18.7198" size="1.27" layer="26" rot="MR90"/>
-<attribute name="VALUE" x="37.4904" y="-18.7198" size="1.27" layer="28" rot="MR90"/>
+<attribute name="NAME" x="40.0304" y="-16.1798" size="0.508" layer="26" font="vector" rot="MR270"/>
+<attribute name="VALUE" x="37.4904" y="-18.7198" size="0.508" layer="28" font="vector" rot="MR90"/>
 </element>
 <element name="C.F4" library="mccloud" package="C0603" value="10uF" x="46.99" y="-15.494" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="GRM188R61A106KE69D" x="46.99" y="-15.494" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="48.895" y="-17.398996875" size="1.27" layer="26" rot="MR90"/>
-<attribute name="VALUE" x="43.815003125" y="-17.39899375" size="1.27" layer="28" rot="MR90"/>
+<attribute name="NAME" x="47.625" y="-17.348196875" size="0.508" layer="26" font="vector" rot="MR90"/>
+<attribute name="VALUE" x="43.815003125" y="-17.39899375" size="0.508" layer="28" font="vector" rot="MR90"/>
 </element>
 <element name="F.D1" library="mccloud" package="C1-M" value="1A" x="43.4086" y="-24.5872" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="C1Q 1" x="43.4086" y="-24.5872" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="C1Q 1" x="156.4386" y="4.6228" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="44.0436" y="-27.863803125" size="1.27" layer="25" ratio="6" rot="SR90"/>
+<attribute name="NAME" x="42.1894" y="-25.2984" size="0.508" layer="25" font="vector" ratio="6" rot="SR90"/>
 <attribute name="VENDOR" value="BelFuse" x="156.4386" y="4.6228" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
 <element name="X.F1" library="mccloud" package="FCI_10118193-0001LF" value="10118193-0001LF" x="38.1" y="-38.862" smashed="yes" rot="R45">
@@ -2698,133 +2702,140 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="DIGI-KEY_PURCHASE_URL" value="https://www.digikey.com/product-detail/en/amphenol-icc-fci/10118193-0001LF/609-4616-1-ND/2785380?utm_source=snapeda&amp;utm_medium=aggregator&amp;utm_campaign=symbol" x="118.02426875" y="-55.924475" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="MF" value="Amphenol ICC" x="118.02426875" y="-55.924475" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="MP" value="10118193-0001LF" x="118.02426875" y="-55.924475" size="1.778" layer="27" rot="R45" display="off"/>
-<attribute name="NAME" x="32.6493875" y="-38.862340625" size="1.27" layer="25" rot="R45"/>
+<attribute name="NAME" x="32.6493875" y="-38.862346875" size="0.508" layer="25" font="vector" rot="R45"/>
 <attribute name="PACKAGE" value="None" x="118.02426875" y="-55.924475" size="1.778" layer="27" rot="R45" display="off"/>
-<attribute name="VALUE" x="38.46601875" y="-44.72376875" size="1.27" layer="27" rot="R45"/>
+<attribute name="VALUE" x="38.466021875" y="-44.723771875" size="0.508" layer="27" font="vector" rot="R45"/>
 </element>
 <element name="D.J1" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2" value="" x="-21.082" y="-22.352" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="LTST-C171GKT" x="-21.082" y="-22.352" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="-18.2118" y="-20.0152" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="-22.86" y="-22.098" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="68" x="-21.082" y="-22.352" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="-19.812" y="-19.812" size="1.27" layer="27" rot="R180"/>
 </element>
 <element name="D.P1" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2" value="" x="8.11938125" y="-26.035259375" smashed="yes" rot="R270">
 <attribute name="COMPONENT" value="LTST-C171GKT" x="8.11938125" y="-26.035259375" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="10.98958125" y="-26.238459375" size="1.27" layer="25"/>
+<attribute name="NAME" x="6.92558125" y="-25.273259375" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="68" x="8.11938125" y="-26.035259375" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="6.84938125" y="-28.575259375" size="1.27" layer="27"/>
 </element>
 <element name="R.P1" library="mccloud" package="R0603" value="1k" x="34.163" y="-23.3934" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="RMCF0603FT1K00" x="34.163" y="-23.3934" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="38.8874" y="-24.003" size="1.27" layer="26" rot="MR0"/>
+<attribute name="NAME" x="34.671" y="-22.6822" size="0.508" layer="26" font="vector" rot="MR0"/>
 <attribute name="POPULARITY" value="77" x="34.163" y="-23.3934" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="34.163" y="-23.3934" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="VALUE" x="34.798" y="-25.9334" size="1.27" layer="28" rot="MR0"/>
+<attribute name="VALUE" x="34.798" y="-25.9334" size="0.508" layer="28" font="vector" rot="MR0"/>
 </element>
 <element name="R.P2" library="mccloud" package="R0603" value="10k" x="27.813" y="-31.242" smashed="yes" rot="R120">
 <attribute name="COMPONENT" value="RMCF0603FT10K0" x="27.813" y="-31.242" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="NAME" x="30.622303125" y="-31.02785625" size="1.27" layer="25" rot="R120"/>
+<attribute name="NAME" x="27.580571875" y="-32.109425" size="0.508" layer="25" font="vector" rot="R120"/>
 <attribute name="POPULARITY" value="77" x="27.813" y="-31.242" size="1.778" layer="27" rot="R120" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="27.813" y="-31.242" size="1.778" layer="27" rot="R120" display="off"/>
+<attribute name="VALUE" x="29.780278125" y="-30.839425" size="0.508" layer="27" font="vector" rot="R120"/>
 </element>
 <element name="R.P3" library="mccloud" package="R0603" value="10k" x="26.1112" y="-27.0002" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="RMCF0603FT10K0" x="26.1112" y="-27.0002" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="22.353465625" y="-25.0636125" size="1.27" layer="25" rot="R300"/>
+<attribute name="NAME" x="24.768825" y="-27.224971875" size="0.508" layer="25" font="vector" rot="R300"/>
 <attribute name="POPULARITY" value="77" x="26.1112" y="-27.0002" size="1.778" layer="27" rot="R300" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="26.1112" y="-27.0002" size="1.778" layer="27" rot="R300" display="off"/>
+<attribute name="VALUE" x="24.14391875" y="-27.402771875" size="0.508" layer="27" font="vector" rot="R300"/>
 </element>
 <element name="R.J1" library="mccloud" package="R0603" value="500" x="-17.78" y="-22.352" smashed="yes">
 <attribute name="COMPONENT" value="RMCF0603FT1K00" x="-17.78" y="-22.352" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-18.415" y="-21.082" size="1.27" layer="25"/>
+<attribute name="NAME" x="-17.272" y="-22.9362" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="77" x="-17.78" y="-22.352" size="1.778" layer="27" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-17.78" y="-22.352" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-18.415" y="-24.892" size="1.27" layer="27"/>
+<attribute name="VALUE" x="-18.415" y="-24.257" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="R.P4" library="mccloud" package="R0603" value="250Ω" x="6.731" y="-28.194" smashed="yes" rot="R270">
 <attribute name="COMPONENT" value="RMCF0603JT300R" x="6.731" y="-28.194" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="8.001" y="-27.559" size="1.27" layer="25" rot="R270"/>
+<attribute name="NAME" x="7.62" y="-27.7114" size="0.508" layer="25" font="vector" rot="R270"/>
 <attribute name="POPULARITY" value="77" x="6.731" y="-28.194" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="6.731" y="-28.194" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="4.191" y="-27.559" size="1.27" layer="27" rot="R270"/>
+<attribute name="VALUE" x="4.826" y="-27.559" size="0.508" layer="27" font="vector" rot="R270"/>
 </element>
 <element name="R.F2" library="mccloud" package="R0603" value="22.1k" x="36.0934" y="-37.2618" smashed="yes" rot="MR315">
 <attribute name="COMPONENT" value="RMCF0603FT22K1" x="36.0934" y="-37.2618" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="NAME" x="35.644384375" y="-35.9147625" size="1.27" layer="26" rot="MR315"/>
+<attribute name="NAME" x="35.898384375" y="-36.2703625" size="0.508" layer="26" font="vector" rot="MR315"/>
 <attribute name="POPULARITY" value="77" x="36.0934" y="-37.2618" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="36.0934" y="-37.2618" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="VALUE" x="38.3384625" y="-38.608840625" size="1.27" layer="28" rot="MR315"/>
+<attribute name="VALUE" x="38.3384625" y="-38.608840625" size="0.508" layer="28" font="vector" rot="MR315"/>
 </element>
 <element name="R.F3" library="mccloud" package="R0603" value="47.5K" x="37.5158" y="-38.7096" smashed="yes" rot="MR315">
 <attribute name="COMPONENT" value="RMCF0603FT47K5" x="37.5158" y="-38.7096" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="NAME" x="37.06678125" y="-37.362559375" size="1.27" layer="26" rot="MR315"/>
+<attribute name="NAME" x="37.73621875" y="-39.777240625" size="0.508" layer="26" font="vector" rot="MR135"/>
 <attribute name="POPULARITY" value="77" x="37.5158" y="-38.7096" size="1.778" layer="28" rot="MR315" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="37.5158" y="-38.7096" size="1.778" layer="28" rot="MR315" display="off"/>
-<attribute name="VALUE" x="39.7608625" y="-40.0566375" size="1.27" layer="28" rot="MR315"/>
+<attribute name="VALUE" x="39.7608625" y="-40.0566375" size="0.508" layer="28" font="vector" rot="MR315"/>
 </element>
 <element name="R.J2" library="mccloud" package="R0603" value="100k" x="-18.2626" y="-22.3012" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-18.2626" y="-22.3012" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-19.5326" y="-25.2984" size="1.27" layer="26" rot="MR180"/>
+<attribute name="NAME" x="-16.7132" y="-22.8092" size="0.508" layer="26" font="vector" rot="MR90"/>
 <attribute name="POPULARITY" value="77" x="-18.2626" y="-22.3012" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-18.2626" y="-22.3012" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
 <element name="R.J3" library="mccloud" package="R0603" value="22.1k" x="-18.796" y="-24.8158" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="RMCF0603FT22K1" x="-18.796" y="-24.8158" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-16.2306" y="-26.797" size="1.27" layer="26" rot="MR90"/>
+<attribute name="NAME" x="-19.939" y="-25.2222" size="0.508" layer="26" font="vector" rot="MR90"/>
 <attribute name="POPULARITY" value="77" x="-18.796" y="-24.8158" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-18.796" y="-24.8158" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
 <element name="R.J4" library="mccloud" package="R0603" value="100k" x="-17.78" y="-24.384" smashed="yes">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-17.78" y="-24.384" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-18.923" y="-22.8854" size="1.27" layer="25"/>
+<attribute name="NAME" x="-17.0942" y="-24.9174" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="77" x="-17.78" y="-24.384" size="1.778" layer="27" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-17.78" y="-24.384" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-18.415" y="-26.289" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="R.J5" library="mccloud" package="R0603" value="22.1k" x="-20.828" y="-24.384" smashed="yes">
 <attribute name="COMPONENT" value="RMCF0603FT22K1" x="-20.828" y="-24.384" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-22.1742" y="-22.5806" size="1.27" layer="25"/>
+<attribute name="NAME" x="-22.225" y="-24.257" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="77" x="-20.828" y="-24.384" size="1.778" layer="27" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-20.828" y="-24.384" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-21.463" y="-26.289" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="R.L1" library="mccloud" package="R0603" value="47.5k" x="-21.1074" y="-40.8686" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="RMCF0603FT47K5" x="-21.1074" y="-40.8686" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-17.6276" y="-41.6814" size="1.27" layer="26" rot="MR270"/>
+<attribute name="NAME" x="-21.717" y="-39.6748" size="0.508" layer="26" font="vector" rot="MR180"/>
 <attribute name="POPULARITY" value="77" x="-21.1074" y="-40.8686" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-21.1074" y="-40.8686" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="R.L2" library="mccloud" package="R0603" value="22.1k" x="-15.748" y="-50.927" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="RMCF0603FT22K1" x="-15.748" y="-50.927" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-14.9098" y="-50.2158" size="1.27" layer="26" rot="MR0"/>
+<attribute name="NAME" x="-16.5862" y="-50.6476" size="0.508" layer="26" font="vector" rot="MR270"/>
 <attribute name="POPULARITY" value="77" x="-15.748" y="-50.927" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-15.748" y="-50.927" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
 <element name="R.L3" library="mccloud" package="R0603" value="47.5k" x="-27.432" y="-39.37" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="RMCF0603FT47K5" x="-27.432" y="-39.37" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-29.8196" y="-40.9194" size="1.27" layer="26" rot="MR90"/>
+<attribute name="NAME" x="-26.4668" y="-39.9542" size="0.508" layer="26" font="vector" rot="MR90"/>
 <attribute name="POPULARITY" value="77" x="-27.432" y="-39.37" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-27.432" y="-39.37" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
 <element name="R.L4" library="mccloud" package="R0603" value="22.1k" x="-27.432" y="-42.418" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="RMCF0603FT22K1" x="-27.432" y="-42.418" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-26.162" y="-43.053" size="1.27" layer="26" rot="MR90"/>
+<attribute name="NAME" x="-26.3398" y="-42.7482" size="0.508" layer="26" font="vector" rot="MR90"/>
 <attribute name="POPULARITY" value="77" x="-27.432" y="-42.418" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-27.432" y="-42.418" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
 <element name="R.K2" library="mccloud" package="R0603" value="10k" x="28.702" y="-23.622" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="RMCF0603FT10K0" x="28.702" y="-23.622" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="25.9239875" y="-23.78874375" size="1.27" layer="25" rot="R300"/>
+<attribute name="NAME" x="28.705825" y="-22.119571875" size="0.508" layer="25" font="vector" rot="R300"/>
 <attribute name="POPULARITY" value="77" x="28.702" y="-23.622" size="1.778" layer="27" rot="R300" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="28.702" y="-23.622" size="1.778" layer="27" rot="R300" display="off"/>
+<attribute name="VALUE" x="26.73471875" y="-24.024571875" size="0.508" layer="27" font="vector" rot="R300"/>
 </element>
 <element name="R.B1" library="mccloud" package="R0603" value="0.25" x="-15.9766" y="-32.639" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="CSR0603FKR250" x="-15.9766" y="-32.639" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-16.697865625" y="-30.127259375" size="1.27" layer="26" rot="MR180"/>
+<attribute name="NAME" x="-16.697865625" y="-30.127259375" size="0.508" layer="26" font="vector" rot="MR180"/>
 <attribute name="POPULARITY" value="77" x="-15.9766" y="-32.639" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="75.4634" y="75.31099375" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
 <element name="R.B2" library="mccloud" package="R0603" value="1k" x="-13.1064" y="-49.7332" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="RMCF0603FT1K00" x="-13.1064" y="-49.7332" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-10.795" y="-48.514" size="1.27" layer="26" rot="MR0"/>
+<attribute name="NAME" x="-12.3444" y="-50.9524" size="0.508" layer="26" font="vector" rot="MR0"/>
 <attribute name="POPULARITY" value="77" x="-13.1064" y="-49.7332" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-13.1064" y="-49.7332" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="VALUE" x="-12.471403125" y="-52.273196875" size="1.27" layer="28" rot="MR0"/>
+<attribute name="VALUE" x="-12.471403125" y="-52.273196875" size="0.508" layer="28" font="vector" rot="MR0"/>
 </element>
 <element name="R.B3" library="mccloud" package="R0603" value="100k" x="-11.938" y="-33.02" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-11.938" y="-33.02" size="1.778" layer="28" rot="MR180" display="off"/>
@@ -2833,27 +2844,29 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="R.B4" library="mccloud" package="R0603" value="100k" x="-10.1346" y="-36.3474" smashed="yes" rot="R180">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-10.1346" y="-36.3474" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-6.4630375" y="-37.034671875" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="-11.6078" y="-35.5092" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="77" x="-10.1346" y="-36.3474" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-10.1346" y="-36.3474" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="-9.4996" y="-34.4424" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="T.P1" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" package="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" value="MMBT2222A" x="33.2994" y="-33.8836" smashed="yes" rot="MR60">
 <attribute name="COMPONENT" value="MMBT2222A-7-F" x="33.2994" y="-33.8836" size="1.778" layer="28" rot="MR60" display="off"/>
-<attribute name="NAME" x="33.914159375" y="-32.560796875" size="1.27" layer="26" rot="MR60"/>
+<attribute name="NAME" x="35.380196875" y="-34.081640625" size="0.508" layer="26" font="vector" rot="MR330"/>
 <attribute name="POPULARITY" value="0" x="33.2994" y="-33.8836" size="1.778" layer="28" rot="MR60" display="off"/>
 </element>
 <element name="T.P2" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" package="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" value="MMBT2222A" x="25.146" y="-22.098" smashed="yes" rot="R30">
 <attribute name="COMPONENT" value="MMBT2222A-7-F" x="25.146" y="-22.098" size="1.778" layer="27" rot="R30" display="off"/>
-<attribute name="NAME" x="22.543715625" y="-21.40071875" size="1.27" layer="25" rot="R30"/>
+<attribute name="NAME" x="24.70271875" y="-24.52248125" size="0.508" layer="25" font="vector" rot="R120"/>
 <attribute name="POPULARITY" value="0" x="25.146" y="-22.098" size="1.778" layer="27" rot="R30" display="off"/>
+<attribute name="VALUE" x="25.08371875" y="-25.800128125" size="0.508" layer="27" font="vector" rot="R30"/>
 </element>
 <element name="U.P1" library="mccloud" package="QFN24-4X4" value="CP2102N-A02-GQFN24R" x="32.512" y="-29.591" smashed="yes" rot="MR240">
 <attribute name="COMPONENT" value="CP2102N-A02-GQFN24R" x="32.512" y="-29.591" size="1.778" layer="28" rot="MR240" display="off"/>
-<attribute name="NAME" x="33.239628125" y="-32.346090625" size="1.27" layer="26" rot="MR240"/>
+<attribute name="NAME" x="30.822090625" y="-27.110771875" size="0.508" layer="26" font="vector" rot="MR150"/>
 </element>
 <element name="Q.B1" library="mccloud" package="DPACK" value="STD2805" x="-16.002" y="-43.434" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="STD2805" x="-16.002" y="-43.434" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-12.192" y="-45.974" size="1.27" layer="26" rot="MR90"/>
+<attribute name="NAME" x="-11.9634" y="-44.196" size="0.508" layer="26" font="vector" rot="MR270"/>
 </element>
 <element name="U.G1" library="mccloud" package="MODULE_ESP32-WROOM-32D" value="ESP32-WROOM-32D" x="20.574" y="-36.322" smashed="yes" rot="MR150">
 <attribute name="AVAILABILITY" value="Unavailable" x="32.116340625" y="-10.59391875" size="1.778" layer="28" rot="MR150" display="off"/>
@@ -2861,15 +2874,15 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="DESCRIPTION" value=" IC: SoC; GPIO, I2C, I2S, IR, SD, SDIO, SPI, UART; 2.7÷3.6VDC; 20dBm " x="32.116340625" y="-10.59391875" size="1.778" layer="28" rot="MR150" display="off"/>
 <attribute name="MF" value="Espressif Systems" x="32.116340625" y="-10.59391875" size="1.778" layer="28" rot="MR150" display="off"/>
 <attribute name="MP" value="ESP32-WROOM-32D" x="32.116340625" y="-10.59391875" size="1.778" layer="28" rot="MR150" display="off"/>
-<attribute name="NAME" x="20.3214" y="-52.45108125" size="1.27341875" layer="26" rot="MR150"/>
+<attribute name="NAME" x="30.2528" y="-38.45568125" size="0.508" layer="26" font="vector" rot="MR150"/>
 <attribute name="PACKAGE" value="Module Espressif Systems" x="32.116340625" y="-10.59391875" size="1.778" layer="28" rot="MR150" display="off"/>
 <attribute name="PRICE" value="None" x="32.116340625" y="-10.59391875" size="1.778" layer="28" rot="MR150" display="off"/>
-<attribute name="VALUE" x="29.034678125" y="-28.422634375" size="1.2738" layer="28" rot="MR150"/>
+<attribute name="VALUE" x="29.034678125" y="-28.422634375" size="0.508" layer="28" font="vector" rot="MR150"/>
 </element>
 <element name="U.D1" library="mccloud" package="D14" value="SN74AHCT125DR" x="34.925" y="-18.542" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="SN74AHCT125DR" x="34.925" y="-18.542" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="SN74AHCT125DR" x="103.504990625" y="-47.751990625" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="35.5599875" y="-15.2653875" size="1.27" layer="26" ratio="6" rot="SMR270"/>
+<attribute name="NAME" x="33.7820125" y="-14.8335875" size="0.508" layer="26" font="vector" ratio="6" rot="SMR0"/>
 <attribute name="VENDOR" value="Vendor" x="103.504990625" y="-47.751990625" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
 <element name="X.J1" library="B3P-VH_LF__SN_" package="B3P-VH" value="B3P-VH(LF)(SN)" x="-12.7" y="-30.226" smashed="yes" rot="R180">
@@ -2878,9 +2891,10 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="DESCRIPTION" value=" VH Series 3 Position 3.96 mm Pitch Through Hole Crimp Locking Header " x="-74.929971875" y="9.1440125" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="JST Sales" x="-74.929971875" y="9.1440125" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="B3P-VH_LF__SN_" x="-74.929971875" y="9.1440125" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-5.3619125" y="-38.01221875" size="1.27005" layer="25" rot="R180"/>
+<attribute name="NAME" x="-16.00453125" y="-35.446840625" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="FakePackage u" x="-74.929971875" y="9.1440125" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-74.929971875" y="9.1440125" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="-11.948625" y="-23.71408125" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="X.L1" library="B2P-VH_LF__SN_" package="JST_B2P-VH(LF)(SN)" value="B2P-VH(LF)(SN)" x="-24.13" y="-31.75" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="Unavailable" x="-68.58" y="24.13" size="1.778" layer="27" rot="R180" display="off"/>
@@ -2888,9 +2902,10 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="DESCRIPTION" value=" VH Series 3.96 mm Pitch, Compact, Lock Mechanism also Prevents Misinsertion " x="-68.58" y="24.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="JST Sales" x="-68.58" y="24.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="B2P-VH_LF__SN_" x="-68.58" y="24.13" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-19.87393125" y="-35.880890625" size="1.271809375" layer="25" rot="R180"/>
+<attribute name="NAME" x="-21.80433125" y="-35.677690625" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="PACKAGE" value="FakePackage u" x="-68.58" y="24.13" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-68.58" y="24.13" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="-19.877459375" y="-25.121040625" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="X.L2" library="B2P-VH_LF__SN_" package="JST_B2P-VH(LF)(SN)" value="B2P-VH(LF)(SN)" x="-24.13" y="-26.416" smashed="yes" rot="MR180">
 <attribute name="AVAILABILITY" value="Unavailable" x="35.56" y="29.464" size="1.778" layer="28" rot="MR180" display="off"/>
@@ -2898,383 +2913,391 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="DESCRIPTION" value=" VH Series 3.96 mm Pitch, Compact, Lock Mechanism also Prevents Misinsertion " x="35.56" y="29.464" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MF" value="JST Sales" x="35.56" y="29.464" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MP" value="B2P-VH_LF__SN_" x="35.56" y="29.464" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-28.38606875" y="-30.546890625" size="1.271809375" layer="26" rot="MR180"/>
+<attribute name="NAME" x="-29.65606875" y="-26.432090625" size="0.508" layer="26" font="vector" rot="MR180"/>
 <attribute name="PACKAGE" value="FakePackage u" x="35.56" y="29.464" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="PRICE" value="None" x="35.56" y="29.464" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
 <element name="SJ.K1" library="jumper" library_urn="urn:adsk.eagle:library:252" package="SJ" package3d_urn="urn:adsk.eagle:package:15471/1" value="" x="28.028746875" y="-26.0475375" smashed="yes" rot="R120">
-<attribute name="NAME" x="27.864378125" y="-28.048846875" size="1.27" layer="25" ratio="10" rot="R120"/>
+<attribute name="NAME" x="29.62364375" y="-27.228221875" size="0.508" layer="25" font="vector" ratio="10" rot="R210"/>
 <attribute name="POPULARITY" value="33" x="28.028746875" y="-26.0475375" size="1.778" layer="27" rot="R120" display="off"/>
 <attribute name="VALUE" x="27.828696875" y="-25.701040625" size="0.02" layer="27" rot="R120"/>
 </element>
 <element name="U.M1" library="mccloud" package="MOL0024A" value="TPSM84824MOLR" x="-6.604" y="-39.624" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="TPSM84824MOLR" x="-6.604" y="-39.624" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="TPSM84824MOLR" x="-6.604" y="-39.624" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-3.3274" y="-40.259" size="1.27" layer="26" ratio="6" rot="SMR0"/>
+<attribute name="NAME" x="-4.1402" y="-35.2806" size="0.508" layer="26" font="vector" ratio="6" rot="SMR0"/>
 <attribute name="VENDOR" value="Texas Instruments" x="-6.604" y="-39.624" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
 <element name="R.M1" library="mccloud" package="R0603" value="10k 0.1%" x="-1.4732" y="-37.8714" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="RG1608P-103-B-T5" x="-1.4732" y="-37.8714" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="-2.7432" y="-37.2364" size="1.27" layer="26" rot="MR270"/>
+<attribute name="NAME" x="-0.2032" y="-37.0586" size="0.508" layer="26" font="vector" rot="MR270"/>
 <attribute name="POPULARITY" value="77" x="-1.4732" y="-37.8714" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-1.4732" y="-37.8714" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="VALUE" x="1.0668" y="-37.2364" size="1.27" layer="28" rot="MR270"/>
+<attribute name="VALUE" x="1.0668" y="-37.2364" size="0.508" layer="28" font="vector" rot="MR270"/>
 </element>
 <element name="C.M1" library="mccloud" package="CAP_3225" value="10µF" x="-9.144" y="-42.672" smashed="yes">
 <attribute name="COMPONENT" value="C3225X7R1E106K250AC" x="-9.144" y="-42.672" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-12.4206" y="-43.307" size="1.27" layer="25" ratio="6" rot="SR0"/>
+<attribute name="NAME" x="-9.525" y="-45.1104" size="0.508" layer="25" font="vector" ratio="6" rot="SR0"/>
 </element>
 <element name="C.M2" library="mccloud" package="CAP_3225" value="10µF" x="-9.144" y="-39.116" smashed="yes">
 <attribute name="COMPONENT" value="C3225X7R1E106K250AC" x="-9.144" y="-39.116" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-12.4206" y="-39.751" size="1.27" layer="25" ratio="6" rot="SR0"/>
+<attribute name="NAME" x="-7.6708" y="-37.4396" size="0.508" layer="25" font="vector" ratio="6" rot="SR0"/>
 </element>
 <element name="C.M5" library="rcl" library_urn="urn:adsk.eagle:library:334" package="C1210" package3d_urn="urn:adsk.eagle:package:23619/2" value="47µF" x="-2.8448" y="-46.355" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="CL32A476KOJNNNE" x="-2.8448" y="-46.355" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="-4.749803125" y="-44.45000625" size="1.27" layer="26" rot="MR270"/>
+<attribute name="NAME" x="-0.99060625" y="-43.992796875" size="0.508" layer="26" font="vector" rot="MR0"/>
 <attribute name="POPULARITY" value="6" x="-2.8448" y="-46.355" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="SPICEPREFIX" value="C" x="-2.8448" y="-46.355" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="VALUE" x="0.330196875" y="-44.45000625" size="1.27" layer="28" rot="MR270"/>
+<attribute name="VALUE" x="0.330196875" y="-44.45000625" size="0.508" layer="28" font="vector" rot="MR270"/>
 </element>
 <element name="C.M6" library="mccloud" package="C6CYLCAP" value="220µF" x="2.794" y="-50.1396" smashed="yes" rot="MR60">
 <attribute name="COMPONENT" value="875075355002" x="2.794" y="-50.1396" size="1.778" layer="28" rot="MR60" display="off"/>
-<attribute name="NAME" x="8.86431875" y="-51.2537" size="1.27" layer="26" rot="MR60"/>
+<attribute name="NAME" x="8.86431875" y="-51.2537" size="0.508" layer="26" font="vector" rot="MR60"/>
 </element>
 <element name="R.M4" library="mccloud" package="R0603" value="95.3kΩ" x="-3.6068" y="-40.386" smashed="yes" rot="R180">
 <attribute name="COMPONENT" value="RMCF0603FT95K3" x="-3.6068" y="-40.386" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-2.9718" y="-41.656" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="-2.0828" y="-41.148" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="77" x="-3.6068" y="-40.386" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-3.6068" y="-40.386" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="-2.9718" y="-37.846" size="1.27" layer="27" rot="R180"/>
+<attribute name="VALUE" x="-2.9718" y="-38.481" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="U.Y1" library="mccloud" package="MSOP-16_MS-M" value="LTC4353CMSPBFMSOP-16_MS-M" x="-22.8854" y="-49.1744" smashed="yes">
 <attribute name="COMPONENT" value="LTC4353CMS#PBF" x="-22.8854" y="-49.1744" size="1.778" layer="27" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="LTC4353CMS#PBF" x="-22.8854" y="-49.1744" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-26.162" y="-49.8094" size="1.27" layer="25" ratio="6" rot="SR0"/>
+<attribute name="NAME" x="-23.5458" y="-52.0446" size="0.508" layer="25" font="vector" ratio="6" rot="SR0"/>
 <attribute name="VENDOR" value="Linear Technology" x="-22.8854" y="-49.1744" size="1.778" layer="27" display="off"/>
 </element>
 <element name="C.Y1" library="mccloud" package="C0603" value="0.1uF" x="-22.4536" y="-47.371" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-22.4536" y="-47.371" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-21.818596875" y="-46.735996875" size="1.27" layer="26" rot="MR0"/>
-<attribute name="VALUE" x="-21.8186" y="-49.275996875" size="1.27" layer="28" rot="MR0"/>
+<attribute name="NAME" x="-22.275796875" y="-48.615596875" size="0.508" layer="26" font="vector" rot="MR0"/>
+<attribute name="VALUE" x="-21.8186" y="-49.275996875" size="0.508" layer="28" font="vector" rot="MR0"/>
 </element>
 <element name="Q.Y1" library="mccloud" package="DPACK" value="AOD4184A" x="-5.969" y="-48.514" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="AOD4184A" x="-5.969" y="-48.514" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="-12.226440625" y="-52.22078125" size="1.27233125" layer="25" ratio="10" rot="R90"/>
-<attribute name="VALUE" x="1.7978" y="-52.5206" size="1.2721" layer="27" ratio="10" rot="R90"/>
+<attribute name="NAME" x="-1.651" y="-47.7012" size="0.508" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="-3.429" y="-43.434" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="Q.Y2" library="mccloud" package="DPACK" value="AOD4184A" x="-16.002" y="-40.894" smashed="yes" rot="R180">
 <attribute name="COMPONENT" value="AOD4184A" x="-16.002" y="-40.894" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-12.29521875" y="-47.151440625" size="1.27233125" layer="25" ratio="10" rot="R180"/>
-<attribute name="VALUE" x="-11.9954" y="-33.1272" size="1.2721" layer="27" ratio="10" rot="R180"/>
+<attribute name="NAME" x="-16.7386" y="-37.592" size="0.508" layer="25" font="vector"/>
+<attribute name="VALUE" x="-21.082" y="-38.354" size="0.508" layer="27" font="vector" rot="R270"/>
 </element>
 <element name="C.Y2" library="mccloud" package="C0603" value="56 nF" x="-19.8374" y="-47.9044" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="CL10B562KB8NNNC" x="-19.8374" y="-47.9044" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-19.2024" y="-48.5394" size="1.27" layer="26" rot="MR90"/>
-<attribute name="VALUE" x="-21.7424" y="-48.5394" size="1.27" layer="28" rot="MR90"/>
+<attribute name="NAME" x="-20.447" y="-47.8282" size="0.508" layer="26" font="vector" rot="MR270"/>
+<attribute name="VALUE" x="-21.7424" y="-48.5394" size="0.508" layer="28" font="vector" rot="MR90"/>
 </element>
 <element name="C.Y3" library="mccloud" package="C0603" value="56 nF" x="-25.1714" y="-48.9204" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="CL10B562KB8NNNC" x="-25.1714" y="-48.9204" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="-25.8064" y="-48.2854" size="1.27" layer="26" rot="MR270"/>
-<attribute name="VALUE" x="-23.2664" y="-48.2854" size="1.27" layer="28" rot="MR270"/>
+<attribute name="NAME" x="-25.8064" y="-48.2854" size="0.508" layer="26" font="vector" rot="MR270"/>
+<attribute name="VALUE" x="-23.2664" y="-48.2854" size="0.508" layer="28" font="vector" rot="MR270"/>
 </element>
 <element name="Q.K1" library="mccloud" package="SOT23" value="DMN5L06K-7" x="27.559" y="-24.4094" smashed="yes" rot="MR150">
 <attribute name="COMPONENT" value="DMN5L06K-7" x="27.559" y="-24.4094" size="1.778" layer="28" rot="MR150" display="off"/>
-<attribute name="NAME" x="26.86171875" y="-27.011678125" size="1.27" layer="26" rot="MR150"/>
-<attribute name="VALUE" x="24.32171875" y="-22.61226875" size="1.27" layer="28" rot="MR150"/>
+<attribute name="NAME" x="29.323078125" y="-25.66548125" size="0.508" layer="26" font="vector" rot="MR60"/>
+<attribute name="VALUE" x="24.32171875" y="-22.61226875" size="0.508" layer="28" font="vector" rot="MR150"/>
 </element>
 <element name="R.K1" library="mccloud" package="R0603" value="10k" x="24.9174" y="-21.8694" smashed="yes" rot="MR240">
 <attribute name="COMPONENT" value="RMCF0603FT10K0" x="24.9174" y="-21.8694" size="1.778" layer="28" rot="MR240" display="off"/>
-<attribute name="NAME" x="23.500046875" y="-21.954471875" size="1.27" layer="26" rot="MR240"/>
+<attribute name="NAME" x="25.836846875" y="-20.633671875" size="0.508" layer="26" font="vector" rot="MR240"/>
 <attribute name="POPULARITY" value="77" x="24.9174" y="-21.8694" size="1.778" layer="28" rot="MR240" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="24.9174" y="-21.8694" size="1.778" layer="28" rot="MR240" display="off"/>
-<attribute name="VALUE" x="26.799603125" y="-20.049471875" size="1.27" layer="28" rot="MR240"/>
+<attribute name="VALUE" x="26.799603125" y="-20.049471875" size="0.508" layer="28" font="vector" rot="MR240"/>
 </element>
 <element name="R.G1" library="mccloud" package="R0603" value="10k" x="24.765" y="-29.718" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="RMCF0603FT10K0" x="24.765" y="-29.718" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="25.949928125" y="-30.50035" size="1.27" layer="25" rot="R210"/>
+<attribute name="NAME" x="25.835625" y="-30.001225" size="0.508" layer="25" font="vector" rot="R210"/>
 <attribute name="POPULARITY" value="77" x="24.765" y="-29.718" size="1.778" layer="27" rot="R210" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="24.765" y="-29.718" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="VALUE" x="24.044928125" y="-27.20079375" size="1.27" layer="27" rot="R210"/>
+<attribute name="VALUE" x="24.362425" y="-27.75071875" size="0.508" layer="27" font="vector" rot="R210"/>
 </element>
 <element name="X.G1" library="con-lsta" library_urn="urn:adsk.eagle:library:161" package="FE05-1" package3d_urn="urn:adsk.eagle:package:8190/1" value="" x="14.986" y="-22.098" smashed="yes" rot="R210">
 <attribute name="MF" value="" x="14.986" y="-22.098" size="1.778" layer="27" rot="R210" display="off"/>
 <attribute name="MPN" value="" x="14.986" y="-22.098" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="21.3107625" y="-20.352809375" size="1.27" layer="25" ratio="10" rot="R210"/>
+<attribute name="NAME" x="11.15800625" y="-23.494840625" size="0.508" layer="25" font="vector" ratio="10" rot="R300"/>
 <attribute name="OC_FARNELL" value="unknown" x="14.986" y="-22.098" size="1.778" layer="27" rot="R210" display="off"/>
 <attribute name="OC_NEWARK" value="unknown" x="14.986" y="-22.098" size="1.778" layer="27" rot="R210" display="off"/>
 <attribute name="POPULARITY" value="7" x="14.986" y="-22.098" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="VALUE" x="15.8115" y="-23.527809375" size="1.27" layer="27" ratio="10" rot="R210"/>
+<attribute name="VALUE" x="15.8115" y="-23.52780625" size="1.27" layer="27" ratio="10" rot="R210"/>
 </element>
 <element name="C.F1" library="mccloud" package="C0603" value="4.7 nF" x="44.2214" y="-31.8262" smashed="yes" rot="R180">
 <attribute name="COMPONENT" value="CC0603CRNPO9BN4R7" x="44.2214" y="-31.8262" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="44.85639375" y="-32.461196875" size="1.27" layer="25" rot="R180"/>
-<attribute name="VALUE" x="44.856396875" y="-29.921196875" size="1.27" layer="27" rot="R180"/>
+<attribute name="NAME" x="44.577" y="-32.5374" size="0.508" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="44.8564" y="-29.9212" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="R.F4" library="mccloud" package="R0603" value="1M" x="42.937796875" y="-35.571796875" smashed="yes" rot="R225">
 <attribute name="COMPONENT" value="RMCF0603FG1M00" x="42.937796875" y="-35.571796875" size="1.778" layer="27" rot="R225" display="off"/>
-<attribute name="NAME" x="44.284828125" y="-36.020809375" size="1.27" layer="25" rot="R225"/>
+<attribute name="NAME" x="42.066978125" y="-35.294203125" size="0.508" layer="25" font="vector" rot="R45"/>
 <attribute name="POPULARITY" value="77" x="42.937796875" y="-35.571796875" size="1.778" layer="27" rot="R225" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="42.937796875" y="-35.571796875" size="1.778" layer="27" rot="R225" display="off"/>
-<attribute name="VALUE" x="41.590753125" y="-33.326734375" size="1.27" layer="27" rot="R225"/>
+<attribute name="VALUE" x="42.03976875" y="-33.77574375" size="0.508" layer="27" font="vector" rot="R225"/>
 </element>
 <element name="U.F1" library="mccloud" package="TSOT23-6" value="" x="43.7388" y="-17.0434" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="AP63205WU-7" x="43.7388" y="-17.0434" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="42.1513" y="-18.6309" size="1.016" layer="26" ratio="10" rot="MR180"/>
+<attribute name="NAME" x="43.2181" y="-14.8463" size="0.508" layer="26" font="vector" ratio="10" rot="MR180"/>
 <attribute name="VALUE" x="42.1513" y="-14.1859" size="1.016" layer="28" ratio="10" rot="MR180"/>
 </element>
 <element name="C.F2" library="mccloud" package="C0603" value="0.1uF" x="46.8122" y="-20.0152" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="46.8122" y="-20.0152" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="46.9392" y="-20.1422" size="1.27" layer="25" rot="R90"/>
-<attribute name="VALUE" x="48.7172" y="-20.6502" size="1.27" layer="27" rot="R90"/>
+<attribute name="NAME" x="46.1772" y="-20.6502" size="0.508" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="48.7172" y="-20.6502" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="C.F5" library="mccloud" package="C0603" value="22uF" x="40.6654" y="-20.0152" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="CL10A226MO7JZNC" x="40.6654" y="-20.0152" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="38.7604" y="-18.1102" size="1.27" layer="26" rot="MR270"/>
-<attribute name="VALUE" x="43.8404" y="-18.1102" size="1.27" layer="28" rot="MR270"/>
+<attribute name="NAME" x="41.91" y="-19.5326" size="0.508" layer="26" font="vector" rot="MR270"/>
+<attribute name="VALUE" x="43.8404" y="-18.1102" size="0.508" layer="28" font="vector" rot="MR270"/>
 </element>
 <element name="X.K1" library="mccloud" package="PTS645" value="RSTBTN" x="33.9977375" y="-28.014728125" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="PTS645SM43SMTR92 LFS" x="33.9977375" y="-28.014728125" size="1.778" layer="27" rot="R300" display="off"/>
+<attribute name="NAME" x="35.70018125" y="-32.056346875" size="0.508" layer="25" font="vector" rot="R30"/>
 </element>
 <element name="Q.L3" library="mccloud" package="SOT23" value="DMN5L06K-7" x="-25.781" y="-37.973" smashed="yes">
 <attribute name="COMPONENT" value="DMN5L06K-7" x="-25.781" y="-37.973" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-27.686" y="-36.068" size="1.27" layer="25"/>
-<attribute name="VALUE" x="-27.686" y="-41.148" size="1.27" layer="27"/>
+<attribute name="NAME" x="-24.0284" y="-38.354" size="0.508" layer="25" font="vector"/>
+<attribute name="VALUE" x="-27.686" y="-41.148" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="Q.L1" library="mccloud" package="SOT23" value="BSS84-7-F" x="-26.5938" y="-35.8648" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="BSS84-7-F" x="-26.5938" y="-35.8648" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-28.4988" y="-37.7698" size="1.27" layer="26" rot="MR180"/>
-<attribute name="VALUE" x="-28.4988" y="-32.6898" size="1.27" layer="28" rot="MR180"/>
+<attribute name="NAME" x="-25.7556" y="-37.6428" size="0.508" layer="26" font="vector" rot="MR90"/>
+<attribute name="VALUE" x="-28.4988" y="-32.6898" size="0.508" layer="28" font="vector" rot="MR180"/>
 </element>
 <element name="Q.L2" library="mccloud" package="SOT23" value="BSS84-7-F" x="-23.368" y="-38.862" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="BSS84-7-F" x="-23.368" y="-38.862" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-25.273" y="-40.767" size="1.27" layer="26" rot="MR180"/>
-<attribute name="VALUE" x="-25.273" y="-35.687" size="1.27" layer="28" rot="MR180"/>
+<attribute name="NAME" x="-24.5618" y="-40.6654" size="0.508" layer="26" font="vector" rot="MR90"/>
+<attribute name="VALUE" x="-25.273" y="-35.687" size="0.508" layer="28" font="vector" rot="MR180"/>
 </element>
 <element name="R.L5" library="mccloud" package="R0603" value="100k" x="-22.987" y="-34.798" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-22.987" y="-34.798" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-22.352" y="-33.528" size="1.27" layer="26" rot="MR0"/>
+<attribute name="NAME" x="-22.3774" y="-36.068" size="0.508" layer="26" font="vector" rot="MR0"/>
 <attribute name="POPULARITY" value="77" x="-22.987" y="-34.798" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-22.987" y="-34.798" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="VALUE" x="-22.352" y="-37.338" size="1.27" layer="28" rot="MR0"/>
+<attribute name="VALUE" x="-22.352" y="-37.338" size="0.508" layer="28" font="vector" rot="MR0"/>
 </element>
 <element name="R.L6" library="mccloud" package="R0603" value="100k" x="-27.432" y="-41.656" smashed="yes" rot="R270">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-27.432" y="-41.656" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="-26.162" y="-41.021" size="1.27" layer="25" rot="R270"/>
+<attribute name="NAME" x="-26.6192" y="-41.1734" size="0.508" layer="25" font="vector" rot="R270"/>
 <attribute name="POPULARITY" value="77" x="-27.432" y="-41.656" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-27.432" y="-41.656" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="-29.972" y="-41.021" size="1.27" layer="27" rot="R270"/>
+<attribute name="VALUE" x="-29.337" y="-41.021" size="0.508" layer="27" font="vector" rot="R270"/>
 </element>
 <element name="C.D2" library="mccloud" package="C0603" value="0.1uF" x="46.7614" y="-31.5722" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="46.7614" y="-31.5722" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="47.3964" y="-32.2072" size="1.27" layer="26" rot="MR90"/>
-<attribute name="VALUE" x="44.8564" y="-32.2072" size="1.27" layer="28" rot="MR90"/>
+<attribute name="NAME" x="47.3964" y="-32.2072" size="0.508" layer="26" font="vector" rot="MR90"/>
+<attribute name="VALUE" x="44.8564" y="-32.2072" size="0.508" layer="28" font="vector" rot="MR90"/>
 </element>
 <element name="C.D1" library="mccloud" package="810RADCAN" value="  1000µF " x="40.132" y="-30.734" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="UWT0J102MNL1GS" x="40.132" y="-30.734" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="35.132" y="-28.734" size="1.27" layer="26" rot="MR0"/>
-<attribute name="VALUE" x="35.132" y="-30.734" size="1.27" layer="28" rot="MR0"/>
+<attribute name="NAME" x="41.576" y="-35.0454" size="0.508" layer="26" font="vector" rot="MR180"/>
+<attribute name="VALUE" x="35.132" y="-30.734" size="0.508" layer="28" font="vector" rot="MR0"/>
 </element>
 <element name="TP.J1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-12.954" y="-24.892" smashed="yes">
-<attribute name="NAME" x="-15.9941" y="-24.5961" size="1.27" layer="25"/>
+<attribute name="NAME" x="-15.2321" y="-25.3835" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="-12.954" y="-24.892" size="1.778" layer="27" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="-12.954" y="-24.892" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-13.335" y="-25.4" size="0.0254" layer="27"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="-12.954" y="-26.797" size="1" layer="37"/>
+<attribute name="VALUE" x="-13.335" y="-25.4" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="TP.J2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-11.43" y="-23.114" smashed="yes" rot="R90">
-<attribute name="NAME" x="-11.9799" y="-23.6141" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="-12.8445" y="-22.5895" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="-11.43" y="-23.114" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="-11.43" y="-23.114" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="-10.922" y="-23.495" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="-9.525" y="-23.114" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="-10.922" y="-23.495" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.L1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-4.445" y="-53.6448" smashed="yes" rot="R90">
-<attribute name="NAME" x="-4.9949" y="-54.1449" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="-6.9009" y="-53.8315" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="-4.445" y="-53.6448" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="-4.445" y="-53.6448" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="-3.937" y="-54.0258" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="-2.54" y="-53.6448" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="-3.937" y="-54.0258" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.B1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-19.812" y="-35.814" smashed="yes" rot="R90">
-<attribute name="NAME" x="-21.8859" y="-38.6001" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="-20.0739" y="-36.5925" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="0" x="-19.812" y="-35.814" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="-19.812" y="-35.814" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="-19.304" y="-36.195" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="-17.907" y="-35.814" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="-19.304" y="-36.195" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.L2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-27.5336" y="-37.0332" smashed="yes" rot="R90">
-<attribute name="NAME" x="-28.0835" y="-37.5333" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="-27.7533" y="-39.4129" size="0.508" layer="25" font="vector" rot="R90"/>
 <attribute name="POPULARITY" value="0" x="-27.5336" y="-37.0332" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="-27.5336" y="-37.0332" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="-27.0256" y="-37.4142" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="-25.6286" y="-37.0332" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="-27.0256" y="-37.4142" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.M1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="2.7432" y="-46.4312" smashed="yes" rot="R180">
-<attribute name="NAME" x="3.2433" y="-46.9811" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="2.0241" y="-46.6255" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="0" x="2.7432" y="-46.4312" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="2.7432" y="-46.4312" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="3.1242" y="-45.9232" size="0.0254" layer="27" rot="R180"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="2.7432" y="-44.5262" size="1" layer="37" rot="R180"/>
+<attribute name="VALUE" x="3.1242" y="-45.9232" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="TP.M2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-4.826" y="-41.656" smashed="yes" rot="R180">
-<attribute name="NAME" x="-4.3259" y="-42.2059" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="-3.7925" y="-42.3075" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="0" x="-4.826" y="-41.656" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="-4.826" y="-41.656" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="-4.445" y="-41.148" size="0.0254" layer="27" rot="R180"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="-4.826" y="-39.751" size="1" layer="37" rot="R180"/>
+<attribute name="VALUE" x="-4.445" y="-41.148" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="TP.F1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="44.5008" y="-21.2344" smashed="yes" rot="R90">
-<attribute name="NAME" x="43.9509" y="-21.7345" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="43.9509" y="-21.7345" size="0.508" layer="25" font="vector" rot="R90"/>
 <attribute name="POPULARITY" value="0" x="44.5008" y="-21.2344" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="44.5008" y="-21.2344" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="45.0088" y="-21.6154" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="46.4058" y="-21.2344" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="45.0088" y="-21.6154" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.F2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="32.766" y="-37.084" smashed="yes" rot="R90">
-<attribute name="NAME" x="32.2161" y="-37.5841" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="32.1231" y="-36.8719" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="0" x="32.766" y="-37.084" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="32.766" y="-37.084" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="33.274" y="-37.465" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="34.671" y="-37.084" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="33.274" y="-37.465" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.F3" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="44.958" y="-30.1752" smashed="yes" rot="R90">
-<attribute name="NAME" x="44.4081" y="-30.6753" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="44.4589" y="-29.7863" size="0.508" layer="25" font="vector" rot="R90"/>
 <attribute name="POPULARITY" value="0" x="44.958" y="-30.1752" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="44.958" y="-30.1752" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="45.466" y="-30.5562" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="46.863" y="-30.1752" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="45.466" y="-30.5562" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.P1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="26.67" y="-33.274" smashed="yes" rot="R90">
-<attribute name="NAME" x="26.1201" y="-33.7741" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="27.3129" y="-33.8417" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="26.67" y="-33.274" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="26.67" y="-33.274" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="27.178" y="-33.655" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="28.575" y="-33.274" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="27.178" y="-33.655" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.P2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="25.654" y="-20.701" smashed="yes" rot="R90">
-<attribute name="NAME" x="25.1041" y="-21.2011" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="26.5001" y="-20.3797" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="25.654" y="-20.701" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="25.654" y="-20.701" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="26.162" y="-21.082" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="27.559" y="-20.701" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="26.162" y="-21.082" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.P3" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="28.0162" y="-29.21" smashed="yes" rot="R90">
-<attribute name="NAME" x="27.4663" y="-29.7101" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="28.6591" y="-29.7777" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="28.0162" y="-29.21" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="28.0162" y="-29.21" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="28.5242" y="-29.591" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="29.9212" y="-29.21" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="28.5242" y="-29.591" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="TP.P4" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="27.305" y="-21.1836" smashed="yes" rot="R90">
-<attribute name="NAME" x="26.7551" y="-21.6837" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="28.0495" y="-21.2179" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="27.305" y="-21.1836" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="27.305" y="-21.1836" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="27.813" y="-21.5646" size="0.0254" layer="27" rot="R90"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="29.21" y="-21.1836" size="1" layer="37" rot="R90"/>
+<attribute name="VALUE" x="27.813" y="-21.5646" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="Q.J1" library="mccloud" package="SOT23" value="" x="-14.224" y="-23.368" smashed="yes" rot="R270">
 <attribute name="COMPONENT" value="VESD16A2-03G-G3-08" x="-14.224" y="-23.368" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="-12.319" y="-21.463" size="1.27" layer="25" rot="R270"/>
+<attribute name="NAME" x="-13.6144" y="-22.0472" size="0.508" layer="25" font="vector"/>
 <attribute name="VALUE" x="-17.399" y="-21.463" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="C.P2" library="mccloud" package="C0603" value="0.1uF" x="30.8864" y="-23.9522" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="30.8864" y="-23.9522" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="30.2514" y="-23.3172" size="1.27" layer="26" rot="MR270"/>
-<attribute name="VALUE" x="32.7914" y="-23.3172" size="1.27" layer="28" rot="MR270"/>
+<attribute name="NAME" x="30.1752" y="-23.495" size="0.508" layer="26" font="vector" rot="MR270"/>
+<attribute name="VALUE" x="32.7914" y="-23.3172" size="0.508" layer="28" font="vector" rot="MR270"/>
 </element>
 <element name="C.P1" library="mccloud" package="C0603" value="4.7uF" x="34.0106" y="-25.4254" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="CL10A475MQ8NNNC" x="34.0106" y="-25.4254" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="34.6456" y="-24.7904" size="1.27" layer="26" rot="MR0"/>
-<attribute name="VALUE" x="34.6456" y="-27.3304" size="1.27" layer="28" rot="MR0"/>
+<attribute name="NAME" x="34.6456" y="-24.7904" size="0.508" layer="26" font="vector" rot="MR0"/>
+<attribute name="VALUE" x="34.6456" y="-27.3304" size="0.508" layer="28" font="vector" rot="MR0"/>
 </element>
 <element name="C.P3" library="mccloud" package="C0603" value="0.1uF" x="41.5798" y="-34.0614" smashed="yes" rot="R225">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="41.5798" y="-34.0614" size="1.778" layer="27" rot="R225" display="off"/>
-<attribute name="NAME" x="42.477825" y="-34.0614" size="1.27" layer="25" rot="R225"/>
-<attribute name="VALUE" x="40.681771875" y="-32.265346875" size="1.27" layer="27" rot="R225"/>
+<attribute name="NAME" x="41.131625" y="-32.7914" size="0.508" layer="25" font="vector" rot="R225"/>
+<attribute name="VALUE" x="40.681771875" y="-32.265346875" size="0.508" layer="27" font="vector" rot="R225"/>
 </element>
 <element name="C.P4" library="mccloud" package="C0603" value="4.7uF" x="40.132" y="-32.6136" smashed="yes" rot="R225">
 <attribute name="COMPONENT" value="CL10A475MQ8NNNC" x="40.132" y="-32.6136" size="1.778" layer="27" rot="R225" display="off"/>
-<attribute name="NAME" x="41.030025" y="-32.6136" size="1.27" layer="25" rot="R225"/>
-<attribute name="VALUE" x="39.233971875" y="-30.817546875" size="1.27" layer="27" rot="R225"/>
+<attribute name="NAME" x="39.683825" y="-31.369" size="0.508" layer="25" font="vector" rot="R225"/>
+<attribute name="VALUE" x="39.233971875" y="-30.817546875" size="0.508" layer="27" font="vector" rot="R225"/>
 </element>
 <element name="R.Y1" library="mccloud" package="R0603" value="10k" x="19.3548" y="-42.5704" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="RMCF0603FT10K0" x="19.3548" y="-42.5704" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="20.13715" y="-41.385471875" size="1.27" layer="25" rot="R300"/>
+<attribute name="NAME" x="17.707625" y="-40.204371875" size="0.508" layer="25" font="vector" rot="R300"/>
 <attribute name="POPULARITY" value="77" x="19.3548" y="-42.5704" size="1.778" layer="27" rot="R300" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="19.3548" y="-42.5704" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="VALUE" x="16.83759375" y="-43.290471875" size="1.27" layer="27" rot="R300"/>
+<attribute name="VALUE" x="17.38751875" y="-42.972971875" size="0.508" layer="27" font="vector" rot="R300"/>
 </element>
 <element name="TP.Y1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-24.6888" y="-46.609" smashed="yes">
-<attribute name="NAME" x="-25.1889" y="-46.0591" size="1.27" layer="25"/>
+<attribute name="NAME" x="-27.0685" y="-47.1767" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="-24.6888" y="-46.609" size="1.778" layer="27" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="-24.6888" y="-46.609" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-25.0698" y="-47.117" size="0.0254" layer="27"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="-24.6888" y="-48.514" size="1" layer="37"/>
+<attribute name="VALUE" x="-25.0698" y="-47.117" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="Q.Z3" library="mccloud" package="SOD-123HE1" value="SMD34LHE1" x="10.922" y="-28.448" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="SMD34LHE1-TP" x="10.922" y="-28.448" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="13.279040625" y="-28.530534375" size="1.778" layer="25" rot="R210"/>
+<attribute name="NAME" x="13.27905" y="-28.53053125" size="0.508" layer="25" font="vector" rot="R210"/>
+<attribute name="VALUE" x="11.37055625" y="-24.724921875" size="0.508" layer="27" font="vector" rot="R210"/>
 </element>
 <element name="C.Z2" library="mccloud" package="C0603" value="10uF" x="14.928846875" y="-25.43581875" smashed="yes" rot="R30">
 <attribute name="COMPONENT" value="GRM188R61A106KE69D" x="14.119465625" y="-34.70193125" size="1.778" layer="27" rot="R30" display="off"/>
-<attribute name="NAME" x="12.32656875" y="-24.738540625" size="1.27" layer="25" rot="R30"/>
+<attribute name="NAME" x="14.13761875" y="-25.050990625" size="0.508" layer="25" font="vector" rot="R30"/>
+<attribute name="VALUE" x="15.33141875" y="-27.403096875" size="0.508" layer="27" font="vector" rot="R30"/>
 </element>
 <element name="U.Z1" library="mccloud" package="TSOT23-6" value="" x="17.114390625" y="-30.2023875" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="AP63205WU-7" x="21.37768125" y="-25.394625" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="17.69545625" y="-28.033825" size="1.016" layer="25" ratio="10" rot="R300"/>
+<attribute name="NAME" x="17.695453125" y="-28.033821875" size="0.508" layer="25" font="vector" ratio="10" rot="R300"/>
 <attribute name="VALUE" x="13.845971875" y="-30.256321875" size="1.016" layer="27" ratio="10" rot="R300"/>
 </element>
 <element name="C.Z3" library="mccloud" package="C0603" value="0.1uF" x="22.035640625" y="-31.225396875" smashed="yes" rot="R30">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="28.385640625" y="-42.223915625" size="1.778" layer="27" rot="R30" display="off"/>
-<attribute name="NAME" x="21.1682125" y="-30.992971875" size="1.27" layer="25" rot="R30"/>
-<attribute name="VALUE" x="22.4382125" y="-33.192675" size="1.27" layer="27" rot="R30"/>
+<attribute name="NAME" x="19.6442125" y="-32.77096875" size="0.508" layer="25" font="vector" rot="R30"/>
+<attribute name="VALUE" x="22.4382125" y="-33.192675" size="0.508" layer="27" font="vector" rot="R30"/>
 </element>
 <element name="C.Z4" library="mccloud" package="C0603" value="22uF" x="21.170575" y="-21.538225" smashed="yes" rot="R120">
 <attribute name="COMPONENT" value="CL10A226MO7JZNC" x="43.167615625" y="-8.838225" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="NAME" x="20.473296875" y="-24.140503125" size="1.27" layer="25" rot="R120"/>
+<attribute name="NAME" x="21.860853125" y="-21.53635" size="0.508" layer="25" font="vector" rot="R300"/>
+<attribute name="VALUE" x="23.137853125" y="-21.13565" size="0.508" layer="27" font="vector" rot="R120"/>
 </element>
 <element name="TP.Z1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="22.2504" y="-20.32" smashed="yes">
-<attribute name="NAME" x="21.7503" y="-19.7701" size="1.27" layer="25"/>
+<attribute name="NAME" x="22.5123" y="-21.4211" size="0.508" layer="25" font="vector" rot="R30"/>
 <attribute name="POPULARITY" value="0" x="22.2504" y="-40.64" size="1.778" layer="27" display="off"/>
 <attribute name="TP_SIGNAL_NAME" value="" x="22.2504" y="-22.225" size="1" layer="37"/>
-<attribute name="VALUE" x="21.8694" y="-20.828" size="0.0254" layer="27"/>
+<attribute name="VALUE" x="21.8694" y="-20.828" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="Q.Z1" library="mccloud" package="SOD-123HE1" value="SMD34LHE1" x="12.5222" y="-31.1912" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="SMD34LHE1-TP" x="12.5222" y="-31.1912" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="14.87925625" y="-31.273725" size="1.778" layer="25" rot="R210"/>
+<attribute name="NAME" x="14.87925" y="-31.27373125" size="0.508" layer="25" font="vector" rot="R210"/>
+<attribute name="VALUE" x="12.97075625" y="-27.468121875" size="0.508" layer="27" font="vector" rot="R210"/>
 </element>
 <element name="Q.Z2" library="mccloud" package="SOD-123HE1" value="SMD34LHE1" x="24.0792" y="-34.7218" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="SMD34LHE1-TP" x="24.0792" y="-34.7218" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="24.161740625" y="-32.36475" size="1.778" layer="25" rot="R300"/>
+<attribute name="NAME" x="24.16173125" y="-32.364746875" size="0.508" layer="25" font="vector" rot="R300"/>
+<attribute name="VALUE" x="20.356121875" y="-34.273240625" size="0.508" layer="27" font="vector" rot="R300"/>
 </element>
 <element name="Q.F1" library="mccloud" package="SOD-123HE1" value="SMD34LHE1" x="41.656" y="-29.1846" smashed="yes" rot="R180">
 <attribute name="COMPONENT" value="SMD34LHE1-TP" x="41.656" y="-29.1846" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="43.656" y="-30.434603125" size="1.778" layer="25" rot="R180"/>
-<attribute name="VALUE" x="43.906" y="-26.184603125" size="1.778" layer="27" rot="R180"/>
+<attribute name="NAME" x="40.989" y="-30.333" size="0.508" layer="25" font="vector" rot="R180"/>
+<attribute name="VALUE" x="43.906" y="-26.1846" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="Q.F2" library="mccloud" package="SOD-123HE1" value="SMD34LHE1" x="46.5836" y="-27.2288" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="SMD34LHE1-TP" x="46.5836" y="-27.2288" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="45.333596875" y="-29.22880625" size="1.778" layer="25" rot="R90"/>
-<attribute name="VALUE" x="49.5836" y="-29.47880625" size="1.778" layer="27" rot="R90"/>
+<attribute name="NAME" x="45.3844" y="-27.4508" size="0.508" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="49.5836" y="-29.4788" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="L.Z1" library="mccloud" package="SRR4818A-XXXX" value="3.9µH" x="21.209" y="-26.91666875" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="SRR4818A-3R9Y" x="21.209" y="-26.91666875" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="19.110921875" y="-29.28269375" size="1.778" layer="25" rot="R210"/>
+<attribute name="NAME" x="23.18669375" y="-25.339078125" size="0.508" layer="25" font="vector" rot="R300"/>
+<attribute name="VALUE" x="18.110921875" y="-27.550640625" size="0.508" layer="27" font="vector" rot="R210"/>
 </element>
 <element name="L.F1" library="mccloud" package="SRR4818A-XXXX" value="4.7µH" x="44.7548" y="-23.1394" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="SRR4818A-3R9Y" x="44.7548" y="-23.1394" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="45.7548" y="-20.1394" size="1.778" layer="26" rot="MR90"/>
-<attribute name="VALUE" x="43.7548" y="-20.1394" size="1.778" layer="28" rot="MR90"/>
+<attribute name="NAME" x="45.2346" y="-26.1526" size="0.508" layer="26" font="vector" rot="MR0"/>
+<attribute name="VALUE" x="43.7548" y="-20.1394" size="0.508" layer="28" font="vector" rot="MR90"/>
 </element>
 <element name="C.Z5" library="mccloud" package="C0603" value="0.1uF" x="15.944846875" y="-27.23205625" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="15.944846875" y="-27.23205625" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="16.812271875" y="-27.46448125" size="1.27" layer="25" rot="R210"/>
+<attribute name="NAME" x="16.812271875" y="-27.46448125" size="0.508" layer="25" font="vector" rot="R210"/>
+<attribute name="VALUE" x="15.542271875" y="-25.264775" size="0.508" layer="27" font="vector" rot="R210"/>
 </element>
 <element name="C.F6" library="mccloud" package="C0603" value="0.1uF" x="47.244" y="-15.494" smashed="yes" rot="R270">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="47.244" y="-15.494" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="47.879" y="-14.859" size="1.27" layer="25" rot="R270"/>
-<attribute name="VALUE" x="45.339" y="-14.859" size="1.27" layer="27" rot="R270"/>
+<attribute name="NAME" x="45.9486" y="-15.5956" size="0.508" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="45.339" y="-14.859" size="0.508" layer="27" font="vector" rot="R270"/>
 </element>
 <element name="TP.Z2" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="13.12903125" y="-26.5381125" smashed="yes" rot="R30">
-<attribute name="NAME" x="12.420984375" y="-26.311934375" size="1.27" layer="25" rot="R30"/>
+<attribute name="NAME" x="11.81138125" y="-26.464334375" size="0.508" layer="25" font="vector" rot="R30"/>
 <attribute name="POPULARITY" value="0" x="13.12903125" y="-26.5381125" size="1.778" layer="27" rot="R30" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="13.12903125" y="-26.5381125" size="1.778" layer="27" rot="R30" display="off"/>
-<attribute name="VALUE" x="13.053078125" y="-27.168553125" size="0.0254" layer="27" rot="R30"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="14.08153125" y="-28.187890625" size="1" layer="37" rot="R30"/>
+<attribute name="VALUE" x="13.053075" y="-27.168553125" size="0.508" layer="27" font="vector" rot="R30"/>
 </element>
 <element name="C.M3" library="mccloud" package="OSCON_SVPF_6.3MM" value="56µF" x="-13.208" y="-25.4" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="APXG250ARA560MF61G" x="-13.208" y="-25.4" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-14.960890625" y="-26.40165" size="1.01768125" layer="26" rot="MR180"/>
-<attribute name="VALUE" x="-14.95856875" y="-23.424359375" size="1.01633125" layer="28" rot="MR180"/>
+<attribute name="NAME" x="-10.312690625" y="-27.51925" size="0.508" layer="26" font="vector" rot="MR180"/>
+<attribute name="VALUE" x="-14.95856875" y="-23.424359375" size="0.508" layer="28" font="vector" rot="MR180"/>
 </element>
 <element name="C.M4" library="mccloud" package="OSCON_SVPF_6.3MM" value="56µF" x="-7.874" y="-48.26" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="APXG250ARA560MF61G" x="-7.874" y="-48.26" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-6.87235" y="-50.012890625" size="1.01768125" layer="26" rot="MR90"/>
-<attribute name="VALUE" x="-9.849640625" y="-50.01056875" size="1.01633125" layer="28" rot="MR90"/>
+<attribute name="NAME" x="-9.042109375" y="-52.28755" size="0.508" layer="26" font="vector" rot="MR0"/>
+<attribute name="VALUE" x="-9.849640625" y="-50.01056875" size="0.508" layer="28" font="vector" rot="MR90"/>
 </element>
 <element name="U.B1" library="mccloud" package="SOP65P640X120-8N" value="BQ2057TTS" x="-16.0528" y="-35.4838" smashed="yes" rot="MR0">
 <attribute name="DESCRIPTION" value=" Low Dropout Linear 2-cell Li-Ion Charge Controller with AutoCompTM, 8.2V 8-TSSOP -20 to 70 " x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
@@ -3282,171 +3305,173 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="DIGI-KEY_PURCHASE_URL" value="https://www.digikey.com/product-detail/en/texas-instruments/BQ2057TTS/296-9363-5-ND/379996?utm_source=snapeda&amp;utm_medium=aggregator&amp;utm_campaign=symbol" x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MF" value="Texas Instruments" x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MP" value="BQ2057TTS" x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-12.193190625" y="-33.46948125" size="0.609696875" layer="26" rot="MR0"/>
+<attribute name="NAME" x="-15.469790625" y="-37.66048125" size="0.508" layer="26" font="vector" rot="MR0"/>
 <attribute name="PACKAGE" value="TSSOP-8 Texas Instruments" x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="VALUE" x="-12.287809375" y="-38.256209375" size="0.610571875" layer="28" rot="MR0"/>
+<attribute name="VALUE" x="-12.287809375" y="-38.256209375" size="0.508" layer="28" font="vector" rot="MR0"/>
 </element>
 <element name="R.M2" library="mccloud" package="R0603" value="37.4kΩ 1%" x="-4.572" y="-35.814" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="RC0603FR-0737K4L" x="-4.572" y="-35.814" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="-5.207" y="-36.449" size="1.27" layer="25" rot="R90"/>
+<attribute name="NAME" x="-3.7592" y="-35.9664" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="77" x="-4.572" y="-35.814" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-4.572" y="-35.814" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="-2.667" y="-36.449" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="R.M3" library="mccloud" package="R0603" value="768Ω 0.1%" x="-3.6068" y="-38.354" smashed="yes">
 <attribute name="COMPONENT" value="RQ73C1J768RBTD " x="-3.6068" y="-38.354" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-4.2418" y="-37.719" size="1.27" layer="25"/>
+<attribute name="NAME" x="-2.0828" y="-39.0398" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="77" x="-3.6068" y="-38.354" size="1.778" layer="27" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-3.6068" y="-38.354" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-4.2418" y="-40.259" size="1.27" layer="27"/>
+<attribute name="VALUE" x="-4.2418" y="-40.259" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="X.S1" library="mccloud" package="BM02B-PASS-1-TFT(LF)(SN)" value="BM02B-PASS-1-TFT(LF)(SN)" x="4.1656" y="-51.435" smashed="yes">
-<attribute name="NAME" x="-0.9144" y="-57.785" size="1.778" layer="25"/>
+<attribute name="NAME" x="-0.4318" y="-54.7116" size="0.508" layer="25" font="vector" rot="R90"/>
 </element>
 <element name="X.S2" library="mccloud" package="BM03B-PASS-1-TFT(LF)(SN)" value="BM03B-PASS-1-TFT(LF)(SN)" x="5.93350625" y="-39.117296875" smashed="yes" rot="R300">
-<attribute name="NAME" x="-2.10575625" y="-37.892890625" size="1.778" layer="25" rot="R300"/>
+<attribute name="NAME" x="1.2660875" y="-35.278153125" size="0.508" layer="25" font="vector" rot="R30"/>
 </element>
 <element name="X.S3" library="mccloud" package="BM03B-PASS-1-TFT(LF)(SN)" value="BM03B-PASS-1-TFT(LF)(SN)" x="5.909084375" y="-41.93523125" smashed="yes" rot="MR240">
-<attribute name="NAME" x="8.86834375" y="-34.360821875" size="1.778" layer="26" rot="MR240"/>
+<attribute name="NAME" x="5.440978125" y="-35.61454375" size="0.508" layer="26" font="vector" rot="MR330"/>
 </element>
 <element name="X.D1" library="mccloud" package="BM04B-PASS-1-TFT(LF)(SN)" value="BM04B-PASS-1-TFT(LF)(SN)" x="38.1508" y="-18.161" smashed="yes" rot="R180">
-<attribute name="NAME" x="44.5008" y="-11.811" size="1.778" layer="25" rot="R180"/>
+<attribute name="NAME" x="31.0896" y="-16.0528" size="0.508" layer="25" font="vector" rot="R270"/>
 </element>
 <element name="C.J1" library="mccloud" package="C0603" value="0.1uF" x="-10.414" y="-24.384" smashed="yes">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-10.414" y="-24.384" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-11.049" y="-23.749" size="1.27" layer="25"/>
-<attribute name="VALUE" x="-11.049" y="-26.289" size="1.27" layer="27"/>
+<attribute name="NAME" x="-8.5598" y="-25.019" size="0.508" layer="25" font="vector"/>
+<attribute name="VALUE" x="-11.049" y="-26.289" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="C.J2" library="mccloud" package="C0603" value="0.1uF" x="-6.604" y="-31.75" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-6.604" y="-31.75" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-5.969" y="-32.385" size="1.27" layer="26" rot="MR90"/>
-<attribute name="VALUE" x="-8.509" y="-32.385" size="1.27" layer="28" rot="MR90"/>
+<attribute name="NAME" x="-5.8674" y="-32.3088" size="0.508" layer="26" font="vector" rot="MR90"/>
+<attribute name="VALUE" x="-8.509" y="-32.385" size="0.508" layer="28" font="vector" rot="MR90"/>
 </element>
 <element name="C.M7" library="mccloud" package="C0603" value="0.1uF" x="1.27" y="-43.942" smashed="yes" rot="R120">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="1.27" y="-43.942" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="NAME" x="1.037571875" y="-44.809421875" size="1.27" layer="25" rot="R120"/>
-<attribute name="VALUE" x="3.237275" y="-43.539425" size="1.27" layer="27" rot="R120"/>
+<attribute name="NAME" x="1.037571875" y="-44.809425" size="0.508" layer="25" font="vector" rot="R120"/>
+<attribute name="VALUE" x="3.237278125" y="-43.539425" size="0.508" layer="27" font="vector" rot="R120"/>
 </element>
 <element name="C.L1" library="mccloud" package="C0603" value="0.1uF" x="-21.082" y="-40.132" smashed="yes" rot="R270">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-21.082" y="-40.132" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="-20.447" y="-39.497" size="1.27" layer="25" rot="R270"/>
-<attribute name="VALUE" x="-22.987" y="-39.497" size="1.27" layer="27" rot="R270"/>
+<attribute name="NAME" x="-20.3962" y="-39.5732" size="0.508" layer="25" font="vector" rot="R270"/>
+<attribute name="VALUE" x="-22.987" y="-39.497" size="0.508" layer="27" font="vector" rot="R270"/>
 </element>
 <element name="C.L2" library="mccloud" package="C0603" value="0.1uF" x="-26.416" y="-24.13" smashed="yes" rot="R180">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-26.416" y="-24.13" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="-25.781" y="-24.765" size="1.27" layer="25" rot="R180"/>
-<attribute name="VALUE" x="-25.781" y="-22.225" size="1.27" layer="27" rot="R180"/>
+<attribute name="NAME" x="-27.178" y="-23.368" size="0.508" layer="25" font="vector"/>
+<attribute name="VALUE" x="-25.654" y="-23.368" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="C.Y4" library="mccloud" package="C0603" value="0.1uF" x="-16.002" y="-48.006" smashed="yes">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-16.002" y="-48.006" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-16.637" y="-47.371" size="1.27" layer="25"/>
-<attribute name="VALUE" x="-16.637" y="-49.911" size="1.27" layer="27"/>
+<attribute name="NAME" x="-14.4018" y="-48.2346" size="0.508" layer="25" font="vector"/>
+<attribute name="VALUE" x="-16.637" y="-49.911" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="C.Z6" library="mccloud" package="C0603" value="0.1uF" x="19.410809375" y="-22.554225" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="19.410809375" y="-22.554225" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="19.6432375" y="-21.686796875" size="1.27" layer="25" rot="R300"/>
+<attribute name="NAME" x="19.719434375" y="-21.762996875" size="0.508" layer="25" font="vector" rot="R300"/>
+<attribute name="VALUE" x="17.443528125" y="-22.956796875" size="0.508" layer="27" font="vector" rot="R300"/>
 </element>
 <element name="C.F7" library="mccloud" package="C0603" value="0.1uF" x="46.609" y="-23.2664" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="46.609" y="-23.2664" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="45.974" y="-23.9014" size="1.27" layer="25" rot="R90"/>
-<attribute name="VALUE" x="48.514" y="-23.9014" size="1.27" layer="27" rot="R90"/>
+<attribute name="NAME" x="45.974" y="-23.9014" size="0.508" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="48.514" y="-23.9014" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="C.F8" library="mccloud" package="C0603" value="0.1uF" x="46.863" y="-31.5976" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="46.863" y="-31.5976" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="46.228" y="-32.2326" size="1.27" layer="25" rot="R90"/>
-<attribute name="VALUE" x="48.768" y="-32.2326" size="1.27" layer="27" rot="R90"/>
+<attribute name="NAME" x="46.228" y="-32.2326" size="0.508" layer="25" font="vector" rot="R90"/>
+<attribute name="VALUE" x="48.768" y="-32.2326" size="0.508" layer="27" font="vector" rot="R90"/>
 </element>
 <element name="C.S1" library="mccloud" package="C0603" value="0.1uF" x="8.636" y="-32.766" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="8.636" y="-32.766" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="9.503428125" y="-32.998428125" size="1.27" layer="25" rot="R210"/>
-<attribute name="VALUE" x="8.233428125" y="-30.798721875" size="1.27" layer="27" rot="R210"/>
+<attribute name="NAME" x="9.503425" y="-32.998425" size="0.508" layer="25" font="vector" rot="R210"/>
+<attribute name="VALUE" x="8.233425" y="-30.79871875" size="0.508" layer="27" font="vector" rot="R210"/>
 </element>
 <element name="C.G1" library="mccloud" package="C0603" value="0.1uF" x="17.653" y="-43.688" smashed="yes" rot="R120">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="17.653" y="-43.688" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="NAME" x="17.420571875" y="-44.555428125" size="1.27" layer="25" rot="R120"/>
-<attribute name="VALUE" x="19.620278125" y="-43.285428125" size="1.27" layer="27" rot="R120"/>
+<attribute name="NAME" x="16.861771875" y="-42.294825" size="0.508" layer="25" font="vector" rot="R120"/>
+<attribute name="VALUE" x="19.620278125" y="-43.285425" size="0.508" layer="27" font="vector" rot="R120"/>
 </element>
 <element name="C.EJ1" library="mccloud" package="C0603" value="0.1uF" x="-18.796" y="-27.94" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-18.796" y="-27.94" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="-19.431" y="-27.305" size="1.27" layer="26" rot="MR270"/>
-<attribute name="VALUE" x="-16.891" y="-27.305" size="1.27" layer="28" rot="MR270"/>
+<attribute name="NAME" x="-19.431" y="-27.305" size="0.508" layer="26" font="vector" rot="MR270"/>
+<attribute name="VALUE" x="-16.891" y="-27.305" size="0.508" layer="28" font="vector" rot="MR270"/>
 </element>
 <element name="C.ES1" library="mccloud" package="C0603" value="0.1uF" x="11.176" y="-38.1" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="11.176" y="-38.1" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="11.408428125" y="-37.232578125" size="1.27" layer="25" rot="R300"/>
-<attribute name="VALUE" x="9.208721875" y="-38.502578125" size="1.27" layer="27" rot="R300"/>
+<attribute name="NAME" x="11.891025" y="-39.696371875" size="0.508" layer="25" font="vector" rot="R300"/>
+<attribute name="VALUE" x="9.20871875" y="-38.502571875" size="0.508" layer="27" font="vector" rot="R300"/>
 </element>
 <element name="C.ES2" library="mccloud" package="C0603" value="0.1uF" x="15.5448" y="-36.6776" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="15.5448" y="-36.6776" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="15.777215625" y="-35.81018125" size="1.27" layer="25" rot="R300"/>
-<attribute name="VALUE" x="13.577515625" y="-37.080171875" size="1.27" layer="27" rot="R300"/>
+<attribute name="NAME" x="15.853425" y="-38.350171875" size="0.508" layer="25" font="vector" rot="R300"/>
+<attribute name="VALUE" x="13.57751875" y="-37.080171875" size="0.508" layer="27" font="vector" rot="R300"/>
 </element>
 <element name="R.ES1" library="mccloud" package="R0603" value="0" x="13.716" y="-37.6428" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="RMCF0603FG1M00" x="13.716" y="-37.6428" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="13.948428125" y="-36.775375" size="1.27" layer="25" rot="R300"/>
+<attribute name="NAME" x="14.405625" y="-39.162971875" size="0.508" layer="25" font="vector" rot="R300"/>
 <attribute name="POPULARITY" value="77" x="13.716" y="-37.6428" size="1.778" layer="27" rot="R300" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="13.716" y="-37.6428" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="VALUE" x="11.748721875" y="-38.045378125" size="1.27" layer="27" rot="R300"/>
+<attribute name="VALUE" x="11.74871875" y="-38.045371875" size="0.508" layer="27" font="vector" rot="R300"/>
 </element>
 <element name="R.ES2" library="mccloud" package="R0603" value="0" x="13.7668" y="-34.1122" smashed="yes" rot="R120">
 <attribute name="COMPONENT" value="RMCF0603FG1M00" x="13.7668" y="-34.1122" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="NAME" x="13.534378125" y="-34.979621875" size="1.27" layer="25" rot="R120"/>
+<attribute name="NAME" x="13.458171875" y="-35.106625" size="0.508" layer="25" font="vector" rot="R120"/>
 <attribute name="POPULARITY" value="77" x="13.7668" y="-34.1122" size="1.778" layer="27" rot="R120" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="13.7668" y="-34.1122" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="VALUE" x="15.734078125" y="-33.709625" size="1.27" layer="27" rot="R120"/>
+<attribute name="VALUE" x="15.734078125" y="-33.709625" size="0.508" layer="27" font="vector" rot="R120"/>
 </element>
 <element name="R.ED1" library="mccloud" package="R0603" value="0" x="39.6494" y="-23.3426" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="RMCF0603FG1M00" x="39.6494" y="-23.3426" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="40.2844" y="-22.7076" size="1.27" layer="26" rot="MR0"/>
+<attribute name="NAME" x="40.2844" y="-22.7076" size="0.508" layer="26" font="vector" rot="MR0"/>
 <attribute name="POPULARITY" value="77" x="39.6494" y="-23.3426" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="39.6494" y="-23.3426" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="VALUE" x="40.2844" y="-25.2476" size="1.27" layer="28" rot="MR0"/>
+<attribute name="VALUE" x="40.2844" y="-25.2476" size="0.508" layer="28" font="vector" rot="MR0"/>
 </element>
 <element name="R.CD1" library="mccloud" package="C0603" value="0.1uF" x="38.608" y="-25.908" smashed="yes">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="38.608" y="-25.908" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="37.973" y="-25.273" size="1.27" layer="25"/>
-<attribute name="VALUE" x="37.973" y="-27.813" size="1.27" layer="27"/>
+<attribute name="NAME" x="38.2778" y="-27.1272" size="0.508" layer="25" font="vector"/>
+<attribute name="VALUE" x="37.973" y="-27.813" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="R.ED2" library="mccloud" package="R0603" value="0" x="37.1348" y="-23.7998" smashed="yes" rot="R180">
 <attribute name="COMPONENT" value="RMCF0603FG1M00" x="37.1348" y="-23.7998" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="37.7698" y="-24.4348" size="1.27" layer="25" rot="R180"/>
+<attribute name="NAME" x="38.1" y="-24.511" size="0.508" layer="25" font="vector" rot="R180"/>
 <attribute name="POPULARITY" value="77" x="37.1348" y="-23.7998" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="37.1348" y="-23.7998" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="37.7698" y="-21.8948" size="1.27" layer="27" rot="R180"/>
+<attribute name="VALUE" x="37.7698" y="-21.8948" size="0.508" layer="27" font="vector" rot="R180"/>
 </element>
 <element name="R.CD2" library="mccloud" package="C0603" value="0.1uF" x="39.5478" y="-25.3619" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="39.5478" y="-25.3619" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="38.9128" y="-25.9969" size="1.27" layer="26" rot="MR180"/>
-<attribute name="VALUE" x="38.9128" y="-23.4569" size="1.27" layer="28" rot="MR180"/>
+<attribute name="NAME" x="38.7858" y="-24.2189" size="0.508" layer="26" font="vector" rot="MR180"/>
+<attribute name="VALUE" x="38.9128" y="-23.4569" size="0.508" layer="28" font="vector" rot="MR180"/>
 </element>
 <element name="TP.F4" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="45.212" y="-33.528" smashed="yes">
-<attribute name="NAME" x="44.7119" y="-32.9781" size="1.27" layer="25"/>
+<attribute name="NAME" x="42.9339" y="-34.0449" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="45.212" y="-33.528" size="1.778" layer="27" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="45.212" y="-33.528" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="44.831" y="-34.036" size="0.0254" layer="27"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="45.212" y="-35.433" size="1" layer="37"/>
+<attribute name="VALUE" x="44.831" y="-34.036" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="TP.P5" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="30.6578" y="-23.876" smashed="yes">
-<attribute name="NAME" x="30.1577" y="-23.3261" size="1.27" layer="25"/>
+<attribute name="NAME" x="30.7419" y="-22.7673" size="0.508" layer="25" font="vector"/>
 <attribute name="POPULARITY" value="0" x="30.6578" y="-23.876" size="1.778" layer="27" display="off"/>
-<attribute name="TP_SIGNAL_NAME" value="" x="30.6578" y="-23.876" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="30.2768" y="-24.384" size="0.0254" layer="27"/>
+<attribute name="TP_SIGNAL_NAME" value="" x="30.6578" y="-25.781" size="1" layer="37"/>
+<attribute name="VALUE" x="30.2768" y="-24.384" size="0.508" layer="27" font="vector"/>
 </element>
 <element name="C.Z1" library="mccloud" package="C0603" value="22uF" x="17.526" y="-23.5966" smashed="yes" rot="R120">
 <attribute name="COMPONENT" value="CL10A226MO7JZNC" x="17.526" y="-23.5966" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="NAME" x="17.293575" y="-24.464028125" size="1.27" layer="25" rot="R120"/>
-<attribute name="VALUE" x="19.49328125" y="-23.194028125" size="1.27" layer="27" rot="R120"/>
+<attribute name="NAME" x="17.344371875" y="-24.641825" size="0.508" layer="25" font="vector" rot="R120"/>
+<attribute name="VALUE" x="19.493278125" y="-23.194025" size="0.508" layer="27" font="vector" rot="R120"/>
 </element>
 <element name="D.Z1" library="led" library_urn="urn:adsk.eagle:library:259" package="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2" value="" x="24.13" y="-40.6146" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="LTST-C171GKT" x="29.186878125" y="-30.069365625" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="22.39515" y="-40.149746875" size="1.27" layer="25" rot="R30"/>
+<attribute name="NAME" x="22.750746875" y="-39.514746875" size="0.508" layer="25" font="vector" rot="R30"/>
 <attribute name="POPULARITY" value="68" x="29.186878125" y="-30.069365625" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="VALUE" x="24.30015" y="-43.449303125" size="1.27" layer="27" rot="R30"/>
+<attribute name="VALUE" x="24.300146875" y="-43.449303125" size="1.27" layer="27" rot="R30"/>
 </element>
 <element name="R.P5" library="mccloud" package="R0603" value="250Ω" x="21.1582" y="-41.529" smashed="yes" rot="R120">
 <attribute name="COMPONENT" value="RMCF0603JT300R" x="24.3332" y="-47.028259375" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="NAME" x="20.925771875" y="-42.396425" size="1.27" layer="25" rot="R120"/>
+<attribute name="NAME" x="20.519371875" y="-40.110425" size="0.508" layer="25" font="vector" rot="R120"/>
 <attribute name="POPULARITY" value="77" x="24.3332" y="-47.028259375" size="1.778" layer="27" rot="R120" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="24.3332" y="-47.028259375" size="1.778" layer="27" rot="R120" display="off"/>
-<attribute name="VALUE" x="23.125478125" y="-41.126425" size="1.27" layer="27" rot="R120"/>
+<attribute name="VALUE" x="23.125478125" y="-41.126425" size="0.508" layer="27" font="vector" rot="R120"/>
 </element>
 </elements>
 <signals>
@@ -3761,7 +3786,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <via x="20.6502" y="-19.2786" extent="1-16" drill="0.254"/>
 <via x="21.5138" y="-19.685" extent="1-16" drill="0.254"/>
 <via x="20.9804" y="-23.3426" extent="1-16" drill="0.254"/>
-<via x="28.067" y="-19.7358" extent="1-16" drill="0.254"/>
 <via x="28.9814" y="-18.9992" extent="1-16" drill="0.254"/>
 <via x="29.2862" y="-20.3708" extent="1-16" drill="0.254"/>
 <via x="29.7434" y="-19.5834" extent="1-16" drill="0.254"/>
@@ -3898,9 +3922,33 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="-18.9228" y1="-35.8088" x2="-17.7852" y2="-35.8088" width="0.254" layer="16"/>
 <wire x1="-17.7852" y1="-35.8088" x2="-17.272" y2="-36.322" width="0.254" layer="16"/>
 <via x="-17.272" y="-36.322" extent="1-16" drill="0.254"/>
-<wire x1="-25.908" y1="-22.352" x2="-24.7467125" y2="-14.2875" width="0" layer="19" extent="1-1"/>
+<wire x1="-27.432" y1="-42.506" x2="-27.432" y2="-43.268" width="0" layer="19" extent="1-16"/>
+<wire x1="32.512" y1="-29.591" x2="32.4866" y2="-29.5656" width="0" layer="19" extent="16-16"/>
+<wire x1="46.7614" y1="-32.4222" x2="46.863" y2="-32.4476" width="0" layer="19" extent="1-16"/>
+<wire x1="18.587975" y1="-34.8821" x2="19.2786" y2="-35.1536" width="0" layer="19" extent="16-16"/>
+<wire x1="36.195" y1="-21.0058" x2="35.1508" y2="-20.661" width="0" layer="19" extent="1-16"/>
+<wire x1="40.3978" y1="-25.3619" x2="39.458" y2="-25.908" width="0" layer="19" extent="1-16"/>
+<wire x1="-2.8448" y1="-47.755" x2="-3.0734" y2="-46.355" width="0" layer="19" extent="16-16"/>
+<wire x1="45.0388" y1="-16.0934" x2="45.1866" y2="-14.6812" width="0" layer="19" extent="16-16"/>
+<wire x1="34.8606" y1="-25.4254" x2="33.7566" y2="-26.5176" width="0" layer="19" extent="16-16"/>
+<wire x1="-6.604" y1="-30.9" x2="-6.2738" y2="-29.1592" width="0" layer="19" extent="16-16"/>
+<wire x1="-18.796" y1="-28.79" x2="-17.4244" y2="-27.5844" width="0" layer="19" extent="16-16"/>
+<wire x1="40.132" y1="-33.734" x2="40.733040625" y2="-32.01255625" width="0" layer="19" extent="1-16"/>
+<wire x1="40.6654" y1="-15.9648" x2="39.8272" y2="-14.2748" width="0" layer="19" extent="16-16"/>
+<wire x1="38.735" y1="-16.0782" x2="40.6654" y2="-15.9648" width="0" layer="19" extent="16-16"/>
+<wire x1="-18.796" y1="-31.2048" x2="-20.574" y2="-29.972" width="0" layer="19" extent="16-16"/>
+<wire x1="40.6654" y1="-20.8652" x2="42.799" y2="-20.3962" width="0" layer="19" extent="16-16"/>
+<wire x1="-18.796" y1="-25.6658" x2="-17.4244" y2="-27.5844" width="0" layer="19" extent="16-16"/>
+<wire x1="-16.008" y1="-25.4" x2="-15.7226" y2="-27.9654" width="0" layer="19" extent="16-16"/>
+<wire x1="32.385" y1="-21.0058" x2="35.1508" y2="-20.661" width="0" layer="19" extent="1-16"/>
+<wire x1="30.8864" y1="-23.1022" x2="32.385" y2="-21.0058" width="0" layer="19" extent="16-16"/>
+<wire x1="27.831725" y1="-22.981771875" x2="29.2862" y2="-20.3708" width="0" layer="19" extent="16-16"/>
+<wire x1="4.544003125" y1="-53.1706875" x2="7.5156" y2="-53.585" width="0" layer="19" extent="1-16"/>
+<wire x1="30.56521875" y1="-36.627290625" x2="33.6296" y2="-36.322" width="0" layer="19" extent="16-16"/>
+<wire x1="-7.874" y1="-51.06" x2="-7.0104" y2="-54.6862" width="0" layer="19" extent="16-16"/>
 <wire x1="24.7467125" y1="-14.2875" x2="21.5138" y2="-19.685" width="0" layer="19" extent="1-1"/>
 <wire x1="0" y1="-28.575" x2="-6.2738" y2="-29.1592" width="0" layer="19" extent="1-1"/>
+<wire x1="-24.7467125" y1="-14.2875" x2="-25.908" y2="-22.352" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VCONV">
 <contactref element="R.M1" pad="1"/>
