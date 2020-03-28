@@ -13436,7 +13436,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="GRM188R61A106KE69D"/>
 </part>
 <part name="U.Z1" library="mccloud" deviceset="AP63203" device="">
-<attribute name="COMPONENT" value="AP63205WU-7"/>
+<attribute name="COMPONENT" value="AP63203WU-7"/>
 </part>
 <part name="C.Z3" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
@@ -13503,7 +13503,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="C.M4" library="mccloud" deviceset="6.3MMCAP" device="" value="56µF">
 <attribute name="COMPONENT" value="APXG250ARA560MF61G"/>
 </part>
-<part name="U.B1" library="mccloud" deviceset="BQ2057TTS" device=""/>
+<part name="U.B1" library="mccloud" deviceset="BQ2057TTS" device="">
+<attribute name="COMPONENT" value="BQ2057TTS"/>
+</part>
 <part name="SUPPLY8" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY12" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="R.M2" library="mccloud" deviceset="R0603" device="" value="37.4kΩ 1%">
@@ -14418,6 +14420,7 @@ than in the ESP32 block.</text>
 <instance part="U.B1" gate="G$1" x="-154.94" y="45.72" smashed="yes">
 <attribute name="NAME" x="-165.1081" y="55.8881" size="1.77941875" layer="95"/>
 <attribute name="VALUE" x="-165.1019" y="25.3971" size="1.778340625" layer="96"/>
+<attribute name="COMPONENT" x="-154.94" y="45.72" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY8" gate="GND" x="-182.88" y="20.32" smashed="yes">
 <attribute name="VALUE" x="-181.61" y="20.32" size="1.778" layer="96"/>

@@ -26,7 +26,7 @@
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="no" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
 <layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
@@ -3553,7 +3553,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="15.33141875" y="-27.403096875" size="0.508" layer="27" font="vector" rot="R30"/>
 </element>
 <element name="U.Z1" library="mccloud" package="TSOT23-6" value="" x="17.114390625" y="-30.2023875" smashed="yes" rot="R210">
-<attribute name="COMPONENT" value="AP63205WU-7" x="21.37768125" y="-25.394625" size="1.778" layer="27" rot="R210" display="off"/>
+<attribute name="COMPONENT" value="AP63203WU-7" x="21.37768125" y="-25.394625" size="1.778" layer="27" rot="R210" display="off"/>
 <attribute name="NAME" x="17.695453125" y="-28.033821875" size="0.508" layer="25" font="vector" ratio="10" rot="R300"/>
 <attribute name="VALUE" x="13.845971875" y="-30.256321875" size="1.016" layer="27" ratio="10" rot="R300"/>
 </element>
@@ -3630,6 +3630,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="-9.849640625" y="-50.01056875" size="0.508" layer="28" font="vector" rot="MR90"/>
 </element>
 <element name="U.B1" library="mccloud" package="SOP65P640X120-8N" value="BQ2057TTS" x="-16.0528" y="-35.4838" smashed="yes" rot="MR0">
+<attribute name="COMPONENT" value="BQ2057TTS" x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="DESCRIPTION" value=" Low Dropout Linear 2-cell Li-Ion Charge Controller with AutoCompTM, 8.2V 8-TSSOP -20 to 70 " x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="DIGI-KEY_PART_NUMBER" value="296-9363-5-ND" x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="DIGI-KEY_PURCHASE_URL" value="https://www.digikey.com/product-detail/en/texas-instruments/BQ2057TTS/296-9363-5-ND/379996?utm_source=snapeda&amp;utm_medium=aggregator&amp;utm_campaign=symbol" x="-16.0528" y="-35.4838" size="1.778" layer="28" rot="MR0" display="off"/>
@@ -3988,7 +3989,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="-14.732" y1="-52.3748" x2="-15.1502" y2="-52.3748" width="0.254" layer="16"/>
 <wire x1="-15.748" y1="-51.777" x2="-15.1502" y2="-52.3748" width="0.254" layer="16"/>
 <via x="-14.732" y="-52.3748" extent="1-16" drill="0.254"/>
-<polygon width="0.254" layer="16" thermals="no">
+<polygon width="0.254" layer="16" thermals="no" rank="3">
 <vertex x="-10.414" y="-35.814"/>
 <vertex x="-7.366" y="-35.814"/>
 <vertex x="-7.366" y="-43.434"/>
@@ -4206,7 +4207,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <vertex x="-27.432" y="-44.196"/>
 <vertex x="-28.448" y="-44.196"/>
 </polygon>
-<polygon width="0.0254" layer="16" orphans="yes" thermals="no" rank="2">
+<polygon width="0.0254" layer="16" orphans="yes" thermals="no" rank="4">
 <vertex x="-28.448" y="-30.226"/>
 <vertex x="-33.528" y="-25.146" curve="-180"/>
 <vertex x="-28.194" y="-19.812"/>
@@ -6113,7 +6114,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <contactref element="TP.M2" pad="TP"/>
 <contactref element="R.M2" pad="1"/>
 <contactref element="R.M3" pad="1"/>
-<polygon width="0.254" layer="16" thermals="no">
+<polygon width="0.254" layer="16" thermals="no" rank="2">
 <vertex x="-5.588" y="-35.814"/>
 <vertex x="-5.588" y="-43.434"/>
 <vertex x="-2.794" y="-43.434"/>
@@ -6567,6 +6568,8 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <approved hash="19,16,88398f70f208f541"/>
 <approved hash="19,16,8c788d4f16371700"/>
 <approved hash="19,16,efa76c2361944f18"/>
+<approved hash="21,19,a356a3aea1aea3ae"/>
+<approved hash="21,19,9b6365636363649a"/>
 </errors>
 </board>
 </drawing>
