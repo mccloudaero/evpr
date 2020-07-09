@@ -17,7 +17,7 @@
 #include "esp_now.h"
 #include "esp_wifi.h"
 #include "nvs_flash.h"
-#include "rom/crc.h"
+#include "esp32/rom/crc.h"
 
 #include "driver/mcpwm.h"
 #include "soc/mcpwm_reg.h"

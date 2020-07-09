@@ -1,4 +1,4 @@
-#include "common/mavlink.h"
+//#include "common/mavlink.h"
 
 #define TAG "evpr_slave"
 #define ROTOR_NUM CONFIG_ROTOR_NUM
