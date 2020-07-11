@@ -22,8 +22,8 @@
 #include "esp_log.h"
 #include "esp_system.h"
 #include "esp_now.h"
-#include "rom/ets_sys.h"
-#include "rom/crc.h"
+#include "esp32/rom/ets_sys.h"
+#include "esp32/rom/crc.h"
 
 #include "driver/uart.h"
 #include "soc/uart_struct.h"
@@ -195,19 +195,19 @@ static void espnow_task(void *pvParameter)
 
                     if (ret == 1 && slave_1_connected == false) {
                         slave_1_connected = true;
-                        ESP_LOGI(TAG, "Slave 1 Connected")
+                        ESP_LOGI(TAG, "Slave 1 Connected");
                     }
                     else if (ret == 2 && slave_2_connected == false) {
                         slave_2_connected = true;
-                        ESP_LOGI(TAG, "Slave 2 Connected")
+                        ESP_LOGI(TAG, "Slave 2 Connected");
                     }
                     else if (ret == 3 && slave_3_connected == false) { 
                         slave_3_connected = true;
-                        ESP_LOGI(TAG, "Slave 3 Connected")
+                        ESP_LOGI(TAG, "Slave 3 Connected");
                     }
                     else if (ret == 4 && slave_4_connected == false) { 
                         slave_4_connected = true;
-                        ESP_LOGI(TAG, "Slave 4 Connected")
+                        ESP_LOGI(TAG, "Slave 4 Connected");
                     }
                     
                     // If MAC address does not exist in peer list, add it to peer list
