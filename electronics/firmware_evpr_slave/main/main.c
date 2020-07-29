@@ -311,6 +311,21 @@ static void mcpwm_gpio_initialize()
     mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
 }
 
+static void dotstar_initialize()
+{
+    ESP_LOGI(TAG, "Initializing Dotstars");
+
+    // Dotstars initialize
+    int TOTAL_LEDS = 12;
+    init_led(DSTAR_SDA_PIN,DSTAR_CLK_PIN,TOTAL_LEDS,DOTSTAR_RGB);
+    //setPixelColor(led_index,b,g,r);
+    setPixelColor(0,0,0,255); // Red
+    setPixelColor(1,255,0,0); // Blue
+    setPixelColor(2,0,255,0); // Green
+    setPixelColor(3,128,128,128); // White
+    printLED();
+}
+
 void servo_self_test(void *arg)
 {
     // Rotate servo continously
@@ -390,12 +405,8 @@ void app_main()
     ESP_ERROR_CHECK( nvs_flash_init() );
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialize_wifi();
-    mcpwm_gpio_initialize();
-    int TOTAL_LEDS = 12;
-    init_led(DSTAR_SDA_PIN,DSTAR_CLK_PIN,TOTAL_LEDS,DOTSTAR_RGB);
-    //setPixelColor(led_index,r,g,b);
-    setPixelColor(0,255,0,0);
-    printLED();
+    mcpwm_gpio_initialize(); // Servos
+    dotstar_initialize();    // Dotstar strip 
 
     // Choose Run Mode
     #if ROTOR_MODE == 0
