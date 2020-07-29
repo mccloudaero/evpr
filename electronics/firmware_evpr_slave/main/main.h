@@ -1,5 +1,3 @@
-//#include "common/mavlink.h"
-
 #define TAG "evpr_slave"
 #define ROTOR_NUM CONFIG_ROTOR_NUM
 #define ROTOR_MODE CONFIG_ROTOR_MODE
@@ -11,6 +9,10 @@
 // PWM_PINS 
 #define PWMA_PIN CONFIG_PWMA_PIN
 #define PWMB_PIN CONFIG_PWMB_PIN
+
+// DOTSTAR_PINS 
+#define DSTAR_SDA_PIN CONFIG_DSTAR_SDA_PIN
+#define DSTAR_CLK_PIN CONFIG_DSTAR_CLK_PIN
 
 // Status LED
 #define BLINK_GPIO CONFIG_BLINK_GPIO

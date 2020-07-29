@@ -3,7 +3,8 @@
 # project subdirectory.
 #
 
-PROJECT_NAME := evpr-slave 
+PROJECT_NAME := evpr-slave
+EXTRA_COMPONENT_DIRS := $(PATH_COMPONENTS)
 
 include $(IDF_PATH)/make/project.mk
 

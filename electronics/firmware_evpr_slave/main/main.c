@@ -27,6 +27,8 @@
 #include "main.h"
 #include "espnow.h"
 
+#include "../components/dotstar/include/dotstar.h"
+
 // Servo Settings
 #define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
 #define SERVO_MAX_PULSEWIDTH 2100 //Maximum pulse width in microsecond
@@ -389,6 +391,11 @@ void app_main()
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialize_wifi();
     mcpwm_gpio_initialize();
+    int TOTAL_LEDS = 12;
+    init_led(DSTAR_SDA_PIN,DSTAR_CLK_PIN,TOTAL_LEDS,DOTSTAR_RGB);
+    //setPixelColor(led_index,r,g,b);
+    setPixelColor(0,255,0,0);
+    printLED();
 
     // Choose Run Mode
     #if ROTOR_MODE == 0

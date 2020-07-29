@@ -16,15 +16,27 @@ config ROTOR_MODE
 
 config PWMA_PIN 
     int "PWMA Pin"
-    default 27 
+    default 23 
     help
 	Pin to use for PWM A.
 
 config PWMB_PIN 
     int "PWMB Pin"
-    default 33 
+    default 25 
     help
 	Pin to use for PWM A.
+
+config DSTAR_SDA_PIN 
+    int "SDA Pin"
+    default 27 
+    help
+	Pin to use for Dotstar SDA.
+
+config DSTAR_CLK_PIN 
+    int "CLK Pin"
+    default 13 
+    help
+	Pin to use for Dotstar CLK.
 
 config BLINK_GPIO 
     int "Status GPIO Pin"
