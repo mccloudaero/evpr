@@ -13552,11 +13552,11 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </class>
 </classes>
 <parts>
-<part name="X.J1" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device="">
+<part name="X.VI1" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device="">
 <attribute name="COMPONENT" value="B3P-VH(LF)(SN)"/>
 </part>
 <part name="SUPPLY1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.B1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.BC1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13565,7 +13565,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="R.B3" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.BC3" library="mccloud" deviceset="R0603" device="" value="100k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13574,7 +13574,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
-<part name="R.B4" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.BC4" library="mccloud" deviceset="R0603" device="" value="100k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13583,19 +13583,19 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
-<part name="X.L1" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device="">
+<part name="X.BI1" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device="">
 <attribute name="COMPONENT" value="B2P-VH(LF)(SN)"/>
 </part>
-<part name="X.L2" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device="">
+<part name="X.BI2" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device="">
 <attribute name="COMPONENT" value="B2P-VH(LF)(SN)"/>
 </part>
-<part name="U.G1" library="mccloud" deviceset="ESP32-WROOM-32D" device="">
+<part name="U.ESP1" library="mccloud" deviceset="ESP32-WROOM-32D" device="">
 <attribute name="COMPONENT" value="ESP32-WROOM-32D"/>
 </part>
-<part name="X.F1" library="mccloud" deviceset="10118193-0001LF" device="">
+<part name="X.DS2" library="mccloud" deviceset="10118193-0001LF" device="">
 <attribute name="COMPONENT" value="10118193-0001LF"/>
 </part>
-<part name="C.F3" library="mccloud" deviceset="C0603" device="" value="22uF">
+<part name="C.DS7" library="mccloud" deviceset="C0603" device="" value="22uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13604,7 +13604,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CL10A226MO7JZNC"/>
 </part>
-<part name="C.F4" library="mccloud" deviceset="C0603" device="" value="10uF">
+<part name="C.DS8" library="mccloud" deviceset="C0603" device="" value="10uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13613,7 +13613,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="GRM188R61A106KE69D"/>
 </part>
-<part name="R.P1" library="mccloud" deviceset="R0603" device="" value="1k">
+<part name="R.USB1" library="mccloud" deviceset="R0603" device="" value="1k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13622,13 +13622,13 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT1K00"/>
 </part>
-<part name="U.P1" library="mccloud" deviceset="CP2102N-A02-GQFN24R" device="">
+<part name="U.USB1" library="mccloud" deviceset="CP2102N-A02-GQFN24R" device="">
 <attribute name="COMPONENT" value="CP2102N-A02-GQFN24R"/>
 </part>
-<part name="Q.P98" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A">
+<part name="Q.USB1" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A">
 <attribute name="COMPONENT" value="MMBT2222A-7-F"/>
 </part>
-<part name="R.P2" library="mccloud" deviceset="R0603" device="" value="10k">
+<part name="R.USB2" library="mccloud" deviceset="R0603" device="" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13637,7 +13637,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT10K0"/>
 </part>
-<part name="R.P3" library="mccloud" deviceset="R0603" device="" value="10k">
+<part name="R.USB3" library="mccloud" deviceset="R0603" device="" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13646,14 +13646,14 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT10K0"/>
 </part>
-<part name="Q.P99" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A">
+<part name="Q.USB2" library="transistor-neu-to92" library_urn="urn:adsk.eagle:library:397" deviceset="*-NPN-" device="SOT23-BEC" package3d_urn="urn:adsk.eagle:package:28748/2" technology="MMBT2222ALT1" value="MMBT2222A">
 <attribute name="COMPONENT" value="MMBT2222A-7-F"/>
 </part>
 <part name="SUPPLY17" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="D.P1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
+<part name="D.USB1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
 <attribute name="COMPONENT" value="LTST-C171GKT"/>
 </part>
-<part name="R.P4" library="mccloud" deviceset="R0603" device="" value="250Ω">
+<part name="R.USB4" library="mccloud" deviceset="R0603" device="" value="250Ω">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13664,7 +13664,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY19" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY21" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R.F2" library="mccloud" deviceset="R0603" device="" value="22.1k">
+<part name="R.DS3" library="mccloud" deviceset="R0603" device="" value="22.1k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13673,7 +13673,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT22K1"/>
 </part>
-<part name="R.F3" library="mccloud" deviceset="R0603" device="" value="47.5K">
+<part name="R.DS4" library="mccloud" deviceset="R0603" device="" value="47.5K">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13683,10 +13683,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="RMCF0603FT47K5"/>
 </part>
 <part name="SUPPLY22" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="D.J1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
+<part name="D.VI1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
 <attribute name="COMPONENT" value="LTST-C171GKT"/>
 </part>
-<part name="R.J1" library="mccloud" deviceset="R0603" device="" value="500">
+<part name="R.VI1" library="mccloud" deviceset="R0603" device="" value="500">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13696,7 +13696,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="RMCF0603FT1K00"/>
 </part>
 <part name="SUPPLY18" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R.J2" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.VI2" library="mccloud" deviceset="R0603" device="" value="100k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13705,7 +13705,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
-<part name="R.J3" library="mccloud" deviceset="R0603" device="" value="22.1k">
+<part name="R.VI3" library="mccloud" deviceset="R0603" device="" value="22.1k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13715,7 +13715,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="RMCF0603FT22K1"/>
 </part>
 <part name="SUPPLY23" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R.J4" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.VI4" library="mccloud" deviceset="R0603" device="" value="100k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13724,7 +13724,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
-<part name="R.J5" library="mccloud" deviceset="R0603" device="" value="22.1k">
+<part name="R.VI5" library="mccloud" deviceset="R0603" device="" value="22.1k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13734,7 +13734,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="RMCF0603FT22K1"/>
 </part>
 <part name="SUPPLY24" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R.L1" library="mccloud" deviceset="R0603" device="" value="47.5k">
+<part name="R.BI1" library="mccloud" deviceset="R0603" device="" value="47.5k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13743,7 +13743,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT47K5"/>
 </part>
-<part name="R.L2" library="mccloud" deviceset="R0603" device="" value="22.1k">
+<part name="R.BI2" library="mccloud" deviceset="R0603" device="" value="22.1k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13752,7 +13752,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT22K1"/>
 </part>
-<part name="R.L3" library="mccloud" deviceset="R0603" device="" value="47.5k">
+<part name="R.BI3" library="mccloud" deviceset="R0603" device="" value="47.5k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13761,7 +13761,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT47K5"/>
 </part>
-<part name="R.L4" library="mccloud" deviceset="R0603" device="" value="22.1k">
+<part name="R.BI4" library="mccloud" deviceset="R0603" device="" value="22.1k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13770,7 +13770,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT22K1"/>
 </part>
-<part name="R.K2" library="mccloud" deviceset="R0603" device="" value="10k">
+<part name="R.ESP2" library="mccloud" deviceset="R0603" device="" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13781,21 +13781,21 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY25" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY26" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U.D1" library="mccloud" deviceset="SN74AHCT125DR" device="">
+<part name="U.DS1" library="mccloud" deviceset="SN74AHCT125DR" device="">
 <attribute name="COMPONENT" value="SN74AHCT125DR"/>
 </part>
 <part name="SUPPLY28" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY29" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="F.D1" library="mccloud" deviceset="C1Q_1" device="C1-M" value="1A">
+<part name="F.DS1" library="mccloud" deviceset="C1Q_1" device="C1-M" value="1A">
 <attribute name="COMPONENT" value="C1Q 1"/>
 </part>
-<part name="SJ.K1" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1"/>
-<part name="U.M1" library="mccloud" deviceset="TPSM84824MOLR" device="">
+<part name="SJ.VI1" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1"/>
+<part name="U.EC1" library="mccloud" deviceset="TPSM84824MOLR" device="">
 <attribute name="COMPONENT" value="TPSM84824MOLR"/>
 </part>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY3" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R.M1" library="mccloud" deviceset="R0603" device="" value="10k 0.1%">
+<part name="R.EC1" library="mccloud" deviceset="R0603" device="" value="10k 0.1%">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13804,14 +13804,14 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RG1608P-103-B-T5"/>
 </part>
-<part name="C.M1" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF">
+<part name="C.EC1" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF">
 <attribute name="COMPONENT" value="C3225X7R1E106K250AC"/>
 </part>
-<part name="C.M2" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF">
+<part name="C.EC2" library="mccloud" deviceset="C3225X7R1E106K250AC" device="" value="10µF">
 <attribute name="COMPONENT" value="C3225X7R1E106K250AC"/>
 </part>
 <part name="SUPPLY32" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.M5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-US" device="C1210" package3d_urn="urn:adsk.eagle:package:23619/2" value="47µF">
+<part name="C.EC5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-US" device="C1210" package3d_urn="urn:adsk.eagle:package:23619/2" value="47µF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13820,11 +13820,11 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CL32A476KOJNNNE"/>
 </part>
-<part name="C.M6" library="mccloud" deviceset="WURTH875115352003" device="" value="220µF">
+<part name="C.EC6" library="mccloud" deviceset="WURTH875115352003" device="" value="220µF">
 <attribute name="COMPONENT" value="875075355002"/>
 </part>
 <part name="SUPPLY33" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R.M4" library="mccloud" deviceset="R0603" device="" value="95.3kΩ">
+<part name="R.EC4" library="mccloud" deviceset="R0603" device="" value="95.3kΩ">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13833,10 +13833,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT95K3"/>
 </part>
-<part name="U.Y1" library="mccloud" deviceset="LTC4353CMSPBF" device="MSOP-16_MS-M">
+<part name="U.YY1" library="mccloud" deviceset="LTC4353CMSPBF" device="MSOP-16_MS-M">
 <attribute name="COMPONENT" value="LTC4353CMS#PBF"/>
 </part>
-<part name="C.Y1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.YY1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13846,7 +13846,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
 <part name="SUPPLY34" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.Y2" library="mccloud" deviceset="C0603" device="" value="56 nF">
+<part name="C.YY2" library="mccloud" deviceset="C0603" device="" value="56 nF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13855,7 +13855,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CL10B562KB8NNNC"/>
 </part>
-<part name="C.Y3" library="mccloud" deviceset="C0603" device="" value="56 nF">
+<part name="C.YY3" library="mccloud" deviceset="C0603" device="" value="56 nF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13864,10 +13864,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CL10B562KB8NNNC"/>
 </part>
-<part name="Q.K1" library="mccloud" deviceset="DMN5L06K-7" device="">
+<part name="Q.ESP1" library="mccloud" deviceset="DMN5L06K-7" device="">
 <attribute name="COMPONENT" value="DMN5L06K-7"/>
 </part>
-<part name="R.K1" library="mccloud" deviceset="R0603" device="" value="10k">
+<part name="R.ESP1" library="mccloud" deviceset="R0603" device="" value="10k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13876,9 +13876,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT10K0"/>
 </part>
-<part name="X.G1" library="con-lsta" library_urn="urn:adsk.eagle:library:161" deviceset="FE05-1" device="" package3d_urn="urn:adsk.eagle:package:8190/1"/>
+<part name="X.ESP1" library="con-lsta" library_urn="urn:adsk.eagle:library:161" deviceset="FE05-1" device="" package3d_urn="urn:adsk.eagle:package:8190/1"/>
 <part name="SUPPLY10" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.F1" library="mccloud" deviceset="C0603" device="" value="4.7 nF">
+<part name="C.DS3" library="mccloud" deviceset="C0603" device="" value="4.7 nF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13887,7 +13887,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CC0603CRNPO9BN4R7"/>
 </part>
-<part name="R.F4" library="mccloud" deviceset="R0603" device="" value="1M">
+<part name="R.DS5" library="mccloud" deviceset="R0603" device="" value="1M">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13897,10 +13897,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="RMCF0603FG1M00"/>
 </part>
 <part name="SUPPLY39" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="U.F1" library="mccloud" deviceset="AP63205" device="">
+<part name="U.DS2" library="mccloud" deviceset="AP63205" device="">
 <attribute name="COMPONENT" value="AP63205WU-7"/>
 </part>
-<part name="C.F2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.DS6" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13909,7 +13909,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.F5" library="mccloud" deviceset="C0603" device="" value="22uF">
+<part name="C.DS9" library="mccloud" deviceset="C0603" device="" value="22uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13921,17 +13921,17 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="SUPPLY15" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY16" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY40" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="X.K1" library="mccloud" deviceset="RSTBTN" device="">
+<part name="X.ESP2" library="mccloud" deviceset="RSTBTN" device="">
 <attribute name="COMPONENT" value="PTS645SM43SMTR92 LFS"/>
 </part>
 <part name="SUPPLY7" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="Q.L1" library="mccloud" deviceset="BSS84-7-F" device="">
+<part name="Q.BI1" library="mccloud" deviceset="BSS84-7-F" device="">
 <attribute name="COMPONENT" value="BSS84-7-F"/>
 </part>
-<part name="Q.L2" library="mccloud" deviceset="BSS84-7-F" device="">
+<part name="Q.BI2" library="mccloud" deviceset="BSS84-7-F" device="">
 <attribute name="COMPONENT" value="BSS84-7-F"/>
 </part>
-<part name="C.D2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.DS4" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13940,27 +13940,27 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.D1" library="mccloud" deviceset="810RADCAP" device="" value="  1000µF ">
+<part name="C.DS1" library="mccloud" deviceset="810RADCAP" device="" value="  1000µF ">
 <attribute name="COMPONENT" value="UWT0J102MNL1GS"/>
 </part>
-<part name="TP.J1" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.J2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.B1" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.L2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.M1" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.M2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.F1" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.F2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.F3" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.P1" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.P2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.P3" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.P4" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="Q.J1" library="mccloud" deviceset="VESD16A2-03G-G3-08" device="">
+<part name="TP.USB3" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB8" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB1" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB9" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB4" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB10" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB7" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB13" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB5" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB11" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB14" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB16" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="Q.VI1" library="mccloud" deviceset="VESD16A2-03G-G3-08" device="">
 <attribute name="COMPONENT" value="VESD16A2-03G-G3-08"/>
 </part>
 <part name="SUPPLY6" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.P2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.USB2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13969,7 +13969,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.P1" library="mccloud" deviceset="C0603" device="" value="4.7uF">
+<part name="C.USB1" library="mccloud" deviceset="C0603" device="" value="4.7uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13979,7 +13979,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="CL10A475MQ8NNNC"/>
 </part>
 <part name="SUPPLY35" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.P3" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.USB3" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13988,7 +13988,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.P4" library="mccloud" deviceset="C0603" device="" value="4.7uF">
+<part name="C.USB4" library="mccloud" deviceset="C0603" device="" value="4.7uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -13997,10 +13997,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CL10A475MQ8NNNC"/>
 </part>
-<part name="Q.Z3" library="mccloud" deviceset="SMD34LHE1" device="">
+<part name="Q.ZZ3" library="mccloud" deviceset="SMD34LHE1" device="">
 <attribute name="COMPONENT" value="SMD34LHE1-TP"/>
 </part>
-<part name="C.Z2" library="mccloud" deviceset="C0603" device="" value="10uF">
+<part name="C.ZZ2" library="mccloud" deviceset="C0603" device="" value="10uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14009,10 +14009,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="GRM188R61A106KE69D"/>
 </part>
-<part name="U.Z1" library="mccloud" deviceset="AP63203" device="">
+<part name="U.ZZ1" library="mccloud" deviceset="AP63203" device="">
 <attribute name="COMPONENT" value="AP63203WU-7"/>
 </part>
-<part name="C.Z3" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.ZZ3" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14021,7 +14021,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.Z4" library="mccloud" deviceset="C0603" device="" value="22uF">
+<part name="C.ZZ4" library="mccloud" deviceset="C0603" device="" value="22uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14033,26 +14033,26 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="SUPPLY4" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY5" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY11" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="TP.Z1" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="Q.Z1" library="mccloud" deviceset="SMD34LHE1" device="">
+<part name="TP.USB6" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="Q.ZZ1" library="mccloud" deviceset="SMD34LHE1" device="">
 <attribute name="COMPONENT" value="SMD34LHE1-TP"/>
 </part>
-<part name="Q.Z2" library="mccloud" deviceset="SMD34LHE1" device="">
+<part name="Q.ZZ2" library="mccloud" deviceset="SMD34LHE1" device="">
 <attribute name="COMPONENT" value="SMD34LHE1-TP"/>
 </part>
-<part name="Q.F1" library="mccloud" deviceset="SMD34LHE1" device="">
+<part name="Q.DS1" library="mccloud" deviceset="SMD34LHE1" device="">
 <attribute name="COMPONENT" value="SMD34LHE1-TP"/>
 </part>
-<part name="Q.F2" library="mccloud" deviceset="SMD34LHE1" device="">
+<part name="Q.DS2" library="mccloud" deviceset="SMD34LHE1" device="">
 <attribute name="COMPONENT" value="SMD34LHE1-TP"/>
 </part>
-<part name="L.Z1" library="mccloud" deviceset="SRR4818A-XXXX" device="" value="3.9µH">
+<part name="L.ZZ1" library="mccloud" deviceset="SRR4818A-XXXX" device="" value="3.9µH">
 <attribute name="COMPONENT" value="SRR4818A-3R9Y"/>
 </part>
-<part name="L.F1" library="mccloud" deviceset="SRR4818A-XXXX" device="" value="4.7µH">
+<part name="L.DS1" library="mccloud" deviceset="SRR4818A-XXXX" device="" value="4.7µH">
 <attribute name="COMPONENT" value="SRR4818A-3R9Y"/>
 </part>
-<part name="C.Z5" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.ZZ5" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14061,7 +14061,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.F6" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.DS10" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14070,14 +14070,14 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="TP.Z2" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="C.M3" library="mccloud" deviceset="6.3MMCAP" device="" value="56µF">
+<part name="TP.USB12" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="C.EC3" library="mccloud" deviceset="6.3MMCAP" device="" value="56µF">
 <attribute name="COMPONENT" value="APXG250ARA560MF61G"/>
 </part>
-<part name="C.M4" library="mccloud" deviceset="6.3MMCAP" device="" value="56µF">
+<part name="C.EC4" library="mccloud" deviceset="6.3MMCAP" device="" value="56µF">
 <attribute name="COMPONENT" value="APXG250ARA560MF61G"/>
 </part>
-<part name="R.M2" library="mccloud" deviceset="R0603" device="" value="37.4kΩ 1%">
+<part name="R.EC2" library="mccloud" deviceset="R0603" device="" value="37.4kΩ 1%">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14086,7 +14086,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RC0603FR-0737K4L"/>
 </part>
-<part name="R.M3" library="mccloud" deviceset="R0603" device="" value="768Ω 0.1%">
+<part name="R.EC3" library="mccloud" deviceset="R0603" device="" value="768Ω 0.1%">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14095,14 +14095,14 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RQ73C1J768RBTD "/>
 </part>
-<part name="X.S1" library="mccloud" deviceset="BM02B-PASS-1-TFT(LF)(SN)" device=""/>
-<part name="X.S2" library="mccloud" deviceset="BM03B-PASS-1-TFT(LF)(SN)" device=""/>
-<part name="X.S3" library="mccloud" deviceset="BM03B-PASS-1-TFT(LF)(SN)" device=""/>
+<part name="X.SI1" library="mccloud" deviceset="BM02B-PASS-1-TFT(LF)(SN)" device=""/>
+<part name="X.SI2" library="mccloud" deviceset="BM03B-PASS-1-TFT(LF)(SN)" device=""/>
+<part name="X.SI3" library="mccloud" deviceset="BM03B-PASS-1-TFT(LF)(SN)" device=""/>
 <part name="SUPPLY14" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY27" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="X.D1" library="mccloud" deviceset="BM04B-PASS-1-TFT(LF)(SN)" device=""/>
+<part name="X.DS1" library="mccloud" deviceset="BM04B-PASS-1-TFT(LF)(SN)" device=""/>
 <part name="SUPPLY30" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.J1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.VI1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14111,7 +14111,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.J2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.VI3" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14122,7 +14122,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY36" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY37" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.M7" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.EC7" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14131,7 +14131,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.L1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.BI1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14140,7 +14140,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.L2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.BI2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14151,7 +14151,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY38" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY41" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.Y4" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.YY4" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14161,7 +14161,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
 <part name="SUPPLY43" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.Z6" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.ZZ6" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14170,7 +14170,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.F7" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.DS11" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14181,7 +14181,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY44" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY45" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.F8" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.DS12" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14190,7 +14190,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.S1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.SI1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14200,7 +14200,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
 <part name="SUPPLY47" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.G1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.ESP1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14210,7 +14210,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
 <part name="SUPPLY48" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.J1*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.VI2*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14220,7 +14220,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
 <part name="SUPPLY49" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.S1*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.SI2*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14229,7 +14229,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.S2*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.SI3*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14240,7 +14240,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY50" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY51" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R.S1*" library="mccloud" deviceset="R0603" device="" value="0">
+<part name="R.SI1*" library="mccloud" deviceset="R0603" device="" value="0">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14249,7 +14249,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FG1M00"/>
 </part>
-<part name="R.S2*" library="mccloud" deviceset="R0603" device="" value="0">
+<part name="R.SI2*" library="mccloud" deviceset="R0603" device="" value="0">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14258,7 +14258,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FG1M00"/>
 </part>
-<part name="R.D1*" library="mccloud" deviceset="R0603" device="" value="0">
+<part name="R.DS1*" library="mccloud" deviceset="R0603" device="" value="0">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14267,7 +14267,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FG1M00"/>
 </part>
-<part name="C.D1*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.DS2*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14276,7 +14276,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="R.D2*" library="mccloud" deviceset="R0603" device="" value="0">
+<part name="R.DS2*" library="mccloud" deviceset="R0603" device="" value="0">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14285,7 +14285,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FG1M00"/>
 </part>
-<part name="C.D2*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.DS5*" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14296,9 +14296,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY52" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY53" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="TP.F4" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP.P5" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="C.Z1" library="mccloud" deviceset="C0603" device="" value="22uF">
+<part name="TP.USB15" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP.USB17" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="C.ZZ1" library="mccloud" deviceset="C0603" device="" value="22uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14307,17 +14307,17 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CL10A226MO7JZNC"/>
 </part>
-<part name="D.Z1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
+<part name="D.ZZ1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="CHIP-LED0805" package3d_urn="urn:adsk.eagle:package:15818/2">
 <attribute name="COMPONENT" value="LTST-C171GKT"/>
 </part>
-<part name="R.P5" library="mccloud" deviceset="R0603" device="" value="250Ω">
+<part name="R.USB5" library="mccloud" deviceset="R0603" device="" value="250Ω">
 <attribute name="COMPONENT" value="RMCF0603JT300R"/>
 </part>
 <part name="SUPPLY42" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="Q.L4" library="mccloud" deviceset="DMN5L06K-7" device="">
+<part name="Q.BI3" library="mccloud" deviceset="DMN5L06K-7" device="">
 <attribute name="COMPONENT" value="DMN5L06K-7"/>
 </part>
-<part name="R.L7" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.BI6" library="mccloud" deviceset="R0603" device="" value="100k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14327,10 +14327,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
 <part name="SUPPLY20" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="Q.Y90" library="mccloud" deviceset="SI7997DP" device=""/>
-<part name="Q.Y91" library="mccloud" deviceset="CSD88537NDT" device=""/>
-<part name="U.B90" library="mccloud" deviceset="MP2615" device=""/>
-<part name="R.B5" library="mccloud" deviceset="R0603" device="" value="0.25">
+<part name="Q.YY1" library="mccloud" deviceset="SI7997DP" device=""/>
+<part name="Q.YY2" library="mccloud" deviceset="CSD88537NDT" device=""/>
+<part name="U.BC1" library="mccloud" deviceset="MP2615" device=""/>
+<part name="R.BC5" library="mccloud" deviceset="R0603" device="" value="0.25">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14339,7 +14339,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="CSR0603FKR250"/>
 </part>
-<part name="C.F9" library="mccloud" deviceset="C0603" device="" value="22uF">
+<part name="C.DS13" library="mccloud" deviceset="C0603" device="" value="22uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14349,9 +14349,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="CL10A226MO7JZNC"/>
 </part>
 <part name="SUPPLY31" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="L.B90" library="mccloud" deviceset="SRN5040TA-330M" device="" value="33uH"/>
-<part name="SJ.K2" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1"/>
-<part name="C.J3" library="mccloud" deviceset="C0603" device="" value="0.47uF">
+<part name="L.BC1" library="mccloud" deviceset="SRN5040TA-330M" device="" value="33uH"/>
+<part name="SJ.VI2" library="jumper" library_urn="urn:adsk.eagle:library:252" deviceset="SJ" device="" package3d_urn="urn:adsk.eagle:package:15471/1"/>
+<part name="C.VI4" library="mccloud" deviceset="C0603" device="" value="0.47uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14362,7 +14362,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY8" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY46" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="C.B2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
+<part name="C.BC2" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14371,7 +14371,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="06033C104JAT2A"/>
 </part>
-<part name="C.F10" library="mccloud" deviceset="C0603" device="" value="22uF">
+<part name="C.DS14" library="mccloud" deviceset="C0603" device="" value="22uF">
 <spice>
 <pinmapping spiceprefix="C">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14381,14 +14381,14 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="COMPONENT" value="CL10A226MO7JZNC"/>
 </part>
 <part name="SUPPLY54" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="Q.L5" library="mccloud" deviceset="DMN5L06K-7" device="">
+<part name="Q.BI4" library="mccloud" deviceset="DMN5L06K-7" device="">
 <attribute name="COMPONENT" value="DMN5L06K-7"/>
 </part>
-<part name="R.L8" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.BI7" library="mccloud" deviceset="R0603" device="" value="100k">
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
 <part name="SUPPLY9" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="R.B1" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.BC1" library="mccloud" deviceset="R0603" device="" value="100k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14397,7 +14397,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
-<part name="R.B2" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.BC2" library="mccloud" deviceset="R0603" device="" value="100k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14406,7 +14406,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
-<part name="R.L6" library="mccloud" deviceset="R0603" device="" value="22.1k">
+<part name="R.BI5" library="mccloud" deviceset="R0603" device="" value="22.1k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14415,7 +14415,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT22K1"/>
 </part>
-<part name="R.B6" library="mccloud" deviceset="R0603" device="" value="100k">
+<part name="R.BC6" library="mccloud" deviceset="R0603" device="" value="100k">
 <spice>
 <pinmapping spiceprefix="R">
 <pinmap gate="G$1" pin="1" pinorder="1"/>
@@ -14443,7 +14443,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="-304.8" y1="147.32" x2="-304.8" y2="53.34" width="0.1524" layer="94"/>
 <wire x1="-304.8" y1="53.34" x2="-495.3" y2="53.34" width="0.1524" layer="94"/>
 <wire x1="-495.3" y1="53.34" x2="-495.3" y2="147.32" width="0.1524" layer="94"/>
-<text x="-335.28" y="144.78" size="1.778" layer="94">B: Battery Charge Control</text>
+<text x="-335.28" y="144.78" size="1.778" layer="94">BC: Battery Charge Control</text>
 <wire x1="-302.26" y1="129.54" x2="-302.26" y2="53.34" width="0.1524" layer="94"/>
 <wire x1="-302.26" y1="53.34" x2="-147.32" y2="53.34" width="0.1524" layer="94"/>
 <wire x1="-147.32" y1="53.34" x2="-147.32" y2="129.54" width="0.1524" layer="94"/>
@@ -14453,7 +14453,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="10.16" y1="50.8" x2="10.16" y2="-68.58" width="0.1524" layer="94"/>
 <wire x1="10.16" y1="-68.58" x2="-144.78" y2="-68.58" width="0.1524" layer="94"/>
 <wire x1="-144.78" y1="-68.58" x2="-144.78" y2="50.8" width="0.1524" layer="94"/>
-<text x="-50.8" y="48.26" size="1.778" layer="94">MY: SYS_POWER Management (Main Power Merge)</text>
+<text x="-50.8" y="48.26" size="1.778" layer="94">YY: SYS_POWER Management (Main Power Merge)</text>
 <wire x1="-205.74" y1="259.08" x2="10.16" y2="259.08" width="0.1524" layer="94"/>
 <wire x1="10.16" y1="259.08" x2="10.16" y2="132.08" width="0.1524" layer="94"/>
 <wire x1="10.16" y1="132.08" x2="-205.74" y2="132.08" width="0.1524" layer="94"/>
@@ -14494,7 +14494,7 @@ thermal monitoring, so a
 <text x="-345.44" y="129.54" size="1.778" layer="97">Corresponds to 0.4A charge current.</text>
 </plain>
 <instances>
-<instance part="X.J1" gate="G$1" x="-434.34" y="30.48" smashed="yes" rot="R180">
+<instance part="X.VI1" gate="G$1" x="-434.34" y="30.48" smashed="yes" rot="R180">
 <attribute name="NAME" x="-424.1644" y="45.7433" size="1.78071875" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-424.1758" y="48.2674" size="1.778740625" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-434.34" y="30.48" size="1.778" layer="96" display="off"/>
@@ -14502,77 +14502,77 @@ thermal monitoring, so a
 <instance part="SUPPLY1" gate="GND" x="-426.72" y="22.86" smashed="yes">
 <attribute name="VALUE" x="-428.625" y="19.685" size="1.778" layer="96"/>
 </instance>
-<instance part="C.B1" gate="G$1" x="-378.46" y="121.92" smashed="yes" rot="R90">
+<instance part="C.BC1" gate="G$1" x="-378.46" y="121.92" smashed="yes" rot="R90">
 <attribute name="NAME" x="-370.84" y="119.38" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-370.84" y="121.92" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-378.46" y="121.92" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="R.B3" gate="G$1" x="-441.96" y="93.98" smashed="yes" rot="R90">
+<instance part="R.BC3" gate="G$1" x="-441.96" y="93.98" smashed="yes" rot="R90">
 <attribute name="NAME" x="-445.77" y="90.17" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-443.23" y="90.17" size="1.778" layer="96" rot="R90"/>
 <attribute name="COMPONENT" x="-441.96" y="93.98" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="R.B4" gate="G$1" x="-441.96" y="78.74" smashed="yes" rot="R90">
+<instance part="R.BC4" gate="G$1" x="-441.96" y="78.74" smashed="yes" rot="R90">
 <attribute name="NAME" x="-445.77" y="74.93" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-443.23" y="74.93" size="1.778" layer="96" rot="R90"/>
 <attribute name="COMPONENT" x="-441.96" y="78.74" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="X.L1" gate="G$1" x="-172.72" y="109.22" smashed="yes">
+<instance part="X.BI1" gate="G$1" x="-172.72" y="109.22" smashed="yes">
 <attribute name="NAME" x="-175.26" y="115.57" size="1.27081875" layer="95"/>
 <attribute name="VALUE" x="-175.26" y="113.03" size="1.270359375" layer="96"/>
 <attribute name="COMPONENT" x="-172.72" y="109.22" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="X.L2" gate="G$1" x="-172.72" y="88.9" smashed="yes">
+<instance part="X.BI2" gate="G$1" x="-172.72" y="88.9" smashed="yes">
 <attribute name="NAME" x="-175.26" y="95.25" size="1.27081875" layer="95"/>
 <attribute name="VALUE" x="-175.26" y="92.71" size="1.270359375" layer="96"/>
 <attribute name="COMPONENT" x="-172.72" y="88.9" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="U.G1" gate="G$1" x="55.88" y="116.84" smashed="yes">
+<instance part="U.ESP1" gate="G$1" x="55.88" y="116.84" smashed="yes">
 <attribute name="NAME" x="40.8441" y="153.5145" size="1.783840625" layer="95"/>
 <attribute name="VALUE" x="68.58" y="80.01" size="1.78345" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="55.88" y="116.84" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="X.F1" gate="G$1" x="-193.04" y="167.64" smashed="yes" rot="MR0">
+<instance part="X.DS2" gate="G$1" x="-193.04" y="167.64" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-200.66" y="177.8" size="1.778" layer="95" rot="MR270"/>
 <attribute name="VALUE" x="-198.12" y="177.8" size="1.778" layer="96" rot="MR270"/>
 <attribute name="COMPONENT" x="-193.04" y="167.64" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.F3" gate="G$1" x="91.44" y="40.64" smashed="yes" rot="MR0">
+<instance part="C.DS7" gate="G$1" x="91.44" y="40.64" smashed="yes" rot="MR0">
 <attribute name="NAME" x="90.17" y="40.64" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="90.17" y="43.18" size="1.778" layer="96" rot="MR0"/>
 <attribute name="COMPONENT" x="91.44" y="40.64" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.F4" gate="G$1" x="48.26" y="48.26" smashed="yes">
+<instance part="C.DS8" gate="G$1" x="48.26" y="48.26" smashed="yes">
 <attribute name="NAME" x="46.99" y="52.07" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="46.99" y="49.53" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="48.26" y="48.26" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.P1" gate="G$1" x="-91.44" y="241.3" smashed="yes" rot="R270">
+<instance part="R.USB1" gate="G$1" x="-91.44" y="241.3" smashed="yes" rot="R270">
 <attribute name="NAME" x="-93.98" y="241.3" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-93.98" y="238.76" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-91.44" y="241.3" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="U.P1" gate="A" x="-66.04" y="198.12" smashed="yes">
+<instance part="U.USB1" gate="A" x="-66.04" y="198.12" smashed="yes">
 <attribute name="NAME" x="-78.74" y="210.82" size="1.27" layer="94"/>
 <attribute name="VALUE" x="-78.74" y="205.74" size="1.27" layer="94"/>
 <attribute name="COMPONENT" x="-66.04" y="198.12" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="Q.P98" gate="G$1" x="-22.86" y="190.5" smashed="yes">
+<instance part="Q.USB1" gate="G$1" x="-22.86" y="190.5" smashed="yes">
 <attribute name="NAME" x="-19.05" y="193.04" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-19.05" y="190.5" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-22.86" y="190.5" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.P2" gate="G$1" x="-33.02" y="190.5" smashed="yes" rot="R180">
+<instance part="R.USB2" gate="G$1" x="-33.02" y="190.5" smashed="yes" rot="R180">
 <attribute name="NAME" x="-35.56" y="194.31" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-35.56" y="191.77" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-33.02" y="190.5" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.P3" gate="G$1" x="-33.02" y="170.18" smashed="yes" rot="R180">
+<instance part="R.USB3" gate="G$1" x="-33.02" y="170.18" smashed="yes" rot="R180">
 <attribute name="NAME" x="-35.56" y="173.99" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-35.56" y="171.45" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-33.02" y="170.18" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="Q.P99" gate="G$1" x="-22.86" y="170.18" smashed="yes" rot="MR180">
+<instance part="Q.USB2" gate="G$1" x="-22.86" y="170.18" smashed="yes" rot="MR180">
 <attribute name="NAME" x="-19.05" y="171.45" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-19.05" y="168.91" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-22.86" y="170.18" size="1.778" layer="96" display="off"/>
@@ -14580,12 +14580,12 @@ thermal monitoring, so a
 <instance part="SUPPLY17" gate="GND" x="-106.68" y="218.44" smashed="yes">
 <attribute name="VALUE" x="-105.41" y="218.44" size="1.778" layer="96"/>
 </instance>
-<instance part="D.P1" gate="G$1" x="-27.94" y="215.9" smashed="yes">
+<instance part="D.USB1" gate="G$1" x="-27.94" y="215.9" smashed="yes">
 <attribute name="NAME" x="-29.21" y="218.44" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-32.385" y="208.788" size="1.778" layer="96" rot="R90"/>
 <attribute name="COMPONENT" x="-27.94" y="215.9" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.P4" gate="G$1" x="-27.94" y="226.06" smashed="yes" rot="R90">
+<instance part="R.USB4" gate="G$1" x="-27.94" y="226.06" smashed="yes" rot="R90">
 <attribute name="NAME" x="-30.48" y="228.6" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-30.48" y="226.06" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-27.94" y="226.06" size="1.778" layer="96" display="off"/>
@@ -14596,12 +14596,12 @@ thermal monitoring, so a
 <instance part="SUPPLY21" gate="GND" x="-66.04" y="142.24" smashed="yes">
 <attribute name="VALUE" x="-64.77" y="142.24" size="1.778" layer="96"/>
 </instance>
-<instance part="R.F2" gate="G$1" x="-127" y="203.2" smashed="yes" rot="R90">
+<instance part="R.DS3" gate="G$1" x="-127" y="203.2" smashed="yes" rot="R90">
 <attribute name="NAME" x="-129.54" y="205.74" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-129.54" y="203.2" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-127" y="203.2" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.F3" gate="G$1" x="-127" y="190.5" smashed="yes" rot="R90">
+<instance part="R.DS4" gate="G$1" x="-127" y="190.5" smashed="yes" rot="R90">
 <attribute name="NAME" x="-129.54" y="193.04" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-129.54" y="190.5" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-127" y="190.5" size="1.778" layer="96" display="off"/>
@@ -14609,12 +14609,12 @@ thermal monitoring, so a
 <instance part="SUPPLY22" gate="GND" x="-127" y="180.34" smashed="yes">
 <attribute name="VALUE" x="-125.73" y="180.34" size="1.778" layer="96"/>
 </instance>
-<instance part="D.J1" gate="G$1" x="-391.16" y="5.08" smashed="yes">
+<instance part="D.VI1" gate="G$1" x="-391.16" y="5.08" smashed="yes">
 <attribute name="NAME" x="-393.7" y="7.62" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-395.605" y="-9.652" size="1.778" layer="96" rot="R90"/>
 <attribute name="COMPONENT" x="-391.16" y="5.08" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.J1" gate="G$1" x="-391.16" y="17.78" smashed="yes" rot="R90">
+<instance part="R.VI1" gate="G$1" x="-391.16" y="17.78" smashed="yes" rot="R90">
 <attribute name="NAME" x="-393.7" y="20.32" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-393.7" y="17.78" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-391.16" y="17.78" size="1.778" layer="96" rot="R90" display="off"/>
@@ -14622,12 +14622,12 @@ thermal monitoring, so a
 <instance part="SUPPLY18" gate="GND" x="-391.16" y="-7.62" smashed="yes">
 <attribute name="VALUE" x="-389.89" y="-7.62" size="1.778" layer="96"/>
 </instance>
-<instance part="R.J2" gate="G$1" x="-381" y="17.78" smashed="yes" rot="R90">
+<instance part="R.VI2" gate="G$1" x="-381" y="17.78" smashed="yes" rot="R90">
 <attribute name="NAME" x="-383.54" y="20.32" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-383.54" y="17.78" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-381" y="17.78" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.J3" gate="G$1" x="-381" y="2.54" smashed="yes" rot="R90">
+<instance part="R.VI3" gate="G$1" x="-381" y="2.54" smashed="yes" rot="R90">
 <attribute name="NAME" x="-383.54" y="5.08" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-383.54" y="2.54" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-381" y="2.54" size="1.778" layer="96" display="off"/>
@@ -14635,12 +14635,12 @@ thermal monitoring, so a
 <instance part="SUPPLY23" gate="GND" x="-381" y="-7.62" smashed="yes">
 <attribute name="VALUE" x="-379.73" y="-7.62" size="1.778" layer="96"/>
 </instance>
-<instance part="R.J4" gate="G$1" x="-358.14" y="17.78" smashed="yes" rot="R90">
+<instance part="R.VI4" gate="G$1" x="-358.14" y="17.78" smashed="yes" rot="R90">
 <attribute name="NAME" x="-360.68" y="20.32" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-360.68" y="17.78" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-358.14" y="17.78" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.J5" gate="G$1" x="-358.14" y="2.54" smashed="yes" rot="R90">
+<instance part="R.VI5" gate="G$1" x="-358.14" y="2.54" smashed="yes" rot="R90">
 <attribute name="NAME" x="-360.68" y="5.08" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-360.68" y="2.54" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-358.14" y="2.54" size="1.778" layer="96" display="off"/>
@@ -14648,27 +14648,27 @@ thermal monitoring, so a
 <instance part="SUPPLY24" gate="GND" x="-358.14" y="-7.62" smashed="yes">
 <attribute name="VALUE" x="-356.87" y="-7.62" size="1.778" layer="96"/>
 </instance>
-<instance part="R.L1" gate="G$1" x="-236.22" y="83.82" smashed="yes" rot="R90">
+<instance part="R.BI1" gate="G$1" x="-236.22" y="83.82" smashed="yes" rot="R90">
 <attribute name="NAME" x="-238.76" y="86.36" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-238.76" y="83.82" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-236.22" y="83.82" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.L2" gate="G$1" x="-236.22" y="68.58" smashed="yes" rot="R90">
+<instance part="R.BI2" gate="G$1" x="-236.22" y="68.58" smashed="yes" rot="R90">
 <attribute name="NAME" x="-238.76" y="71.12" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-238.76" y="68.58" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-236.22" y="68.58" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.L3" gate="G$1" x="-223.52" y="83.82" smashed="yes" rot="R90">
+<instance part="R.BI3" gate="G$1" x="-223.52" y="83.82" smashed="yes" rot="R90">
 <attribute name="NAME" x="-224.79" y="86.36" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-224.79" y="83.82" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-223.52" y="83.82" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.L4" gate="G$1" x="-223.52" y="68.58" smashed="yes" rot="R90">
+<instance part="R.BI4" gate="G$1" x="-223.52" y="68.58" smashed="yes" rot="R90">
 <attribute name="NAME" x="-224.79" y="71.12" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-224.79" y="68.58" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-223.52" y="68.58" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.K2" gate="G$1" x="38.1" y="208.28" smashed="yes" rot="MR270">
+<instance part="R.ESP2" gate="G$1" x="38.1" y="208.28" smashed="yes" rot="MR270">
 <attribute name="NAME" x="40.64" y="210.82" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="40.64" y="208.28" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="38.1" y="208.28" size="1.778" layer="96" rot="MR0" display="off"/>
@@ -14679,7 +14679,7 @@ thermal monitoring, so a
 <instance part="SUPPLY26" gate="GND" x="76.2" y="78.74" smashed="yes">
 <attribute name="VALUE" x="77.47" y="78.74" size="1.778" layer="96"/>
 </instance>
-<instance part="U.D1" gate="A" x="160.02" y="30.48" smashed="yes">
+<instance part="U.DS1" gate="A" x="160.02" y="30.48" smashed="yes">
 <attribute name="NAME" x="185.7756" y="39.5986" size="2.0828" layer="95" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="185.1406" y="37.0586" size="2.0828" layer="96" ratio="6" rot="SR0"/>
 <attribute name="COMPONENT" x="160.02" y="30.48" size="1.778" layer="96" display="off"/>
@@ -14690,16 +14690,16 @@ thermal monitoring, so a
 <instance part="SUPPLY29" gate="GND" x="261.62" y="2.54" smashed="yes">
 <attribute name="VALUE" x="262.89" y="2.54" size="1.778" layer="96"/>
 </instance>
-<instance part="F.D1" gate="A" x="241.3" y="43.18" smashed="yes">
+<instance part="F.DS1" gate="A" x="241.3" y="43.18" smashed="yes">
 <attribute name="VALUE" x="241.3" y="44.45" size="1.778" layer="96" ratio="10" rot="SR0"/>
 <attribute name="NAME" x="241.3" y="46.99" size="1.778" layer="95" ratio="10" rot="SR0"/>
 <attribute name="COMPONENT" x="241.3" y="43.18" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="SJ.K1" gate="1" x="38.1" y="190.5" smashed="yes" rot="MR90">
+<instance part="SJ.VI1" gate="1" x="38.1" y="190.5" smashed="yes" rot="MR90">
 <attribute name="NAME" x="40.64" y="187.96" size="1.778" layer="95" rot="MR90"/>
 <attribute name="VALUE" x="34.29" y="187.96" size="1.778" layer="96" rot="MR90"/>
 </instance>
-<instance part="U.M1" gate="A" x="-236.22" y="10.16" smashed="yes">
+<instance part="U.EC1" gate="A" x="-236.22" y="10.16" smashed="yes">
 <attribute name="NAME" x="-235.8644" y="26.8986" size="2.0828" layer="95" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="-237.2614" y="5.3594" size="2.0828" layer="96" ratio="6" rot="SR270"/>
 <attribute name="COMPONENT" x="-236.22" y="10.16" size="1.778" layer="96" display="off"/>
@@ -14710,17 +14710,17 @@ thermal monitoring, so a
 <instance part="SUPPLY3" gate="GND" x="-205.74" y="12.7" smashed="yes">
 <attribute name="VALUE" x="-204.47" y="12.7" size="1.778" layer="96"/>
 </instance>
-<instance part="R.M1" gate="G$1" x="-193.04" y="12.7" smashed="yes" rot="R270">
+<instance part="R.EC1" gate="G$1" x="-193.04" y="12.7" smashed="yes" rot="R270">
 <attribute name="NAME" x="-190.5" y="12.9286" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-190.5" y="10.668" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-193.04" y="12.7" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.M1" gate="G$1" x="-307.34" y="17.78" smashed="yes" rot="R90">
+<instance part="C.EC1" gate="G$1" x="-307.34" y="17.78" smashed="yes" rot="R90">
 <attribute name="VALUE" x="-308.61" y="13.97" size="1.78071875" layer="96" ratio="10" rot="SR180"/>
 <attribute name="NAME" x="-308.61" y="16.51" size="1.78071875" layer="95" ratio="10" rot="SR180"/>
 <attribute name="COMPONENT" x="-307.34" y="17.78" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="C.M2" gate="G$1" x="-299.72" y="17.78" smashed="yes" rot="R90">
+<instance part="C.EC2" gate="G$1" x="-299.72" y="17.78" smashed="yes" rot="R90">
 <attribute name="VALUE" x="-300.99" y="13.97" size="1.78071875" layer="96" ratio="10" rot="SR180"/>
 <attribute name="NAME" x="-300.99" y="16.51" size="1.78071875" layer="95" ratio="10" rot="SR180"/>
 <attribute name="COMPONENT" x="-299.72" y="17.78" size="1.778" layer="96" rot="R90" display="off"/>
@@ -14728,12 +14728,12 @@ thermal monitoring, so a
 <instance part="SUPPLY32" gate="GND" x="-289.56" y="-7.62" smashed="yes">
 <attribute name="VALUE" x="-288.29" y="-7.62" size="1.778" layer="96"/>
 </instance>
-<instance part="C.M5" gate="G$1" x="-180.34" y="22.86" smashed="yes">
+<instance part="C.EC5" gate="G$1" x="-180.34" y="22.86" smashed="yes">
 <attribute name="NAME" x="-179.07" y="24.13" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-179.07" y="26.67" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-180.34" y="22.86" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.M6" gate="G$1" x="-165.1" y="22.86" smashed="yes">
+<instance part="C.EC6" gate="G$1" x="-165.1" y="22.86" smashed="yes">
 <attribute name="NAME" x="-163.83" y="24.13" size="1.78071875" layer="95"/>
 <attribute name="VALUE" x="-163.83" y="26.67" size="1.77813125" layer="96"/>
 <attribute name="COMPONENT" x="-165.1" y="22.86" size="1.778" layer="96" display="off"/>
@@ -14741,17 +14741,17 @@ thermal monitoring, so a
 <instance part="SUPPLY33" gate="GND" x="-172.72" y="-15.24" smashed="yes">
 <attribute name="VALUE" x="-172.085" y="-18.415" size="1.778" layer="96"/>
 </instance>
-<instance part="R.M4" gate="G$1" x="-208.28" y="-17.78" smashed="yes" rot="R270">
+<instance part="R.EC4" gate="G$1" x="-208.28" y="-17.78" smashed="yes" rot="R270">
 <attribute name="NAME" x="-205.74" y="-17.5514" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-205.74" y="-19.812" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-208.28" y="-17.78" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="U.Y1" gate="A" x="-109.22" y="2.54" smashed="yes">
+<instance part="U.YY1" gate="A" x="-109.22" y="2.54" smashed="yes">
 <attribute name="NAME" x="-100.33" y="11.43" size="2.0828" layer="95" ratio="6" rot="SR0"/>
 <attribute name="VALUE" x="-100.33" y="8.89" size="2.0828" layer="96" ratio="6" rot="SR0"/>
 <attribute name="COMPONENT" x="-109.22" y="2.54" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.Y1" gate="G$1" x="-27.94" y="5.08" smashed="yes" rot="R180">
+<instance part="C.YY1" gate="G$1" x="-27.94" y="5.08" smashed="yes" rot="R180">
 <attribute name="NAME" x="-29.21" y="11.43" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-29.21" y="8.89" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-27.94" y="5.08" size="1.778" layer="96" rot="R180" display="off"/>
@@ -14759,39 +14759,39 @@ thermal monitoring, so a
 <instance part="SUPPLY34" gate="GND" x="-22.86" y="0" smashed="yes">
 <attribute name="VALUE" x="-21.59" y="0" size="1.778" layer="96"/>
 </instance>
-<instance part="C.Y2" gate="G$1" x="-35.56" y="-10.16" smashed="yes" rot="R90">
+<instance part="C.YY2" gate="G$1" x="-35.56" y="-10.16" smashed="yes" rot="R90">
 <attribute name="NAME" x="-30.48" y="-10.16" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-30.48" y="-10.16" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="-35.56" y="-10.16" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.Y3" gate="G$1" x="-114.3" y="-10.16" smashed="yes" rot="R90">
+<instance part="C.YY3" gate="G$1" x="-114.3" y="-10.16" smashed="yes" rot="R90">
 <attribute name="NAME" x="-114.3" y="-10.16" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="-114.3" y="-10.16" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-114.3" y="-10.16" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="Q.K1" gate="G$1" x="58.42" y="190.5" smashed="yes" rot="MR0">
+<instance part="Q.ESP1" gate="G$1" x="58.42" y="190.5" smashed="yes" rot="MR0">
 <attribute name="VALUE" x="74.93" y="194.31" size="1.778" layer="96" rot="R180"/>
 <attribute name="NAME" x="64.77" y="191.77" size="1.778" layer="95" rot="R180"/>
 <attribute name="COMPONENT" x="58.42" y="190.5" size="1.778" layer="96" rot="MR0" display="off"/>
 </instance>
-<instance part="R.K1" gate="G$1" x="76.2" y="200.66" smashed="yes" rot="MR270">
+<instance part="R.ESP1" gate="G$1" x="76.2" y="200.66" smashed="yes" rot="MR270">
 <attribute name="NAME" x="78.74" y="203.2" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="78.74" y="200.66" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="76.2" y="200.66" size="1.778" layer="96" rot="MR0" display="off"/>
 </instance>
-<instance part="X.G1" gate="G$1" x="25.4" y="111.76" smashed="yes">
+<instance part="X.ESP1" gate="G$1" x="25.4" y="111.76" smashed="yes">
 <attribute name="VALUE" x="24.13" y="101.6" size="1.778" layer="96"/>
 <attribute name="NAME" x="24.13" y="120.142" size="1.778" layer="95"/>
 </instance>
 <instance part="SUPPLY10" gate="GND" x="33.02" y="93.98" smashed="yes">
 <attribute name="VALUE" x="34.29" y="93.98" size="1.778" layer="96"/>
 </instance>
-<instance part="C.F1" gate="G$1" x="-165.1" y="149.86" smashed="yes" rot="MR90">
+<instance part="C.DS3" gate="G$1" x="-165.1" y="149.86" smashed="yes" rot="MR90">
 <attribute name="NAME" x="-168.91" y="147.32" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="-168.91" y="144.78" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="-165.1" y="149.86" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.F4" gate="G$1" x="-165.1" y="160.02" smashed="yes" rot="MR0">
+<instance part="R.DS5" gate="G$1" x="-165.1" y="160.02" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-168.91" y="158.75" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="-168.91" y="156.21" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="-165.1" y="160.02" size="1.778" layer="96" display="off"/>
@@ -14799,17 +14799,17 @@ thermal monitoring, so a
 <instance part="SUPPLY39" gate="GND" x="-157.48" y="143.51" smashed="yes">
 <attribute name="VALUE" x="-156.21" y="143.51" size="1.778" layer="96"/>
 </instance>
-<instance part="U.F1" gate="G$1" x="71.12" y="50.8" smashed="yes">
+<instance part="U.DS2" gate="G$1" x="71.12" y="50.8" smashed="yes">
 <attribute name="VALUE" x="73.66" y="40.64" size="1.778" layer="96"/>
 <attribute name="NAME" x="58.42" y="40.64" size="1.778" layer="95"/>
 <attribute name="COMPONENT" x="71.12" y="50.8" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.F2" gate="G$1" x="96.52" y="55.88" smashed="yes" rot="R90">
+<instance part="C.DS6" gate="G$1" x="96.52" y="55.88" smashed="yes" rot="R90">
 <attribute name="NAME" x="99.06" y="59.69" size="1.778" layer="95"/>
 <attribute name="VALUE" x="99.06" y="57.15" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="96.52" y="55.88" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="C.F5" gate="G$1" x="99.06" y="40.64" smashed="yes">
+<instance part="C.DS9" gate="G$1" x="99.06" y="40.64" smashed="yes">
 <attribute name="NAME" x="100.33" y="40.64" size="1.778" layer="95"/>
 <attribute name="VALUE" x="100.33" y="43.18" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="99.06" y="40.64" size="1.778" layer="96" display="off"/>
@@ -14823,7 +14823,7 @@ thermal monitoring, so a
 <instance part="SUPPLY40" gate="GND" x="93.98" y="27.94" smashed="yes">
 <attribute name="VALUE" x="95.25" y="27.94" size="1.778" layer="96"/>
 </instance>
-<instance part="X.K1" gate="G$1" x="48.26" y="200.66" smashed="yes" rot="MR0">
+<instance part="X.ESP2" gate="G$1" x="48.26" y="200.66" smashed="yes" rot="MR0">
 <attribute name="NAME" x="50.8" y="198.12" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="50.8" y="195.58" size="1.778" layer="96" rot="MR0"/>
 <attribute name="COMPONENT" x="48.26" y="200.66" size="1.778" layer="96" rot="MR0" display="off"/>
@@ -14831,79 +14831,79 @@ thermal monitoring, so a
 <instance part="SUPPLY7" gate="GND" x="-208.28" y="55.88" smashed="yes">
 <attribute name="VALUE" x="-207.01" y="55.88" size="1.778" layer="96"/>
 </instance>
-<instance part="Q.L1" gate="G$1" x="-226.06" y="96.52" smashed="yes" rot="MR180">
+<instance part="Q.BI1" gate="G$1" x="-226.06" y="96.52" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="-218.44" y="99.06" size="1.778" layer="96" rot="R270"/>
 <attribute name="NAME" x="-220.98" y="99.06" size="1.778" layer="95" rot="R270"/>
 <attribute name="COMPONENT" x="-226.06" y="96.52" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="Q.L2" gate="G$1" x="-238.76" y="106.68" smashed="yes" rot="MR180">
+<instance part="Q.BI2" gate="G$1" x="-238.76" y="106.68" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="-231.14" y="109.22" size="1.778" layer="96" rot="R270"/>
 <attribute name="NAME" x="-233.68" y="109.22" size="1.778" layer="95" rot="R270"/>
 <attribute name="COMPONENT" x="-238.76" y="106.68" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.D2" gate="G$1" x="233.68" y="33.02" smashed="yes" rot="R180">
+<instance part="C.DS4" gate="G$1" x="233.68" y="33.02" smashed="yes" rot="R180">
 <attribute name="NAME" x="231.14" y="38.1" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="231.14" y="35.56" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="233.68" y="33.02" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="C.D1" gate="G$1" x="261.62" y="35.56" smashed="yes">
+<instance part="C.DS1" gate="G$1" x="261.62" y="35.56" smashed="yes">
 <attribute name="NAME" x="259.08" y="38.1" size="1.78071875" layer="95" rot="R180"/>
 <attribute name="VALUE" x="259.08" y="35.56" size="1.77813125" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="261.62" y="35.56" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="TP.J1" gate="G$1" x="-408.94" y="10.16" smashed="yes">
+<instance part="TP.USB3" gate="G$1" x="-408.94" y="10.16" smashed="yes">
 <attribute name="NAME" x="-409.956" y="3.81" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-407.67" y="7.62" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.J2" gate="G$1" x="-401.32" y="10.16" smashed="yes">
+<instance part="TP.USB8" gate="G$1" x="-401.32" y="10.16" smashed="yes">
 <attribute name="NAME" x="-402.336" y="3.81" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-400.05" y="7.62" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.B1" gate="G$1" x="-335.28" y="111.76" smashed="yes">
+<instance part="TP.USB1" gate="G$1" x="-335.28" y="111.76" smashed="yes">
 <attribute name="NAME" x="-336.296" y="105.41" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-334.01" y="109.22" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.L2" gate="G$1" x="-248.92" y="91.44" smashed="yes">
+<instance part="TP.USB9" gate="G$1" x="-248.92" y="91.44" smashed="yes">
 <attribute name="NAME" x="-249.936" y="85.09" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-247.65" y="88.9" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.M1" gate="G$1" x="-187.96" y="30.48" smashed="yes">
+<instance part="TP.USB4" gate="G$1" x="-187.96" y="30.48" smashed="yes">
 <attribute name="NAME" x="-188.976" y="24.13" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-186.69" y="27.94" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.M2" gate="G$1" x="-198.12" y="-27.94" smashed="yes">
+<instance part="TP.USB10" gate="G$1" x="-198.12" y="-27.94" smashed="yes">
 <attribute name="NAME" x="-199.136" y="-34.29" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-196.85" y="-30.48" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.F1" gate="G$1" x="114.3" y="40.64" smashed="yes">
+<instance part="TP.USB2" gate="G$1" x="114.3" y="40.64" smashed="yes">
 <attribute name="NAME" x="113.284" y="34.29" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="115.57" y="38.1" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.F2" gate="G$1" x="-142.24" y="203.2" smashed="yes">
+<instance part="TP.USB7" gate="G$1" x="-142.24" y="203.2" smashed="yes">
 <attribute name="NAME" x="-143.256" y="196.85" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-140.97" y="200.66" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.F3" gate="G$1" x="111.76" y="7.62" smashed="yes">
+<instance part="TP.USB13" gate="G$1" x="111.76" y="7.62" smashed="yes">
 <attribute name="NAME" x="110.744" y="1.27" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="113.03" y="5.08" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.P1" gate="G$1" x="-12.7" y="208.28" smashed="yes" rot="R180">
+<instance part="TP.USB5" gate="G$1" x="-12.7" y="208.28" smashed="yes" rot="R180">
 <attribute name="NAME" x="-11.684" y="214.63" size="1.778" layer="95" rot="R270"/>
 <attribute name="TP_SIGNAL_NAME" x="-13.97" y="210.82" size="1.778" layer="97" rot="R180"/>
 </instance>
-<instance part="TP.P2" gate="G$1" x="-12.7" y="152.4" smashed="yes">
+<instance part="TP.USB11" gate="G$1" x="-12.7" y="152.4" smashed="yes">
 <attribute name="NAME" x="-13.716" y="146.05" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-11.43" y="149.86" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.P3" gate="G$1" x="-10.16" y="182.88" smashed="yes" rot="R90">
+<instance part="TP.USB14" gate="G$1" x="-10.16" y="182.88" smashed="yes" rot="R90">
 <attribute name="NAME" x="-3.81" y="181.864" size="1.778" layer="95" rot="R180"/>
 <attribute name="TP_SIGNAL_NAME" x="-7.62" y="184.15" size="1.778" layer="97" rot="R90"/>
 </instance>
-<instance part="TP.P4" gate="G$1" x="-10.16" y="177.8" smashed="yes" rot="R90">
+<instance part="TP.USB16" gate="G$1" x="-10.16" y="177.8" smashed="yes" rot="R90">
 <attribute name="NAME" x="-3.81" y="176.784" size="1.778" layer="95" rot="R180"/>
 <attribute name="TP_SIGNAL_NAME" x="-7.62" y="179.07" size="1.778" layer="97" rot="R90"/>
 </instance>
-<instance part="Q.J1" gate="G$1" x="-370.84" y="27.94" smashed="yes" rot="R180">
+<instance part="Q.VI1" gate="G$1" x="-370.84" y="27.94" smashed="yes" rot="R180">
 <attribute name="NAME" x="-370.84" y="22.86" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-366.522" y="31.9024" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-370.84" y="27.94" size="1.778" layer="96" display="off"/>
@@ -14911,12 +14911,12 @@ thermal monitoring, so a
 <instance part="SUPPLY6" gate="GND" x="-370.84" y="15.24" smashed="yes">
 <attribute name="VALUE" x="-369.57" y="15.24" size="1.778" layer="96"/>
 </instance>
-<instance part="C.P2" gate="G$1" x="-119.38" y="228.6" smashed="yes" rot="R180">
+<instance part="C.USB2" gate="G$1" x="-119.38" y="228.6" smashed="yes" rot="R180">
 <attribute name="NAME" x="-121.92" y="233.68" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-121.92" y="231.14" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-119.38" y="228.6" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="C.P1" gate="G$1" x="-106.68" y="228.6" smashed="yes" rot="R180">
+<instance part="C.USB1" gate="G$1" x="-106.68" y="228.6" smashed="yes" rot="R180">
 <attribute name="NAME" x="-109.22" y="233.68" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-109.22" y="231.14" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-106.68" y="228.6" size="1.778" layer="96" rot="R180" display="off"/>
@@ -14924,37 +14924,37 @@ thermal monitoring, so a
 <instance part="SUPPLY35" gate="GND" x="-93.98" y="182.88" smashed="yes">
 <attribute name="VALUE" x="-92.71" y="182.88" size="1.778" layer="96"/>
 </instance>
-<instance part="C.P3" gate="G$1" x="-106.68" y="195.58" smashed="yes" rot="R180">
+<instance part="C.USB3" gate="G$1" x="-106.68" y="195.58" smashed="yes" rot="R180">
 <attribute name="NAME" x="-109.22" y="200.66" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-109.22" y="198.12" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-106.68" y="195.58" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="C.P4" gate="G$1" x="-93.98" y="195.58" smashed="yes" rot="R180">
+<instance part="C.USB4" gate="G$1" x="-93.98" y="195.58" smashed="yes" rot="R180">
 <attribute name="NAME" x="-96.52" y="200.66" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-96.52" y="198.12" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-93.98" y="195.58" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="Q.Z3" gate="G$1" x="-127" y="101.6" smashed="yes">
+<instance part="Q.ZZ3" gate="G$1" x="-127" y="101.6" smashed="yes">
 <attribute name="NAME" x="-129.286" y="103.505" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-129.286" y="105.791" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-127" y="101.6" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.Z2" gate="G$1" x="-83.82" y="99.06" smashed="yes">
+<instance part="C.ZZ2" gate="G$1" x="-83.82" y="99.06" smashed="yes">
 <attribute name="NAME" x="-77.47" y="92.71" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-77.47" y="90.17" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-83.82" y="99.06" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="U.Z1" gate="G$1" x="-60.96" y="104.14" smashed="yes">
+<instance part="U.ZZ1" gate="G$1" x="-60.96" y="104.14" smashed="yes">
 <attribute name="VALUE" x="-58.42" y="93.98" size="1.778" layer="96"/>
 <attribute name="NAME" x="-73.66" y="93.98" size="1.778" layer="95"/>
 <attribute name="COMPONENT" x="-60.96" y="104.14" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.Z3" gate="G$1" x="-35.56" y="109.22" smashed="yes" rot="R90">
+<instance part="C.ZZ3" gate="G$1" x="-35.56" y="109.22" smashed="yes" rot="R90">
 <attribute name="NAME" x="-33.02" y="113.03" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-33.02" y="110.49" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-35.56" y="109.22" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="C.Z4" gate="G$1" x="-30.48" y="93.98" smashed="yes">
+<instance part="C.ZZ4" gate="G$1" x="-30.48" y="93.98" smashed="yes">
 <attribute name="NAME" x="-30.48" y="93.98" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-30.48" y="96.52" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-30.48" y="93.98" size="1.778" layer="96" display="off"/>
@@ -14968,83 +14968,83 @@ thermal monitoring, so a
 <instance part="SUPPLY11" gate="GND" x="-30.48" y="81.28" smashed="yes">
 <attribute name="VALUE" x="-29.21" y="81.28" size="1.778" layer="96"/>
 </instance>
-<instance part="TP.Z1" gate="G$1" x="-2.54" y="83.82" smashed="yes">
+<instance part="TP.USB6" gate="G$1" x="-2.54" y="83.82" smashed="yes">
 <attribute name="NAME" x="-3.556" y="77.47" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-1.27" y="81.28" size="1.778" layer="97"/>
 </instance>
-<instance part="Q.Z1" gate="G$1" x="-127" y="93.98" smashed="yes">
+<instance part="Q.ZZ1" gate="G$1" x="-127" y="93.98" smashed="yes">
 <attribute name="NAME" x="-129.286" y="95.885" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-129.286" y="98.171" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-127" y="93.98" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="Q.Z2" gate="G$1" x="-127" y="109.22" smashed="yes">
+<instance part="Q.ZZ2" gate="G$1" x="-127" y="109.22" smashed="yes">
 <attribute name="NAME" x="-129.286" y="111.125" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-129.286" y="113.411" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-127" y="109.22" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="Q.F1" gate="G$1" x="99.06" y="12.7" smashed="yes">
+<instance part="Q.DS1" gate="G$1" x="99.06" y="12.7" smashed="yes">
 <attribute name="NAME" x="96.774" y="14.605" size="1.778" layer="95"/>
 <attribute name="VALUE" x="96.774" y="16.891" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="99.06" y="12.7" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="Q.F2" gate="G$1" x="106.68" y="25.4" smashed="yes" rot="R270">
+<instance part="Q.DS2" gate="G$1" x="106.68" y="25.4" smashed="yes" rot="R270">
 <attribute name="NAME" x="109.474" y="22.225" size="1.778" layer="95"/>
 <attribute name="VALUE" x="109.474" y="24.511" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="106.68" y="25.4" size="1.778" layer="96" rot="R270" display="off"/>
 </instance>
-<instance part="L.Z1" gate="G$1" x="-22.86" y="104.14" smashed="yes">
+<instance part="L.ZZ1" gate="G$1" x="-22.86" y="104.14" smashed="yes">
 <attribute name="NAME" x="-26.67" y="106.68" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-25.4" y="101.6" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-22.86" y="104.14" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="L.F1" gate="G$1" x="109.22" y="50.8" smashed="yes">
+<instance part="L.DS1" gate="G$1" x="109.22" y="50.8" smashed="yes">
 <attribute name="NAME" x="105.41" y="53.34" size="1.778" layer="95"/>
 <attribute name="VALUE" x="106.68" y="48.26" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="109.22" y="50.8" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.Z5" gate="G$1" x="-91.44" y="99.06" smashed="yes" rot="R180">
+<instance part="C.ZZ5" gate="G$1" x="-91.44" y="99.06" smashed="yes" rot="R180">
 <attribute name="NAME" x="-90.17" y="92.71" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-90.17" y="90.17" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-91.44" y="99.06" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="C.F6" gate="G$1" x="40.64" y="48.26" smashed="yes" rot="R180">
+<instance part="C.DS10" gate="G$1" x="40.64" y="48.26" smashed="yes" rot="R180">
 <attribute name="NAME" x="39.37" y="54.61" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="39.37" y="52.07" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="40.64" y="48.26" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="TP.Z2" gate="G$1" x="-99.06" y="116.84" smashed="yes" rot="R180">
+<instance part="TP.USB12" gate="G$1" x="-99.06" y="116.84" smashed="yes" rot="R180">
 <attribute name="NAME" x="-98.044" y="123.19" size="1.778" layer="95" rot="R270"/>
 <attribute name="TP_SIGNAL_NAME" x="-100.33" y="119.38" size="1.778" layer="97" rot="R180"/>
 </instance>
-<instance part="C.M3" gate="G$1" x="-289.56" y="17.78" smashed="yes">
+<instance part="C.EC3" gate="G$1" x="-289.56" y="17.78" smashed="yes">
 <attribute name="NAME" x="-288.542440625" y="18.415971875" size="1.78071875" layer="95"/>
 <attribute name="VALUE" x="-288.54393125" y="13.588690625" size="1.77813125" layer="96"/>
 <attribute name="COMPONENT" x="-289.56" y="17.78" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.M4" gate="G$1" x="-279.4" y="17.78" smashed="yes">
+<instance part="C.EC4" gate="G$1" x="-279.4" y="17.78" smashed="yes">
 <attribute name="NAME" x="-278.382440625" y="18.415971875" size="1.78071875" layer="95"/>
 <attribute name="VALUE" x="-278.38393125" y="13.588690625" size="1.77813125" layer="96"/>
 <attribute name="COMPONENT" x="-279.4" y="17.78" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.M2" gate="G$1" x="-266.7" y="-12.7" smashed="yes" rot="R90">
+<instance part="R.EC2" gate="G$1" x="-266.7" y="-12.7" smashed="yes" rot="R90">
 <attribute name="NAME" x="-270.7386" y="-16.51" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-267.97" y="-16.51" size="1.778" layer="96" rot="R90"/>
 <attribute name="COMPONENT" x="-266.7" y="-12.7" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="R.M3" gate="G$1" x="-193.04" y="-10.16" smashed="yes" rot="R90">
+<instance part="R.EC3" gate="G$1" x="-193.04" y="-10.16" smashed="yes" rot="R90">
 <attribute name="NAME" x="-197.0786" y="-13.97" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-194.31" y="-13.97" size="1.778" layer="96" rot="R90"/>
 <attribute name="COMPONENT" x="-193.04" y="-10.16" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="X.S1" gate="G$1" x="71.12" y="-93.98" smashed="yes" rot="R270">
+<instance part="X.SI1" gate="G$1" x="71.12" y="-93.98" smashed="yes" rot="R270">
 <attribute name="NAME" x="76.2" y="-91.44" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="66.04" y="-99.06" size="1.778" layer="96"/>
 </instance>
-<instance part="X.S2" gate="G$1" x="121.92" y="-33.02" smashed="yes">
+<instance part="X.SI2" gate="G$1" x="121.92" y="-33.02" smashed="yes">
 <attribute name="NAME" x="121.92" y="-27.94" size="1.778" layer="95"/>
 <attribute name="VALUE" x="127" y="-40.64" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="X.S3" gate="G$1" x="121.92" y="-76.2" smashed="yes">
+<instance part="X.SI3" gate="G$1" x="121.92" y="-76.2" smashed="yes">
 <attribute name="NAME" x="121.92" y="-71.12" size="1.778" layer="95"/>
 <attribute name="VALUE" x="139.7" y="-109.22" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
@@ -15054,19 +15054,19 @@ thermal monitoring, so a
 <instance part="SUPPLY27" gate="GND" x="55.88" y="-99.06" smashed="yes">
 <attribute name="VALUE" x="57.15" y="-99.06" size="1.778" layer="96"/>
 </instance>
-<instance part="X.D1" gate="G$1" x="287.02" y="20.32" smashed="yes">
+<instance part="X.DS1" gate="G$1" x="287.02" y="20.32" smashed="yes">
 <attribute name="NAME" x="287.02" y="25.4" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="289.56" y="38.1" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="SUPPLY30" gate="GND" x="287.02" y="2.54" smashed="yes">
 <attribute name="VALUE" x="288.29" y="2.54" size="1.778" layer="96"/>
 </instance>
-<instance part="C.J1" gate="G$1" x="-345.44" y="33.02" smashed="yes">
+<instance part="C.VI1" gate="G$1" x="-345.44" y="33.02" smashed="yes">
 <attribute name="NAME" x="-347.98" y="33.02" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-347.98" y="30.48" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-345.44" y="33.02" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.J2" gate="G$1" x="-414.02" y="25.4" smashed="yes">
+<instance part="C.VI3" gate="G$1" x="-414.02" y="25.4" smashed="yes">
 <attribute name="NAME" x="-416.56" y="25.4" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-416.56" y="22.86" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-414.02" y="25.4" size="1.778" layer="96" display="off"/>
@@ -15077,17 +15077,17 @@ thermal monitoring, so a
 <instance part="SUPPLY37" gate="GND" x="-345.44" y="22.86" smashed="yes">
 <attribute name="VALUE" x="-347.345" y="19.685" size="1.778" layer="96"/>
 </instance>
-<instance part="C.M7" gate="G$1" x="-172.72" y="30.48" smashed="yes" rot="R180">
+<instance part="C.EC7" gate="G$1" x="-172.72" y="30.48" smashed="yes" rot="R180">
 <attribute name="NAME" x="-170.18" y="30.48" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-170.18" y="33.02" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-172.72" y="30.48" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="C.L1" gate="G$1" x="-190.5" y="119.38" smashed="yes">
+<instance part="C.BI1" gate="G$1" x="-190.5" y="119.38" smashed="yes">
 <attribute name="NAME" x="-193.04" y="119.38" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-193.04" y="116.84" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-190.5" y="119.38" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.L2" gate="G$1" x="-190.5" y="91.44" smashed="yes">
+<instance part="C.BI2" gate="G$1" x="-190.5" y="91.44" smashed="yes">
 <attribute name="NAME" x="-193.04" y="91.44" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-193.04" y="88.9" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-190.5" y="91.44" size="1.778" layer="96" display="off"/>
@@ -15098,7 +15098,7 @@ thermal monitoring, so a
 <instance part="SUPPLY41" gate="GND" x="-190.5" y="109.22" smashed="yes">
 <attribute name="VALUE" x="-189.23" y="109.22" size="1.778" layer="96"/>
 </instance>
-<instance part="C.Y4" gate="G$1" x="-63.5" y="-27.94" smashed="yes">
+<instance part="C.YY4" gate="G$1" x="-63.5" y="-27.94" smashed="yes">
 <attribute name="NAME" x="-66.04" y="-27.94" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-66.04" y="-30.48" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-63.5" y="-27.94" size="1.778" layer="96" display="off"/>
@@ -15106,12 +15106,12 @@ thermal monitoring, so a
 <instance part="SUPPLY43" gate="GND" x="-63.5" y="-38.1" smashed="yes">
 <attribute name="VALUE" x="-62.23" y="-38.1" size="1.778" layer="96"/>
 </instance>
-<instance part="C.Z6" gate="G$1" x="-22.86" y="93.98" smashed="yes" rot="MR180">
+<instance part="C.ZZ6" gate="G$1" x="-22.86" y="93.98" smashed="yes" rot="MR180">
 <attribute name="NAME" x="-22.86" y="93.98" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-22.86" y="96.52" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-22.86" y="93.98" size="1.778" layer="96" rot="MR180" display="off"/>
 </instance>
-<instance part="C.F7" gate="G$1" x="121.92" y="38.1" smashed="yes" rot="MR180">
+<instance part="C.DS11" gate="G$1" x="121.92" y="38.1" smashed="yes" rot="MR180">
 <attribute name="NAME" x="123.19" y="44.45" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="123.19" y="41.91" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="121.92" y="38.1" size="1.778" layer="96" rot="MR180" display="off"/>
@@ -15122,12 +15122,12 @@ thermal monitoring, so a
 <instance part="SUPPLY45" gate="GND" x="116.84" y="-2.54" smashed="yes">
 <attribute name="VALUE" x="118.11" y="-2.54" size="1.778" layer="96"/>
 </instance>
-<instance part="C.F8" gate="G$1" x="116.84" y="5.08" smashed="yes" rot="MR180">
+<instance part="C.DS12" gate="G$1" x="116.84" y="5.08" smashed="yes" rot="MR180">
 <attribute name="NAME" x="118.11" y="11.43" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="118.11" y="8.89" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="116.84" y="5.08" size="1.778" layer="96" rot="MR180" display="off"/>
 </instance>
-<instance part="C.S1" gate="G$1" x="63.5" y="-60.96" smashed="yes" rot="R180">
+<instance part="C.SI1" gate="G$1" x="63.5" y="-60.96" smashed="yes" rot="R180">
 <attribute name="NAME" x="62.23" y="-54.61" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="62.23" y="-57.15" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="63.5" y="-60.96" size="1.778" layer="96" rot="R180" display="off"/>
@@ -15135,7 +15135,7 @@ thermal monitoring, so a
 <instance part="SUPPLY47" gate="GND" x="63.5" y="-71.12" smashed="yes">
 <attribute name="VALUE" x="64.77" y="-71.12" size="1.778" layer="96"/>
 </instance>
-<instance part="C.G1" gate="G$1" x="86.36" y="154.94" smashed="yes" rot="R180">
+<instance part="C.ESP1" gate="G$1" x="86.36" y="154.94" smashed="yes" rot="R180">
 <attribute name="NAME" x="83.82" y="160.02" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="83.82" y="157.48" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="86.36" y="154.94" size="1.778" layer="96" rot="R180" display="off"/>
@@ -15143,7 +15143,7 @@ thermal monitoring, so a
 <instance part="SUPPLY48" gate="GND" x="86.36" y="147.32" smashed="yes">
 <attribute name="VALUE" x="80.01" y="147.32" size="1.778" layer="96"/>
 </instance>
-<instance part="C.J1*" gate="G$1" x="-350.52" y="2.54" smashed="yes" rot="MR0">
+<instance part="C.VI2*" gate="G$1" x="-350.52" y="2.54" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-347.98" y="2.54" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="-347.98" y="0" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="-350.52" y="2.54" size="1.778" layer="96" rot="MR0" display="off"/>
@@ -15151,12 +15151,12 @@ thermal monitoring, so a
 <instance part="SUPPLY49" gate="GND" x="-350.52" y="-7.62" smashed="yes">
 <attribute name="VALUE" x="-349.25" y="-7.62" size="1.778" layer="96"/>
 </instance>
-<instance part="C.S1*" gate="G$1" x="50.8" y="-38.1" smashed="yes" rot="MR0">
+<instance part="C.SI2*" gate="G$1" x="50.8" y="-38.1" smashed="yes" rot="MR0">
 <attribute name="NAME" x="53.34" y="-38.1" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="53.34" y="-40.64" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="50.8" y="-38.1" size="1.778" layer="96" rot="MR0" display="off"/>
 </instance>
-<instance part="C.S2*" gate="G$1" x="50.8" y="-81.28" smashed="yes" rot="MR0">
+<instance part="C.SI3*" gate="G$1" x="50.8" y="-81.28" smashed="yes" rot="MR0">
 <attribute name="NAME" x="53.34" y="-81.28" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="53.34" y="-83.82" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="50.8" y="-81.28" size="1.778" layer="96" rot="MR0" display="off"/>
@@ -15167,32 +15167,32 @@ thermal monitoring, so a
 <instance part="SUPPLY51" gate="GND" x="50.8" y="-48.26" smashed="yes">
 <attribute name="VALUE" x="52.07" y="-48.26" size="1.778" layer="96"/>
 </instance>
-<instance part="R.S1*" gate="G$1" x="43.18" y="-33.02" smashed="yes" rot="MR0">
+<instance part="R.SI1*" gate="G$1" x="43.18" y="-33.02" smashed="yes" rot="MR0">
 <attribute name="NAME" x="39.37" y="-34.29" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="39.37" y="-36.83" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="43.18" y="-33.02" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.S2*" gate="G$1" x="43.18" y="-76.2" smashed="yes" rot="MR0">
+<instance part="R.SI2*" gate="G$1" x="43.18" y="-76.2" smashed="yes" rot="MR0">
 <attribute name="NAME" x="39.37" y="-77.47" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="46.99" y="-80.01" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="43.18" y="-76.2" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.D1*" gate="G$1" x="254" y="25.4" smashed="yes" rot="MR0">
+<instance part="R.DS1*" gate="G$1" x="254" y="25.4" smashed="yes" rot="MR0">
 <attribute name="NAME" x="250.19" y="24.13" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="250.19" y="21.59" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="254" y="25.4" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.D1*" gate="G$1" x="246.38" y="10.16" smashed="yes" rot="MR0">
+<instance part="C.DS2*" gate="G$1" x="246.38" y="10.16" smashed="yes" rot="MR0">
 <attribute name="NAME" x="248.92" y="10.16" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="248.92" y="7.62" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="246.38" y="10.16" size="1.778" layer="96" rot="MR0" display="off"/>
 </instance>
-<instance part="R.D2*" gate="G$1" x="254" y="17.78" smashed="yes" rot="MR0">
+<instance part="R.DS2*" gate="G$1" x="254" y="17.78" smashed="yes" rot="MR0">
 <attribute name="NAME" x="250.19" y="16.51" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="250.19" y="13.97" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="254" y="17.78" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.D2*" gate="G$1" x="233.68" y="10.16" smashed="yes" rot="MR0">
+<instance part="C.DS5*" gate="G$1" x="233.68" y="10.16" smashed="yes" rot="MR0">
 <attribute name="NAME" x="236.22" y="10.16" size="1.778" layer="95" rot="MR180"/>
 <attribute name="VALUE" x="236.22" y="7.62" size="1.778" layer="96" rot="MR180"/>
 <attribute name="COMPONENT" x="233.68" y="10.16" size="1.778" layer="96" rot="MR0" display="off"/>
@@ -15203,25 +15203,25 @@ thermal monitoring, so a
 <instance part="SUPPLY53" gate="GND" x="246.38" y="0" smashed="yes">
 <attribute name="VALUE" x="247.65" y="0" size="1.778" layer="96"/>
 </instance>
-<instance part="TP.F4" gate="G$1" x="-177.8" y="152.4" smashed="yes">
+<instance part="TP.USB15" gate="G$1" x="-177.8" y="152.4" smashed="yes">
 <attribute name="NAME" x="-178.816" y="146.05" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-176.53" y="149.86" size="1.778" layer="97"/>
 </instance>
-<instance part="TP.P5" gate="G$1" x="-129.54" y="233.68" smashed="yes">
+<instance part="TP.USB17" gate="G$1" x="-129.54" y="233.68" smashed="yes">
 <attribute name="NAME" x="-130.556" y="227.33" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-128.27" y="231.14" size="1.778" layer="97"/>
 </instance>
-<instance part="C.Z1" gate="G$1" x="-38.1" y="93.98" smashed="yes">
+<instance part="C.ZZ1" gate="G$1" x="-38.1" y="93.98" smashed="yes">
 <attribute name="NAME" x="-38.1" y="93.98" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-38.1" y="96.52" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-38.1" y="93.98" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="D.Z1" gate="G$1" x="-12.7" y="68.58" smashed="yes">
+<instance part="D.ZZ1" gate="G$1" x="-12.7" y="68.58" smashed="yes">
 <attribute name="NAME" x="-13.97" y="71.12" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-17.145" y="61.468" size="1.778" layer="96" rot="R90"/>
 <attribute name="COMPONENT" x="-12.7" y="68.58" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.P5" gate="G$1" x="-12.7" y="78.74" smashed="yes" rot="R90">
+<instance part="R.USB5" gate="G$1" x="-12.7" y="78.74" smashed="yes" rot="R90">
 <attribute name="NAME" x="-15.24" y="81.28" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-15.24" y="78.74" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-12.7" y="78.74" size="1.778" layer="96" display="off"/>
@@ -15229,12 +15229,12 @@ thermal monitoring, so a
 <instance part="SUPPLY42" gate="GND" x="-12.7" y="55.88" smashed="yes">
 <attribute name="VALUE" x="-11.43" y="55.88" size="1.778" layer="96"/>
 </instance>
-<instance part="Q.L4" gate="G$1" x="-101.6" y="68.58" smashed="yes">
+<instance part="Q.BI3" gate="G$1" x="-101.6" y="68.58" smashed="yes">
 <attribute name="VALUE" x="-96.52" y="71.12" size="1.778" layer="96" rot="MR180"/>
 <attribute name="NAME" x="-96.52" y="68.58" size="1.778" layer="95" rot="MR180"/>
 <attribute name="COMPONENT" x="-101.6" y="68.58" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="R.L7" gate="G$1" x="-99.06" y="83.82" smashed="yes" rot="R270">
+<instance part="R.BI6" gate="G$1" x="-99.06" y="83.82" smashed="yes" rot="R270">
 <attribute name="NAME" x="-102.87" y="86.36" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="-105.41" y="86.36" size="1.778" layer="96" rot="R270"/>
 <attribute name="COMPONENT" x="-99.06" y="83.82" size="1.778" layer="96" display="off"/>
@@ -15242,32 +15242,32 @@ thermal monitoring, so a
 <instance part="SUPPLY20" gate="GND" x="-99.06" y="58.42" smashed="yes">
 <attribute name="VALUE" x="-97.79" y="58.42" size="1.778" layer="96"/>
 </instance>
-<instance part="Q.Y90" gate="G$1" x="-17.78" y="22.86" smashed="yes" rot="MR180">
+<instance part="Q.YY1" gate="G$1" x="-17.78" y="22.86" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="-11.43" y="21.59" size="1.778" layer="96"/>
 <attribute name="NAME" x="-11.43" y="24.13" size="1.778" layer="95"/>
 </instance>
-<instance part="Q.Y90" gate="G$2" x="-124.46" y="22.86" smashed="yes" rot="R180">
+<instance part="Q.YY1" gate="G$2" x="-124.46" y="22.86" smashed="yes" rot="R180">
 <attribute name="VALUE" x="-130.81" y="21.59" size="1.778" layer="96" rot="MR0"/>
 <attribute name="NAME" x="-130.81" y="24.13" size="1.778" layer="95" rot="MR0"/>
 </instance>
-<instance part="Q.Y91" gate="G$1" x="-124.46" y="-10.16" smashed="yes" rot="R180">
+<instance part="Q.YY2" gate="G$1" x="-124.46" y="-10.16" smashed="yes" rot="R180">
 <attribute name="VALUE" x="-130.81" y="-8.89" size="1.778" layer="96" rot="MR270"/>
 <attribute name="NAME" x="-133.35" y="-8.89" size="1.778" layer="95" rot="MR270"/>
 </instance>
-<instance part="Q.Y91" gate="G$2" x="-17.78" y="-10.16" smashed="yes" rot="MR180">
+<instance part="Q.YY2" gate="G$2" x="-17.78" y="-10.16" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="-11.43" y="-3.81" size="1.778" layer="96" rot="R270"/>
 <attribute name="NAME" x="-8.89" y="-3.81" size="1.778" layer="95" rot="R270"/>
 </instance>
-<instance part="U.B90" gate="G$1" x="-406.4" y="101.6" smashed="yes">
+<instance part="U.BC1" gate="G$1" x="-406.4" y="101.6" smashed="yes">
 <attribute name="NAME" x="-411.48" y="139.7" size="2.54" layer="94"/>
 <attribute name="VALUE" x="-411.48" y="134.62" size="2.54" layer="94"/>
 </instance>
-<instance part="R.B5" gate="G$1" x="-347.98" y="127" smashed="yes">
+<instance part="R.BC5" gate="G$1" x="-347.98" y="127" smashed="yes">
 <attribute name="NAME" x="-351.79" y="131.0386" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-351.79" y="128.27" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-347.98" y="127" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="C.F9" gate="G$1" x="-464.82" y="116.84" smashed="yes" rot="MR0">
+<instance part="C.DS13" gate="G$1" x="-464.82" y="116.84" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-466.09" y="119.38" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="-466.09" y="121.92" size="1.778" layer="96" rot="MR0"/>
 <attribute name="COMPONENT" x="-464.82" y="116.84" size="1.778" layer="96" display="off"/>
@@ -15275,15 +15275,15 @@ thermal monitoring, so a
 <instance part="SUPPLY31" gate="GND" x="-464.82" y="106.68" smashed="yes">
 <attribute name="VALUE" x="-463.55" y="106.68" size="1.778" layer="96"/>
 </instance>
-<instance part="L.B90" gate="G$1" x="-363.22" y="127" smashed="yes">
+<instance part="L.BC1" gate="G$1" x="-363.22" y="127" smashed="yes">
 <attribute name="NAME" x="-365.76" y="129.54" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-365.76" y="132.08" size="1.778" layer="96"/>
 </instance>
-<instance part="SJ.K2" gate="1" x="-434.34" y="116.84" smashed="yes" rot="R180">
+<instance part="SJ.VI2" gate="1" x="-434.34" y="116.84" smashed="yes" rot="R180">
 <attribute name="NAME" x="-431.8" y="114.3" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-431.8" y="120.65" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="C.J3" gate="G$1" x="-378.46" y="101.6" smashed="yes" rot="R180">
+<instance part="C.VI4" gate="G$1" x="-378.46" y="101.6" smashed="yes" rot="R180">
 <attribute name="VALUE" x="-375.92" y="104.14" size="1.778" layer="96"/>
 <attribute name="COMPONENT" x="-378.46" y="101.6" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
@@ -15293,12 +15293,12 @@ thermal monitoring, so a
 <instance part="SUPPLY46" gate="GND" x="-406.4" y="60.96" smashed="yes">
 <attribute name="VALUE" x="-405.13" y="60.96" size="1.778" layer="96"/>
 </instance>
-<instance part="C.B2" gate="G$1" x="-454.66" y="88.9" smashed="yes" rot="R180">
+<instance part="C.BC2" gate="G$1" x="-454.66" y="88.9" smashed="yes" rot="R180">
 <attribute name="NAME" x="-457.2" y="83.82" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-457.2" y="86.36" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-454.66" y="88.9" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
-<instance part="C.F10" gate="G$1" x="-327.66" y="116.84" smashed="yes" rot="MR0">
+<instance part="C.DS14" gate="G$1" x="-327.66" y="116.84" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-328.93" y="119.38" size="1.778" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="-328.93" y="121.92" size="1.778" layer="96" rot="MR0"/>
 <attribute name="COMPONENT" x="-327.66" y="116.84" size="1.778" layer="96" display="off"/>
@@ -15306,12 +15306,12 @@ thermal monitoring, so a
 <instance part="SUPPLY54" gate="GND" x="-327.66" y="106.68" smashed="yes">
 <attribute name="VALUE" x="-326.39" y="106.68" size="1.778" layer="96"/>
 </instance>
-<instance part="Q.L5" gate="G$1" x="-124.46" y="68.58" smashed="yes">
+<instance part="Q.BI4" gate="G$1" x="-124.46" y="68.58" smashed="yes">
 <attribute name="VALUE" x="-127" y="73.66" size="1.778" layer="96" rot="MR0"/>
 <attribute name="NAME" x="-127" y="71.12" size="1.778" layer="95" rot="MR0"/>
 <attribute name="COMPONENT" x="-124.46" y="68.58" size="1.778" layer="96" rot="R90" display="off"/>
 </instance>
-<instance part="R.L8" gate="G$1" x="-121.92" y="83.82" smashed="yes" rot="R270">
+<instance part="R.BI7" gate="G$1" x="-121.92" y="83.82" smashed="yes" rot="R270">
 <attribute name="NAME" x="-125.73" y="86.36" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="-128.27" y="86.36" size="1.778" layer="96" rot="R270"/>
 <attribute name="COMPONENT" x="-121.92" y="83.82" size="1.778" layer="96" display="off"/>
@@ -15319,22 +15319,22 @@ thermal monitoring, so a
 <instance part="SUPPLY9" gate="GND" x="-121.92" y="58.42" smashed="yes">
 <attribute name="VALUE" x="-120.65" y="58.42" size="1.778" layer="96"/>
 </instance>
-<instance part="R.B1" gate="G$1" x="152.4" y="124.46" smashed="yes" rot="R270">
+<instance part="R.BC1" gate="G$1" x="152.4" y="124.46" smashed="yes" rot="R270">
 <attribute name="NAME" x="156.21" y="128.27" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="153.67" y="128.27" size="1.778" layer="96" rot="R270"/>
 <attribute name="COMPONENT" x="152.4" y="124.46" size="1.778" layer="96" rot="R270" display="off"/>
 </instance>
-<instance part="R.B2" gate="G$1" x="137.16" y="124.46" smashed="yes" rot="R270">
+<instance part="R.BC2" gate="G$1" x="137.16" y="124.46" smashed="yes" rot="R270">
 <attribute name="NAME" x="140.97" y="128.27" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="138.43" y="128.27" size="1.778" layer="96" rot="R270"/>
 <attribute name="COMPONENT" x="137.16" y="124.46" size="1.778" layer="96" rot="R270" display="off"/>
 </instance>
-<instance part="R.L6" gate="G$1" x="-15.24" y="-50.8" smashed="yes" rot="R90">
+<instance part="R.BI5" gate="G$1" x="-15.24" y="-50.8" smashed="yes" rot="R90">
 <attribute name="NAME" x="-16.51" y="-48.26" size="1.778" layer="95" rot="R180"/>
 <attribute name="VALUE" x="-16.51" y="-50.8" size="1.778" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="-15.24" y="-50.8" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="R.B6" gate="G$1" x="-15.24" y="-35.56" smashed="yes" rot="R90">
+<instance part="R.BC6" gate="G$1" x="-15.24" y="-35.56" smashed="yes" rot="R90">
 <attribute name="NAME" x="-19.05" y="-39.37" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-16.51" y="-39.37" size="1.778" layer="96" rot="R90"/>
 <attribute name="COMPONENT" x="-15.24" y="-35.56" size="1.778" layer="96" rot="R90" display="off"/>
@@ -15348,7 +15348,7 @@ thermal monitoring, so a
 <nets>
 <net name="GND" class="0">
 <segment>
-<pinref part="X.J1" gate="G$1" pin="1"/>
+<pinref part="X.VI1" gate="G$1" pin="1"/>
 <pinref part="SUPPLY1" gate="GND" pin="GND"/>
 <wire x1="-429.26" y1="27.94" x2="-426.72" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="-426.72" y1="27.94" x2="-426.72" y2="25.4" width="0.1524" layer="91"/>
@@ -15356,51 +15356,51 @@ thermal monitoring, so a
 <segment>
 <pinref part="SUPPLY17" gate="GND" pin="GND"/>
 <wire x1="-106.68" y1="220.98" x2="-106.68" y2="223.52" width="0.1524" layer="91"/>
-<pinref part="C.P1" gate="G$1" pin="1"/>
-<pinref part="C.P2" gate="G$1" pin="1"/>
+<pinref part="C.USB1" gate="G$1" pin="1"/>
+<pinref part="C.USB2" gate="G$1" pin="1"/>
 <wire x1="-106.68" y1="223.52" x2="-106.68" y2="225.552" width="0.1524" layer="91"/>
 <wire x1="-119.38" y1="225.552" x2="-119.38" y2="223.52" width="0.1524" layer="91"/>
 <wire x1="-119.38" y1="223.52" x2="-106.68" y2="223.52" width="0.1524" layer="91"/>
 <junction x="-106.68" y="223.52"/>
 </segment>
 <segment>
-<pinref part="D.P1" gate="G$1" pin="C"/>
+<pinref part="D.USB1" gate="G$1" pin="C"/>
 <pinref part="SUPPLY19" gate="GND" pin="GND"/>
 <wire x1="-27.94" y1="210.82" x2="-27.94" y2="208.28" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U.P1" gate="A" pin="GND"/>
+<pinref part="U.USB1" gate="A" pin="GND"/>
 <pinref part="SUPPLY21" gate="GND" pin="GND"/>
 <wire x1="-66.04" y1="147.32" x2="-66.04" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY22" gate="GND" pin="GND"/>
-<pinref part="R.F3" gate="G$1" pin="1"/>
+<pinref part="R.DS4" gate="G$1" pin="1"/>
 <wire x1="-127" y1="182.88" x2="-127" y2="185.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="D.J1" gate="G$1" pin="C"/>
+<pinref part="D.VI1" gate="G$1" pin="C"/>
 <pinref part="SUPPLY18" gate="GND" pin="GND"/>
 <wire x1="-391.16" y1="0" x2="-391.16" y2="-5.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY23" gate="GND" pin="GND"/>
-<pinref part="R.J3" gate="G$1" pin="1"/>
+<pinref part="R.VI3" gate="G$1" pin="1"/>
 <wire x1="-381" y1="-5.08" x2="-381" y2="-2.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY24" gate="GND" pin="GND"/>
-<pinref part="R.J5" gate="G$1" pin="1"/>
+<pinref part="R.VI5" gate="G$1" pin="1"/>
 <wire x1="-358.14" y1="-5.08" x2="-358.14" y2="-2.54" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U.G1" gate="G$1" pin="GND"/>
+<pinref part="U.ESP1" gate="G$1" pin="GND"/>
 <pinref part="SUPPLY26" gate="GND" pin="GND"/>
 <wire x1="73.66" y1="83.82" x2="76.2" y2="83.82" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="83.82" x2="76.2" y2="81.28" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U.D1" gate="A" pin="GND"/>
+<pinref part="U.DS1" gate="A" pin="GND"/>
 <wire x1="162.56" y1="15.24" x2="160.02" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="160.02" y1="15.24" x2="160.02" y2="7.62" width="0.1524" layer="91"/>
 <pinref part="SUPPLY28" gate="GND" pin="GND"/>
@@ -15409,38 +15409,38 @@ thermal monitoring, so a
 <pinref part="SUPPLY29" gate="GND" pin="GND"/>
 <wire x1="261.62" y1="15.24" x2="261.62" y2="5.08" width="0.1524" layer="91"/>
 <wire x1="279.4" y1="15.24" x2="261.62" y2="15.24" width="0.1524" layer="91"/>
-<pinref part="C.D2" gate="G$1" pin="1"/>
+<pinref part="C.DS4" gate="G$1" pin="1"/>
 <wire x1="233.68" y1="29.972" x2="233.68" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="27.94" x2="261.62" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="C.D1" gate="G$1" pin="-"/>
+<pinref part="C.DS1" gate="G$1" pin="-"/>
 <wire x1="261.62" y1="27.94" x2="261.62" y2="30.48" width="0.1524" layer="91"/>
 <wire x1="261.62" y1="27.94" x2="261.62" y2="15.24" width="0.1524" layer="91"/>
 <junction x="261.62" y="27.94"/>
 <junction x="261.62" y="15.24"/>
-<pinref part="U.D1" gate="A" pin="!4OE"/>
+<pinref part="U.DS1" gate="A" pin="!4OE"/>
 <wire x1="218.44" y1="27.94" x2="220.98" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="U.D1" gate="A" pin="!3OE"/>
+<pinref part="U.DS1" gate="A" pin="!3OE"/>
 <wire x1="220.98" y1="27.94" x2="220.98" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="220.98" y1="20.32" x2="218.44" y2="20.32" width="0.1524" layer="91"/>
 <junction x="220.98" y="27.94"/>
 <wire x1="220.98" y1="27.94" x2="233.68" y2="27.94" width="0.1524" layer="91"/>
 <junction x="233.68" y="27.94"/>
-<pinref part="X.D1" gate="G$1" pin="4"/>
+<pinref part="X.DS1" gate="G$1" pin="4"/>
 </segment>
 <segment>
 <pinref part="SUPPLY25" gate="GND" pin="GND"/>
 <wire x1="55.88" y1="185.42" x2="55.88" y2="182.88" width="0.1524" layer="91"/>
-<pinref part="SJ.K1" gate="1" pin="1"/>
+<pinref part="SJ.VI1" gate="1" pin="1"/>
 <wire x1="55.88" y1="182.88" x2="55.88" y2="180.34" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="182.88" x2="38.1" y2="182.88" width="0.1524" layer="91"/>
 <wire x1="38.1" y1="182.88" x2="38.1" y2="185.42" width="0.1524" layer="91"/>
 <junction x="55.88" y="182.88"/>
-<pinref part="Q.K1" gate="G$1" pin="S"/>
+<pinref part="Q.ESP1" gate="G$1" pin="S"/>
 </segment>
 <segment>
-<pinref part="X.F1" gate="G$1" pin="GND"/>
-<pinref part="C.F1" gate="G$1" pin="1"/>
-<pinref part="R.F4" gate="G$1" pin="1"/>
+<pinref part="X.DS2" gate="G$1" pin="GND"/>
+<pinref part="C.DS3" gate="G$1" pin="1"/>
+<pinref part="R.DS5" gate="G$1" pin="1"/>
 <wire x1="-162.052" y1="149.86" x2="-157.48" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="-157.48" y1="149.86" x2="-157.48" y2="146.05" width="0.1524" layer="91"/>
 <junction x="-157.48" y="149.86"/>
@@ -15452,10 +15452,10 @@ thermal monitoring, so a
 <junction x="-157.48" y="160.02"/>
 </segment>
 <segment>
-<pinref part="U.M1" gate="A" pin="PGND_3"/>
+<pinref part="U.EC1" gate="A" pin="PGND_3"/>
 <wire x1="-259.08" y1="22.86" x2="-269.24" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="-269.24" y1="22.86" x2="-269.24" y2="20.32" width="0.1524" layer="91"/>
-<pinref part="U.M1" gate="A" pin="PGND_8"/>
+<pinref part="U.EC1" gate="A" pin="PGND_8"/>
 <wire x1="-269.24" y1="20.32" x2="-269.24" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="-269.24" y1="17.78" x2="-269.24" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="-269.24" y1="15.24" x2="-269.24" y2="12.7" width="0.1524" layer="91"/>
@@ -15463,35 +15463,35 @@ thermal monitoring, so a
 <wire x1="-269.24" y1="10.16" x2="-269.24" y2="7.62" width="0.1524" layer="91"/>
 <wire x1="-259.08" y1="10.16" x2="-269.24" y2="10.16" width="0.1524" layer="91"/>
 <junction x="-269.24" y="10.16"/>
-<pinref part="U.M1" gate="A" pin="PGND_7"/>
+<pinref part="U.EC1" gate="A" pin="PGND_7"/>
 <wire x1="-259.08" y1="12.7" x2="-269.24" y2="12.7" width="0.1524" layer="91"/>
 <junction x="-269.24" y="12.7"/>
-<pinref part="U.M1" gate="A" pin="PGND_6"/>
+<pinref part="U.EC1" gate="A" pin="PGND_6"/>
 <wire x1="-259.08" y1="15.24" x2="-269.24" y2="15.24" width="0.1524" layer="91"/>
 <junction x="-269.24" y="15.24"/>
-<pinref part="U.M1" gate="A" pin="PGND_5"/>
+<pinref part="U.EC1" gate="A" pin="PGND_5"/>
 <wire x1="-259.08" y1="17.78" x2="-269.24" y2="17.78" width="0.1524" layer="91"/>
 <junction x="-269.24" y="17.78"/>
-<pinref part="U.M1" gate="A" pin="PGND_4"/>
+<pinref part="U.EC1" gate="A" pin="PGND_4"/>
 <wire x1="-259.08" y1="20.32" x2="-269.24" y2="20.32" width="0.1524" layer="91"/>
 <junction x="-269.24" y="20.32"/>
 <pinref part="SUPPLY2" gate="GND" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U.M1" gate="A" pin="PGND_2"/>
+<pinref part="U.EC1" gate="A" pin="PGND_2"/>
 <wire x1="-213.36" y1="22.86" x2="-205.74" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="-205.74" y1="22.86" x2="-205.74" y2="20.32" width="0.1524" layer="91"/>
-<pinref part="U.M1" gate="A" pin="PGND"/>
+<pinref part="U.EC1" gate="A" pin="PGND"/>
 <wire x1="-205.74" y1="20.32" x2="-205.74" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="-213.36" y1="20.32" x2="-205.74" y2="20.32" width="0.1524" layer="91"/>
 <junction x="-205.74" y="20.32"/>
 <pinref part="SUPPLY3" gate="GND" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C.M1" gate="G$1" pin="1"/>
+<pinref part="C.EC1" gate="G$1" pin="1"/>
 <wire x1="-307.34" y1="13.97" x2="-307.34" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="-307.34" y1="2.54" x2="-299.72" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="C.M2" gate="G$1" pin="1"/>
+<pinref part="C.EC2" gate="G$1" pin="1"/>
 <wire x1="-299.72" y1="2.54" x2="-299.72" y2="13.97" width="0.1524" layer="91"/>
 <wire x1="-289.56" y1="2.54" x2="-299.72" y2="2.54" width="0.1524" layer="91"/>
 <junction x="-299.72" y="2.54"/>
@@ -15499,59 +15499,59 @@ thermal monitoring, so a
 <wire x1="-279.4" y1="2.54" x2="-289.56" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="-289.56" y1="2.54" x2="-289.56" y2="-5.08" width="0.1524" layer="91"/>
 <pinref part="SUPPLY32" gate="GND" pin="GND"/>
-<pinref part="C.M3" gate="G$1" pin="-"/>
+<pinref part="C.EC3" gate="G$1" pin="-"/>
 <wire x1="-289.56" y1="12.7" x2="-289.56" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="C.M4" gate="G$1" pin="-"/>
+<pinref part="C.EC4" gate="G$1" pin="-"/>
 <wire x1="-279.4" y1="2.54" x2="-279.4" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.M5" gate="G$1" pin="2"/>
-<pinref part="C.M6" gate="G$1" pin="-"/>
+<pinref part="C.EC5" gate="G$1" pin="2"/>
+<pinref part="C.EC6" gate="G$1" pin="-"/>
 <wire x1="-180.34" y1="17.78" x2="-172.72" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="-172.72" y1="17.78" x2="-165.1" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="-172.72" y1="17.78" x2="-172.72" y2="-12.7" width="0.1524" layer="91"/>
 <junction x="-172.72" y="17.78"/>
 <pinref part="SUPPLY33" gate="GND" pin="GND"/>
-<pinref part="C.M7" gate="G$1" pin="1"/>
+<pinref part="C.EC7" gate="G$1" pin="1"/>
 <wire x1="-172.72" y1="27.432" x2="-172.72" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY34" gate="GND" pin="GND"/>
 <wire x1="-22.86" y1="2.54" x2="-22.86" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="C.Y1" gate="G$1" pin="2"/>
+<pinref part="C.YY1" gate="G$1" pin="2"/>
 <wire x1="-27.94" y1="12.7" x2="-27.94" y2="8.128" width="0.1524" layer="91"/>
 <wire x1="-22.86" y1="12.7" x2="-27.94" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="U.Y1" gate="A" pin="GND"/>
+<pinref part="U.YY1" gate="A" pin="GND"/>
 <wire x1="-40.64" y1="0" x2="-35.56" y2="0" width="0.1524" layer="91"/>
 <wire x1="-35.56" y1="0" x2="-35.56" y2="12.7" width="0.1524" layer="91"/>
 <wire x1="-35.56" y1="12.7" x2="-27.94" y2="12.7" width="0.1524" layer="91"/>
 <junction x="-27.94" y="12.7"/>
 </segment>
 <segment>
-<pinref part="X.G1" gate="G$1" pin="1"/>
+<pinref part="X.ESP1" gate="G$1" pin="1"/>
 <wire x1="33.02" y1="106.68" x2="33.02" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="SUPPLY10" gate="GND" pin="GND"/>
 </segment>
 <segment>
 <pinref part="SUPPLY15" gate="GND" pin="GND"/>
-<pinref part="C.F4" gate="G$1" pin="2"/>
+<pinref part="C.DS8" gate="G$1" pin="2"/>
 <wire x1="48.26" y1="40.64" x2="48.26" y2="43.18" width="0.1524" layer="91"/>
-<pinref part="C.F6" gate="G$1" pin="1"/>
+<pinref part="C.DS10" gate="G$1" pin="1"/>
 <wire x1="48.26" y1="43.18" x2="48.26" y2="45.212" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="45.212" x2="40.64" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="43.18" x2="48.26" y2="43.18" width="0.1524" layer="91"/>
 <junction x="48.26" y="43.18"/>
 </segment>
 <segment>
-<pinref part="U.F1" gate="G$1" pin="GND"/>
+<pinref part="U.DS2" gate="G$1" pin="GND"/>
 <pinref part="SUPPLY16" gate="GND" pin="GND"/>
 <wire x1="71.12" y1="38.1" x2="71.12" y2="35.56" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.F3" gate="G$1" pin="2"/>
+<pinref part="C.DS7" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="37.592" x2="91.44" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="33.02" x2="93.98" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="C.F5" gate="G$1" pin="2"/>
+<pinref part="C.DS9" gate="G$1" pin="2"/>
 <wire x1="93.98" y1="33.02" x2="99.06" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="33.02" x2="99.06" y2="37.592" width="0.1524" layer="91"/>
 <pinref part="SUPPLY40" gate="GND" pin="GND"/>
@@ -15559,11 +15559,11 @@ thermal monitoring, so a
 <junction x="93.98" y="33.02"/>
 </segment>
 <segment>
-<pinref part="X.L2" gate="G$1" pin="2"/>
+<pinref part="X.BI2" gate="G$1" pin="2"/>
 <wire x1="-180.34" y1="60.96" x2="-180.34" y2="87.63" width="0.1524" layer="91"/>
-<pinref part="R.L4" gate="G$1" pin="1"/>
+<pinref part="R.BI4" gate="G$1" pin="1"/>
 <wire x1="-223.52" y1="63.5" x2="-223.52" y2="60.96" width="0.1524" layer="91"/>
-<pinref part="R.L2" gate="G$1" pin="1"/>
+<pinref part="R.BI2" gate="G$1" pin="1"/>
 <wire x1="-236.22" y1="63.5" x2="-236.22" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="-236.22" y1="60.96" x2="-223.52" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="-223.52" y1="60.96" x2="-208.28" y2="60.96" width="0.1524" layer="91"/>
@@ -15574,15 +15574,15 @@ thermal monitoring, so a
 <junction x="-208.28" y="60.96"/>
 </segment>
 <segment>
-<pinref part="Q.J1" gate="G$1" pin="AA"/>
+<pinref part="Q.VI1" gate="G$1" pin="AA"/>
 <pinref part="SUPPLY6" gate="GND" pin="GND"/>
 <wire x1="-370.84" y1="17.78" x2="-370.84" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY35" gate="GND" pin="GND"/>
 <wire x1="-93.98" y1="185.42" x2="-93.98" y2="190.5" width="0.1524" layer="91"/>
-<pinref part="C.P4" gate="G$1" pin="1"/>
-<pinref part="C.P3" gate="G$1" pin="1"/>
+<pinref part="C.USB4" gate="G$1" pin="1"/>
+<pinref part="C.USB3" gate="G$1" pin="1"/>
 <wire x1="-93.98" y1="190.5" x2="-93.98" y2="192.532" width="0.1524" layer="91"/>
 <wire x1="-106.68" y1="192.532" x2="-106.68" y2="190.5" width="0.1524" layer="91"/>
 <wire x1="-106.68" y1="190.5" x2="-93.98" y2="190.5" width="0.1524" layer="91"/>
@@ -15590,32 +15590,32 @@ thermal monitoring, so a
 </segment>
 <segment>
 <pinref part="SUPPLY4" gate="GND" pin="GND"/>
-<pinref part="C.Z2" gate="G$1" pin="2"/>
+<pinref part="C.ZZ2" gate="G$1" pin="2"/>
 <wire x1="-83.82" y1="86.36" x2="-83.82" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="C.Z5" gate="G$1" pin="1"/>
+<pinref part="C.ZZ5" gate="G$1" pin="1"/>
 <wire x1="-83.82" y1="93.98" x2="-83.82" y2="96.012" width="0.1524" layer="91"/>
 <wire x1="-91.44" y1="96.012" x2="-91.44" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="-91.44" y1="93.98" x2="-83.82" y2="93.98" width="0.1524" layer="91"/>
 <junction x="-83.82" y="93.98"/>
 </segment>
 <segment>
-<pinref part="U.Z1" gate="G$1" pin="GND"/>
+<pinref part="U.ZZ1" gate="G$1" pin="GND"/>
 <pinref part="SUPPLY5" gate="GND" pin="GND"/>
 <wire x1="-60.96" y1="91.44" x2="-60.96" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <wire x1="-38.1" y1="90.932" x2="-38.1" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="86.36" x2="-30.48" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="C.Z4" gate="G$1" pin="2"/>
+<pinref part="C.ZZ4" gate="G$1" pin="2"/>
 <wire x1="-30.48" y1="86.36" x2="-30.48" y2="90.932" width="0.1524" layer="91"/>
 <pinref part="SUPPLY11" gate="GND" pin="GND"/>
 <wire x1="-30.48" y1="83.82" x2="-30.48" y2="86.36" width="0.1524" layer="91"/>
 <junction x="-30.48" y="86.36"/>
-<pinref part="C.Z6" gate="G$1" pin="1"/>
+<pinref part="C.ZZ6" gate="G$1" pin="1"/>
 <wire x1="-22.86" y1="90.932" x2="-22.86" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="-22.86" y1="86.36" x2="-30.48" y2="86.36" width="0.1524" layer="91"/>
 <junction x="-30.48" y="86.36"/>
-<pinref part="C.Z1" gate="G$1" pin="2"/>
+<pinref part="C.ZZ1" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <wire x1="114.3" y1="-78.74" x2="109.22" y2="-78.74" width="0.1524" layer="91"/>
@@ -15626,13 +15626,13 @@ thermal monitoring, so a
 <junction x="73.66" y="-78.74"/>
 <wire x1="109.22" y1="-91.44" x2="109.22" y2="-88.9" width="0.1524" layer="91"/>
 <junction x="109.22" y="-78.74"/>
-<pinref part="X.S1" gate="G$1" pin="1"/>
-<pinref part="X.S3" gate="G$1" pin="3"/>
-<pinref part="X.S2" gate="G$1" pin="3"/>
-<pinref part="X.S2" gate="G$1" pin="G"/>
+<pinref part="X.SI1" gate="G$1" pin="1"/>
+<pinref part="X.SI3" gate="G$1" pin="3"/>
+<pinref part="X.SI2" gate="G$1" pin="3"/>
+<pinref part="X.SI2" gate="G$1" pin="G"/>
 <wire x1="109.22" y1="-88.9" x2="109.22" y2="-78.74" width="0.1524" layer="91"/>
 <wire x1="109.22" y1="-68.58" x2="109.22" y2="-78.74" width="0.1524" layer="91"/>
-<pinref part="X.S3" gate="G$1" pin="G"/>
+<pinref part="X.SI3" gate="G$1" pin="G"/>
 <wire x1="109.22" y1="-68.58" x2="121.92" y2="-68.58" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="-68.58" x2="121.92" y2="-43.18" width="0.1524" layer="91"/>
 <wire x1="109.22" y1="-88.9" x2="121.92" y2="-88.9" width="0.1524" layer="91"/>
@@ -15641,120 +15641,120 @@ thermal monitoring, so a
 <pinref part="SUPPLY14" gate="GND" pin="GND"/>
 </segment>
 <segment>
-<pinref part="X.S1" gate="G$1" pin="G"/>
+<pinref part="X.SI1" gate="G$1" pin="G"/>
 <wire x1="63.5" y1="-93.98" x2="55.88" y2="-93.98" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="-93.98" x2="55.88" y2="-96.52" width="0.1524" layer="91"/>
 <pinref part="SUPPLY27" gate="GND" pin="GND"/>
 </segment>
 <segment>
-<pinref part="X.D1" gate="G$1" pin="G"/>
+<pinref part="X.DS1" gate="G$1" pin="G"/>
 <pinref part="SUPPLY30" gate="GND" pin="GND"/>
 <wire x1="287.02" y1="7.62" x2="287.02" y2="5.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.J2" gate="G$1" pin="2"/>
+<pinref part="C.VI3" gate="G$1" pin="2"/>
 <pinref part="SUPPLY36" gate="GND" pin="GND"/>
 <wire x1="-414.02" y1="17.78" x2="-414.02" y2="22.352" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.J1" gate="G$1" pin="2"/>
+<pinref part="C.VI1" gate="G$1" pin="2"/>
 <pinref part="SUPPLY37" gate="GND" pin="GND"/>
 <wire x1="-345.44" y1="29.972" x2="-345.44" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.L2" gate="G$1" pin="2"/>
+<pinref part="C.BI2" gate="G$1" pin="2"/>
 <pinref part="SUPPLY38" gate="GND" pin="GND"/>
 <wire x1="-190.5" y1="88.392" x2="-190.5" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.L1" gate="G$1" pin="2"/>
+<pinref part="C.BI1" gate="G$1" pin="2"/>
 <pinref part="SUPPLY41" gate="GND" pin="GND"/>
 <wire x1="-190.5" y1="116.332" x2="-190.5" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY43" gate="GND" pin="GND"/>
-<pinref part="C.Y4" gate="G$1" pin="2"/>
+<pinref part="C.YY4" gate="G$1" pin="2"/>
 <wire x1="-63.5" y1="-35.56" x2="-63.5" y2="-30.988" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.F8" gate="G$1" pin="1"/>
+<pinref part="C.DS12" gate="G$1" pin="1"/>
 <pinref part="SUPPLY45" gate="GND" pin="GND"/>
 <wire x1="116.84" y1="2.032" x2="116.84" y2="0" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.F7" gate="G$1" pin="1"/>
+<pinref part="C.DS11" gate="G$1" pin="1"/>
 <pinref part="SUPPLY44" gate="GND" pin="GND"/>
 <wire x1="121.92" y1="35.052" x2="121.92" y2="33.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY47" gate="GND" pin="GND"/>
-<pinref part="C.S1" gate="G$1" pin="1"/>
+<pinref part="C.SI1" gate="G$1" pin="1"/>
 <wire x1="63.5" y1="-68.58" x2="63.5" y2="-64.008" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.G1" gate="G$1" pin="1"/>
+<pinref part="C.ESP1" gate="G$1" pin="1"/>
 <pinref part="SUPPLY48" gate="GND" pin="GND"/>
 <wire x1="86.36" y1="151.892" x2="86.36" y2="149.86" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY49" gate="GND" pin="GND"/>
-<pinref part="C.J1*" gate="G$1" pin="2"/>
+<pinref part="C.VI2*" gate="G$1" pin="2"/>
 <wire x1="-350.52" y1="-5.08" x2="-350.52" y2="-0.508" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.S2*" gate="G$1" pin="2"/>
+<pinref part="C.SI3*" gate="G$1" pin="2"/>
 <pinref part="SUPPLY50" gate="GND" pin="GND"/>
 <wire x1="50.8" y1="-88.9" x2="50.8" y2="-84.328" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="C.S1*" gate="G$1" pin="2"/>
+<pinref part="C.SI2*" gate="G$1" pin="2"/>
 <pinref part="SUPPLY51" gate="GND" pin="GND"/>
 <wire x1="50.8" y1="-45.72" x2="50.8" y2="-41.148" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY52" gate="GND" pin="GND"/>
-<pinref part="C.D2*" gate="G$1" pin="2"/>
+<pinref part="C.DS5*" gate="G$1" pin="2"/>
 <wire x1="233.68" y1="2.54" x2="233.68" y2="7.112" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY53" gate="GND" pin="GND"/>
-<pinref part="C.D1*" gate="G$1" pin="2"/>
+<pinref part="C.DS2*" gate="G$1" pin="2"/>
 <wire x1="246.38" y1="2.54" x2="246.38" y2="7.112" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="D.Z1" gate="G$1" pin="C"/>
+<pinref part="D.ZZ1" gate="G$1" pin="C"/>
 <pinref part="SUPPLY42" gate="GND" pin="GND"/>
 <wire x1="-12.7" y1="63.5" x2="-12.7" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="Q.L4" gate="G$1" pin="S"/>
+<pinref part="Q.BI3" gate="G$1" pin="S"/>
 <wire x1="-99.06" y1="63.5" x2="-99.06" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="SUPPLY20" gate="GND" pin="GND"/>
 </segment>
 <segment>
-<pinref part="C.F9" gate="G$1" pin="2"/>
+<pinref part="C.DS13" gate="G$1" pin="2"/>
 <pinref part="SUPPLY31" gate="GND" pin="GND"/>
 <wire x1="-464.82" y1="113.792" x2="-464.82" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY8" gate="GND" pin="GND"/>
-<pinref part="C.J3" gate="G$1" pin="1"/>
+<pinref part="C.VI4" gate="G$1" pin="1"/>
 <wire x1="-378.46" y1="93.98" x2="-378.46" y2="98.552" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U.B90" gate="G$1" pin="PGND"/>
+<pinref part="U.BC1" gate="G$1" pin="PGND"/>
 <pinref part="SUPPLY46" gate="GND" pin="GND"/>
 <wire x1="-406.4" y1="68.58" x2="-406.4" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="-406.4" y1="66.04" x2="-406.4" y2="63.5" width="0.1524" layer="91"/>
 <wire x1="-434.34" y1="71.12" x2="-434.34" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="U.B90" gate="G$1" pin="AGND"/>
+<pinref part="U.BC1" gate="G$1" pin="AGND"/>
 <wire x1="-434.34" y1="78.74" x2="-426.72" y2="78.74" width="0.1524" layer="91"/>
-<pinref part="R.B4" gate="G$1" pin="1"/>
+<pinref part="R.BC4" gate="G$1" pin="1"/>
 <wire x1="-454.66" y1="71.12" x2="-441.96" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="-441.96" y1="71.12" x2="-434.34" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="-441.96" y1="73.66" x2="-441.96" y2="71.12" width="0.1524" layer="91"/>
 <junction x="-441.96" y="71.12"/>
-<pinref part="C.B2" gate="G$1" pin="1"/>
+<pinref part="C.BC2" gate="G$1" pin="1"/>
 <wire x1="-454.66" y1="71.12" x2="-454.66" y2="85.852" width="0.1524" layer="91"/>
 <wire x1="-434.34" y1="71.12" x2="-419.1" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="-419.1" y1="71.12" x2="-419.1" y2="66.04" width="0.1524" layer="91"/>
@@ -15763,46 +15763,46 @@ thermal monitoring, so a
 <junction x="-406.4" y="66.04"/>
 </segment>
 <segment>
-<pinref part="C.F10" gate="G$1" pin="2"/>
+<pinref part="C.DS14" gate="G$1" pin="2"/>
 <pinref part="SUPPLY54" gate="GND" pin="GND"/>
 <wire x1="-327.66" y1="113.792" x2="-327.66" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="Q.L5" gate="G$1" pin="S"/>
+<pinref part="Q.BI4" gate="G$1" pin="S"/>
 <wire x1="-121.92" y1="63.5" x2="-121.92" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="SUPPLY9" gate="GND" pin="GND"/>
 </segment>
 <segment>
-<pinref part="R.L6" gate="G$1" pin="1"/>
+<pinref part="R.BI5" gate="G$1" pin="1"/>
 <wire x1="-15.24" y1="-55.88" x2="-15.24" y2="-60.96" width="0.1524" layer="91"/>
 <pinref part="SUPPLY12" gate="GND" pin="GND"/>
 </segment>
 </net>
 <net name="VCONV" class="0">
 <segment>
-<pinref part="R.M1" gate="G$1" pin="1"/>
-<pinref part="U.M1" gate="A" pin="VOUT_2"/>
+<pinref part="R.EC1" gate="G$1" pin="1"/>
+<pinref part="U.EC1" gate="A" pin="VOUT_2"/>
 <wire x1="-193.04" y1="17.78" x2="-193.04" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-193.04" y1="33.02" x2="-193.04" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-193.04" y1="35.56" x2="-213.36" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="U.M1" gate="A" pin="VOUT"/>
+<pinref part="U.EC1" gate="A" pin="VOUT"/>
 <wire x1="-213.36" y1="33.02" x2="-193.04" y2="33.02" width="0.1524" layer="91"/>
 <junction x="-193.04" y="33.02"/>
-<pinref part="C.M5" gate="G$1" pin="1"/>
+<pinref part="C.EC5" gate="G$1" pin="1"/>
 <wire x1="-180.34" y1="25.4" x2="-180.34" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="35.56" x2="-187.96" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-193.04" y="35.56"/>
-<pinref part="C.M6" gate="G$1" pin="+"/>
+<pinref part="C.EC6" gate="G$1" pin="+"/>
 <wire x1="-187.96" y1="35.56" x2="-193.04" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-165.1" y1="25.4" x2="-165.1" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-180.34" y="35.56"/>
 <wire x1="-165.1" y1="35.56" x2="-160.02" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-165.1" y="35.56"/>
 <label x="-160.02" y="35.56" size="1.778" layer="95" xref="yes"/>
-<pinref part="TP.M1" gate="G$1" pin="TP"/>
+<pinref part="TP.USB4" gate="G$1" pin="TP"/>
 <wire x1="-187.96" y1="33.02" x2="-187.96" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-187.96" y="35.56"/>
-<pinref part="C.M7" gate="G$1" pin="2"/>
+<pinref part="C.EC7" gate="G$1" pin="2"/>
 <wire x1="-180.34" y1="35.56" x2="-172.72" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-172.72" y1="35.56" x2="-165.1" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-172.72" y1="33.528" x2="-172.72" y2="35.56" width="0.1524" layer="91"/>
@@ -15811,10 +15811,10 @@ thermal monitoring, so a
 <segment>
 <wire x1="-129.54" y1="93.98" x2="-132.08" y2="93.98" width="0.1524" layer="91"/>
 <label x="-132.08" y="93.98" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="Q.Z1" gate="G$1" pin="A"/>
+<pinref part="Q.ZZ1" gate="G$1" pin="A"/>
 </segment>
 <segment>
-<pinref part="Q.Y90" gate="G$2" pin="S"/>
+<pinref part="Q.YY1" gate="G$2" pin="S"/>
 <label x="-132.08" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
 <wire x1="-127" y1="27.94" x2="-127" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-127" y1="35.56" x2="-132.08" y2="35.56" width="0.1524" layer="91"/>
@@ -15822,17 +15822,17 @@ thermal monitoring, so a
 </net>
 <net name="VRAW" class="0">
 <segment>
-<pinref part="U.M1" gate="A" pin="VIN"/>
-<pinref part="U.M1" gate="A" pin="VIN_2"/>
+<pinref part="U.EC1" gate="A" pin="VIN"/>
+<pinref part="U.EC1" gate="A" pin="VIN_2"/>
 <wire x1="-259.08" y1="33.02" x2="-259.08" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-259.08" y1="35.56" x2="-279.4" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-259.08" y="35.56"/>
-<pinref part="C.M1" gate="G$1" pin="2"/>
+<pinref part="C.EC1" gate="G$1" pin="2"/>
 <wire x1="-279.4" y1="35.56" x2="-289.56" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-289.56" y1="35.56" x2="-299.72" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-299.72" y1="35.56" x2="-307.34" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-307.34" y1="35.56" x2="-307.34" y2="21.59" width="0.1524" layer="91"/>
-<pinref part="C.M2" gate="G$1" pin="2"/>
+<pinref part="C.EC2" gate="G$1" pin="2"/>
 <wire x1="-299.72" y1="21.59" x2="-299.72" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-299.72" y="35.56"/>
 <junction x="-289.56" y="35.56"/>
@@ -15840,25 +15840,25 @@ thermal monitoring, so a
 <wire x1="-307.34" y1="35.56" x2="-317.5" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-307.34" y="35.56"/>
 <label x="-317.5" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="C.M4" gate="G$1" pin="+"/>
+<pinref part="C.EC4" gate="G$1" pin="+"/>
 <wire x1="-279.4" y1="20.32" x2="-279.4" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-279.4" y="35.56"/>
-<pinref part="C.M3" gate="G$1" pin="+"/>
+<pinref part="C.EC3" gate="G$1" pin="+"/>
 </segment>
 <segment>
-<pinref part="X.J1" gate="G$1" pin="2"/>
-<pinref part="R.J2" gate="G$1" pin="2"/>
+<pinref part="X.VI1" gate="G$1" pin="2"/>
+<pinref part="R.VI2" gate="G$1" pin="2"/>
 <wire x1="-381" y1="33.02" x2="-391.16" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-391.16" y1="33.02" x2="-401.32" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-381" y1="22.86" x2="-381" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="R.J1" gate="G$1" pin="2"/>
+<pinref part="R.VI1" gate="G$1" pin="2"/>
 <wire x1="-381" y1="27.94" x2="-381" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-391.16" y1="22.86" x2="-391.16" y2="33.02" width="0.1524" layer="91"/>
 <junction x="-391.16" y="33.02"/>
 <wire x1="-401.32" y1="12.7" x2="-401.32" y2="33.02" width="0.1524" layer="91"/>
 <junction x="-401.32" y="33.02"/>
-<pinref part="TP.J2" gate="G$1" pin="TP"/>
-<pinref part="Q.J1" gate="G$1" pin="K2"/>
+<pinref part="TP.USB8" gate="G$1" pin="TP"/>
+<pinref part="Q.VI1" gate="G$1" pin="K2"/>
 <wire x1="-429.26" y1="33.02" x2="-414.02" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-414.02" y1="33.02" x2="-401.32" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-375.92" y1="27.94" x2="-381" y2="27.94" width="0.1524" layer="91"/>
@@ -15866,13 +15866,13 @@ thermal monitoring, so a
 <wire x1="-381" y1="33.02" x2="-375.92" y2="33.02" width="0.1524" layer="91"/>
 <junction x="-381" y="33.02"/>
 <label x="-375.92" y="33.02" size="1.778" layer="95" xref="yes"/>
-<pinref part="C.J2" gate="G$1" pin="1"/>
+<pinref part="C.VI3" gate="G$1" pin="1"/>
 <wire x1="-414.02" y1="28.448" x2="-414.02" y2="33.02" width="0.1524" layer="91"/>
 <junction x="-414.02" y="33.02"/>
 </segment>
 <segment>
-<pinref part="U.B90" gate="G$1" pin="VIN"/>
-<pinref part="C.F9" gate="G$1" pin="1"/>
+<pinref part="U.BC1" gate="G$1" pin="VIN"/>
+<pinref part="C.DS13" gate="G$1" pin="1"/>
 <wire x1="-426.72" y1="127" x2="-464.82" y2="127" width="0.1524" layer="91"/>
 <wire x1="-464.82" y1="127" x2="-464.82" y2="119.888" width="0.1524" layer="91"/>
 <wire x1="-464.82" y1="127" x2="-480.06" y2="127" width="0.1524" layer="91"/>
@@ -15883,35 +15883,35 @@ thermal monitoring, so a
 <net name="VBAT" class="0">
 <segment>
 <label x="-256.54" y="124.46" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="X.L1" gate="G$1" pin="1"/>
+<pinref part="X.BI1" gate="G$1" pin="1"/>
 <wire x1="-180.34" y1="124.46" x2="-190.5" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="-190.5" y1="124.46" x2="-236.22" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="124.46" x2="-180.34" y2="110.49" width="0.1524" layer="91"/>
 <wire x1="-236.22" y1="124.46" x2="-236.22" y2="111.76" width="0.1524" layer="91"/>
 <junction x="-236.22" y="124.46"/>
-<pinref part="Q.L2" gate="G$1" pin="S"/>
+<pinref part="Q.BI2" gate="G$1" pin="S"/>
 <wire x1="-256.54" y1="124.46" x2="-236.22" y2="124.46" width="0.1524" layer="91"/>
-<pinref part="C.L1" gate="G$1" pin="1"/>
+<pinref part="C.BI1" gate="G$1" pin="1"/>
 <wire x1="-190.5" y1="124.46" x2="-190.5" y2="122.428" width="0.1524" layer="91"/>
 <junction x="-190.5" y="124.46"/>
 </segment>
 <segment>
-<pinref part="Q.Z3" gate="G$1" pin="A"/>
+<pinref part="Q.ZZ3" gate="G$1" pin="A"/>
 <wire x1="-129.54" y1="101.6" x2="-132.08" y2="101.6" width="0.1524" layer="91"/>
 <label x="-132.08" y="101.6" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U.B90" gate="G$1" pin="BAT"/>
+<pinref part="U.BC1" gate="G$1" pin="BAT"/>
 <wire x1="-386.08" y1="111.76" x2="-340.36" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="-340.36" y1="111.76" x2="-340.36" y2="127" width="0.1524" layer="91"/>
-<pinref part="R.B5" gate="G$1" pin="2"/>
+<pinref part="R.BC5" gate="G$1" pin="2"/>
 <wire x1="-340.36" y1="127" x2="-342.9" y2="127" width="0.1524" layer="91"/>
 <wire x1="-340.36" y1="127" x2="-335.28" y2="127" width="0.1524" layer="91"/>
 <wire x1="-335.28" y1="127" x2="-327.66" y2="127" width="0.1524" layer="91"/>
 <wire x1="-327.66" y1="127" x2="-327.66" y2="119.888" width="0.1524" layer="91"/>
 <junction x="-340.36" y="127"/>
-<pinref part="C.F10" gate="G$1" pin="1"/>
-<pinref part="TP.B1" gate="G$1" pin="TP"/>
+<pinref part="C.DS14" gate="G$1" pin="1"/>
+<pinref part="TP.USB1" gate="G$1" pin="TP"/>
 <wire x1="-335.28" y1="114.3" x2="-335.28" y2="127" width="0.1524" layer="91"/>
 <junction x="-335.28" y="127"/>
 <wire x1="-327.66" y1="127" x2="-317.5" y2="127" width="0.1524" layer="91"/>
@@ -15919,23 +15919,23 @@ thermal monitoring, so a
 <label x="-317.5" y="127" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="Q.Y90" gate="G$1" pin="S"/>
+<pinref part="Q.YY1" gate="G$1" pin="S"/>
 <wire x1="-15.24" y1="27.94" x2="-15.24" y2="35.56" width="0.1524" layer="91"/>
 <label x="-15.24" y="35.56" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="N$8" class="0">
 <segment>
-<pinref part="X.L2" gate="G$1" pin="1"/>
-<pinref part="X.L1" gate="G$1" pin="2"/>
+<pinref part="X.BI2" gate="G$1" pin="1"/>
+<pinref part="X.BI1" gate="G$1" pin="2"/>
 <wire x1="-180.34" y1="107.95" x2="-180.34" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="106.68" x2="-180.34" y2="96.52" width="0.1524" layer="91"/>
 <junction x="-180.34" y="106.68"/>
 <wire x1="-180.34" y1="96.52" x2="-180.34" y2="90.17" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="106.68" x2="-223.52" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="-223.52" y1="106.68" x2="-223.52" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="Q.L1" gate="G$1" pin="S"/>
-<pinref part="C.L2" gate="G$1" pin="1"/>
+<pinref part="Q.BI1" gate="G$1" pin="S"/>
+<pinref part="C.BI2" gate="G$1" pin="1"/>
 <wire x1="-180.34" y1="96.52" x2="-190.5" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="-190.5" y1="96.52" x2="-190.5" y2="94.488" width="0.1524" layer="91"/>
 <junction x="-180.34" y="96.52"/>
@@ -15944,17 +15944,17 @@ thermal monitoring, so a
 <net name="SYS_POWER" class="0">
 <segment>
 <label x="35.56" y="55.88" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="U.F1" gate="G$1" pin="EN"/>
-<pinref part="U.F1" gate="G$1" pin="VIN"/>
+<pinref part="U.DS2" gate="G$1" pin="EN"/>
+<pinref part="U.DS2" gate="G$1" pin="VIN"/>
 <wire x1="53.34" y1="50.8" x2="53.34" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="55.88" x2="40.64" y2="55.88" width="0.1524" layer="91"/>
 <junction x="53.34" y="55.88"/>
-<pinref part="C.F4" gate="G$1" pin="1"/>
+<pinref part="C.DS8" gate="G$1" pin="1"/>
 <wire x1="40.64" y1="55.88" x2="48.26" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="48.26" y1="55.88" x2="53.34" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="48.26" y1="51.308" x2="48.26" y2="55.88" width="0.1524" layer="91"/>
 <junction x="48.26" y="55.88"/>
-<pinref part="C.F6" gate="G$1" pin="2"/>
+<pinref part="C.DS10" gate="G$1" pin="2"/>
 <wire x1="40.64" y1="51.308" x2="40.64" y2="55.88" width="0.1524" layer="91"/>
 <junction x="40.64" y="55.88"/>
 </segment>
@@ -15968,10 +15968,10 @@ thermal monitoring, so a
 <wire x1="71.12" y1="-30.48" x2="71.12" y2="-27.94" width="0.1524" layer="91"/>
 <junction x="71.12" y="-30.48"/>
 <label x="71.12" y="-27.94" size="1.778" layer="95" rot="R90" xref="yes"/>
-<pinref part="X.S1" gate="G$1" pin="2"/>
-<pinref part="X.S3" gate="G$1" pin="1"/>
-<pinref part="X.S2" gate="G$1" pin="1"/>
-<pinref part="C.S1" gate="G$1" pin="2"/>
+<pinref part="X.SI1" gate="G$1" pin="2"/>
+<pinref part="X.SI3" gate="G$1" pin="1"/>
+<pinref part="X.SI2" gate="G$1" pin="1"/>
+<pinref part="C.SI1" gate="G$1" pin="2"/>
 <wire x1="63.5" y1="-57.912" x2="63.5" y2="-48.26" width="0.1524" layer="91"/>
 <wire x1="63.5" y1="-48.26" x2="71.12" y2="-48.26" width="0.1524" layer="91"/>
 <junction x="71.12" y="-48.26"/>
@@ -15980,7 +15980,7 @@ thermal monitoring, so a
 <wire x1="-127" y1="-15.24" x2="-127" y2="-17.78" width="0.1524" layer="91"/>
 <wire x1="-127" y1="-17.78" x2="-127" y2="-22.86" width="0.1524" layer="91"/>
 <wire x1="-127" y1="-22.86" x2="-63.5" y2="-22.86" width="0.1524" layer="91"/>
-<pinref part="U.Y1" gate="A" pin="OUT1"/>
+<pinref part="U.YY1" gate="A" pin="OUT1"/>
 <wire x1="-63.5" y1="-22.86" x2="-15.24" y2="-22.86" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="-22.86" x2="-15.24" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="-22.86" x2="-10.16" y2="-22.86" width="0.1524" layer="91"/>
@@ -15989,18 +15989,18 @@ thermal monitoring, so a
 <wire x1="-40.64" y1="-12.7" x2="-35.56" y2="-12.7" width="0.1524" layer="91"/>
 <wire x1="-35.56" y1="-12.7" x2="-35.56" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="-35.56" y1="-15.24" x2="-15.24" y2="-15.24" width="0.1524" layer="91"/>
-<pinref part="U.Y1" gate="A" pin="OUT2"/>
+<pinref part="U.YY1" gate="A" pin="OUT2"/>
 <wire x1="-106.68" y1="-12.7" x2="-109.22" y2="-12.7" width="0.1524" layer="91"/>
 <wire x1="-109.22" y1="-12.7" x2="-109.22" y2="-17.78" width="0.1524" layer="91"/>
 <wire x1="-109.22" y1="-17.78" x2="-127" y2="-17.78" width="0.1524" layer="91"/>
 <junction x="-127" y="-17.78"/>
-<pinref part="C.Y4" gate="G$1" pin="1"/>
+<pinref part="C.YY4" gate="G$1" pin="1"/>
 <wire x1="-63.5" y1="-24.892" x2="-63.5" y2="-22.86" width="0.1524" layer="91"/>
 <junction x="-63.5" y="-22.86"/>
-<pinref part="Q.Y91" gate="G$2" pin="D"/>
+<pinref part="Q.YY2" gate="G$2" pin="D"/>
 <junction x="-15.24" y="-15.24"/>
-<pinref part="Q.Y91" gate="G$1" pin="D"/>
-<pinref part="R.B6" gate="G$1" pin="2"/>
+<pinref part="Q.YY2" gate="G$1" pin="D"/>
+<pinref part="R.BC6" gate="G$1" pin="2"/>
 <wire x1="-15.24" y1="-22.86" x2="-15.24" y2="-30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -16011,19 +16011,19 @@ thermal monitoring, so a
 <junction x="106.68" y="12.7"/>
 <wire x1="101.6" y1="12.7" x2="106.68" y2="12.7" width="0.1524" layer="91"/>
 <wire x1="106.68" y1="12.7" x2="111.76" y2="12.7" width="0.1524" layer="91"/>
-<pinref part="TP.F3" gate="G$1" pin="TP"/>
+<pinref part="TP.USB13" gate="G$1" pin="TP"/>
 <wire x1="111.76" y1="10.16" x2="111.76" y2="12.7" width="0.1524" layer="91"/>
 <junction x="111.76" y="12.7"/>
-<pinref part="Q.F1" gate="G$1" pin="C"/>
-<pinref part="Q.F2" gate="G$1" pin="C"/>
-<pinref part="C.F8" gate="G$1" pin="2"/>
+<pinref part="Q.DS1" gate="G$1" pin="C"/>
+<pinref part="Q.DS2" gate="G$1" pin="C"/>
+<pinref part="C.DS12" gate="G$1" pin="2"/>
 <wire x1="116.84" y1="8.128" x2="116.84" y2="12.7" width="0.1524" layer="91"/>
 <junction x="116.84" y="12.7"/>
 <wire x1="116.84" y1="12.7" x2="137.16" y2="12.7" width="0.1524" layer="91"/>
 <wire x1="137.16" y1="12.7" x2="137.16" y2="43.18" width="0.1524" layer="91"/>
-<pinref part="U.D1" gate="A" pin="VCC"/>
-<pinref part="F.D1" gate="A" pin="1"/>
-<pinref part="C.D2" gate="G$1" pin="2"/>
+<pinref part="U.DS1" gate="A" pin="VCC"/>
+<pinref part="F.DS1" gate="A" pin="1"/>
+<pinref part="C.DS4" gate="G$1" pin="2"/>
 <wire x1="218.44" y1="30.48" x2="218.44" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="43.18" x2="233.68" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="233.68" y1="43.18" x2="236.22" y2="43.18" width="0.1524" layer="91"/>
@@ -16032,18 +16032,18 @@ thermal monitoring, so a
 <wire x1="218.44" y1="43.18" x2="157.48" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="157.48" y1="43.18" x2="157.48" y2="30.48" width="0.1524" layer="91"/>
 <junction x="218.44" y="43.18"/>
-<pinref part="U.D1" gate="A" pin="!1OE"/>
+<pinref part="U.DS1" gate="A" pin="!1OE"/>
 <wire x1="157.48" y1="30.48" x2="162.56" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="U.D1" gate="A" pin="1A"/>
+<pinref part="U.DS1" gate="A" pin="1A"/>
 <wire x1="157.48" y1="30.48" x2="157.48" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="157.48" y1="27.94" x2="162.56" y2="27.94" width="0.1524" layer="91"/>
 <junction x="157.48" y="30.48"/>
-<pinref part="U.D1" gate="A" pin="2A"/>
+<pinref part="U.DS1" gate="A" pin="2A"/>
 <wire x1="157.48" y1="27.94" x2="157.48" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="157.48" y1="20.32" x2="162.56" y2="20.32" width="0.1524" layer="91"/>
 <junction x="157.48" y="27.94"/>
 <wire x1="157.48" y1="20.32" x2="157.48" y2="22.86" width="0.1524" layer="91"/>
-<pinref part="U.D1" gate="A" pin="!2OE"/>
+<pinref part="U.DS1" gate="A" pin="!2OE"/>
 <wire x1="162.56" y1="22.86" x2="157.48" y2="22.86" width="0.1524" layer="91"/>
 <junction x="157.48" y="22.86"/>
 <junction x="157.48" y="43.18"/>
@@ -16054,19 +16054,19 @@ thermal monitoring, so a
 </net>
 <net name="VUSB" class="0">
 <segment>
-<pinref part="R.F2" gate="G$1" pin="2"/>
+<pinref part="R.DS3" gate="G$1" pin="2"/>
 <wire x1="-127" y1="208.28" x2="-127" y2="210.82" width="0.1524" layer="91"/>
-<pinref part="X.F1" gate="G$1" pin="VUSB"/>
-<pinref part="TP.F2" gate="G$1" pin="TP"/>
+<pinref part="X.DS2" gate="G$1" pin="VUSB"/>
+<pinref part="TP.USB7" gate="G$1" pin="TP"/>
 <wire x1="-142.24" y1="210.82" x2="-137.16" y2="210.82" width="0.1524" layer="91"/>
 <wire x1="-137.16" y1="210.82" x2="-127" y2="210.82" width="0.1524" layer="91"/>
 <junction x="-137.16" y="210.82"/>
 <label x="-137.16" y="187.96" size="1.778" layer="95" rot="R270" xref="yes"/>
 <wire x1="-137.16" y1="187.96" x2="-137.16" y2="210.82" width="0.1524" layer="91"/>
-<pinref part="U.P1" gate="A" pin="VREGIN"/>
-<pinref part="C.P4" gate="G$1" pin="2"/>
+<pinref part="U.USB1" gate="A" pin="VREGIN"/>
+<pinref part="C.USB4" gate="G$1" pin="2"/>
 <wire x1="-93.98" y1="198.628" x2="-93.98" y2="210.82" width="0.1524" layer="91"/>
-<pinref part="C.P3" gate="G$1" pin="2"/>
+<pinref part="C.USB3" gate="G$1" pin="2"/>
 <wire x1="-106.68" y1="198.628" x2="-106.68" y2="210.82" width="0.1524" layer="91"/>
 <junction x="-93.98" y="210.82"/>
 <wire x1="-106.68" y1="210.82" x2="-93.98" y2="210.82" width="0.1524" layer="91"/>
@@ -16086,19 +16086,19 @@ thermal monitoring, so a
 <segment>
 <wire x1="-132.08" y1="109.22" x2="-132.08" y2="116.84" width="0.1524" layer="91"/>
 <label x="-132.08" y="116.84" size="1.778" layer="95" rot="R90" xref="yes"/>
-<pinref part="Q.Z2" gate="G$1" pin="A"/>
+<pinref part="Q.ZZ2" gate="G$1" pin="A"/>
 <wire x1="-132.08" y1="109.22" x2="-129.54" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="Q.F1" gate="G$1" pin="A"/>
+<pinref part="Q.DS1" gate="G$1" pin="A"/>
 <wire x1="96.52" y1="12.7" x2="91.44" y2="12.7" width="0.1524" layer="91"/>
 <label x="91.44" y="12.7" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$16" class="0">
 <segment>
-<pinref part="U.P1" gate="A" pin="RSTB"/>
-<pinref part="R.P1" gate="G$1" pin="1"/>
+<pinref part="U.USB1" gate="A" pin="RSTB"/>
+<pinref part="R.USB1" gate="G$1" pin="1"/>
 <wire x1="-43.18" y1="238.76" x2="-40.64" y2="238.76" width="0.1524" layer="91"/>
 <wire x1="-40.64" y1="238.76" x2="-40.64" y2="248.92" width="0.1524" layer="91"/>
 <wire x1="-91.44" y1="246.38" x2="-91.44" y2="248.92" width="0.1524" layer="91"/>
@@ -16107,88 +16107,88 @@ thermal monitoring, so a
 </net>
 <net name="N$18" class="0">
 <segment>
-<pinref part="Q.P98" gate="G$1" pin="E"/>
+<pinref part="Q.USB1" gate="G$1" pin="E"/>
 <wire x1="-20.32" y1="182.88" x2="-25.4" y2="182.88" width="0.1524" layer="91"/>
 <wire x1="-25.4" y1="182.88" x2="-33.02" y2="177.8" width="0.1524" layer="91"/>
 <wire x1="-33.02" y1="177.8" x2="-38.1" y2="177.8" width="0.1524" layer="91"/>
-<pinref part="R.P3" gate="G$1" pin="2"/>
+<pinref part="R.USB3" gate="G$1" pin="2"/>
 <wire x1="-38.1" y1="177.8" x2="-38.1" y2="170.18" width="0.1524" layer="91"/>
 <wire x1="-20.32" y1="182.88" x2="-20.32" y2="185.42" width="0.1524" layer="91"/>
-<pinref part="U.P1" gate="A" pin="RTS"/>
+<pinref part="U.USB1" gate="A" pin="RTS"/>
 <wire x1="-43.18" y1="177.8" x2="-38.1" y2="177.8" width="0.1524" layer="91"/>
 <junction x="-38.1" y="177.8"/>
-<pinref part="TP.P3" gate="G$1" pin="TP"/>
+<pinref part="TP.USB14" gate="G$1" pin="TP"/>
 <wire x1="-12.7" y1="182.88" x2="-20.32" y2="182.88" width="0.1524" layer="91"/>
 <junction x="-20.32" y="182.88"/>
 </segment>
 </net>
 <net name="N$19" class="0">
 <segment>
-<pinref part="R.P2" gate="G$1" pin="2"/>
+<pinref part="R.USB2" gate="G$1" pin="2"/>
 <wire x1="-38.1" y1="190.5" x2="-38.1" y2="182.88" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="182.88" x2="-33.02" y2="182.88" width="0.1524" layer="91"/>
 <wire x1="-33.02" y1="182.88" x2="-25.4" y2="177.8" width="0.1524" layer="91"/>
 <wire x1="-25.4" y1="177.8" x2="-20.32" y2="177.8" width="0.1524" layer="91"/>
-<pinref part="Q.P99" gate="G$1" pin="E"/>
+<pinref part="Q.USB2" gate="G$1" pin="E"/>
 <wire x1="-20.32" y1="175.26" x2="-20.32" y2="177.8" width="0.1524" layer="91"/>
-<pinref part="U.P1" gate="A" pin="DTR"/>
+<pinref part="U.USB1" gate="A" pin="DTR"/>
 <wire x1="-43.18" y1="182.88" x2="-38.1" y2="182.88" width="0.1524" layer="91"/>
 <junction x="-38.1" y="182.88"/>
-<pinref part="TP.P4" gate="G$1" pin="TP"/>
+<pinref part="TP.USB16" gate="G$1" pin="TP"/>
 <wire x1="-12.7" y1="177.8" x2="-20.32" y2="177.8" width="0.1524" layer="91"/>
 <junction x="-20.32" y="177.8"/>
 </segment>
 </net>
 <net name="N$20" class="0">
 <segment>
-<pinref part="R.P2" gate="G$1" pin="1"/>
-<pinref part="Q.P98" gate="G$1" pin="B"/>
+<pinref part="R.USB2" gate="G$1" pin="1"/>
+<pinref part="Q.USB1" gate="G$1" pin="B"/>
 <wire x1="-27.94" y1="190.5" x2="-25.4" y2="190.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$21" class="0">
 <segment>
-<pinref part="R.P3" gate="G$1" pin="1"/>
-<pinref part="Q.P99" gate="G$1" pin="B"/>
+<pinref part="R.USB3" gate="G$1" pin="1"/>
+<pinref part="Q.USB2" gate="G$1" pin="B"/>
 <wire x1="-27.94" y1="170.18" x2="-25.4" y2="170.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RESET" class="0">
 <segment>
-<pinref part="Q.P98" gate="G$1" pin="C"/>
+<pinref part="Q.USB1" gate="G$1" pin="C"/>
 <wire x1="-20.32" y1="195.58" x2="-20.32" y2="200.66" width="0.1524" layer="91"/>
 <wire x1="-20.32" y1="200.66" x2="-12.7" y2="200.66" width="0.1524" layer="91"/>
 <label x="-5.08" y="200.66" size="1.778" layer="95" xref="yes"/>
-<pinref part="TP.P1" gate="G$1" pin="TP"/>
+<pinref part="TP.USB5" gate="G$1" pin="TP"/>
 <wire x1="-12.7" y1="200.66" x2="-5.08" y2="200.66" width="0.1524" layer="91"/>
 <wire x1="-12.7" y1="205.74" x2="-12.7" y2="200.66" width="0.1524" layer="91"/>
 <junction x="-12.7" y="200.66"/>
 </segment>
 <segment>
 <wire x1="43.18" y1="200.66" x2="38.1" y2="200.66" width="0.1524" layer="91"/>
-<pinref part="SJ.K1" gate="1" pin="2"/>
+<pinref part="SJ.VI1" gate="1" pin="2"/>
 <wire x1="38.1" y1="200.66" x2="38.1" y2="195.58" width="0.1524" layer="91"/>
 <junction x="38.1" y="200.66"/>
-<pinref part="R.K2" gate="G$1" pin="2"/>
+<pinref part="R.ESP2" gate="G$1" pin="2"/>
 <wire x1="38.1" y1="200.66" x2="38.1" y2="203.2" width="0.1524" layer="91"/>
 <wire x1="38.1" y1="200.66" x2="30.48" y2="200.66" width="0.1524" layer="91"/>
 <junction x="38.1" y="200.66"/>
 <label x="25.4" y="200.66" size="1.778" layer="95" rot="MR0" xref="yes"/>
-<pinref part="X.K1" gate="G$1" pin="2"/>
+<pinref part="X.ESP2" gate="G$1" pin="2"/>
 <wire x1="30.48" y1="200.66" x2="25.4" y2="200.66" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="200.66" x2="30.48" y2="144.78" width="0.1524" layer="91"/>
 <junction x="30.48" y="200.66"/>
-<pinref part="U.G1" gate="G$1" pin="EN"/>
+<pinref part="U.ESP1" gate="G$1" pin="EN"/>
 <wire x1="38.1" y1="144.78" x2="30.48" y2="144.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="BOOTMODE" class="0">
 <segment>
-<pinref part="Q.P99" gate="G$1" pin="C"/>
+<pinref part="Q.USB2" gate="G$1" pin="C"/>
 <wire x1="-20.32" y1="165.1" x2="-20.32" y2="160.02" width="0.1524" layer="91"/>
 <wire x1="-20.32" y1="160.02" x2="-12.7" y2="160.02" width="0.1524" layer="91"/>
 <label x="-10.16" y="160.02" size="1.778" layer="95" xref="yes"/>
-<pinref part="TP.P2" gate="G$1" pin="TP"/>
+<pinref part="TP.USB11" gate="G$1" pin="TP"/>
 <wire x1="-12.7" y1="160.02" x2="-10.16" y2="160.02" width="0.1524" layer="91"/>
 <wire x1="-12.7" y1="154.94" x2="-12.7" y2="160.02" width="0.1524" layer="91"/>
 <junction x="-12.7" y="160.02"/>
@@ -16196,49 +16196,49 @@ thermal monitoring, so a
 <segment>
 <label x="114.3" y="162.56" size="1.778" layer="95" xref="yes"/>
 <wire x1="91.44" y1="162.56" x2="114.3" y2="162.56" width="0.1524" layer="91"/>
-<pinref part="U.G1" gate="G$1" pin="IO0"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO0"/>
 <wire x1="73.66" y1="144.78" x2="91.44" y2="144.78" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="144.78" x2="91.44" y2="162.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ESP_TX" class="0">
 <segment>
-<pinref part="U.P1" gate="A" pin="RXD"/>
+<pinref part="U.USB1" gate="A" pin="RXD"/>
 <wire x1="-43.18" y1="162.56" x2="-33.02" y2="162.56" width="0.1524" layer="91"/>
 <label x="-33.02" y="162.56" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
 <wire x1="33.02" y1="129.54" x2="30.48" y2="129.54" width="0.1524" layer="91"/>
 <label x="30.48" y="129.54" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="TXD0"/>
+<pinref part="U.ESP1" gate="G$1" pin="TXD0"/>
 <wire x1="33.02" y1="129.54" x2="33.02" y2="127" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="127" x2="38.1" y2="127" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ESP_RX" class="0">
 <segment>
-<pinref part="U.P1" gate="A" pin="TXD"/>
+<pinref part="U.USB1" gate="A" pin="TXD"/>
 <label x="-33.02" y="157.48" size="1.778" layer="95" xref="yes"/>
 <wire x1="-43.18" y1="157.48" x2="-33.02" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <label x="30.48" y="124.46" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="RXD0"/>
+<pinref part="U.ESP1" gate="G$1" pin="RXD0"/>
 <wire x1="38.1" y1="124.46" x2="30.48" y2="124.46" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$24" class="0">
 <segment>
-<pinref part="R.P4" gate="G$1" pin="1"/>
-<pinref part="D.P1" gate="G$1" pin="A"/>
+<pinref part="R.USB4" gate="G$1" pin="1"/>
+<pinref part="D.USB1" gate="G$1" pin="A"/>
 <wire x1="-27.94" y1="218.44" x2="-27.94" y2="220.98" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="USBSENSE" class="0">
 <segment>
-<pinref part="U.P1" gate="A" pin="VBUS"/>
-<pinref part="R.F3" gate="G$1" pin="2"/>
-<pinref part="R.F2" gate="G$1" pin="1"/>
+<pinref part="U.USB1" gate="A" pin="VBUS"/>
+<pinref part="R.DS4" gate="G$1" pin="2"/>
+<pinref part="R.DS3" gate="G$1" pin="1"/>
 <wire x1="-127" y1="195.58" x2="-127" y2="198.12" width="0.1524" layer="91"/>
 <junction x="-127" y="195.58"/>
 <label x="-116.84" y="193.04" size="1.778" layer="95" rot="R270" xref="yes"/>
@@ -16251,7 +16251,7 @@ thermal monitoring, so a
 </segment>
 <segment>
 <label x="114.3" y="73.66" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO20"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO20"/>
 <wire x1="73.66" y1="88.9" x2="83.82" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="88.9" x2="83.82" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="73.66" x2="114.3" y2="73.66" width="0.1524" layer="91"/>
@@ -16259,8 +16259,8 @@ thermal monitoring, so a
 </net>
 <net name="USBD-" class="0">
 <segment>
-<pinref part="X.F1" gate="G$1" pin="D-"/>
-<pinref part="U.P1" gate="A" pin="D-"/>
+<pinref part="X.DS2" gate="G$1" pin="D-"/>
+<pinref part="U.USB1" gate="A" pin="D-"/>
 <wire x1="-182.88" y1="172.72" x2="-142.24" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="-142.24" y1="172.72" x2="-142.24" y2="162.56" width="0.1524" layer="91"/>
 <wire x1="-142.24" y1="162.56" x2="-88.9" y2="162.56" width="0.1524" layer="91"/>
@@ -16268,8 +16268,8 @@ thermal monitoring, so a
 </net>
 <net name="USBD+" class="0">
 <segment>
-<pinref part="X.F1" gate="G$1" pin="D+"/>
-<pinref part="U.P1" gate="A" pin="D+"/>
+<pinref part="X.DS2" gate="G$1" pin="D+"/>
+<pinref part="U.USB1" gate="A" pin="D+"/>
 <wire x1="-144.78" y1="157.48" x2="-88.9" y2="157.48" width="0.1524" layer="91"/>
 <wire x1="-182.88" y1="170.18" x2="-144.78" y2="170.18" width="0.1524" layer="91"/>
 <wire x1="-144.78" y1="170.18" x2="-144.78" y2="157.48" width="0.1524" layer="91"/>
@@ -16277,15 +16277,15 @@ thermal monitoring, so a
 </net>
 <net name="N$23" class="0">
 <segment>
-<pinref part="R.J1" gate="G$1" pin="1"/>
-<pinref part="D.J1" gate="G$1" pin="A"/>
+<pinref part="R.VI1" gate="G$1" pin="1"/>
+<pinref part="D.VI1" gate="G$1" pin="A"/>
 <wire x1="-391.16" y1="7.62" x2="-391.16" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RAWSENSE" class="0">
 <segment>
-<pinref part="R.J3" gate="G$1" pin="2"/>
-<pinref part="R.J2" gate="G$1" pin="1"/>
+<pinref part="R.VI3" gate="G$1" pin="2"/>
+<pinref part="R.VI2" gate="G$1" pin="1"/>
 <wire x1="-381" y1="12.7" x2="-381" y2="10.16" width="0.1524" layer="91"/>
 <label x="-375.92" y="10.16" size="1.778" layer="95" xref="yes"/>
 <wire x1="-381" y1="10.16" x2="-381" y2="7.62" width="0.1524" layer="91"/>
@@ -16295,28 +16295,28 @@ thermal monitoring, so a
 <segment>
 <wire x1="88.9" y1="83.82" x2="114.3" y2="83.82" width="0.1524" layer="91"/>
 <label x="114.3" y="83.82" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO34"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO34"/>
 <wire x1="73.66" y1="93.98" x2="88.9" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="88.9" y1="93.98" x2="88.9" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="TACH" class="0">
 <segment>
-<pinref part="R.J5" gate="G$1" pin="2"/>
-<pinref part="R.J4" gate="G$1" pin="1"/>
+<pinref part="R.VI5" gate="G$1" pin="2"/>
+<pinref part="R.VI4" gate="G$1" pin="1"/>
 <wire x1="-358.14" y1="12.7" x2="-358.14" y2="10.16" width="0.1524" layer="91"/>
 <label x="-347.98" y="10.16" size="1.778" layer="95" xref="yes"/>
 <wire x1="-358.14" y1="10.16" x2="-358.14" y2="7.62" width="0.1524" layer="91"/>
 <wire x1="-347.98" y1="10.16" x2="-350.52" y2="10.16" width="0.1524" layer="91"/>
 <junction x="-358.14" y="10.16"/>
-<pinref part="C.J1*" gate="G$1" pin="1"/>
+<pinref part="C.VI2*" gate="G$1" pin="1"/>
 <wire x1="-350.52" y1="10.16" x2="-358.14" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="-350.52" y1="5.588" x2="-350.52" y2="10.16" width="0.1524" layer="91"/>
 <junction x="-350.52" y="10.16"/>
 </segment>
 <segment>
 <label x="114.3" y="129.54" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO16"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO16"/>
 <wire x1="73.66" y1="124.46" x2="109.22" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="109.22" y1="124.46" x2="109.22" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="109.22" y1="129.54" x2="114.3" y2="129.54" width="0.1524" layer="91"/>
@@ -16324,19 +16324,19 @@ thermal monitoring, so a
 </net>
 <net name="TACH_RAW" class="0">
 <segment>
-<pinref part="X.J1" gate="G$1" pin="3"/>
-<pinref part="R.J4" gate="G$1" pin="2"/>
+<pinref part="X.VI1" gate="G$1" pin="3"/>
+<pinref part="R.VI4" gate="G$1" pin="2"/>
 <wire x1="-429.26" y1="38.1" x2="-408.94" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="-408.94" y1="38.1" x2="-358.14" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="-358.14" y1="38.1" x2="-358.14" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="-358.14" y1="27.94" x2="-358.14" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="-408.94" y1="12.7" x2="-408.94" y2="38.1" width="0.1524" layer="91"/>
 <junction x="-408.94" y="38.1"/>
-<pinref part="TP.J1" gate="G$1" pin="TP"/>
-<pinref part="Q.J1" gate="G$1" pin="K1"/>
+<pinref part="TP.USB3" gate="G$1" pin="TP"/>
+<pinref part="Q.VI1" gate="G$1" pin="K1"/>
 <wire x1="-365.76" y1="27.94" x2="-358.14" y2="27.94" width="0.1524" layer="91"/>
 <junction x="-358.14" y="27.94"/>
-<pinref part="C.J1" gate="G$1" pin="1"/>
+<pinref part="C.VI1" gate="G$1" pin="1"/>
 <wire x1="-358.14" y1="38.1" x2="-345.44" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="-345.44" y1="38.1" x2="-345.44" y2="36.068" width="0.1524" layer="91"/>
 <junction x="-358.14" y="38.1"/>
@@ -16344,8 +16344,8 @@ thermal monitoring, so a
 </net>
 <net name="BATSENSE1" class="0">
 <segment>
-<pinref part="R.L1" gate="G$1" pin="1"/>
-<pinref part="R.L2" gate="G$1" pin="2"/>
+<pinref part="R.BI1" gate="G$1" pin="1"/>
+<pinref part="R.BI2" gate="G$1" pin="2"/>
 <wire x1="-236.22" y1="73.66" x2="-236.22" y2="76.2" width="0.1524" layer="91"/>
 <label x="-276.86" y="76.2" size="1.778" layer="95" rot="R180" xref="yes"/>
 <wire x1="-236.22" y1="76.2" x2="-236.22" y2="78.74" width="0.1524" layer="91"/>
@@ -16354,14 +16354,14 @@ thermal monitoring, so a
 </segment>
 <segment>
 <label x="30.48" y="134.62" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="SENSOR_VN"/>
+<pinref part="U.ESP1" gate="G$1" pin="SENSOR_VN"/>
 <wire x1="30.48" y1="134.62" x2="38.1" y2="134.62" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="BATSENSE2" class="0">
 <segment>
-<pinref part="R.L3" gate="G$1" pin="1"/>
-<pinref part="R.L4" gate="G$1" pin="2"/>
+<pinref part="R.BI3" gate="G$1" pin="1"/>
+<pinref part="R.BI4" gate="G$1" pin="2"/>
 <wire x1="-223.52" y1="73.66" x2="-223.52" y2="76.2" width="0.1524" layer="91"/>
 <label x="-208.28" y="76.2" size="1.778" layer="95" xref="yes"/>
 <wire x1="-223.52" y1="76.2" x2="-223.52" y2="78.74" width="0.1524" layer="91"/>
@@ -16371,19 +16371,19 @@ thermal monitoring, so a
 <segment>
 <label x="30.48" y="139.7" size="1.778" layer="95" rot="R180" xref="yes"/>
 <wire x1="33.02" y1="139.7" x2="30.48" y2="139.7" width="0.1524" layer="91"/>
-<pinref part="U.G1" gate="G$1" pin="SENSOR_VP"/>
+<pinref part="U.ESP1" gate="G$1" pin="SENSOR_VP"/>
 <wire x1="33.02" y1="139.7" x2="33.02" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="137.16" x2="38.1" y2="137.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$22" class="0">
 <segment>
-<pinref part="U.D1" gate="A" pin="4Y"/>
+<pinref part="U.DS1" gate="A" pin="4Y"/>
 <wire x1="218.44" y1="22.86" x2="243.84" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="243.84" y1="22.86" x2="243.84" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="R.D2*" gate="G$1" pin="2"/>
+<pinref part="R.DS2*" gate="G$1" pin="2"/>
 <wire x1="248.92" y1="17.78" x2="246.38" y2="17.78" width="0.1524" layer="91"/>
-<pinref part="C.D1*" gate="G$1" pin="1"/>
+<pinref part="C.DS2*" gate="G$1" pin="1"/>
 <wire x1="246.38" y1="17.78" x2="243.84" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="246.38" y1="13.208" x2="246.38" y2="17.78" width="0.1524" layer="91"/>
 <junction x="246.38" y="17.78"/>
@@ -16391,10 +16391,10 @@ thermal monitoring, so a
 </net>
 <net name="N$27" class="0">
 <segment>
-<pinref part="U.D1" gate="A" pin="3Y"/>
+<pinref part="U.DS1" gate="A" pin="3Y"/>
 <wire x1="218.44" y1="15.24" x2="233.68" y2="15.24" width="0.1524" layer="91"/>
-<pinref part="R.D1*" gate="G$1" pin="2"/>
-<pinref part="C.D2*" gate="G$1" pin="1"/>
+<pinref part="R.DS1*" gate="G$1" pin="2"/>
+<pinref part="C.DS5*" gate="G$1" pin="1"/>
 <wire x1="233.68" y1="15.24" x2="238.76" y2="15.24" width="0.1524" layer="91"/>
 <wire x1="238.76" y1="15.24" x2="238.76" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="238.76" y1="25.4" x2="248.92" y2="25.4" width="0.1524" layer="91"/>
@@ -16404,27 +16404,27 @@ thermal monitoring, so a
 </net>
 <net name="DS_CLK" class="0">
 <segment>
-<pinref part="U.D1" gate="A" pin="3A"/>
+<pinref part="U.DS1" gate="A" pin="3A"/>
 <label x="223.52" y="17.78" size="1.778" layer="95" xref="yes"/>
 <wire x1="218.44" y1="17.78" x2="223.52" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <label x="114.3" y="142.24" size="1.778" layer="95" xref="yes"/>
 <wire x1="101.6" y1="142.24" x2="114.3" y2="142.24" width="0.1524" layer="91"/>
-<pinref part="U.G1" gate="G$1" pin="IO13"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO13"/>
 <wire x1="73.66" y1="132.08" x2="101.6" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="132.08" x2="101.6" y2="142.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="DS_DAT" class="0">
 <segment>
-<pinref part="U.D1" gate="A" pin="4A"/>
+<pinref part="U.DS1" gate="A" pin="4A"/>
 <wire x1="218.44" y1="25.4" x2="223.52" y2="25.4" width="0.1524" layer="91"/>
 <label x="223.52" y="25.4" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
 <label x="114.3" y="88.9" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO27"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO27"/>
 <wire x1="73.66" y1="101.6" x2="91.44" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="101.6" x2="91.44" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="88.9" x2="114.3" y2="88.9" width="0.1524" layer="91"/>
@@ -16433,12 +16433,12 @@ thermal monitoring, so a
 <net name="SERVO1" class="0">
 <segment>
 <label x="33.02" y="-33.02" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="R.S1*" gate="G$1" pin="2"/>
+<pinref part="R.SI1*" gate="G$1" pin="2"/>
 <wire x1="33.02" y1="-33.02" x2="38.1" y2="-33.02" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <label x="114.3" y="109.22" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO23"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO23"/>
 <wire x1="73.66" y1="109.22" x2="114.3" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -16446,12 +16446,12 @@ thermal monitoring, so a
 <segment>
 <label x="30.48" y="-76.2" size="1.778" layer="95" rot="R180" xref="yes"/>
 <wire x1="38.1" y1="-76.2" x2="30.48" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="R.S2*" gate="G$1" pin="2"/>
+<pinref part="R.SI2*" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <wire x1="96.52" y1="104.14" x2="114.3" y2="104.14" width="0.1524" layer="91"/>
 <label x="114.3" y="104.14" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO25"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO25"/>
 <wire x1="73.66" y1="106.68" x2="96.52" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="106.68" x2="96.52" y2="104.14" width="0.1524" layer="91"/>
 </segment>
@@ -16460,66 +16460,66 @@ thermal monitoring, so a
 <segment>
 <wire x1="53.34" y1="200.66" x2="55.88" y2="200.66" width="0.1524" layer="91"/>
 <wire x1="55.88" y1="195.58" x2="55.88" y2="200.66" width="0.1524" layer="91"/>
-<pinref part="Q.K1" gate="G$1" pin="D"/>
-<pinref part="X.K1" gate="G$1" pin="1"/>
+<pinref part="Q.ESP1" gate="G$1" pin="D"/>
+<pinref part="X.ESP2" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$15" class="0">
 <segment>
-<pinref part="U.M1" gate="A" pin="SW_2"/>
-<pinref part="U.M1" gate="A" pin="SW"/>
+<pinref part="U.EC1" gate="A" pin="SW_2"/>
+<pinref part="U.EC1" gate="A" pin="SW"/>
 <wire x1="-213.36" y1="12.7" x2="-213.36" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
-<pinref part="R.M1" gate="G$1" pin="2"/>
+<pinref part="R.EC1" gate="G$1" pin="2"/>
 <wire x1="-193.04" y1="7.62" x2="-193.04" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="U.M1" gate="A" pin="FB"/>
+<pinref part="U.EC1" gate="A" pin="FB"/>
 <wire x1="-213.36" y1="2.54" x2="-193.04" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="R.M3" gate="G$1" pin="2"/>
+<pinref part="R.EC3" gate="G$1" pin="2"/>
 <wire x1="-193.04" y1="-5.08" x2="-193.04" y2="2.54" width="0.1524" layer="91"/>
 <junction x="-193.04" y="2.54"/>
 </segment>
 </net>
 <net name="N$17" class="0">
 <segment>
-<pinref part="U.M1" gate="A" pin="RT_CLK"/>
+<pinref part="U.EC1" gate="A" pin="RT_CLK"/>
 <wire x1="-259.08" y1="-7.62" x2="-266.7" y2="-7.62" width="0.1524" layer="91"/>
-<pinref part="R.M2" gate="G$1" pin="2"/>
+<pinref part="R.EC2" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$31" class="0">
 <segment>
-<pinref part="R.M4" gate="G$1" pin="1"/>
-<pinref part="U.M1" gate="A" pin="TT"/>
+<pinref part="R.EC4" gate="G$1" pin="1"/>
+<pinref part="U.EC1" gate="A" pin="TT"/>
 <wire x1="-208.28" y1="-12.7" x2="-213.36" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$37" class="0">
 <segment>
-<pinref part="U.Y1" gate="A" pin="CPO1"/>
-<pinref part="C.Y2" gate="G$1" pin="1"/>
+<pinref part="U.YY1" gate="A" pin="CPO1"/>
+<pinref part="C.YY2" gate="G$1" pin="1"/>
 <wire x1="-40.64" y1="-10.16" x2="-38.608" y2="-10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$38" class="0">
 <segment>
-<pinref part="C.Y3" gate="G$1" pin="2"/>
-<pinref part="U.Y1" gate="A" pin="CPO2"/>
+<pinref part="C.YY3" gate="G$1" pin="2"/>
+<pinref part="U.YY1" gate="A" pin="CPO2"/>
 <wire x1="-111.252" y1="-10.16" x2="-106.68" y2="-10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="USING_ENG" class="0">
 <segment>
-<pinref part="U.Y1" gate="A" pin="!ONST2"/>
+<pinref part="U.YY1" gate="A" pin="!ONST2"/>
 <label x="-101.6" y="-30.48" size="1.778" layer="95" xref="yes"/>
 <wire x1="-106.68" y1="-15.24" x2="-106.68" y2="-30.48" width="0.1524" layer="91"/>
 <wire x1="-106.68" y1="-30.48" x2="-101.6" y2="-30.48" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <label x="114.3" y="124.46" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO17"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO17"/>
 <wire x1="73.66" y1="121.92" x2="111.76" y2="121.92" width="0.1524" layer="91"/>
 <wire x1="111.76" y1="121.92" x2="111.76" y2="124.46" width="0.1524" layer="91"/>
 <wire x1="111.76" y1="124.46" x2="114.3" y2="124.46" width="0.1524" layer="91"/>
@@ -16527,7 +16527,7 @@ thermal monitoring, so a
 </net>
 <net name="USING_BAT" class="0">
 <segment>
-<pinref part="U.Y1" gate="A" pin="!ONST1"/>
+<pinref part="U.YY1" gate="A" pin="!ONST1"/>
 <label x="-35.56" y="-30.48" size="1.778" layer="95" rot="MR180" xref="yes"/>
 <wire x1="-40.64" y1="-15.24" x2="-38.1" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="-15.24" x2="-38.1" y2="-30.48" width="0.1524" layer="91"/>
@@ -16535,7 +16535,7 @@ thermal monitoring, so a
 </segment>
 <segment>
 <label x="114.3" y="152.4" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO4"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO4"/>
 <wire x1="73.66" y1="139.7" x2="96.52" y2="139.7" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="139.7" x2="96.52" y2="152.4" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="152.4" x2="114.3" y2="152.4" width="0.1524" layer="91"/>
@@ -16543,16 +16543,16 @@ thermal monitoring, so a
 </net>
 <net name="N$32" class="0">
 <segment>
-<pinref part="U.Y1" gate="A" pin="VCC"/>
-<pinref part="C.Y1" gate="G$1" pin="1"/>
+<pinref part="U.YY1" gate="A" pin="VCC"/>
+<pinref part="C.YY1" gate="G$1" pin="1"/>
 <wire x1="-40.64" y1="-2.54" x2="-27.94" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="-27.94" y1="-2.54" x2="-27.94" y2="2.032" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="RST_DISABLE" class="0">
 <segment>
-<pinref part="Q.K1" gate="G$1" pin="G"/>
-<pinref part="R.K1" gate="G$1" pin="2"/>
+<pinref part="Q.ESP1" gate="G$1" pin="G"/>
+<pinref part="R.ESP1" gate="G$1" pin="2"/>
 <wire x1="60.96" y1="187.96" x2="76.2" y2="187.96" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="187.96" x2="76.2" y2="195.58" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="187.96" x2="81.28" y2="187.96" width="0.1524" layer="91"/>
@@ -16561,126 +16561,126 @@ thermal monitoring, so a
 </segment>
 <segment>
 <label x="114.3" y="119.38" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO18"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO18"/>
 <wire x1="73.66" y1="119.38" x2="114.3" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$49" class="0">
 <segment>
-<pinref part="U.G1" gate="G$1" pin="SCS/CMD"/>
-<pinref part="X.G1" gate="G$1" pin="5"/>
+<pinref part="U.ESP1" gate="G$1" pin="SCS/CMD"/>
+<pinref part="X.ESP1" gate="G$1" pin="5"/>
 <wire x1="38.1" y1="116.84" x2="33.02" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$66" class="0">
 <segment>
-<pinref part="U.G1" gate="G$1" pin="SCL/CLK"/>
-<pinref part="X.G1" gate="G$1" pin="4"/>
+<pinref part="U.ESP1" gate="G$1" pin="SCL/CLK"/>
+<pinref part="X.ESP1" gate="G$1" pin="4"/>
 <wire x1="38.1" y1="114.3" x2="33.02" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$68" class="0">
 <segment>
-<pinref part="U.G1" gate="G$1" pin="SDO/SD0"/>
-<pinref part="X.G1" gate="G$1" pin="3"/>
+<pinref part="U.ESP1" gate="G$1" pin="SDO/SD0"/>
+<pinref part="X.ESP1" gate="G$1" pin="3"/>
 <wire x1="38.1" y1="111.76" x2="33.02" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$70" class="0">
 <segment>
-<pinref part="U.G1" gate="G$1" pin="SDI/SD1"/>
-<pinref part="X.G1" gate="G$1" pin="2"/>
+<pinref part="U.ESP1" gate="G$1" pin="SDI/SD1"/>
+<pinref part="X.ESP1" gate="G$1" pin="2"/>
 <wire x1="38.1" y1="109.22" x2="33.02" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$34" class="0">
 <segment>
-<pinref part="R.F4" gate="G$1" pin="2"/>
-<pinref part="X.F1" gate="G$1" pin="SHIELD"/>
+<pinref part="R.DS5" gate="G$1" pin="2"/>
+<pinref part="X.DS2" gate="G$1" pin="SHIELD"/>
 <wire x1="-182.88" y1="160.02" x2="-177.8" y2="160.02" width="0.1524" layer="91"/>
-<pinref part="C.F1" gate="G$1" pin="2"/>
+<pinref part="C.DS3" gate="G$1" pin="2"/>
 <wire x1="-177.8" y1="160.02" x2="-172.72" y2="160.02" width="0.1524" layer="91"/>
 <wire x1="-172.72" y1="160.02" x2="-170.18" y2="160.02" width="0.1524" layer="91"/>
 <wire x1="-168.148" y1="149.86" x2="-172.72" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="-172.72" y1="149.86" x2="-172.72" y2="160.02" width="0.1524" layer="91"/>
 <junction x="-172.72" y="160.02"/>
-<pinref part="TP.F4" gate="G$1" pin="TP"/>
+<pinref part="TP.USB15" gate="G$1" pin="TP"/>
 <wire x1="-177.8" y1="154.94" x2="-177.8" y2="160.02" width="0.1524" layer="91"/>
 <junction x="-177.8" y="160.02"/>
 </segment>
 </net>
 <net name="N$29" class="0">
 <segment>
-<pinref part="U.F1" gate="G$1" pin="BST"/>
-<pinref part="C.F2" gate="G$1" pin="1"/>
+<pinref part="U.DS2" gate="G$1" pin="BST"/>
+<pinref part="C.DS6" gate="G$1" pin="1"/>
 <wire x1="88.9" y1="55.88" x2="93.472" y2="55.88" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$50" class="0">
 <segment>
-<pinref part="U.F1" gate="G$1" pin="SW"/>
+<pinref part="U.DS2" gate="G$1" pin="SW"/>
 <wire x1="88.9" y1="50.8" x2="101.6" y2="50.8" width="0.1524" layer="91"/>
-<pinref part="C.F2" gate="G$1" pin="2"/>
+<pinref part="C.DS6" gate="G$1" pin="2"/>
 <wire x1="102.87" y1="50.8" x2="101.6" y2="50.8" width="0.1524" layer="91"/>
 <junction x="101.6" y="50.8"/>
-<pinref part="L.F1" gate="G$1" pin="1"/>
+<pinref part="L.DS1" gate="G$1" pin="1"/>
 <wire x1="99.568" y1="55.88" x2="101.6" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="101.6" y1="55.88" x2="101.6" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$51" class="0">
 <segment>
-<pinref part="U.F1" gate="G$1" pin="FB"/>
+<pinref part="U.DS2" gate="G$1" pin="FB"/>
 <wire x1="88.9" y1="45.72" x2="91.44" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="91.44" y1="45.72" x2="99.06" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="45.72" x2="106.68" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="106.68" y1="45.72" x2="114.3" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="114.3" y1="45.72" x2="115.57" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="115.57" y1="45.72" x2="115.57" y2="50.8" width="0.1524" layer="91"/>
-<pinref part="C.F3" gate="G$1" pin="1"/>
+<pinref part="C.DS7" gate="G$1" pin="1"/>
 <wire x1="91.44" y1="43.688" x2="91.44" y2="45.72" width="0.1524" layer="91"/>
 <junction x="91.44" y="45.72"/>
-<pinref part="C.F5" gate="G$1" pin="1"/>
+<pinref part="C.DS9" gate="G$1" pin="1"/>
 <wire x1="99.06" y1="43.688" x2="99.06" y2="45.72" width="0.1524" layer="91"/>
 <junction x="99.06" y="45.72"/>
 <wire x1="106.68" y1="27.94" x2="106.68" y2="45.72" width="0.1524" layer="91"/>
 <junction x="106.68" y="45.72"/>
-<pinref part="TP.F1" gate="G$1" pin="TP"/>
+<pinref part="TP.USB2" gate="G$1" pin="TP"/>
 <wire x1="114.3" y1="43.18" x2="114.3" y2="45.72" width="0.1524" layer="91"/>
 <junction x="114.3" y="45.72"/>
-<pinref part="Q.F2" gate="G$1" pin="A"/>
-<pinref part="L.F1" gate="G$1" pin="2"/>
-<pinref part="C.F7" gate="G$1" pin="2"/>
+<pinref part="Q.DS2" gate="G$1" pin="A"/>
+<pinref part="L.DS1" gate="G$1" pin="2"/>
+<pinref part="C.DS11" gate="G$1" pin="2"/>
 <wire x1="114.3" y1="45.72" x2="121.92" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="45.72" x2="121.92" y2="41.148" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$13" class="0">
 <segment>
-<pinref part="R.L1" gate="G$1" pin="2"/>
+<pinref part="R.BI1" gate="G$1" pin="2"/>
 <wire x1="-236.22" y1="101.6" x2="-236.22" y2="88.9" width="0.1524" layer="91"/>
-<pinref part="Q.L2" gate="G$1" pin="D"/>
+<pinref part="Q.BI2" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="N$33" class="0">
 <segment>
-<pinref part="R.L3" gate="G$1" pin="2"/>
+<pinref part="R.BI3" gate="G$1" pin="2"/>
 <wire x1="-223.52" y1="88.9" x2="-223.52" y2="91.44" width="0.1524" layer="91"/>
-<pinref part="Q.L1" gate="G$1" pin="D"/>
+<pinref part="Q.BI1" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="AGND" class="0">
 <segment>
 <wire x1="-266.7" y1="-22.86" x2="-266.7" y2="-17.78" width="0.1524" layer="91"/>
-<pinref part="U.M1" gate="A" pin="AGND"/>
-<pinref part="U.M1" gate="A" pin="AGND_3"/>
+<pinref part="U.EC1" gate="A" pin="AGND"/>
+<pinref part="U.EC1" gate="A" pin="AGND_3"/>
 <wire x1="-259.08" y1="-12.7" x2="-259.08" y2="-17.78" width="0.1524" layer="91"/>
 <junction x="-259.08" y="-17.78"/>
-<pinref part="U.M1" gate="A" pin="AGND_2"/>
+<pinref part="U.EC1" gate="A" pin="AGND_2"/>
 <wire x1="-213.36" y1="-17.78" x2="-213.36" y2="-22.86" width="0.1524" layer="91"/>
 <wire x1="-213.36" y1="-22.86" x2="-259.08" y2="-22.86" width="0.1524" layer="91"/>
 <wire x1="-259.08" y1="-22.86" x2="-259.08" y2="-17.78" width="0.1524" layer="91"/>
-<pinref part="R.M4" gate="G$1" pin="2"/>
+<pinref part="R.EC4" gate="G$1" pin="2"/>
 <wire x1="-208.28" y1="-22.86" x2="-213.36" y2="-22.86" width="0.1524" layer="91"/>
 <junction x="-213.36" y="-22.86"/>
 <wire x1="-259.08" y1="-22.86" x2="-266.7" y2="-22.86" width="0.1524" layer="91"/>
@@ -16688,60 +16688,60 @@ thermal monitoring, so a
 <wire x1="-208.28" y1="-22.86" x2="-198.12" y2="-22.86" width="0.1524" layer="91"/>
 <junction x="-208.28" y="-22.86"/>
 <label x="-238.76" y="-25.4" size="1.778" layer="95"/>
-<pinref part="TP.M2" gate="G$1" pin="TP"/>
+<pinref part="TP.USB10" gate="G$1" pin="TP"/>
 <wire x1="-198.12" y1="-22.86" x2="-193.04" y2="-22.86" width="0.1524" layer="91"/>
 <wire x1="-198.12" y1="-25.4" x2="-198.12" y2="-22.86" width="0.1524" layer="91"/>
 <junction x="-198.12" y="-22.86"/>
-<pinref part="R.M2" gate="G$1" pin="1"/>
-<pinref part="R.M3" gate="G$1" pin="1"/>
+<pinref part="R.EC2" gate="G$1" pin="1"/>
+<pinref part="R.EC3" gate="G$1" pin="1"/>
 <wire x1="-193.04" y1="-22.86" x2="-193.04" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$28" class="0">
 <segment>
-<pinref part="F.D1" gate="A" pin="2"/>
-<pinref part="C.D1" gate="G$1" pin="+"/>
+<pinref part="F.DS1" gate="A" pin="2"/>
+<pinref part="C.DS1" gate="G$1" pin="+"/>
 <wire x1="246.38" y1="43.18" x2="261.62" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="261.62" y1="43.18" x2="261.62" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="276.86" y1="22.86" x2="276.86" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="276.86" y1="43.18" x2="261.62" y2="43.18" width="0.1524" layer="91"/>
 <junction x="261.62" y="43.18"/>
-<pinref part="X.D1" gate="G$1" pin="1"/>
+<pinref part="X.DS1" gate="G$1" pin="1"/>
 <wire x1="276.86" y1="22.86" x2="279.4" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
 <segment>
-<pinref part="U.Y1" gate="A" pin="GATE1"/>
+<pinref part="U.YY1" gate="A" pin="GATE1"/>
 <wire x1="-40.64" y1="-7.62" x2="-20.32" y2="-7.62" width="0.1524" layer="91"/>
-<pinref part="Q.Y91" gate="G$2" pin="G"/>
+<pinref part="Q.YY2" gate="G$2" pin="G"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="U.Y1" gate="A" pin="GATE2"/>
+<pinref part="U.YY1" gate="A" pin="GATE2"/>
 <wire x1="-106.68" y1="-7.62" x2="-121.92" y2="-7.62" width="0.1524" layer="91"/>
-<pinref part="Q.Y91" gate="G$1" pin="G"/>
+<pinref part="Q.YY2" gate="G$1" pin="G"/>
 </segment>
 </net>
 <net name="N$39" class="0">
 <segment>
-<pinref part="R.P1" gate="G$1" pin="2"/>
+<pinref part="R.USB1" gate="G$1" pin="2"/>
 <wire x1="-91.44" y1="236.22" x2="-91.44" y2="233.68" width="0.1524" layer="91"/>
-<pinref part="U.P1" gate="A" pin="VIO"/>
+<pinref part="U.USB1" gate="A" pin="VIO"/>
 <wire x1="-91.44" y1="233.68" x2="-88.9" y2="233.68" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$40" class="0">
 <segment>
-<pinref part="U.P1" gate="A" pin="VDD"/>
+<pinref part="U.USB1" gate="A" pin="VDD"/>
 <wire x1="-106.68" y1="236.22" x2="-106.68" y2="231.648" width="0.1524" layer="91"/>
-<pinref part="C.P1" gate="G$1" pin="2"/>
-<pinref part="C.P2" gate="G$1" pin="2"/>
+<pinref part="C.USB1" gate="G$1" pin="2"/>
+<pinref part="C.USB2" gate="G$1" pin="2"/>
 <wire x1="-119.38" y1="231.648" x2="-119.38" y2="236.22" width="0.1524" layer="91"/>
 <wire x1="-119.38" y1="236.22" x2="-106.68" y2="236.22" width="0.1524" layer="91"/>
 <junction x="-106.68" y="236.22"/>
-<pinref part="TP.P5" gate="G$1" pin="TP"/>
+<pinref part="TP.USB17" gate="G$1" pin="TP"/>
 <wire x1="-129.54" y1="236.22" x2="-119.38" y2="236.22" width="0.1524" layer="91"/>
 <junction x="-119.38" y="236.22"/>
 <wire x1="-101.6" y1="236.22" x2="-101.6" y2="228.6" width="0.1524" layer="91"/>
@@ -16751,40 +16751,40 @@ thermal monitoring, so a
 </net>
 <net name="LED_BUILTIN" class="0">
 <segment>
-<pinref part="U.G1" gate="G$1" pin="IO12"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO12"/>
 <wire x1="73.66" y1="134.62" x2="99.06" y2="134.62" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="134.62" x2="99.06" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="99.06" y1="147.32" x2="114.3" y2="147.32" width="0.1524" layer="91"/>
 <label x="114.3" y="147.32" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="R.P4" gate="G$1" pin="2"/>
+<pinref part="R.USB4" gate="G$1" pin="2"/>
 <wire x1="-27.94" y1="231.14" x2="-27.94" y2="233.68" width="0.1524" layer="91"/>
 <label x="-27.94" y="233.68" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="N$14" class="0">
 <segment>
-<pinref part="U.Z1" gate="G$1" pin="BST"/>
-<pinref part="C.Z3" gate="G$1" pin="1"/>
+<pinref part="U.ZZ1" gate="G$1" pin="BST"/>
+<pinref part="C.ZZ3" gate="G$1" pin="1"/>
 <wire x1="-43.18" y1="109.22" x2="-38.608" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$26" class="0">
 <segment>
-<pinref part="U.Z1" gate="G$1" pin="SW"/>
+<pinref part="U.ZZ1" gate="G$1" pin="SW"/>
 <wire x1="-43.18" y1="104.14" x2="-30.48" y2="104.14" width="0.1524" layer="91"/>
-<pinref part="C.Z3" gate="G$1" pin="2"/>
+<pinref part="C.ZZ3" gate="G$1" pin="2"/>
 <wire x1="-29.21" y1="104.14" x2="-30.48" y2="104.14" width="0.1524" layer="91"/>
 <junction x="-30.48" y="104.14"/>
-<pinref part="L.Z1" gate="G$1" pin="1"/>
+<pinref part="L.ZZ1" gate="G$1" pin="1"/>
 <wire x1="-30.48" y1="104.14" x2="-30.48" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="-30.48" y1="109.22" x2="-32.512" y2="109.22" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ESP_POWER" class="0">
 <segment>
-<pinref part="U.Z1" gate="G$1" pin="FB"/>
+<pinref part="U.ZZ1" gate="G$1" pin="FB"/>
 <wire x1="-43.18" y1="99.06" x2="-38.1" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="99.06" x2="-30.48" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="-30.48" y1="99.06" x2="-22.86" y2="99.06" width="0.1524" layer="91"/>
@@ -16792,50 +16792,50 @@ thermal monitoring, so a
 <wire x1="-12.7" y1="99.06" x2="-16.51" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="97.028" x2="-38.1" y2="99.06" width="0.1524" layer="91"/>
 <junction x="-38.1" y="99.06"/>
-<pinref part="C.Z4" gate="G$1" pin="1"/>
+<pinref part="C.ZZ4" gate="G$1" pin="1"/>
 <wire x1="-30.48" y1="97.028" x2="-30.48" y2="99.06" width="0.1524" layer="91"/>
 <junction x="-30.48" y="99.06"/>
-<pinref part="TP.Z1" gate="G$1" pin="TP"/>
+<pinref part="TP.USB6" gate="G$1" pin="TP"/>
 <junction x="-12.7" y="99.06"/>
 <label x="-10.16" y="104.14" size="1.778" layer="95" xref="yes"/>
-<pinref part="L.Z1" gate="G$1" pin="2"/>
-<pinref part="C.Z6" gate="G$1" pin="2"/>
+<pinref part="L.ZZ1" gate="G$1" pin="2"/>
+<pinref part="C.ZZ6" gate="G$1" pin="2"/>
 <wire x1="-22.86" y1="97.028" x2="-22.86" y2="99.06" width="0.1524" layer="91"/>
 <junction x="-22.86" y="99.06"/>
-<pinref part="C.Z1" gate="G$1" pin="1"/>
+<pinref part="C.ZZ1" gate="G$1" pin="1"/>
 <wire x1="-16.51" y1="104.14" x2="-12.7" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="-12.7" y1="104.14" x2="-12.7" y2="99.06" width="0.1524" layer="91"/>
 <junction x="-12.7" y="104.14"/>
-<pinref part="R.P5" gate="G$1" pin="2"/>
+<pinref part="R.USB5" gate="G$1" pin="2"/>
 <wire x1="-12.7" y1="83.82" x2="-12.7" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="-10.16" y1="104.14" x2="-12.7" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="-12.7" y1="99.06" x2="-2.54" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="-2.54" y1="99.06" x2="-2.54" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="R.K1" gate="G$1" pin="1"/>
+<pinref part="R.ESP1" gate="G$1" pin="1"/>
 <label x="33.02" y="215.9" size="1.778" layer="95" rot="MR0" xref="yes"/>
 <wire x1="76.2" y1="215.9" x2="76.2" y2="205.74" width="0.1524" layer="91"/>
-<pinref part="R.K2" gate="G$1" pin="1"/>
+<pinref part="R.ESP2" gate="G$1" pin="1"/>
 <wire x1="38.1" y1="213.36" x2="38.1" y2="215.9" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="215.9" x2="38.1" y2="215.9" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="215.9" x2="38.1" y2="215.9" width="0.1524" layer="91"/>
 <junction x="38.1" y="215.9"/>
 </segment>
 <segment>
-<pinref part="U.G1" gate="G$1" pin="3V3"/>
+<pinref part="U.ESP1" gate="G$1" pin="3V3"/>
 <wire x1="73.66" y1="149.86" x2="76.2" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="149.86" x2="76.2" y2="162.56" width="0.1524" layer="91"/>
 <label x="73.66" y="167.64" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="C.G1" gate="G$1" pin="2"/>
+<pinref part="C.ESP1" gate="G$1" pin="2"/>
 <wire x1="86.36" y1="157.988" x2="86.36" y2="162.56" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="162.56" x2="76.2" y2="162.56" width="0.1524" layer="91"/>
 <junction x="76.2" y="162.56"/>
-<pinref part="R.B1" gate="G$1" pin="1"/>
+<pinref part="R.BC1" gate="G$1" pin="1"/>
 <wire x1="73.66" y1="167.64" x2="76.2" y2="167.64" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="167.64" x2="152.4" y2="167.64" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="167.64" x2="152.4" y2="132.08" width="0.1524" layer="91"/>
-<pinref part="R.B2" gate="G$1" pin="1"/>
+<pinref part="R.BC2" gate="G$1" pin="1"/>
 <wire x1="152.4" y1="132.08" x2="152.4" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="137.16" y1="129.54" x2="137.16" y2="132.08" width="0.1524" layer="91"/>
 <wire x1="137.16" y1="132.08" x2="152.4" y2="132.08" width="0.1524" layer="91"/>
@@ -16846,10 +16846,10 @@ thermal monitoring, so a
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="R.S1*" gate="G$1" pin="1"/>
-<pinref part="X.S2" gate="G$1" pin="2"/>
+<pinref part="R.SI1*" gate="G$1" pin="1"/>
+<pinref part="X.SI2" gate="G$1" pin="2"/>
 <wire x1="48.26" y1="-33.02" x2="50.8" y2="-33.02" width="0.1524" layer="91"/>
-<pinref part="C.S1*" gate="G$1" pin="1"/>
+<pinref part="C.SI2*" gate="G$1" pin="1"/>
 <wire x1="50.8" y1="-33.02" x2="114.3" y2="-33.02" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="-35.052" x2="50.8" y2="-33.02" width="0.1524" layer="91"/>
 <junction x="50.8" y="-33.02"/>
@@ -16857,10 +16857,10 @@ thermal monitoring, so a
 </net>
 <net name="N$12" class="0">
 <segment>
-<pinref part="R.S2*" gate="G$1" pin="1"/>
-<pinref part="X.S3" gate="G$1" pin="2"/>
+<pinref part="R.SI2*" gate="G$1" pin="1"/>
+<pinref part="X.SI3" gate="G$1" pin="2"/>
 <wire x1="48.26" y1="-76.2" x2="50.8" y2="-76.2" width="0.1524" layer="91"/>
-<pinref part="C.S2*" gate="G$1" pin="1"/>
+<pinref part="C.SI3*" gate="G$1" pin="1"/>
 <wire x1="50.8" y1="-76.2" x2="114.3" y2="-76.2" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="-78.232" x2="50.8" y2="-76.2" width="0.1524" layer="91"/>
 <junction x="50.8" y="-76.2"/>
@@ -16868,30 +16868,30 @@ thermal monitoring, so a
 </net>
 <net name="N$30" class="0">
 <segment>
-<pinref part="R.D1*" gate="G$1" pin="1"/>
-<pinref part="X.D1" gate="G$1" pin="2"/>
+<pinref part="R.DS1*" gate="G$1" pin="1"/>
+<pinref part="X.DS1" gate="G$1" pin="2"/>
 <wire x1="259.08" y1="25.4" x2="259.08" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="259.08" y1="20.32" x2="279.4" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$42" class="0">
 <segment>
-<pinref part="X.D1" gate="G$1" pin="3"/>
-<pinref part="R.D2*" gate="G$1" pin="1"/>
+<pinref part="X.DS1" gate="G$1" pin="3"/>
+<pinref part="R.DS2*" gate="G$1" pin="1"/>
 <wire x1="279.4" y1="17.78" x2="259.08" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$36" class="0">
 <segment>
-<pinref part="R.P5" gate="G$1" pin="1"/>
-<pinref part="D.Z1" gate="G$1" pin="A"/>
+<pinref part="R.USB5" gate="G$1" pin="1"/>
+<pinref part="D.ZZ1" gate="G$1" pin="A"/>
 <wire x1="-12.7" y1="73.66" x2="-12.7" y2="71.12" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="!ENG_EN" class="0">
 <segment>
-<pinref part="R.L7" gate="G$1" pin="2"/>
-<pinref part="Q.L4" gate="G$1" pin="D"/>
+<pinref part="R.BI6" gate="G$1" pin="2"/>
+<pinref part="Q.BI3" gate="G$1" pin="D"/>
 <wire x1="-99.06" y1="78.74" x2="-99.06" y2="76.2" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="76.2" x2="-99.06" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="76.2" x2="-96.52" y2="76.2" width="0.1524" layer="91"/>
@@ -16899,9 +16899,9 @@ thermal monitoring, so a
 <label x="-96.52" y="76.2" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U.Y1" gate="A" pin="!EN2"/>
+<pinref part="U.YY1" gate="A" pin="!EN2"/>
 <wire x1="-106.68" y1="2.54" x2="-109.22" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="Q.Y90" gate="G$2" pin="G"/>
+<pinref part="Q.YY1" gate="G$2" pin="G"/>
 <wire x1="-121.92" y1="25.4" x2="-109.22" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="-109.22" y1="25.4" x2="-109.22" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="-109.22" y1="25.4" x2="-109.22" y2="30.48" width="0.1524" layer="91"/>
@@ -16916,34 +16916,34 @@ thermal monitoring, so a
 <wire x1="-441.96" y1="86.36" x2="-436.88" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="-436.88" y1="86.36" x2="-436.88" y2="96.52" width="0.1524" layer="91"/>
 <junction x="-441.96" y="86.36"/>
-<pinref part="U.B90" gate="G$1" pin="NTC"/>
+<pinref part="U.BC1" gate="G$1" pin="NTC"/>
 <wire x1="-436.88" y1="96.52" x2="-426.72" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="R.B4" gate="G$1" pin="2"/>
-<pinref part="R.B3" gate="G$1" pin="1"/>
+<pinref part="R.BC4" gate="G$1" pin="2"/>
+<pinref part="R.BC3" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$52" class="0">
 <segment>
-<pinref part="U.B90" gate="G$1" pin="VCC"/>
+<pinref part="U.BC1" gate="G$1" pin="VCC"/>
 <wire x1="-426.72" y1="101.6" x2="-441.96" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="-441.96" y1="101.6" x2="-441.96" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="-454.66" y1="101.6" x2="-441.96" y2="101.6" width="0.1524" layer="91"/>
 <junction x="-441.96" y="101.6"/>
-<pinref part="SJ.K2" gate="1" pin="2"/>
+<pinref part="SJ.VI2" gate="1" pin="2"/>
 <wire x1="-439.42" y1="116.84" x2="-454.66" y2="116.84" width="0.1524" layer="91"/>
 <wire x1="-454.66" y1="116.84" x2="-454.66" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="R.B3" gate="G$1" pin="2"/>
-<pinref part="C.B2" gate="G$1" pin="2"/>
+<pinref part="R.BC3" gate="G$1" pin="2"/>
+<pinref part="C.BC2" gate="G$1" pin="2"/>
 <wire x1="-454.66" y1="91.948" x2="-454.66" y2="101.6" width="0.1524" layer="91"/>
 <junction x="-454.66" y="101.6"/>
 </segment>
 </net>
 <net name="N$56" class="0">
 <segment>
-<pinref part="L.B90" gate="G$1" pin="2"/>
-<pinref part="R.B5" gate="G$1" pin="1"/>
+<pinref part="L.BC1" gate="G$1" pin="2"/>
+<pinref part="R.BC5" gate="G$1" pin="1"/>
 <wire x1="-356.87" y1="127" x2="-355.6" y2="127" width="0.1524" layer="91"/>
-<pinref part="U.B90" gate="G$1" pin="CSP"/>
+<pinref part="U.BC1" gate="G$1" pin="CSP"/>
 <wire x1="-355.6" y1="127" x2="-353.06" y2="127" width="0.1524" layer="91"/>
 <wire x1="-386.08" y1="116.84" x2="-355.6" y2="116.84" width="0.1524" layer="91"/>
 <wire x1="-355.6" y1="116.84" x2="-355.6" y2="127" width="0.1524" layer="91"/>
@@ -16952,33 +16952,33 @@ thermal monitoring, so a
 </net>
 <net name="N$58" class="0">
 <segment>
-<pinref part="SJ.K2" gate="1" pin="1"/>
-<pinref part="U.B90" gate="G$1" pin="SEL"/>
+<pinref part="SJ.VI2" gate="1" pin="1"/>
+<pinref part="U.BC1" gate="G$1" pin="SEL"/>
 <wire x1="-429.26" y1="116.84" x2="-426.72" y2="116.84" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
 <segment>
-<pinref part="U.B90" gate="G$1" pin="TMR"/>
-<pinref part="C.J3" gate="G$1" pin="2"/>
+<pinref part="U.BC1" gate="G$1" pin="TMR"/>
+<pinref part="C.VI4" gate="G$1" pin="2"/>
 <wire x1="-386.08" y1="106.68" x2="-378.46" y2="106.68" width="0.1524" layer="91"/>
 <wire x1="-378.46" y1="106.68" x2="-378.46" y2="104.648" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$59" class="0">
 <segment>
-<pinref part="U.B90" gate="G$1" pin="BST"/>
-<pinref part="C.B1" gate="G$1" pin="1"/>
+<pinref part="U.BC1" gate="G$1" pin="BST"/>
+<pinref part="C.BC1" gate="G$1" pin="1"/>
 <wire x1="-386.08" y1="121.92" x2="-381.508" y2="121.92" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$60" class="0">
 <segment>
-<pinref part="C.B1" gate="G$1" pin="2"/>
+<pinref part="C.BC1" gate="G$1" pin="2"/>
 <wire x1="-373.38" y1="121.92" x2="-375.412" y2="121.92" width="0.1524" layer="91"/>
-<pinref part="U.B90" gate="G$1" pin="SW"/>
+<pinref part="U.BC1" gate="G$1" pin="SW"/>
 <wire x1="-386.08" y1="127" x2="-373.38" y2="127" width="0.1524" layer="91"/>
-<pinref part="L.B90" gate="G$1" pin="1"/>
+<pinref part="L.BC1" gate="G$1" pin="1"/>
 <wire x1="-373.38" y1="127" x2="-369.57" y2="127" width="0.1524" layer="91"/>
 <wire x1="-373.38" y1="121.92" x2="-373.38" y2="127" width="0.1524" layer="91"/>
 <junction x="-373.38" y="127"/>
@@ -16986,42 +16986,42 @@ thermal monitoring, so a
 </net>
 <net name="N$5" class="0">
 <segment>
-<pinref part="C.Y3" gate="G$1" pin="1"/>
+<pinref part="C.YY3" gate="G$1" pin="1"/>
 <wire x1="-117.348" y1="-10.16" x2="-119.38" y2="-10.16" width="0.1524" layer="91"/>
 <wire x1="-119.38" y1="-10.16" x2="-119.38" y2="-2.54" width="0.1524" layer="91"/>
-<pinref part="Q.Y91" gate="G$1" pin="S"/>
+<pinref part="Q.YY2" gate="G$1" pin="S"/>
 <wire x1="-119.38" y1="-2.54" x2="-127" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="-127" y1="-2.54" x2="-127" y2="-5.08" width="0.1524" layer="91"/>
-<pinref part="U.Y1" gate="A" pin="VIN2"/>
+<pinref part="U.YY1" gate="A" pin="VIN2"/>
 <wire x1="-106.68" y1="-5.08" x2="-114.3" y2="-5.08" width="0.1524" layer="91"/>
 <wire x1="-114.3" y1="-5.08" x2="-114.3" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="-114.3" y1="-2.54" x2="-119.38" y2="-2.54" width="0.1524" layer="91"/>
 <junction x="-119.38" y="-2.54"/>
-<pinref part="Q.Y90" gate="G$2" pin="D"/>
+<pinref part="Q.YY1" gate="G$2" pin="D"/>
 <wire x1="-127" y1="-2.54" x2="-127" y2="17.78" width="0.1524" layer="91"/>
 <junction x="-127" y="-2.54"/>
 </segment>
 </net>
 <net name="N$6" class="0">
 <segment>
-<pinref part="C.Y2" gate="G$1" pin="2"/>
+<pinref part="C.YY2" gate="G$1" pin="2"/>
 <wire x1="-32.512" y1="-10.16" x2="-27.94" y2="-10.16" width="0.1524" layer="91"/>
 <wire x1="-27.94" y1="-10.16" x2="-27.94" y2="-5.08" width="0.1524" layer="91"/>
-<pinref part="U.Y1" gate="A" pin="VIN1"/>
+<pinref part="U.YY1" gate="A" pin="VIN1"/>
 <wire x1="-27.94" y1="-5.08" x2="-40.64" y2="-5.08" width="0.1524" layer="91"/>
-<pinref part="Q.Y91" gate="G$2" pin="S"/>
+<pinref part="Q.YY2" gate="G$2" pin="S"/>
 <wire x1="-27.94" y1="-5.08" x2="-15.24" y2="-5.08" width="0.1524" layer="91"/>
 <junction x="-27.94" y="-5.08"/>
 <wire x1="-15.24" y1="-5.08" x2="-15.24" y2="17.78" width="0.1524" layer="91"/>
 <junction x="-15.24" y="-5.08"/>
-<pinref part="Q.Y90" gate="G$1" pin="D"/>
+<pinref part="Q.YY1" gate="G$1" pin="D"/>
 </segment>
 </net>
 <net name="!BAT_EN" class="0">
 <segment>
-<pinref part="U.Y1" gate="A" pin="!EN1"/>
+<pinref part="U.YY1" gate="A" pin="!EN1"/>
 <wire x1="-40.64" y1="2.54" x2="-38.1" y2="2.54" width="0.1524" layer="91"/>
-<pinref part="Q.Y90" gate="G$1" pin="G"/>
+<pinref part="Q.YY1" gate="G$1" pin="G"/>
 <wire x1="-38.1" y1="2.54" x2="-38.1" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="25.4" x2="-20.32" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="25.4" x2="-38.1" y2="30.48" width="0.1524" layer="91"/>
@@ -17029,8 +17029,8 @@ thermal monitoring, so a
 <label x="-38.1" y="30.48" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 <segment>
-<pinref part="Q.L5" gate="G$1" pin="D"/>
-<pinref part="R.L8" gate="G$1" pin="2"/>
+<pinref part="Q.BI4" gate="G$1" pin="D"/>
+<pinref part="R.BI7" gate="G$1" pin="2"/>
 <wire x1="-121.92" y1="73.66" x2="-121.92" y2="76.2" width="0.1524" layer="91"/>
 <wire x1="-121.92" y1="76.2" x2="-121.92" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="-121.92" y1="76.2" x2="-116.84" y2="76.2" width="0.1524" layer="91"/>
@@ -17038,10 +17038,10 @@ thermal monitoring, so a
 <label x="-116.84" y="76.2" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="Q.L1" gate="G$1" pin="G"/>
+<pinref part="Q.BI1" gate="G$1" pin="G"/>
 <wire x1="-228.6" y1="99.06" x2="-243.84" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="-243.84" y1="99.06" x2="-243.84" y2="101.6" width="0.1524" layer="91"/>
-<pinref part="Q.L2" gate="G$1" pin="G"/>
+<pinref part="Q.BI2" gate="G$1" pin="G"/>
 <wire x1="-243.84" y1="101.6" x2="-243.84" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="-241.3" y1="109.22" x2="-243.84" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="-251.46" y1="101.6" x2="-248.92" y2="101.6" width="0.1524" layer="91"/>
@@ -17049,54 +17049,54 @@ thermal monitoring, so a
 <wire x1="-248.92" y1="101.6" x2="-243.84" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="-248.92" y1="93.98" x2="-248.92" y2="101.6" width="0.1524" layer="91"/>
 <junction x="-248.92" y="101.6"/>
-<pinref part="TP.L2" gate="G$1" pin="TP"/>
+<pinref part="TP.USB9" gate="G$1" pin="TP"/>
 <label x="-251.46" y="101.6" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
-<pinref part="Q.Z3" gate="G$1" pin="C"/>
+<pinref part="Q.ZZ3" gate="G$1" pin="C"/>
 <wire x1="-124.46" y1="101.6" x2="-99.06" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="93.98" x2="-121.92" y2="93.98" width="0.1524" layer="91"/>
 <junction x="-99.06" y="93.98"/>
-<pinref part="U.Z1" gate="G$1" pin="EN"/>
-<pinref part="U.Z1" gate="G$1" pin="VIN"/>
+<pinref part="U.ZZ1" gate="G$1" pin="EN"/>
+<pinref part="U.ZZ1" gate="G$1" pin="VIN"/>
 <wire x1="-121.92" y1="93.98" x2="-124.46" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="109.22" x2="-99.06" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="101.6" x2="-99.06" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="-78.74" y1="104.14" x2="-78.74" y2="109.22" width="0.1524" layer="91"/>
 <junction x="-78.74" y="109.22"/>
-<pinref part="C.Z2" gate="G$1" pin="1"/>
+<pinref part="C.ZZ2" gate="G$1" pin="1"/>
 <wire x1="-91.44" y1="109.22" x2="-83.82" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="-83.82" y1="109.22" x2="-78.74" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="-83.82" y1="102.108" x2="-83.82" y2="109.22" width="0.1524" layer="91"/>
 <junction x="-83.82" y="109.22"/>
-<pinref part="Q.Z1" gate="G$1" pin="C"/>
-<pinref part="C.Z5" gate="G$1" pin="2"/>
+<pinref part="Q.ZZ1" gate="G$1" pin="C"/>
+<pinref part="C.ZZ5" gate="G$1" pin="2"/>
 <wire x1="-91.44" y1="102.108" x2="-91.44" y2="109.22" width="0.1524" layer="91"/>
 <junction x="-91.44" y="109.22"/>
-<pinref part="TP.Z2" gate="G$1" pin="TP"/>
-<pinref part="Q.Z2" gate="G$1" pin="C"/>
+<pinref part="TP.USB12" gate="G$1" pin="TP"/>
+<pinref part="Q.ZZ2" gate="G$1" pin="C"/>
 <wire x1="-124.46" y1="109.22" x2="-99.06" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="109.22" x2="-91.44" y2="109.22" width="0.1524" layer="91"/>
 <junction x="-99.06" y="109.22"/>
 <wire x1="-99.06" y1="114.3" x2="-99.06" y2="109.22" width="0.1524" layer="91"/>
-<pinref part="R.L7" gate="G$1" pin="1"/>
+<pinref part="R.BI6" gate="G$1" pin="1"/>
 <wire x1="-99.06" y1="88.9" x2="-99.06" y2="93.98" width="0.1524" layer="91"/>
 <junction x="-99.06" y="101.6"/>
-<pinref part="R.L8" gate="G$1" pin="1"/>
+<pinref part="R.BI7" gate="G$1" pin="1"/>
 <wire x1="-121.92" y1="88.9" x2="-121.92" y2="93.98" width="0.1524" layer="91"/>
 <junction x="-121.92" y="93.98"/>
 </segment>
 </net>
 <net name="ENG_EN" class="0">
 <segment>
-<pinref part="Q.L4" gate="G$1" pin="G"/>
+<pinref part="Q.BI3" gate="G$1" pin="G"/>
 <wire x1="-104.14" y1="66.04" x2="-106.68" y2="66.04" width="0.1524" layer="91"/>
 <label x="-106.68" y="66.04" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U.G1" gate="G$1" pin="IO26"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO26"/>
 <wire x1="73.66" y1="104.14" x2="93.98" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="104.14" x2="93.98" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="96.52" x2="114.3" y2="96.52" width="0.1524" layer="91"/>
@@ -17105,26 +17105,26 @@ thermal monitoring, so a
 </net>
 <net name="BAT_EN" class="0">
 <segment>
-<pinref part="Q.L5" gate="G$1" pin="G"/>
+<pinref part="Q.BI4" gate="G$1" pin="G"/>
 <wire x1="-127" y1="66.04" x2="-129.54" y2="66.04" width="0.1524" layer="91"/>
 <label x="-129.54" y="66.04" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <label x="114.3" y="114.3" size="1.778" layer="95" xref="yes"/>
 <wire x1="73.66" y1="114.3" x2="114.3" y2="114.3" width="0.1524" layer="91"/>
-<pinref part="U.G1" gate="G$1" pin="IO21"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO21"/>
 </segment>
 </net>
 <net name="!CHGOK" class="0">
 <segment>
-<pinref part="U.B90" gate="G$1" pin="!CHOK"/>
+<pinref part="U.BC1" gate="G$1" pin="!CHOK"/>
 <wire x1="-386.08" y1="83.82" x2="-378.46" y2="83.82" width="0.1524" layer="91"/>
 <label x="-378.46" y="83.82" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
 <label x="154.94" y="111.76" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.G1" gate="G$1" pin="IO22"/>
-<pinref part="R.B1" gate="G$1" pin="2"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO22"/>
+<pinref part="R.BC1" gate="G$1" pin="2"/>
 <wire x1="73.66" y1="111.76" x2="152.4" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="111.76" x2="152.4" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="111.76" x2="154.94" y2="111.76" width="0.1524" layer="91"/>
@@ -17133,15 +17133,15 @@ thermal monitoring, so a
 </net>
 <net name="!ACOK" class="0">
 <segment>
-<pinref part="U.B90" gate="G$1" pin="!ACOK"/>
+<pinref part="U.BC1" gate="G$1" pin="!ACOK"/>
 <wire x1="-386.08" y1="78.74" x2="-378.46" y2="78.74" width="0.1524" layer="91"/>
 <label x="-378.46" y="78.74" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U.G1" gate="G$1" pin="IO19"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO19"/>
 <wire x1="73.66" y1="116.84" x2="137.16" y2="116.84" width="0.1524" layer="91"/>
 <label x="139.7" y="116.84" size="1.778" layer="95" xref="yes"/>
-<pinref part="R.B2" gate="G$1" pin="2"/>
+<pinref part="R.BC2" gate="G$1" pin="2"/>
 <wire x1="137.16" y1="116.84" x2="139.7" y2="116.84" width="0.1524" layer="91"/>
 <wire x1="137.16" y1="119.38" x2="137.16" y2="116.84" width="0.1524" layer="91"/>
 <junction x="137.16" y="116.84"/>
@@ -17149,8 +17149,8 @@ thermal monitoring, so a
 </net>
 <net name="SYS_SENSE" class="0">
 <segment>
-<pinref part="R.B6" gate="G$1" pin="1"/>
-<pinref part="R.L6" gate="G$1" pin="2"/>
+<pinref part="R.BC6" gate="G$1" pin="1"/>
+<pinref part="R.BI5" gate="G$1" pin="2"/>
 <wire x1="-15.24" y1="-40.64" x2="-15.24" y2="-43.18" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="-43.18" x2="-15.24" y2="-45.72" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="-43.18" x2="-10.16" y2="-43.18" width="0.1524" layer="91"/>
@@ -17158,7 +17158,7 @@ thermal monitoring, so a
 <label x="-10.16" y="-43.18" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U.G1" gate="G$1" pin="IO35"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO35"/>
 <wire x1="73.66" y1="91.44" x2="86.36" y2="91.44" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="91.44" x2="86.36" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="78.74" x2="114.3" y2="78.74" width="0.1524" layer="91"/>
