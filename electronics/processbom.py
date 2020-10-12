@@ -5,7 +5,7 @@ import re
 #pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
-pd.set_option('display.max_colwidth', -1)
+pd.set_option('display.max_colwidth', None)
 
 with open('mount.mnb','r') as f:
     bottomraw = f.read()
@@ -46,7 +46,7 @@ for ind, row in bom.iterrows():
         report[comp]['err'] += 1
         report[comp]['err parts'].append(part)
     report[comp]['count'] += 1
-    
+
 odf = pd.DataFrame(report.values())
 print(odf)
 odf.to_csv('processedbom.csv')

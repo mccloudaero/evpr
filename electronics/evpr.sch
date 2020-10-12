@@ -13593,7 +13593,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="U.ESP1" library="mccloud" deviceset="ESP32-WROOM-32D" device="">
 <attribute name="COMPONENT" value="ESP32-WROOM-32D"/>
 </part>
-<part name="X.DS2" library="mccloud" deviceset="10118193-0001LF" device="">
+<part name="X.USB1" library="mccloud" deviceset="10118193-0001LF" device="">
 <attribute name="COMPONENT" value="10118193-0001LF"/>
 </part>
 <part name="C.DS6" library="mccloud" deviceset="C0603" device="" value="22uF">
@@ -13954,7 +13954,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="TP5" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
 <part name="TP11" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
 <part name="TP14" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP16" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP8" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
 <part name="Q.VI1" library="mccloud" deviceset="VESD16A2-03G-G3-08" device="">
 <attribute name="COMPONENT" value="VESD16A2-03G-G3-08"/>
 </part>
@@ -14094,12 +14094,20 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </spice>
 <attribute name="COMPONENT" value="RQ73C1J768RBTD "/>
 </part>
-<part name="X.SI1" library="mccloud" deviceset="BM02B-PASS-1-TFT(LF)(SN)" device=""/>
-<part name="X.SI2" library="mccloud" deviceset="BM03B-PASS-1-TFT(LF)(SN)" device=""/>
-<part name="X.SI3" library="mccloud" deviceset="BM03B-PASS-1-TFT(LF)(SN)" device=""/>
+<part name="X.SI1" library="mccloud" deviceset="BM02B-PASS-1-TFT(LF)(SN)" device="">
+<attribute name="COMPONENT" value="BM02B-PASS-1-TFT(LF)(SN)"/>
+</part>
+<part name="X.SI2" library="mccloud" deviceset="BM03B-PASS-1-TFT(LF)(SN)" device="">
+<attribute name="COMPONENT" value="BM03B-PASS-1-TFT(LF)(SN)"/>
+</part>
+<part name="X.SI3" library="mccloud" deviceset="BM03B-PASS-1-TFT(LF)(SN)" device="">
+<attribute name="COMPONENT" value="BM03B-PASS-1-TFT(LF)(SN)"/>
+</part>
 <part name="SUPPLY14" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY27" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
-<part name="X.DS1" library="mccloud" deviceset="BM04B-PASS-1-TFT(LF)(SN)" device=""/>
+<part name="X.DS1" library="mccloud" deviceset="BM04B-PASS-1-TFT(LF)(SN)" device="">
+<attribute name="COMPONENT" value="BM04B-PASS-1-TFT(LF)(SN)"/>
+</part>
 <part name="SUPPLY30" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="C.VI1" library="mccloud" deviceset="C0603" device="" value="0.1uF">
 <spice>
@@ -14296,7 +14304,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="SUPPLY52" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY53" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="TP15" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
-<part name="TP17" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
+<part name="TP3" library="testpad" library_urn="urn:adsk.eagle:library:385" deviceset="PTR1" device="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R"/>
 <part name="C.ZZ1" library="mccloud" deviceset="C0603" device="" value="22uF">
 <spice>
 <pinmapping spiceprefix="C">
@@ -14327,8 +14335,12 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </part>
 <part name="SUPPLY20" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="Q.YY1" library="mccloud" deviceset="SI7997DP" device=""/>
-<part name="Q.YY2" library="mccloud" deviceset="CSD88537NDT" device=""/>
-<part name="U.BC1" library="mccloud" deviceset="MP2615" device=""/>
+<part name="Q.YY2" library="mccloud" deviceset="CSD88537NDT" device="">
+<attribute name="COMPONENT" value="CSD88537NDT"/>
+</part>
+<part name="U.BC1" library="mccloud" deviceset="MP2615" device="">
+<attribute name="COMPONENT" value="MP2615"/>
+</part>
 <part name="R.BC3" library="mccloud" deviceset="R0603" device="" value="0.25">
 <spice>
 <pinmapping spiceprefix="R">
@@ -14357,7 +14369,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinmap gate="G$1" pin="2" pinorder="2"/>
 </pinmapping>
 </spice>
-<attribute name="COMPONENT" value=" C0603C474K4PACTU "/>
+<attribute name="COMPONENT" value="C0603C474K4PACTU "/>
 </part>
 <part name="SUPPLY8" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="SUPPLY46" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
@@ -14531,7 +14543,7 @@ thermal monitoring, so a
 <attribute name="VALUE" x="68.58" y="80.01" size="1.78345" layer="96" rot="R180"/>
 <attribute name="COMPONENT" x="55.88" y="116.84" size="1.778" layer="96" display="off"/>
 </instance>
-<instance part="X.DS2" gate="G$1" x="-193.04" y="167.64" smashed="yes" rot="MR0">
+<instance part="X.USB1" gate="G$1" x="-193.04" y="167.64" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-200.66" y="177.8" size="1.778" layer="95" rot="MR270"/>
 <attribute name="VALUE" x="-198.12" y="177.8" size="1.778" layer="96" rot="MR270"/>
 <attribute name="COMPONENT" x="-193.04" y="167.64" size="1.778" layer="96" display="off"/>
@@ -14890,7 +14902,7 @@ thermal monitoring, so a
 <attribute name="NAME" x="-3.81" y="181.864" size="1.778" layer="95" rot="R180"/>
 <attribute name="TP_SIGNAL_NAME" x="-7.62" y="184.15" size="1.778" layer="97" rot="R90"/>
 </instance>
-<instance part="TP16" gate="G$1" x="-10.16" y="177.8" smashed="yes" rot="R90">
+<instance part="TP8" gate="G$1" x="-10.16" y="177.8" smashed="yes" rot="R90">
 <attribute name="NAME" x="-3.81" y="176.784" size="1.778" layer="95" rot="R180"/>
 <attribute name="TP_SIGNAL_NAME" x="-7.62" y="179.07" size="1.778" layer="97" rot="R90"/>
 </instance>
@@ -15030,14 +15042,17 @@ thermal monitoring, so a
 <instance part="X.SI1" gate="G$1" x="71.12" y="-93.98" smashed="yes" rot="R270">
 <attribute name="NAME" x="76.2" y="-91.44" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="66.04" y="-99.06" size="1.778" layer="96"/>
+<attribute name="COMPONENT" x="71.12" y="-93.98" size="1.778" layer="96" rot="R270" display="off"/>
 </instance>
 <instance part="X.SI2" gate="G$1" x="121.92" y="-33.02" smashed="yes">
 <attribute name="NAME" x="121.92" y="-27.94" size="1.778" layer="95"/>
 <attribute name="VALUE" x="127" y="-40.64" size="1.778" layer="96" rot="R270"/>
+<attribute name="COMPONENT" x="121.92" y="-33.02" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="X.SI3" gate="G$1" x="121.92" y="-76.2" smashed="yes">
 <attribute name="NAME" x="121.92" y="-71.12" size="1.778" layer="95"/>
 <attribute name="VALUE" x="139.7" y="-109.22" size="1.778" layer="96" rot="R90" display="off"/>
+<attribute name="COMPONENT" x="121.92" y="-76.2" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY14" gate="GND" x="109.22" y="-93.98" smashed="yes">
 <attribute name="VALUE" x="110.49" y="-93.98" size="1.778" layer="96"/>
@@ -15048,6 +15063,7 @@ thermal monitoring, so a
 <instance part="X.DS1" gate="G$1" x="287.02" y="20.32" smashed="yes">
 <attribute name="NAME" x="287.02" y="27.94" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="289.56" y="38.1" size="1.778" layer="96" rot="R270"/>
+<attribute name="COMPONENT" x="287.02" y="20.32" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="SUPPLY30" gate="GND" x="287.02" y="2.54" smashed="yes">
 <attribute name="VALUE" x="288.29" y="2.54" size="1.778" layer="96"/>
@@ -15198,7 +15214,7 @@ thermal monitoring, so a
 <attribute name="NAME" x="-178.816" y="146.05" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-176.53" y="149.86" size="1.778" layer="97"/>
 </instance>
-<instance part="TP17" gate="G$1" x="-129.54" y="233.68" smashed="yes">
+<instance part="TP3" gate="G$1" x="-129.54" y="233.68" smashed="yes">
 <attribute name="NAME" x="-130.556" y="227.33" size="1.778" layer="95" rot="R90"/>
 <attribute name="TP_SIGNAL_NAME" x="-128.27" y="231.14" size="1.778" layer="97"/>
 </instance>
@@ -15244,6 +15260,7 @@ thermal monitoring, so a
 <instance part="Q.YY2" gate="G$1" x="-124.46" y="-10.16" smashed="yes" rot="R180">
 <attribute name="VALUE" x="-130.81" y="-8.89" size="1.778" layer="96" rot="MR270"/>
 <attribute name="NAME" x="-133.35" y="-8.89" size="1.778" layer="95" rot="MR270"/>
+<attribute name="COMPONENT" x="-124.46" y="-10.16" size="1.778" layer="96" rot="R180" display="off"/>
 </instance>
 <instance part="Q.YY2" gate="G$2" x="-17.78" y="-10.16" smashed="yes" rot="MR180">
 <attribute name="VALUE" x="-11.43" y="-3.81" size="1.778" layer="96" rot="R270"/>
@@ -15252,6 +15269,7 @@ thermal monitoring, so a
 <instance part="U.BC1" gate="G$1" x="-406.4" y="101.6" smashed="yes">
 <attribute name="NAME" x="-411.48" y="139.7" size="2.54" layer="94"/>
 <attribute name="VALUE" x="-411.48" y="134.62" size="2.54" layer="94"/>
+<attribute name="COMPONENT" x="-406.4" y="101.6" size="1.778" layer="96" display="off"/>
 </instance>
 <instance part="R.BC3" gate="G$1" x="-347.98" y="127" smashed="yes">
 <attribute name="NAME" x="-351.79" y="131.0386" size="1.778" layer="95"/>
@@ -15430,7 +15448,7 @@ thermal monitoring, so a
 <pinref part="Q.ESP1" gate="G$1" pin="S"/>
 </segment>
 <segment>
-<pinref part="X.DS2" gate="G$1" pin="GND"/>
+<pinref part="X.USB1" gate="G$1" pin="GND"/>
 <pinref part="C.USB5" gate="G$1" pin="1"/>
 <pinref part="R.USB7" gate="G$1" pin="1"/>
 <wire x1="-162.052" y1="149.86" x2="-157.48" y2="149.86" width="0.1524" layer="91"/>
@@ -16044,7 +16062,7 @@ thermal monitoring, so a
 <segment>
 <pinref part="R.USB5" gate="G$1" pin="2"/>
 <wire x1="-127" y1="208.28" x2="-127" y2="210.82" width="0.1524" layer="91"/>
-<pinref part="X.DS2" gate="G$1" pin="VUSB"/>
+<pinref part="X.USB1" gate="G$1" pin="VUSB"/>
 <pinref part="TP7" gate="G$1" pin="TP"/>
 <wire x1="-142.24" y1="210.82" x2="-137.16" y2="210.82" width="0.1524" layer="91"/>
 <wire x1="-137.16" y1="210.82" x2="-127" y2="210.82" width="0.1524" layer="91"/>
@@ -16122,7 +16140,7 @@ thermal monitoring, so a
 <pinref part="U.USB1" gate="A" pin="DTR"/>
 <wire x1="-43.18" y1="182.88" x2="-38.1" y2="182.88" width="0.1524" layer="91"/>
 <junction x="-38.1" y="182.88"/>
-<pinref part="TP16" gate="G$1" pin="TP"/>
+<pinref part="TP8" gate="G$1" pin="TP"/>
 <wire x1="-12.7" y1="177.8" x2="-20.32" y2="177.8" width="0.1524" layer="91"/>
 <junction x="-20.32" y="177.8"/>
 </segment>
@@ -16247,7 +16265,7 @@ thermal monitoring, so a
 </net>
 <net name="USBD-" class="0">
 <segment>
-<pinref part="X.DS2" gate="G$1" pin="D-"/>
+<pinref part="X.USB1" gate="G$1" pin="D-"/>
 <pinref part="U.USB1" gate="A" pin="D-"/>
 <wire x1="-182.88" y1="172.72" x2="-142.24" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="-142.24" y1="172.72" x2="-142.24" y2="162.56" width="0.1524" layer="91"/>
@@ -16256,7 +16274,7 @@ thermal monitoring, so a
 </net>
 <net name="USBD+" class="0">
 <segment>
-<pinref part="X.DS2" gate="G$1" pin="D+"/>
+<pinref part="X.USB1" gate="G$1" pin="D+"/>
 <pinref part="U.USB1" gate="A" pin="D+"/>
 <wire x1="-144.78" y1="157.48" x2="-88.9" y2="157.48" width="0.1524" layer="91"/>
 <wire x1="-182.88" y1="170.18" x2="-144.78" y2="170.18" width="0.1524" layer="91"/>
@@ -16580,7 +16598,7 @@ thermal monitoring, so a
 <net name="N$34" class="0">
 <segment>
 <pinref part="R.USB7" gate="G$1" pin="2"/>
-<pinref part="X.DS2" gate="G$1" pin="SHIELD"/>
+<pinref part="X.USB1" gate="G$1" pin="SHIELD"/>
 <wire x1="-182.88" y1="160.02" x2="-177.8" y2="160.02" width="0.1524" layer="91"/>
 <pinref part="C.USB5" gate="G$1" pin="2"/>
 <wire x1="-177.8" y1="160.02" x2="-172.72" y2="160.02" width="0.1524" layer="91"/>
@@ -16725,7 +16743,7 @@ thermal monitoring, so a
 <wire x1="-119.38" y1="231.648" x2="-119.38" y2="236.22" width="0.1524" layer="91"/>
 <wire x1="-119.38" y1="236.22" x2="-106.68" y2="236.22" width="0.1524" layer="91"/>
 <junction x="-106.68" y="236.22"/>
-<pinref part="TP17" gate="G$1" pin="TP"/>
+<pinref part="TP3" gate="G$1" pin="TP"/>
 <wire x1="-129.54" y1="236.22" x2="-119.38" y2="236.22" width="0.1524" layer="91"/>
 <junction x="-119.38" y="236.22"/>
 <wire x1="-101.6" y1="236.22" x2="-101.6" y2="228.6" width="0.1524" layer="91"/>
