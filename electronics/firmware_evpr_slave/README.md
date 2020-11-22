@@ -1,4 +1,5 @@
 # Compile Notes
+install IDF environment ie. /esp-idf/export.sh
 make menuconfig
 idf.py build
 idf.py flash

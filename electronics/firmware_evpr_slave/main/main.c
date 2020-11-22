@@ -345,6 +345,7 @@ static void servo_control(void *pvParameters)
     while (1) {
         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
+        vTaskDelay(1);
     }
 }
 #endif
