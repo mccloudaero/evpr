@@ -33,8 +33,8 @@
 #include "../components/dotstar/include/dotstar.h"
 
 // Servo Settings
-#define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
-#define SERVO_MAX_PULSEWIDTH 2100 //Maximum pulse width in microsecond
+#define SERVO_MIN_PULSEWIDTH 900 // Minimum pulse width in microsecond
+#define SERVO_MAX_PULSEWIDTH 2100 // Maximum pulse width in microsecond
 
 #define GPIO_INPUT_PIN_SEL  ((1ULL<<USING_BAT_GPIO) | (1ULL<<USING_ENG_GPIO))
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<BAT_EN_GPIO) | (1ULL<<ENG_EN_GPIO))
@@ -48,8 +48,9 @@ static esp_adc_cal_characteristics_t *adc_chars;
 static const adc_channel_t bat_1_channel = ADC_CHANNEL_0;     //SENSOR_VP, GPIO36, ADC 1,C0
 static const adc_channel_t bat_2_channel = ADC_CHANNEL_3;     //SENSOR_VN, GPIO39, ADC 1,C3
 static const adc_atten_t atten = ADC_ATTEN_DB_0;
-#define DEFAULT_VREF    1100        //Use adc2_vref_to_gpio() to obtain a better estimate
-#define NO_OF_SAMPLES   64          //Multisampling
+#define DEFAULT_VREF    1100        // Use adc2_vref_to_gpio() to obtain a better estimate
+#define NO_OF_SAMPLES   64          // Multisampling
+#define BAT_VOLTAGE_FACTOR 3.149       // Resistor values (47.5+22.1)/22.1
 
 // ESPNOW packet stats
 int missed_packets = 0;
@@ -62,6 +63,23 @@ static xQueueHandle espnow_queue;
 
 static uint8_t espnow_broadcast_mac[ESP_NOW_ETH_ALEN] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 static uint16_t espnow_heartbeat_seq = 0;
+
+static void check_efuse()
+{
+    //Check TP is burned into eFuse
+    if (esp_adc_cal_check_efuse(ESP_ADC_CAL_VAL_EFUSE_TP) == ESP_OK) {
+        printf("eFuse Two Point: Supported\n");
+    } else {
+        printf("eFuse Two Point: NOT supported\n");
+    }
+
+    //Check Vref is burned into eFuse
+    if (esp_adc_cal_check_efuse(ESP_ADC_CAL_VAL_EFUSE_VREF) == ESP_OK) {
+        printf("eFuse Vref: Supported\n");
+    } else {
+        printf("eFuse Vref: NOT supported\n");
+    }
+}
 
 static void print_char_val_type(esp_adc_cal_value_t val_type)
 {
@@ -389,22 +407,27 @@ static void status_check(void *pvParameters)
 {
     // Loop for checking status 
     while (1) {
-        // Get battery status
+        printf("\nStatus Check\n");
+
+   	// Power Management 
         USING_BAT = gpio_get_level(USING_BAT_GPIO);
 	USING_ENG = gpio_get_level(USING_ENG_GPIO);
-	printf("Power Source: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
+	printf("Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
 
-	// Get battery voltages
+	// Battery Voltages
 	uint32_t bat_1_adc_reading = 0;
-        //Multisampling
+	uint32_t bat_2_adc_reading = 0;
+        // Read ADC using Multisampling
         for (int i = 0; i < NO_OF_SAMPLES; i++) {
-            //bat_1_adc_reading += adc1_get_raw((adc1_channel_t)channel);
             bat_1_adc_reading += adc1_get_raw((adc1_channel_t)bat_1_channel);
+            bat_2_adc_reading += adc1_get_raw((adc1_channel_t)bat_2_channel);
         }
         bat_1_adc_reading /= NO_OF_SAMPLES;
+        bat_2_adc_reading /= NO_OF_SAMPLES;
 	//Convert adc_reading to voltage in mV
-        uint32_t voltage = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, adc_chars);
-        printf("Raw: %d\tVoltage: %dmV\n", bat_1_adc_reading, voltage);
+        uint32_t bat_1_voltage = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, adc_chars)*BAT_VOLTAGE_FACTOR;
+        uint32_t bat_2_voltage = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, adc_chars)*BAT_VOLTAGE_FACTOR;
+        printf("Raw: %d\tBat 1: %dmV Bat 2: %dmV\n", bat_1_adc_reading, bat_1_voltage, bat_2_voltage);
 
 	vTaskDelay(200);
     }
@@ -485,12 +508,15 @@ static void initialize_io(void)
 
 static void initialize_adc(void)
 {
-    //Configure ADC
+    // Check if Two Point or Vref are burned into eFuse
+    check_efuse();
+
+    // Configure ADC
     adc1_config_width(ADC_WIDTH_BIT_12);
     adc1_config_channel_atten(bat_1_channel, atten);
     adc1_config_channel_atten(bat_2_channel, atten);
 
-    //Characterize ADC
+    // Characterize ADC_1
     adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
     esp_adc_cal_value_t val_type = esp_adc_cal_characterize(ADC_UNIT_1, atten, ADC_WIDTH_BIT_12, DEFAULT_VREF, adc_chars);
     print_char_val_type(val_type);
