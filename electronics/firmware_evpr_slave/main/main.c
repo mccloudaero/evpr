@@ -23,6 +23,9 @@
 #include "soc/mcpwm_reg.h"
 #include "soc/mcpwm_struct.h"
 
+#include "driver/adc.h"
+#include "esp_adc_cal.h"
+
 #include <lwip/sockets.h>
 #include "main.h"
 #include "espnow.h"
@@ -40,6 +43,14 @@
 int USING_BAT = -1;
 int USING_ENG = -1;
 
+// ADC channels
+static esp_adc_cal_characteristics_t *adc_chars;
+static const adc_channel_t bat_1_channel = ADC_CHANNEL_0;     //SENSOR_VP, GPIO36, ADC 1,C0
+static const adc_channel_t bat_2_channel = ADC_CHANNEL_3;     //SENSOR_VN, GPIO39, ADC 1,C3
+static const adc_atten_t atten = ADC_ATTEN_DB_0;
+#define DEFAULT_VREF    1100        //Use adc2_vref_to_gpio() to obtain a better estimate
+#define NO_OF_SAMPLES   64          //Multisampling
+
 // ESPNOW packet stats
 int missed_packets = 0;
 double error_percent;
@@ -51,6 +62,17 @@ static xQueueHandle espnow_queue;
 
 static uint8_t espnow_broadcast_mac[ESP_NOW_ETH_ALEN] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
 static uint16_t espnow_heartbeat_seq = 0;
+
+static void print_char_val_type(esp_adc_cal_value_t val_type)
+{
+    if (val_type == ESP_ADC_CAL_VAL_EFUSE_TP) {
+        printf("Characterized using Two Point Value\n");
+    } else if (val_type == ESP_ADC_CAL_VAL_EFUSE_VREF) {
+        printf("Characterized using eFuse Vref\n");
+    } else {
+        printf("Characterized using Default Vref\n");
+    }
+}
 
 void blink(void *pvParameter)
 {
@@ -338,7 +360,7 @@ void servo_self_test(void *arg)
     // Rotate servo continously
     while (1) {
         for (pulse_width = 1400; pulse_width <= 1600; pulse_width+=10) {
-	    printf("Pulse Width %d\n", pulse_width);
+	    //printf("Pulse Width %d\n", pulse_width);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
             vTaskDelay(10);     //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
@@ -367,10 +389,24 @@ static void status_check(void *pvParameters)
 {
     // Loop for checking status 
     while (1) {
-	USING_BAT = gpio_get_level(USING_BAT_GPIO);
+        // Get battery status
+        USING_BAT = gpio_get_level(USING_BAT_GPIO);
 	USING_ENG = gpio_get_level(USING_ENG_GPIO);
 	printf("Power Source: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
-        vTaskDelay(200);
+
+	// Get battery voltages
+	uint32_t bat_1_adc_reading = 0;
+        //Multisampling
+        for (int i = 0; i < NO_OF_SAMPLES; i++) {
+            //bat_1_adc_reading += adc1_get_raw((adc1_channel_t)channel);
+            bat_1_adc_reading += adc1_get_raw((adc1_channel_t)bat_1_channel);
+        }
+        bat_1_adc_reading /= NO_OF_SAMPLES;
+	//Convert adc_reading to voltage in mV
+        uint32_t voltage = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, adc_chars);
+        printf("Raw: %d\tVoltage: %dmV\n", bat_1_adc_reading, voltage);
+
+	vTaskDelay(200);
     }
 }
 
@@ -447,6 +483,20 @@ static void initialize_io(void)
     gpio_config(&output_io_conf);
 }
 
+static void initialize_adc(void)
+{
+    //Configure ADC
+    adc1_config_width(ADC_WIDTH_BIT_12);
+    adc1_config_channel_atten(bat_1_channel, atten);
+    adc1_config_channel_atten(bat_2_channel, atten);
+
+    //Characterize ADC
+    adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
+    esp_adc_cal_value_t val_type = esp_adc_cal_characterize(ADC_UNIT_1, atten, ADC_WIDTH_BIT_12, DEFAULT_VREF, adc_chars);
+    print_char_val_type(val_type);
+
+}
+
 void app_main()
 {
     // Initialize
@@ -454,6 +504,7 @@ void app_main()
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialize_wifi();
     initialize_io();
+    initialize_adc();
     mcpwm_gpio_initialize(); // Servos
     dotstar_initialize();    // Dotstar strip 
 
