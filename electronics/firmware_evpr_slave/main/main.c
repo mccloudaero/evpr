@@ -44,13 +44,17 @@ int USING_BAT = -1;
 int USING_ENG = -1;
 
 // ADC channels
-static esp_adc_cal_characteristics_t *adc_chars;
-static const adc_channel_t bat_1_channel = ADC_CHANNEL_0;     //SENSOR_VP, GPIO36, ADC 1,C0
-static const adc_channel_t bat_2_channel = ADC_CHANNEL_3;     //SENSOR_VN, GPIO39, ADC 1,C3
-static const adc_atten_t atten = ADC_ATTEN_DB_0;
+static esp_adc_cal_characteristics_t *bat_adc_chars;
+static esp_adc_cal_characteristics_t *vraw_adc_chars;
+static const adc_channel_t bat_1_channel = ADC_CHANNEL_0;     // SENSOR_VP, GPIO36, ADC 1, C0
+static const adc_channel_t bat_2_channel = ADC_CHANNEL_3;     // SENSOR_VN, GPIO39, ADC 1, C3
+static const adc_channel_t vraw_channel = ADC_CHANNEL_6;      // IO34,      GPIO34, ADC 1, C6
+static const adc_atten_t bat_atten = ADC_ATTEN_DB_2_5;
+static const adc_atten_t vraw_atten = ADC_ATTEN_DB_2_5;
 #define DEFAULT_VREF    1100        // Use adc2_vref_to_gpio() to obtain a better estimate
 #define NO_OF_SAMPLES   64          // Multisampling
-#define BAT_VOLTAGE_FACTOR 3.149       // Resistor values (47.5+22.1)/22.1
+#define BAT_VOLTAGE_FACTOR 3.149    // Resistor values (47.5+22.1)/22.1
+#define VRAW_VOLTAGE_FACTOR 5.525   // Resistor values (100+22.1)/22.1
 
 // ESPNOW packet stats
 int missed_packets = 0;
@@ -414,20 +418,24 @@ static void status_check(void *pvParameters)
 	USING_ENG = gpio_get_level(USING_ENG_GPIO);
 	printf("Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
 
-	// Battery Voltages
+	// Read Voltages
 	uint32_t bat_1_adc_reading = 0;
 	uint32_t bat_2_adc_reading = 0;
+	uint32_t vraw_adc_reading = 0;
         // Read ADC using Multisampling
         for (int i = 0; i < NO_OF_SAMPLES; i++) {
             bat_1_adc_reading += adc1_get_raw((adc1_channel_t)bat_1_channel);
             bat_2_adc_reading += adc1_get_raw((adc1_channel_t)bat_2_channel);
+            vraw_adc_reading += adc1_get_raw((adc1_channel_t)vraw_channel);
         }
         bat_1_adc_reading /= NO_OF_SAMPLES;
         bat_2_adc_reading /= NO_OF_SAMPLES;
+        vraw_adc_reading /= NO_OF_SAMPLES;
 	//Convert adc_reading to voltage in mV
-        uint32_t bat_1_voltage = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, adc_chars)*BAT_VOLTAGE_FACTOR;
-        uint32_t bat_2_voltage = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, adc_chars)*BAT_VOLTAGE_FACTOR;
-        printf("Raw: %d\tBat 1: %dmV Bat 2: %dmV\n", bat_1_adc_reading, bat_1_voltage, bat_2_voltage);
+        uint32_t bat_1_voltage = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
+        uint32_t bat_2_voltage = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
+        uint32_t vraw_voltage = esp_adc_cal_raw_to_voltage(vraw_adc_reading, vraw_adc_chars)*VRAW_VOLTAGE_FACTOR;
+        printf("Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", vraw_voltage, bat_1_voltage, bat_2_voltage);
 
 	vTaskDelay(200);
     }
@@ -513,13 +521,16 @@ static void initialize_adc(void)
 
     // Configure ADC
     adc1_config_width(ADC_WIDTH_BIT_12);
-    adc1_config_channel_atten(bat_1_channel, atten);
-    adc1_config_channel_atten(bat_2_channel, atten);
+    adc1_config_channel_atten(bat_1_channel, bat_atten);
+    adc1_config_channel_atten(bat_2_channel, bat_atten);
+    adc1_config_channel_atten(vraw_channel, vraw_atten);
 
-    // Characterize ADC_1
-    adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
-    esp_adc_cal_value_t val_type = esp_adc_cal_characterize(ADC_UNIT_1, atten, ADC_WIDTH_BIT_12, DEFAULT_VREF, adc_chars);
-    print_char_val_type(val_type);
+    // Characterize ADC_1 for Batteries
+    bat_adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
+    esp_adc_cal_value_t bat_val_type = esp_adc_cal_characterize(ADC_UNIT_1, bat_atten, ADC_WIDTH_BIT_12, DEFAULT_VREF, bat_adc_chars);
+    vraw_adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
+    esp_adc_cal_value_t vraw_val_type = esp_adc_cal_characterize(ADC_UNIT_1, vraw_atten, ADC_WIDTH_BIT_12, DEFAULT_VREF, vraw_adc_chars);
+    //print_char_val_type(val_type);
 
 }
 
