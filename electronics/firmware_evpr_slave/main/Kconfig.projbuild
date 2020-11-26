@@ -44,6 +44,29 @@ config BLINK_GPIO
     help
 	GPIO pin to use for status light.
 
+config USING_BAT_GPIO 
+    int "Using BAT GPIO Pin"
+    default 4 
+    help
+	GPIO pin to check if on battery power.
+
+config USING_ENG_GPIO 
+    int "Using ENG GPIO Pin"
+    default 17 
+    help
+	GPIO pin to check if on engine power.
+
+config BAT_EN_GPIO 
+    int "Battery Power Enable GPIO Pin"
+    default 21 
+    help
+	GPIO pin to check if on battery power.
+
+config ENG_EN_GPIO 
+    int "ENG Power Enable GPIO Pin"
+    default 26 
+    help
+	GPIO pin to check if on engine power.
 config ESPNOW_PMK
     string "ESPNOW primary master key"
     default "pmk1234567890123"

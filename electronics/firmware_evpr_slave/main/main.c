@@ -33,6 +33,13 @@
 #define SERVO_MIN_PULSEWIDTH 900 //Minimum pulse width in microsecond
 #define SERVO_MAX_PULSEWIDTH 2100 //Maximum pulse width in microsecond
 
+#define GPIO_INPUT_PIN_SEL  ((1ULL<<USING_BAT_GPIO) | (1ULL<<USING_ENG_GPIO))
+#define GPIO_OUTPUT_PIN_SEL  ((1ULL<<BAT_EN_GPIO) | (1ULL<<ENG_EN_GPIO))
+
+// Status vars
+int USING_BAT = -1;
+int USING_ENG = -1;
+
 // ESPNOW packet stats
 int missed_packets = 0;
 double error_percent;
@@ -331,6 +338,7 @@ void servo_self_test(void *arg)
     // Rotate servo continously
     while (1) {
         for (pulse_width = 1400; pulse_width <= 1600; pulse_width+=10) {
+	    printf("Pulse Width %d\n", pulse_width);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
             mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
             vTaskDelay(10);     //Add delay, since it takes time for servo to rotate, generally 100ms/60degree rotation at 5V
@@ -341,14 +349,30 @@ void servo_self_test(void *arg)
 #if (ROTOR_MODE == 0 || ROTOR_MODE == 1)
 static void servo_control(void *pvParameters)
 {
+    // Enable servo power
+    gpio_set_level(BAT_EN_GPIO,1);
+    gpio_set_level(ENG_EN_GPIO,1);
+
     // Loop for setting servo positions
     while (1) {
         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_A, pulse_width);
         mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
+	//printf("Pulse Width %d\n", pulse_width);
         vTaskDelay(1);
     }
 }
 #endif
+
+static void status_check(void *pvParameters)
+{
+    // Loop for checking status 
+    while (1) {
+	USING_BAT = gpio_get_level(USING_BAT_GPIO);
+	USING_ENG = gpio_get_level(USING_ENG_GPIO);
+	printf("Power Source: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
+        vTaskDelay(200);
+    }
+}
 
 static esp_err_t initialize_espnow(void)
 {
@@ -400,20 +424,46 @@ static void initialize_wifi(void)
 
 }
 
+static void initialize_io(void)
+{
+    // Input pins (USING_BAT, USING_ENG) 
+    gpio_config_t input_io_conf;
+    input_io_conf.intr_type = GPIO_INTR_DISABLE; //disable interrupt
+    input_io_conf.mode = GPIO_MODE_INPUT;        //set as input mode
+    input_io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;   //bit mask of the pins to set
+    input_io_conf.pull_down_en = 0;              //disable pull-down mode
+    input_io_conf.pull_up_en = 0;                //enable pull-up mode
+    //configure GPIO with the given settings
+    gpio_config(&input_io_conf);
+
+    // Enable pins (BAT_EN, ENG_EN) 
+    gpio_config_t output_io_conf;
+    output_io_conf.intr_type = GPIO_INTR_DISABLE; //disable interrupt
+    output_io_conf.mode = GPIO_MODE_OUTPUT;       //set as output mode
+    output_io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;   //bit mask of the pins to set
+    output_io_conf.pull_down_en = 0;              //disable pull-down mode
+    output_io_conf.pull_up_en = 0;                //enable pull-up mode
+    //configure GPIO with the given settings
+    gpio_config(&output_io_conf);
+}
+
 void app_main()
 {
     // Initialize
     ESP_ERROR_CHECK( nvs_flash_init() );
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
     initialize_wifi();
+    initialize_io();
     mcpwm_gpio_initialize(); // Servos
     dotstar_initialize();    // Dotstar strip 
+
 
     // Choose Run Mode
     #if ROTOR_MODE == 0
       ESP_LOGI(TAG,"Self Test Mode (0)");
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
+      xTaskCreate(status_check, "status task", 4096, NULL, 5, NULL);
     #endif
     #if ROTOR_MODE == 1 
       ESP_LOGI(TAG,"Position Hold Mode (1)");
