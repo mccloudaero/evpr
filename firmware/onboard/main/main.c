@@ -40,8 +40,8 @@
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<BAT_EN_GPIO) | (1ULL<<ENG_EN_GPIO))
 
 // Status vars
-int USING_BAT = -1;
-int USING_ENG = -1;
+bool USING_BAT = 0;
+bool USING_ENG = 0;
 
 // ADC channels
 static esp_adc_cal_characteristics_t *bat_adc_chars;
@@ -413,7 +413,9 @@ static void status_check(void *pvParameters)
     while (1) {
         printf("\nStatus Check\n");
 
-   	// Power Management 
+   	// Power Management
+	// Note: Status signal from power management switch is inversed
+	// HIGH when inactive and LOW when active
         USING_BAT = gpio_get_level(USING_BAT_GPIO);
 	USING_ENG = gpio_get_level(USING_ENG_GPIO);
 	printf("Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
