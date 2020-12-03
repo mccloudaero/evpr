@@ -39,9 +39,13 @@
 #define GPIO_INPUT_PIN_SEL  ((1ULL<<USING_BAT_GPIO) | (1ULL<<USING_ENG_GPIO))
 #define GPIO_OUTPUT_PIN_SEL  ((1ULL<<BAT_EN_GPIO) | (1ULL<<ENG_EN_GPIO))
 
-// Status vars
+// Status Variables
 bool USING_BAT = 0;
 bool USING_ENG = 0;
+uint16_t voltage_vraw = 0;  // mV
+uint16_t voltage_bat_1 = 0; // mV
+uint16_t voltage_bat_2 = 0; // mV
+
 
 // ADC channels
 static esp_adc_cal_characteristics_t *bat_adc_chars;
@@ -216,8 +220,12 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
     buf->node_num = ROTOR_NUM;
     buf->state = send_param->state;
     buf->seq_num = espnow_heartbeat_seq++;
+    buf->voltage_vraw = voltage_vraw;
+    buf->voltage_bat_1 = voltage_bat_1;
+    buf->voltage_bat_2 = voltage_bat_2;
     buf->crc = 0;
     buf->crc = crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
+    printf("Test Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
 }
 
 static void espnow_heartbeat_task(void *pvParameter)
@@ -247,16 +255,17 @@ static void espnow_heartbeat_task(void *pvParameter)
         //return ESP_FAIL;
     }
     memcpy(send_hb_param->dest_mac, espnow_broadcast_mac, ESP_NOW_ETH_ALEN);
-    espnow_data_prepare(send_hb_param);
 
 
     while (1) {
         // Send heartbeat via ESPNOW
+        espnow_data_prepare(send_hb_param);
         if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
             ESP_LOGE(TAG, "Send error");
             vTaskDelete(NULL);
         }
-        ESP_LOGV(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
+        //ESP_LOGV(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
+        ESP_LOGI(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
         // Wait to send next heartbeat
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
@@ -425,7 +434,7 @@ static void status_check(void *pvParameters)
 	uint32_t bat_2_adc_reading = 0;
 	uint32_t vraw_adc_reading = 0;
         // Read ADC using Multisampling
-        for (int i = 0; i < NO_OF_SAMPLES; i++) {
+        for (uint8_t i = 0; i < NO_OF_SAMPLES; i++) {
             bat_1_adc_reading += adc1_get_raw((adc1_channel_t)bat_1_channel);
             bat_2_adc_reading += adc1_get_raw((adc1_channel_t)bat_2_channel);
             vraw_adc_reading += adc1_get_raw((adc1_channel_t)vraw_channel);
@@ -434,10 +443,10 @@ static void status_check(void *pvParameters)
         bat_2_adc_reading /= NO_OF_SAMPLES;
         vraw_adc_reading /= NO_OF_SAMPLES;
 	//Convert adc_reading to voltage in mV
-        uint32_t bat_1_voltage = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
-        uint32_t bat_2_voltage = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
-        uint32_t vraw_voltage = esp_adc_cal_raw_to_voltage(vraw_adc_reading, vraw_adc_chars)*VRAW_VOLTAGE_FACTOR;
-        printf("Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", vraw_voltage, bat_1_voltage, bat_2_voltage);
+        voltage_bat_1 = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
+        voltage_bat_2 = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
+        voltage_vraw = esp_adc_cal_raw_to_voltage(vraw_adc_reading, vraw_adc_chars)*VRAW_VOLTAGE_FACTOR;
+        printf("Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
 
 	vTaskDelay(200);
     }
@@ -551,9 +560,11 @@ void app_main()
     // Choose Run Mode
     #if ROTOR_MODE == 0
       ESP_LOGI(TAG,"Self Test Mode (0)");
+      ESP_ERROR_CHECK( initialize_espnow() );
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
       xTaskCreate(status_check, "status task", 4096, NULL, 5, NULL);
+      xTaskCreate(espnow_heartbeat_task, "espnow_heartbeat_task", 2048, NULL, 4, NULL);
     #endif
     #if ROTOR_MODE == 1 
       ESP_LOGI(TAG,"Position Hold Mode (1)");
