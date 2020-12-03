@@ -133,6 +133,7 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
     *v_raw = buf->voltage_vraw;    // mV 
     *v_bat_1 = buf->voltage_bat_1;      // mV 
     *v_bat_2 = buf->voltage_bat_2;      // mV 
+    ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", buf->voltage_vraw, buf->voltage_bat_1, buf->voltage_bat_2);
     crc = buf->crc;
     buf->crc = 0;
     crc_cal = crc16_le(UINT16_MAX, (uint8_t const *)buf, data_len);
@@ -148,7 +149,6 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
 void espnow_data_prepare(espnow_send_param_t *send_param, uint16_t servo1, uint16_t servo2, uint16_t servo3, uint16_t servo4)
 {
     espnow_data_t *buf = (espnow_data_t *)send_param->buffer;
-    int i = 0;
 
     assert(send_param->len >= sizeof(espnow_data_t));
 
@@ -168,13 +168,14 @@ static void espnow_task(void *pvParameter)
     espnow_event_t evt;
     uint8_t recv_state = 0;
     uint16_t recv_seq = 0;
-    uint16_t recv_v_raw = 0;
-    uint16_t recv_v_bat_1 = 0;
-    uint16_t recv_v_bat_2 = 0;
+    uint16_t recv_v_raw = 9999;
+    uint16_t recv_v_bat_1 = 9999;
+    uint16_t recv_v_bat_2 = 9999;
     bool is_broadcast = false;
     int ret;
 
     ESP_LOGI(TAG, "Starting ESPNOW queue");
+    ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", recv_v_raw, recv_v_bat_1, recv_v_bat_2);
 
     while (xQueueReceive(espnow_queue, &evt, portMAX_DELAY) == pdTRUE) {
         switch (evt.id) {
@@ -193,7 +194,7 @@ static void espnow_task(void *pvParameter)
                 espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
 
                 ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq, &recv_v_raw, &recv_v_bat_1, &recv_v_bat_2); // Returns node_num
-                free(recv_cb->data);
+                //free(recv_cb->data);
                 if (ret > 0 && ret <= 4) {
                     ESP_LOGI(TAG, "Received %dth heartbeat from node: %d, "MACSTR", len: %d", recv_seq, ret,MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
                     ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", recv_v_raw, recv_v_bat_1, recv_v_bat_2);
