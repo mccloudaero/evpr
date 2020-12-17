@@ -1,4 +1,4 @@
-/* EVPR SLAVE 
+/* EVPR Rotor 
    Unless required by applicable law or agreed to in writing, this
    software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
    CONDITIONS OF ANY KIND, either express or implied.
@@ -65,6 +65,7 @@ static const adc_atten_t vraw_atten = ADC_ATTEN_DB_2_5;
 // Tach
 #define PCNT_H_LIM_VAL      1000
 #define PCNT_L_LIM_VAL     -1000
+uint8_t pcnt_unit = PCNT_UNIT_0;
 
 // ESPNOW packet stats
 int missed_packets = 0;
@@ -424,21 +425,28 @@ static void servo_control(void *pvParameters)
 
 static void status_check(void *pvParameters)
 {
+    uint32_t bat_1_adc_reading;
+    uint32_t bat_2_adc_reading;
+    uint32_t vraw_adc_reading;
+    int16_t tach_count;
     // Loop for checking status 
     while (1) {
         printf("\nStatus Check\n");
+
+	// Reset PCNT for Tach
+        pcnt_counter_clear(pcnt_unit);
+        tach_count = 0;
 
    	// Power Management
 	// Note: Status signal from power management switch is inversed
 	// HIGH when inactive and LOW when active
         USING_BAT = gpio_get_level(USING_BAT_GPIO);
 	USING_ENG = gpio_get_level(USING_ENG_GPIO);
-	printf("Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
 
 	// Read Voltages
-	uint32_t bat_1_adc_reading = 0;
-	uint32_t bat_2_adc_reading = 0;
-	uint32_t vraw_adc_reading = 0;
+	bat_1_adc_reading = 0;
+	bat_2_adc_reading = 0;
+	vraw_adc_reading = 0;
         // Read ADC using Multisampling
         for (uint8_t i = 0; i < NO_OF_SAMPLES; i++) {
             bat_1_adc_reading += adc1_get_raw((adc1_channel_t)bat_1_channel);
@@ -452,6 +460,13 @@ static void status_check(void *pvParameters)
         voltage_bat_1 = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
         voltage_bat_2 = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
         voltage_vraw = esp_adc_cal_raw_to_voltage(vraw_adc_reading, vraw_adc_chars)*VRAW_VOLTAGE_FACTOR;
+
+        // Check PCNT for Tach
+        pcnt_get_counter_value(pcnt_unit, &tach_count);
+        ESP_LOGI(TAG, "Current counter value :%d", tach_count);
+
+        // Print Info
+	printf("Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
         printf("Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
 
 	vTaskDelay(200);
@@ -542,21 +557,20 @@ static void initialize_adc(void)
     adc1_config_channel_atten(bat_2_channel, bat_atten);
     adc1_config_channel_atten(vraw_channel, vraw_atten);
 
-    // Characterize ADC_1 for Batteries
+    // Characterize ADC_1
+    ESP_LOGI(TAG, "Characterizing ADC for Batteries");
     bat_adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
     esp_adc_cal_value_t bat_val_type = esp_adc_cal_characterize(ADC_UNIT_1, bat_atten, ADC_WIDTH_BIT_12, DEFAULT_VREF, bat_adc_chars);
+    print_char_val_type(bat_val_type);
+    ESP_LOGI(TAG, "Characterizing ADC for Vraw");
     vraw_adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
     esp_adc_cal_value_t vraw_val_type = esp_adc_cal_characterize(ADC_UNIT_1, vraw_atten, ADC_WIDTH_BIT_12, DEFAULT_VREF, vraw_adc_chars);
-    //print_char_val_type(val_type);
+    print_char_val_type(vraw_val_type);
 
 }
 
-/* Initialize PCNT functions:
- *  - configure and initialize PCNT
- *  - set up the input filter
- *  - set up the counter events to watch
- */
-static void pcnt_example_init(int unit)
+// Configure and initialize PCNT
+static void pcnt_init(int unit)
 {
     // Prepare configuration for the PCNT unit
     pcnt_config_t pcnt_config = {
@@ -592,6 +606,7 @@ void app_main()
     initialize_adc();
     mcpwm_gpio_initialize(); // Servos
     dotstar_initialize();    // Dotstar strip 
+    pcnt_init(pcnt_unit);    // PCNT for Tach 
 
 
     // Choose Run Mode
