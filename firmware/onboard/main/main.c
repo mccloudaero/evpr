@@ -26,6 +26,8 @@
 #include "driver/adc.h"
 #include "esp_adc_cal.h"
 
+#include "driver/pcnt.h"
+
 #include <lwip/sockets.h>
 #include "main.h"
 #include "espnow.h"
@@ -59,6 +61,10 @@ static const adc_atten_t vraw_atten = ADC_ATTEN_DB_2_5;
 #define NO_OF_SAMPLES   64          // Multisampling
 #define BAT_VOLTAGE_FACTOR 3.149    // Resistor values (47.5+22.1)/22.1
 #define VRAW_VOLTAGE_FACTOR 5.525   // Resistor values (100+22.1)/22.1
+
+// Tach
+#define PCNT_H_LIM_VAL      1000
+#define PCNT_L_LIM_VAL     -1000
 
 // ESPNOW packet stats
 int missed_packets = 0;
@@ -544,6 +550,37 @@ static void initialize_adc(void)
     //print_char_val_type(val_type);
 
 }
+
+/* Initialize PCNT functions:
+ *  - configure and initialize PCNT
+ *  - set up the input filter
+ *  - set up the counter events to watch
+ */
+static void pcnt_example_init(int unit)
+{
+    // Prepare configuration for the PCNT unit
+    pcnt_config_t pcnt_config = {
+        // Set PCNT input signal
+        .pulse_gpio_num = TACH_GPIO,
+        // Set PCNT as Not used (controls up/down)
+        .ctrl_gpio_num = PCNT_PIN_NOT_USED,
+        .channel = PCNT_CHANNEL_0,
+        .unit = unit,
+        // What to do on the positive / negative edge of pulse input?
+        .pos_mode = PCNT_COUNT_INC,   // Count up on the positive edge
+        .neg_mode = PCNT_COUNT_DIS,   // Keep the counter value on the negative edge
+        // What to do when control input is low or high?
+        .lctrl_mode = PCNT_MODE_REVERSE, // Reverse counting direction if low
+        .hctrl_mode = PCNT_MODE_KEEP,    // Keep the primary counter mode if high
+        // Set the maximum and minimum limit values to watch
+        .counter_h_lim = PCNT_H_LIM_VAL,
+        .counter_l_lim = PCNT_L_LIM_VAL,
+    };
+    // Initialize PCNT unit, starts counting
+    pcnt_unit_config(&pcnt_config);
+
+}
+
 
 void app_main()
 {

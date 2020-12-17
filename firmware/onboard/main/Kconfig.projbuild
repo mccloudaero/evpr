@@ -62,11 +62,18 @@ config BAT_EN_GPIO
     help
 	GPIO pin to check if on battery power.
 
+config TACH_GPIO 
+    int "Tachometer GPIO Pin"
+    default 16 
+    help
+	GPIO pin to monitor rotor speed.
+
 config ENG_EN_GPIO 
     int "ENG Power Enable GPIO Pin"
     default 26 
     help
 	GPIO pin to check if on engine power.
+
 config ESPNOW_PMK
     string "ESPNOW primary master key"
     default "pmk1234567890123"
