@@ -27,6 +27,7 @@
 #include "esp_adc_cal.h"
 
 #include "driver/pcnt.h"
+#include "driver/timer.h"
 
 #include <lwip/sockets.h>
 #include "main.h"
@@ -66,6 +67,9 @@ static const adc_atten_t vraw_atten = ADC_ATTEN_DB_2_5;
 #define PCNT_H_LIM_VAL      1000
 #define PCNT_L_LIM_VAL     -1000
 uint8_t pcnt_unit = PCNT_UNIT_0;
+#define TIMER_DIVIDER         16  //  Hardware timer clock divider
+#define TIMER_SCALE           (TIMER_BASE_CLK / TIMER_DIVIDER)  // convert counter value to seconds
+
 
 // ESPNOW packet stats
 int missed_packets = 0;
@@ -378,7 +382,7 @@ static void mcpwm_gpio_initialize()
     mcpwm_set_duty_in_us(MCPWM_UNIT_0, MCPWM_TIMER_0, MCPWM_OPR_B, pulse_width);
 }
 
-static void dotstar_initialize()
+static void initialize_dotstar()
 {
     ESP_LOGI(TAG, "Initializing Dotstars");
 
@@ -429,13 +433,19 @@ static void status_check(void *pvParameters)
     uint32_t bat_2_adc_reading;
     uint32_t vraw_adc_reading;
     int16_t tach_count;
+    double delta_t;
+    double rpm;
+    // Start timer
+    timer_start(TIMER_GROUP_0, TIMER_0);
+
     // Loop for checking status 
     while (1) {
         printf("\nStatus Check\n");
 
-	// Reset PCNT for Tach
+	// Reset PCNT and Timer for Tach
         pcnt_counter_clear(pcnt_unit);
         tach_count = 0;
+        timer_set_counter_value(TIMER_GROUP_0, TIMER_0,0);
 
    	// Power Management
 	// Note: Status signal from power management switch is inversed
@@ -463,11 +473,13 @@ static void status_check(void *pvParameters)
 
         // Check PCNT for Tach
         pcnt_get_counter_value(pcnt_unit, &tach_count);
-        ESP_LOGI(TAG, "Current counter value :%d", tach_count);
+        timer_get_counter_time_sec(TIMER_GROUP_0, TIMER_0, &delta_t);
+        rpm = tach_count/delta_t;
 
         // Print Info
-	printf("Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
-        printf("Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
+	ESP_LOGI(TAG, "Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
+        ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
+        ESP_LOGI(TAG, "RPM :%f, Counter: %d, Delta_t: %f", rpm, tach_count, delta_t);
 
 	vTaskDelay(200);
     }
@@ -570,7 +582,7 @@ static void initialize_adc(void)
 }
 
 // Configure and initialize PCNT
-static void pcnt_init(int unit)
+static void initialize_pcnt(int unit)
 {
     // Prepare configuration for the PCNT unit
     pcnt_config_t pcnt_config = {
@@ -596,6 +608,20 @@ static void pcnt_init(int unit)
 }
 
 
+static void initialize_timer(int timer_idx)
+{
+    // Select and initialize basic parameters of the timer
+    timer_config_t config = {
+        .divider = TIMER_DIVIDER,
+        .counter_dir = TIMER_COUNT_UP,
+        .counter_en = TIMER_PAUSE,
+        .alarm_en = TIMER_ALARM_DIS,
+        .auto_reload = TIMER_AUTORELOAD_DIS,
+    }; // default clock source is APB
+    timer_init(TIMER_GROUP_0, timer_idx, &config);
+
+}
+
 void app_main()
 {
     // Initialize
@@ -604,10 +630,10 @@ void app_main()
     initialize_wifi();
     initialize_io();
     initialize_adc();
-    mcpwm_gpio_initialize(); // Servos
-    dotstar_initialize();    // Dotstar strip 
-    pcnt_init(pcnt_unit);    // PCNT for Tach 
-
+    mcpwm_gpio_initialize();       // Servos
+    initialize_dotstar();          // Dotstar strip 
+    initialize_pcnt(pcnt_unit);    // PCNT for Tach 
+    initialize_timer(TIMER_0);     // Timer for Tach
 
     // Choose Run Mode
     #if ROTOR_MODE == 0
