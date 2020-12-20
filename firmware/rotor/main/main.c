@@ -275,8 +275,7 @@ static void espnow_heartbeat_task(void *pvParameter)
             ESP_LOGE(TAG, "Send error");
             vTaskDelete(NULL);
         }
-        //ESP_LOGV(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
-        ESP_LOGI(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
+        ESP_LOGV(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
         // Wait to send next heartbeat
         vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
@@ -442,10 +441,10 @@ static void status_check(void *pvParameters)
     while (1) {
         printf("\nStatus Check\n");
 
-	// Reset PCNT and Timer for Tach
-        pcnt_counter_clear(pcnt_unit);
-        tach_count = 0;
-        timer_set_counter_value(TIMER_GROUP_0, TIMER_0,0);
+	// Note: Used to have logic for resetting Tach quantities at the
+	// beginning of the loop. But we want to most amount of time
+	// possible to collect tach data for best accuracy. Tach is reset
+	// at the end of the loop and includes wait time between checks 
 
    	// Power Management
 	// Note: Status signal from power management switch is inversed
@@ -475,6 +474,10 @@ static void status_check(void *pvParameters)
         pcnt_get_counter_value(pcnt_unit, &tach_count);
         timer_get_counter_time_sec(TIMER_GROUP_0, TIMER_0, &delta_t);
         rpm = tach_count/delta_t;
+	// Reset PCNT and Timer for Tach
+        pcnt_counter_clear(pcnt_unit);
+        tach_count = 0;
+        timer_set_counter_value(TIMER_GROUP_0, TIMER_0,0);
 
         // Print Info
 	ESP_LOGI(TAG, "Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
