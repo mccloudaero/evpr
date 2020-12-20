@@ -69,6 +69,7 @@ static const adc_atten_t vraw_atten = ADC_ATTEN_DB_2_5;
 uint8_t pcnt_unit = PCNT_UNIT_0;
 #define TIMER_DIVIDER         16  //  Hardware timer clock divider
 #define TIMER_SCALE           (TIMER_BASE_CLK / TIMER_DIVIDER)  // convert counter value to seconds
+uint16_t rpm = 0;
 
 
 // ESPNOW packet stats
@@ -234,6 +235,7 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
     buf->voltage_vraw = voltage_vraw;
     buf->voltage_bat_1 = voltage_bat_1;
     buf->voltage_bat_2 = voltage_bat_2;
+    buf->rpm = rpm;
     buf->crc = 0;
     buf->crc = crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
     printf("Test Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);

@@ -57,6 +57,7 @@ typedef struct {
     uint16_t voltage_vraw;                // mV 
     uint16_t voltage_bat_1;               // mV 
     uint16_t voltage_bat_2;               // mV 
+    uint16_t rpm;                         // Rotations per Second 
 } __attribute__((packed)) espnow_data_t;
 
 
