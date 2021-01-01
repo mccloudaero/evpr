@@ -42,16 +42,22 @@ enum {
     ESPNOW_DATA_MAX,
 };
 
-// EVPR ESPNOW heartbeat data
+// EVPR ESPNOW payload data
+// Common packet is used for both head and heartbeat messages
+// Protocol limited to 250 bytes, currently 20 bytes
 typedef struct {
-    uint8_t node_num;                     // Node/Rotor number 0=Master, 1-4 Slave/Rotor
-    uint16_t seq_num;                     // Sequence number of ESPNOW data.
-    uint8_t state;                        // Indicate that if has received broadcast ESPNOW data or not.
+    uint8_t node_num;                     // Node/Rotor number 0=Head Node, 1+ Rotor (0-255)
+    uint16_t seq_num;                     // Sequence number of ESPNOW heartbeat data (0-65,536)
+    uint8_t state;                        // State code 
     uint16_t crc;                         // CRC16 value of ESPNOW data.
-    uint16_t servo1;                      // Servo 1 PWM.
-    uint16_t servo2;                      // Servo 2 PWM.
-    uint16_t servo3;                      // Servo 3 PWM.
-    uint16_t servo4;                      // Servo 4 PWM.
+    uint16_t servo1;                      // Servo 1 PWM head_node messages only 
+    uint16_t servo2;                      // Servo 2 PWM head_node messages only
+    uint16_t servo3;                      // Servo 3 PWM head_node messages only
+    uint16_t servo4;                      // Servo 4 PWM head_node messages only
+    uint16_t voltage_vraw;                // mV 
+    uint16_t voltage_bat_1;               // mV 
+    uint16_t voltage_bat_2;               // mV 
+    uint16_t rpm;                         // Rotations per Minute 
 } __attribute__((packed)) espnow_data_t;
 
 

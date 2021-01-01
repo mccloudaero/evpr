@@ -1,4 +1,4 @@
-#define TAG "evpr_monitor_node"
+#define TAG "monitor_node"
 #define WIFI_SSID CONFIG_WIFI_SSID
 #define WIFI_PWD CONFIG_WIFI_PASSWORD
 #define BLINK_GPIO CONFIG_BLINK_GPIO

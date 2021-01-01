@@ -1,4 +1,4 @@
-#define TAG "evpr_slave"
+#define TAG "rotor"
 #define ROTOR_NUM CONFIG_ROTOR_NUM
 #define ROTOR_MODE CONFIG_ROTOR_MODE
 
@@ -23,28 +23,6 @@
 // Enable
 #define BAT_EN_GPIO CONFIG_BAT_EN_GPIO
 #define ENG_EN_GPIO CONFIG_ENG_EN_GPIO
-
-// IPs and ports
-#define MASTER_IP "192.168.4.1"
-#define DEVICE_GATEWAY MASTER_IP 
-#define NETMASK "255.255.255.0" 
-
-#if ROTOR_NUM == 1 
- #define DEVICE_IP "192.168.4.11"
- #define COMM_PORT 6001 
-#endif
-#if ROTOR_NUM == 2 
- #define DEVICE_IP "192.168.4.12"
- #define COMM_PORT 6002 
-#endif
-#if ROTOR_NUM == 3 
- #define DEVICE_IP "192.168.4.13"
- #define COMM_PORT 6003 
-#endif
-#if ROTOR_NUM == 4 
- #define DEVICE_IP "192.168.4.14"
- #define COMM_PORT 6004 
-#endif
 
 #define BUF_SIZE (512)
 
