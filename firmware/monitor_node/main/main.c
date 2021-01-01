@@ -177,7 +177,6 @@ static void espnow_task(void *pvParameter)
     int ret;
 
     ESP_LOGI(TAG, "Starting ESPNOW queue");
-    ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", recv_v_raw, recv_v_bat_1, recv_v_bat_2);
 
     while (xQueueReceive(espnow_queue, &evt, portMAX_DELAY) == pdTRUE) {
         switch (evt.id) {
@@ -270,7 +269,7 @@ static esp_err_t initialize_espnow(void)
 
 static esp_err_t initialize_wifi(void)
 {
-    ESP_LOGI(TAG, "Initializing WiFI");
+    ESP_LOGI(TAG, "Initializing WiFi");
 
     tcpip_adapter_init();
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
@@ -281,7 +280,18 @@ static esp_err_t initialize_wifi(void)
 
     ESP_ERROR_CHECK( esp_wifi_set_channel(CONFIG_ESPNOW_CHANNEL, 0) );
 
+    ESP_LOGI(TAG, "WiFi Initialization Complete");
+
     return ESP_OK;
+}
+
+static void status_check(void *pvParameters)
+{
+    // Loop for checking status 
+    while (1) {
+        ESP_LOGI(TAG, "Status Check");
+	vTaskDelay(200);
+    }
 }
 
 void app_main()
@@ -294,5 +304,6 @@ void app_main()
 
     // Task to handle ESP-NOW events
     xTaskCreate(espnow_task, "espnow_task", 2048, NULL, 4, NULL);
+    xTaskCreate(status_check, "status_check", 2048, NULL, 4, NULL);
     
 }

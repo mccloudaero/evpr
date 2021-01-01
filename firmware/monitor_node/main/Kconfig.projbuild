@@ -1,4 +1,4 @@
-menu "EVPR Master Node Configuration"
+menu "EVPR Monitor Node Configuration"
 
 config ESPNOW_PMK
     string "ESPNOW primary master key"
