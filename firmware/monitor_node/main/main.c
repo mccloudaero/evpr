@@ -118,7 +118,7 @@ static void espnow_recv_cb(const uint8_t *mac_addr, const uint8_t *data, int len
 }
 
 /* Parse received ESPNOW data. */
-int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq, uint16_t *v_raw, uint16_t *v_bat_1, uint16_t *v_bat_2)
+int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t *seq, uint16_t *v_raw, uint16_t *v_bat_1, uint16_t *v_bat_2, uint16_t *rpm)
 {
     espnow_data_t *buf = (espnow_data_t *)data;
     uint16_t crc, crc_cal = 0;
@@ -130,9 +130,10 @@ int espnow_data_parse(uint8_t *data, uint16_t data_len, uint8_t *state, uint16_t
 
     *state = buf->state;
     *seq = buf->seq_num;
-    *v_raw = buf->voltage_vraw;    // mV 
+    *v_raw = buf->voltage_vraw;         // mV 
     *v_bat_1 = buf->voltage_bat_1;      // mV 
     *v_bat_2 = buf->voltage_bat_2;      // mV 
+    *rpm = buf->rpm;                    // Rotations Per Minute 
     ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", buf->voltage_vraw, buf->voltage_bat_1, buf->voltage_bat_2);
     crc = buf->crc;
     buf->crc = 0;
@@ -171,6 +172,7 @@ static void espnow_task(void *pvParameter)
     uint16_t recv_v_raw = 9999;
     uint16_t recv_v_bat_1 = 9999;
     uint16_t recv_v_bat_2 = 9999;
+    uint16_t recv_rpm = 0;
     bool is_broadcast = false;
     int ret;
 
@@ -193,11 +195,12 @@ static void espnow_task(void *pvParameter)
                 // Recieved ESPNOW data
                 espnow_event_recv_cb_t *recv_cb = &evt.info.recv_cb;
 
-                ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq, &recv_v_raw, &recv_v_bat_1, &recv_v_bat_2); // Returns node_num
+                ret = espnow_data_parse(recv_cb->data, recv_cb->data_len, &recv_state, &recv_seq, &recv_v_raw, &recv_v_bat_1, &recv_v_bat_2, &recv_rpm); // Returns node_num
                 //free(recv_cb->data);
                 if (ret > 0 && ret <= 4) {
                     ESP_LOGI(TAG, "Received %dth heartbeat from node: %d, "MACSTR", len: %d", recv_seq, ret,MAC2STR(recv_cb->mac_addr), recv_cb->data_len);
-                    ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", recv_v_raw, recv_v_bat_1, recv_v_bat_2);
+                    ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV", recv_v_raw, recv_v_bat_1, recv_v_bat_2);
+                    ESP_LOGI(TAG, "RPM: %d\n", recv_rpm);
 
                     // If MAC address does not exist in peer list, add it to peer list
                     if (esp_now_is_peer_exist(recv_cb->mac_addr) == false) {
@@ -265,7 +268,7 @@ static esp_err_t initialize_espnow(void)
     return ESP_OK;
 }
 
-static void initialize_wifi(void)
+static esp_err_t initialize_wifi(void)
 {
     ESP_LOGI(TAG, "Initializing WiFI");
 
@@ -278,6 +281,7 @@ static void initialize_wifi(void)
 
     ESP_ERROR_CHECK( esp_wifi_set_channel(CONFIG_ESPNOW_CHANNEL, 0) );
 
+    return ESP_OK;
 }
 
 void app_main()
@@ -285,7 +289,7 @@ void app_main()
     // Initialize
     ESP_ERROR_CHECK( nvs_flash_init() );
     ESP_ERROR_CHECK( esp_event_loop_init(event_handler, NULL) );
-    initialize_wifi();
+    ESP_ERROR_CHECK( initialize_wifi() );
     ESP_ERROR_CHECK( initialize_espnow() );
 
     // Task to handle ESP-NOW events
