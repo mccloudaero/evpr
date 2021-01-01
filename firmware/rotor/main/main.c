@@ -441,7 +441,7 @@ static void status_check(void *pvParameters)
 
     // Loop for checking status 
     while (1) {
-        printf("\nStatus Check\n");
+	ESP_LOGI(TAG, "Status Check");
 
 	// Note: Used to have logic for resetting Tach quantities at the
 	// beginning of the loop. But we want to most amount of time
@@ -482,8 +482,8 @@ static void status_check(void *pvParameters)
         timer_set_counter_value(TIMER_GROUP_0, TIMER_0,0);
 
         // Print Info
-	ESP_LOGI(TAG, "Power Management: Battery %d, Engine %d\n", USING_BAT, USING_ENG);
-        ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
+	ESP_LOGI(TAG, "Power Management: Battery %d, Engine %d", USING_BAT, USING_ENG);
+        ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV", voltage_vraw, voltage_bat_1, voltage_bat_2);
         ESP_LOGI(TAG, "RPM :%f, Counter: %d, Delta_t: %f", rpm, tach_count, delta_t);
 
 	vTaskDelay(200);
