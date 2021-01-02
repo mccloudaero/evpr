@@ -239,24 +239,7 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
     buf->rpm = rpm;
     buf->crc = 0;
     buf->crc = crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
-    printf("Test Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
-}
-
-static void espnow_heartbeat_task(void *pvParameter)
-{
-    esp_err_t err;
-    while (1) {
-        // Send heartbeat via ESPNOW
-        espnow_data_prepare(send_hb_param);
-        err = esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len);
-        if (err != ESP_OK) {
-            ESP_LOGE(TAG, "ESPNOW Send error (%s)", esp_err_to_name(err));
-            vTaskDelete(NULL);
-        }
-        ESP_LOGV(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
-        // Wait to send next heartbeat
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
+    //printf("Test Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
 }
 
 static void espnow_event_task(void *pvParameter)
@@ -275,7 +258,7 @@ static void espnow_event_task(void *pvParameter)
             case ESPNOW_SEND_CB:
             {
                 espnow_event_send_cb_t *send_cb = &evt.info.send_cb;
-                ESP_LOGD(TAG, "Send heartbeat to "MACSTR", status1: %d", MAC2STR(send_cb->mac_addr), send_cb->status);
+                ESP_LOGI(TAG, "Send heartbeat to "MACSTR", status: %d\n", MAC2STR(send_cb->mac_addr), send_cb->status);
                 break;
             }
             case ESPNOW_RECV_CB:
@@ -412,12 +395,13 @@ static void status_check(void *pvParameters)
     int16_t tach_count;
     double delta_t;
     double rpm;
+    esp_err_t err;
     // Start timer
     timer_start(TIMER_GROUP_0, TIMER_0);
 
     // Loop for checking status 
     while (1) {
-	ESP_LOGI(TAG, "Status Check");
+	ESP_LOGI(TAG, "****Status Check****");
 
 	// Note: Used to have logic for resetting Tach quantities at the
 	// beginning of the loop. But we want to most amount of time
@@ -461,6 +445,15 @@ static void status_check(void *pvParameters)
 	ESP_LOGI(TAG, "Power Management: Battery %d, Engine %d", USING_BAT, USING_ENG);
         ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV", voltage_vraw, voltage_bat_1, voltage_bat_2);
         ESP_LOGI(TAG, "RPM :%f, Counter: %d, Delta_t: %f", rpm, tach_count, delta_t);
+        ESP_LOGI(TAG, "Free Heap Size: %d\n", xPortGetFreeHeapSize());
+
+	// Send Data
+	espnow_data_prepare(send_hb_param);
+        err = esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len);
+        if (err != ESP_OK) {
+            ESP_LOGE(TAG, "ESPNOW Send error (%s)", esp_err_to_name(err));
+            vTaskDelete(NULL);
+        }
 
 	vTaskDelay(200);
     }
@@ -649,7 +642,7 @@ void app_main()
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
       xTaskCreate(status_check, "status task", 4096, NULL, 5, NULL);
-      xTaskCreate(espnow_heartbeat_task, "espnow_heartbeat_task", 4096, NULL, 4, NULL);
+      xTaskCreate(espnow_event_task, "espnow_event_task", 2048, NULL, 4, NULL);
     #endif
     #if ROTOR_MODE == 1 
       ESP_LOGI(TAG,"Position Hold Mode (1)");
@@ -658,10 +651,7 @@ void app_main()
     #endif
     #if ROTOR_MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
-      ESP_ERROR_CHECK( initialize_espnow() );
-      // ESP-NOW heartbeat task
-      xTaskCreate(espnow_heartbeat_task, "espnow_heartbeat_task", 2048, NULL, 4, NULL);
-      // Task to handle ESP-NOW events
+      xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
       xTaskCreate(espnow_event_task, "espnow_event_task", 2048, NULL, 4, NULL);
     #endif
 }
