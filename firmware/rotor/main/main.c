@@ -72,7 +72,8 @@ uint8_t pcnt_unit = PCNT_UNIT_0;
 uint16_t rpm = 0;
 
 
-// ESPNOW packet stats
+// ESPNOW
+espnow_send_param_t *send_hb_param;
 int missed_packets = 0;
 double error_percent;
 
@@ -243,38 +244,13 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
 
 static void espnow_heartbeat_task(void *pvParameter)
 {
-    // Initialize heartbeat sending parameters
-    espnow_send_param_t *send_hb_param;
-    send_hb_param = malloc(sizeof(espnow_send_param_t));
-    memset(send_hb_param, 0, sizeof(espnow_send_param_t));
-    if (send_hb_param == NULL) {
-        ESP_LOGE(TAG, "Malloc send heartbeat parameter fail");
-        vSemaphoreDelete(espnow_queue);
-        esp_now_deinit();
-        //return ESP_FAIL;
-    }
-    send_hb_param->unicast = false;
-    send_hb_param->broadcast = true;
-    send_hb_param->state = 0;
-    send_hb_param->count = CONFIG_ESPNOW_SEND_COUNT;
-    send_hb_param->delay = CONFIG_ESPNOW_SEND_DELAY;
-    send_hb_param->len = CONFIG_ESPNOW_SEND_LEN;
-    send_hb_param->buffer = malloc(CONFIG_ESPNOW_SEND_LEN);
-    if (send_hb_param->buffer == NULL) {
-        ESP_LOGE(TAG, "Malloc send buffer fail");
-        free(send_hb_param);
-        vSemaphoreDelete(espnow_queue);
-        esp_now_deinit();
-        //return ESP_FAIL;
-    }
-    memcpy(send_hb_param->dest_mac, espnow_broadcast_mac, ESP_NOW_ETH_ALEN);
-
-
+    esp_err_t err;
     while (1) {
         // Send heartbeat via ESPNOW
         espnow_data_prepare(send_hb_param);
-        if (esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len) != ESP_OK) {
-            ESP_LOGE(TAG, "Send error");
+        err = esp_now_send(send_hb_param->dest_mac, send_hb_param->buffer, send_hb_param->len);
+        if (err != ESP_OK) {
+            ESP_LOGE(TAG, "ESPNOW Send error (%s)", esp_err_to_name(err));
             vTaskDelete(NULL);
         }
         ESP_LOGV(TAG, "send heartbeat to "MACSTR"", MAC2STR(send_hb_param->dest_mac));
@@ -522,6 +498,31 @@ static esp_err_t initialize_espnow(void)
     ESP_ERROR_CHECK( esp_now_add_peer(peer) );
     free(peer);
 
+    // Initialize heartbeat sending parameters
+    send_hb_param = malloc(sizeof(espnow_send_param_t));
+    memset(send_hb_param, 0, sizeof(espnow_send_param_t));
+    if (send_hb_param == NULL) {
+        ESP_LOGE(TAG, "Malloc send heartbeat parameter fail");
+        vSemaphoreDelete(espnow_queue);
+        esp_now_deinit();
+        return ESP_FAIL;
+    }
+    send_hb_param->unicast = false;
+    send_hb_param->broadcast = true;
+    send_hb_param->state = 0;
+    send_hb_param->count = CONFIG_ESPNOW_SEND_COUNT;
+    send_hb_param->delay = CONFIG_ESPNOW_SEND_DELAY;
+    send_hb_param->len = CONFIG_ESPNOW_SEND_LEN;
+    send_hb_param->buffer = malloc(CONFIG_ESPNOW_SEND_LEN);
+    if (send_hb_param->buffer == NULL) {
+        ESP_LOGE(TAG, "Malloc send buffer fail");
+        free(send_hb_param);
+        vSemaphoreDelete(espnow_queue);
+        esp_now_deinit();
+        return ESP_FAIL;
+    }
+    memcpy(send_hb_param->dest_mac, espnow_broadcast_mac, ESP_NOW_ETH_ALEN);
+
     return ESP_OK;
 }
 
@@ -640,14 +641,15 @@ void app_main()
     initialize_pcnt(pcnt_unit);    // PCNT for Tach 
     initialize_timer(TIMER_0);     // Timer for Tach
 
+    ESP_ERROR_CHECK( initialize_espnow() );
+
     // Choose Run Mode
     #if ROTOR_MODE == 0
       ESP_LOGI(TAG,"Self Test Mode (0)");
-      ESP_ERROR_CHECK( initialize_espnow() );
       xTaskCreate(servo_self_test, "servo_self_test", 4096, NULL, 5, NULL);
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
       xTaskCreate(status_check, "status task", 4096, NULL, 5, NULL);
-      xTaskCreate(espnow_heartbeat_task, "espnow_heartbeat_task", 2048, NULL, 4, NULL);
+      xTaskCreate(espnow_heartbeat_task, "espnow_heartbeat_task", 4096, NULL, 4, NULL);
     #endif
     #if ROTOR_MODE == 1 
       ESP_LOGI(TAG,"Position Hold Mode (1)");
