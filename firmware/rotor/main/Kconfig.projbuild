@@ -1,4 +1,4 @@
-menu "EVPR Slave Node Configuration"
+menu "EVPR Rotor Configuration"
 
 config ROTOR_NUM 
     int "Rotor Number"
