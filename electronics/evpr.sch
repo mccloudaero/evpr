@@ -16436,11 +16436,11 @@ thermal monitoring, so a
 <wire x1="218.44" y1="17.78" x2="223.52" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<label x="114.3" y="142.24" size="1.778" layer="95" xref="yes"/>
-<wire x1="101.6" y1="142.24" x2="114.3" y2="142.24" width="0.1524" layer="91"/>
-<pinref part="U.ESP1" gate="G$1" pin="IO13"/>
-<wire x1="73.66" y1="132.08" x2="101.6" y2="132.08" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="132.08" x2="101.6" y2="142.24" width="0.1524" layer="91"/>
+<label x="114.3" y="144.78" size="1.778" layer="95" xref="yes"/>
+<wire x1="99.06" y1="144.78" x2="114.3" y2="144.78" width="0.1524" layer="91"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO12"/>
+<wire x1="99.06" y1="134.62" x2="99.06" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="134.62" x2="99.06" y2="134.62" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="DS_DAT" class="0">
@@ -16771,11 +16771,11 @@ thermal monitoring, so a
 </net>
 <net name="LED_BUILTIN" class="0">
 <segment>
-<pinref part="U.ESP1" gate="G$1" pin="IO12"/>
-<wire x1="73.66" y1="134.62" x2="99.06" y2="134.62" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="134.62" x2="99.06" y2="147.32" width="0.1524" layer="91"/>
-<wire x1="99.06" y1="147.32" x2="114.3" y2="147.32" width="0.1524" layer="91"/>
-<label x="114.3" y="147.32" size="1.778" layer="95" xref="yes"/>
+<wire x1="101.6" y1="132.08" x2="101.6" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="139.7" x2="114.3" y2="139.7" width="0.1524" layer="91"/>
+<label x="114.3" y="139.7" size="1.778" layer="95" xref="yes"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO13"/>
+<wire x1="73.66" y1="132.08" x2="101.6" y2="132.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R.USB4" gate="G$1" pin="2"/>

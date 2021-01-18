@@ -8,7 +8,7 @@
 </settings>
 <grid distance="10" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="1" altunitdist="mil" altunit="mil"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="yes"/>
 <layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
 <layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
@@ -6361,10 +6361,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 <signal name="DS_CLK">
 <contactref element="U.DS1" pad="9"/>
-<contactref element="U.ESP1" pad="16"/>
-<wire x1="10.59951875" y1="-27.9356875" x2="11.43" y2="-29.464" width="0.254" layer="16"/>
-<wire x1="11.43" y1="-29.464" x2="12.3433375" y2="-29.464" width="0.254" layer="16"/>
-<wire x1="12.3433375" y1="-29.464" x2="13.2804625" y2="-28.526875" width="0.254" layer="16"/>
 <wire x1="18.275296875" y1="-28.526875" x2="18.3769" y2="-28.425271875" width="0.254" layer="16"/>
 <via x="18.3769" y="-28.425271875" extent="1-16" drill="0.254"/>
 <wire x1="19.140909375" y1="-27.78713125" x2="22.9968875" y2="-25.56088125" width="0.254" layer="1"/>
@@ -6390,6 +6386,10 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="29.737584375" y1="-21.570415625" x2="25.4358375" y2="-21.570415625" width="0.254" layer="16"/>
 <wire x1="24.13" y1="-22.352" x2="23.062240625" y2="-23.419759375" width="0.254" layer="1"/>
 <wire x1="23.062240625" y1="-23.419759375" x2="23.062240625" y2="-25.495528125" width="0.254" layer="1"/>
+<contactref element="U.ESP1" pad="14"/>
+<wire x1="13.2804625" y1="-28.526875" x2="11.3273375" y2="-30.48" width="0.254" layer="16"/>
+<wire x1="7.936996875" y1="-30.48" x2="7.587784375" y2="-30.8292125" width="0.254" layer="16"/>
+<wire x1="11.3273375" y1="-30.48" x2="7.936996875" y2="-30.48" width="0.254" layer="16"/>
 </signal>
 <signal name="DS_DAT">
 <contactref element="U.DS1" pad="12"/>
@@ -6904,13 +6904,17 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="30.8864" y1="-24.2872" x2="30.8864" y2="-24.8022" width="0.254" layer="16"/>
 </signal>
 <signal name="LED_BUILTIN">
-<contactref element="U.ESP1" pad="14"/>
 <contactref element="R.USB4" pad="2"/>
-<wire x1="7.587784375" y1="-30.8292125" x2="6.6992125" y2="-30.8292125" width="0.254" layer="16"/>
-<wire x1="6.6992125" y1="-30.8292125" x2="6.096" y2="-30.226" width="0.254" layer="16"/>
-<via x="6.096" y="-30.226" extent="1-16" drill="0.254"/>
-<wire x1="6.096" y1="-30.226" x2="6.731" y2="-29.591" width="0.254" layer="1"/>
-<wire x1="6.731" y1="-29.591" x2="6.731" y2="-29.044" width="0.254" layer="1"/>
+<contactref element="U.ESP1" pad="16"/>
+<via x="7.874" y="-28.194" extent="1-16" drill="0.254"/>
+<wire x1="8.41505625" y1="-26.6446" x2="7.8486" y2="-27.21105625" width="0.254" layer="16"/>
+<wire x1="7.8486" y1="-27.21105625" x2="7.8486" y2="-28.1686" width="0.254" layer="16"/>
+<wire x1="7.874" y1="-28.194" x2="7.8486" y2="-28.1686" width="0.254" layer="16"/>
+<wire x1="10.59951875" y1="-27.9356875" x2="10.59951875" y2="-27.465228125" width="0.254" layer="16"/>
+<wire x1="10.59951875" y1="-27.465228125" x2="9.778890625" y2="-26.6446" width="0.254" layer="16"/>
+<wire x1="9.778890625" y1="-26.6446" x2="8.41505625" y2="-26.6446" width="0.254" layer="16"/>
+<wire x1="7.874" y1="-28.194" x2="7.024" y2="-29.044" width="0.254" layer="1"/>
+<wire x1="7.024" y1="-29.044" x2="6.731" y2="-29.044" width="0.254" layer="1"/>
 </signal>
 <signal name="N$14">
 <contactref element="U.ZZ1" pad="6"/>
