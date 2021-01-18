@@ -6519,7 +6519,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="-23.6601" y1="-50.7492" x2="-23.6737875" y2="-50.7355125" width="0.254" layer="1"/>
 <wire x1="-23.6737875" y1="-50.7355125" x2="-24.59125625" y2="-50.7355125" width="0.254" layer="1"/>
 </signal>
-<signal name="USING_ENG">
+<signal name="!USING_ENG">
 <contactref element="U.YY1" pad="8"/>
 <contactref element="U.ESP1" pad="28"/>
 <wire x1="-25.6286" y1="-51.68773125" x2="-24.5427875" y2="-51.68773125" width="0.254" layer="1"/>
@@ -6573,7 +6573,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </signal>
 <signal name="USING_BAT">
 <contactref element="U.YY1" pad="9"/>
-<contactref element="U.ESP1" pad="26"/>
 <wire x1="-11.8741125" y1="-51.9506" x2="-1.2974" y2="-51.9506" width="0.254" layer="1"/>
 <wire x1="-21.1582" y1="-51.68773125" x2="-17.714" y2="-51.68773125" width="0.254" layer="1"/>
 <wire x1="-17.714" y1="-51.68773125" x2="-17.71145625" y2="-51.6851875" width="0.254" layer="1"/>
@@ -6614,7 +6613,6 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="23.63921875" y1="-37.1094" x2="22.330128125" y2="-35.800309375" width="0.254" layer="16"/>
 <wire x1="22.330128125" y1="-35.800309375" x2="22.330128125" y2="-35.276471875" width="0.254" layer="16"/>
 <wire x1="22.330128125" y1="-35.276471875" x2="21.8186" y2="-34.76494375" width="0.254" layer="16"/>
-<wire x1="22.94521875" y1="-23.429065625" x2="22.53881875" y2="-23.835465625" width="0.254" layer="16"/>
 <wire x1="22.53881875" y1="-23.835465625" x2="21.26881875" y2="-23.835465625" width="0.254" layer="16"/>
 <wire x1="21.26881875" y1="-23.835465625" x2="18.6182" y2="-26.486084375" width="0.254" layer="16"/>
 <wire x1="22.098" y1="-34.04365625" x2="22.098" y2="-31.27413125" width="0.254" layer="16"/>
@@ -7764,6 +7762,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="10.576371875" y1="-34.1764875" x2="10.619453125" y2="-34.015721875" width="0.254" layer="1"/>
 <wire x1="10.619453125" y1="-34.015721875" x2="10.725428125" y2="-33.9545375" width="0.254" layer="1"/>
 <wire x1="10.725428125" y1="-33.9545375" x2="11.6078" y2="-33.2486" width="0.254" layer="1"/>
+</signal>
+<signal name="!USING_BAT">
+<contactref element="U.ESP1" pad="26"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

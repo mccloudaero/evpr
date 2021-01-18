@@ -16537,7 +16537,7 @@ thermal monitoring, so a
 <wire x1="-111.252" y1="-10.16" x2="-106.68" y2="-10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="USING_ENG" class="0">
+<net name="!USING_ENG" class="0">
 <segment>
 <pinref part="U.YY1" gate="A" pin="!ONST2"/>
 <label x="-101.6" y="-30.48" size="1.778" layer="95" xref="yes"/>
@@ -16559,13 +16559,6 @@ thermal monitoring, so a
 <wire x1="-40.64" y1="-15.24" x2="-38.1" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="-15.24" x2="-38.1" y2="-30.48" width="0.1524" layer="91"/>
 <wire x1="-38.1" y1="-30.48" x2="-35.56" y2="-30.48" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<label x="114.3" y="152.4" size="1.778" layer="95" xref="yes"/>
-<pinref part="U.ESP1" gate="G$1" pin="IO4"/>
-<wire x1="73.66" y1="139.7" x2="96.52" y2="139.7" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="139.7" x2="96.52" y2="152.4" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="152.4" x2="114.3" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$32" class="0">
@@ -17190,6 +17183,15 @@ thermal monitoring, so a
 <wire x1="86.36" y1="91.44" x2="86.36" y2="78.74" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="78.74" x2="114.3" y2="78.74" width="0.1524" layer="91"/>
 <label x="114.3" y="78.74" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="!USING_BAT" class="0">
+<segment>
+<label x="114.3" y="152.4" size="1.778" layer="95" xref="yes"/>
+<pinref part="U.ESP1" gate="G$1" pin="IO4"/>
+<wire x1="73.66" y1="139.7" x2="96.52" y2="139.7" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="139.7" x2="96.52" y2="152.4" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="152.4" x2="114.3" y2="152.4" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
