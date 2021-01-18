@@ -942,38 +942,38 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <rectangle x1="-1.5625" y1="1.7875" x2="-0.9375" y2="1.9875" layer="31" rot="R270"/>
 <rectangle x1="-1.95" y1="1.525" x2="-1.525" y2="1.975" layer="21"/>
 <rectangle x1="-1.27" y1="-1.27" x2="1.27" y2="1.27" layer="29"/>
-<smd name="1" x="-1.95" y="1.25" dx="0.85" dy="0.3" layer="1"/>
-<smd name="2" x="-1.95" y="0.75" dx="0.85" dy="0.3" layer="1"/>
-<smd name="3" x="-1.95" y="0.25" dx="0.85" dy="0.3" layer="1"/>
-<smd name="4" x="-1.95" y="-0.25" dx="0.85" dy="0.3" layer="1"/>
-<smd name="5" x="-1.95" y="-0.75" dx="0.85" dy="0.3" layer="1"/>
-<smd name="6" x="-1.95" y="-1.25" dx="0.85" dy="0.3" layer="1"/>
-<smd name="7" x="-1.25" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90"/>
-<smd name="8" x="-0.75" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90"/>
-<smd name="9" x="-0.25" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90"/>
-<smd name="10" x="0.25" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90"/>
-<smd name="11" x="0.75" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90"/>
-<smd name="12" x="1.25" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90"/>
-<smd name="13" x="1.95" y="-1.25" dx="0.85" dy="0.3" layer="1" rot="R180"/>
-<smd name="14" x="1.95" y="-0.75" dx="0.85" dy="0.3" layer="1" rot="R180"/>
-<smd name="15" x="1.95" y="-0.25" dx="0.85" dy="0.3" layer="1" rot="R180"/>
-<smd name="16" x="1.95" y="0.25" dx="0.85" dy="0.3" layer="1" rot="R180"/>
-<smd name="17" x="1.95" y="0.75" dx="0.85" dy="0.3" layer="1" rot="R180"/>
-<smd name="18" x="1.95" y="1.25" dx="0.85" dy="0.3" layer="1" rot="R180"/>
-<smd name="19" x="1.25" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270"/>
-<smd name="20" x="0.75" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270"/>
-<smd name="21" x="0.25" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270"/>
-<smd name="22" x="-0.25" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270"/>
-<smd name="23" x="-0.75" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270"/>
-<smd name="24" x="-1.25" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270"/>
+<smd name="1" x="-1.95" y="1.25" dx="0.85" dy="0.3" layer="1" cream="no"/>
+<smd name="2" x="-1.95" y="0.75" dx="0.85" dy="0.3" layer="1" cream="no"/>
+<smd name="3" x="-1.95" y="0.25" dx="0.85" dy="0.3" layer="1" cream="no"/>
+<smd name="4" x="-1.95" y="-0.25" dx="0.85" dy="0.3" layer="1" cream="no"/>
+<smd name="5" x="-1.95" y="-0.75" dx="0.85" dy="0.3" layer="1" cream="no"/>
+<smd name="6" x="-1.95" y="-1.25" dx="0.85" dy="0.3" layer="1" cream="no"/>
+<smd name="7" x="-1.25" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90" cream="no"/>
+<smd name="8" x="-0.75" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90" cream="no"/>
+<smd name="9" x="-0.25" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90" cream="no"/>
+<smd name="10" x="0.25" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90" cream="no"/>
+<smd name="11" x="0.75" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90" cream="no"/>
+<smd name="12" x="1.25" y="-1.95" dx="0.85" dy="0.3" layer="1" rot="R90" cream="no"/>
+<smd name="13" x="1.95" y="-1.25" dx="0.85" dy="0.3" layer="1" rot="R180" cream="no"/>
+<smd name="14" x="1.95" y="-0.75" dx="0.85" dy="0.3" layer="1" rot="R180" cream="no"/>
+<smd name="15" x="1.95" y="-0.25" dx="0.85" dy="0.3" layer="1" rot="R180" cream="no"/>
+<smd name="16" x="1.95" y="0.25" dx="0.85" dy="0.3" layer="1" rot="R180" cream="no"/>
+<smd name="17" x="1.95" y="0.75" dx="0.85" dy="0.3" layer="1" rot="R180" cream="no"/>
+<smd name="18" x="1.95" y="1.25" dx="0.85" dy="0.3" layer="1" rot="R180" cream="no"/>
+<smd name="19" x="1.25" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270" cream="no"/>
+<smd name="20" x="0.75" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270" cream="no"/>
+<smd name="21" x="0.25" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270" cream="no"/>
+<smd name="22" x="-0.25" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270" cream="no"/>
+<smd name="23" x="-0.75" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270" cream="no"/>
+<smd name="24" x="-1.25" y="1.95" dx="0.85" dy="0.3" layer="1" rot="R270" cream="no"/>
 <smd name="EXP" x="0" y="0" dx="2.55" dy="2.55" layer="1" stop="no" cream="no"/>
 <text x="-2" y="2.5" size="1.27" layer="25">&gt;NAME</text>
 <text x="-2" y="-3.75" size="1.27" layer="27">&gt;VALUE</text>
 <polygon width="0.2032" layer="31">
-<vertex x="-1" y="1"/>
-<vertex x="1" y="1"/>
-<vertex x="1" y="-1"/>
-<vertex x="-1" y="-1"/>
+<vertex x="-0.9" y="0.9"/>
+<vertex x="0.9" y="0.9"/>
+<vertex x="0.9" y="-0.9"/>
+<vertex x="-0.9" y="-0.9"/>
 </polygon>
 <wire x1="-1.651" y1="2.54" x2="1.651" y2="2.54" width="0.127" layer="39"/>
 <wire x1="2.54" y1="1.651" x2="2.54" y2="-1.651" width="0.127" layer="39"/>
