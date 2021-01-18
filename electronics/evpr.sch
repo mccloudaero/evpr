@@ -2319,7 +2319,7 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.127" layer="21"/>
 <wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.5" width="0.127" layer="21"/>
 <circle x="-1.05" y="0.85" radius="0.05" width="0.127" layer="21"/>
-<text x="2.2" y="0.85" size="1.27" layer="51">&gt;NAME</text>
+<text x="2.2" y="1.35" size="1.27" layer="51">&gt;NAME</text>
 <polygon width="0.127" layer="39" spacing="1.4224">
 <vertex x="-2.54" y="1.27"/>
 <vertex x="-1.27" y="2.54"/>
@@ -2330,22 +2330,22 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <vertex x="-1.27" y="-2.54"/>
 <vertex x="-2.54" y="-1.27"/>
 </polygon>
-<rectangle x1="-0.575" y1="1.1" x2="-0.425" y2="1.8" layer="31"/>
-<rectangle x1="-1.8" y1="0.425" x2="-0.5" y2="0.575" layer="31"/>
-<rectangle x1="-1.075" y1="1.1" x2="-0.925" y2="1.8" layer="31"/>
-<rectangle x1="-0.075" y1="1.1" x2="0.075" y2="1.8" layer="31"/>
-<rectangle x1="0.425" y1="1.1" x2="0.575" y2="1.8" layer="31"/>
-<rectangle x1="0.925" y1="1.1" x2="1.075" y2="1.8" layer="31"/>
-<rectangle x1="0.925" y1="-1.8" x2="1.075" y2="-1.1" layer="31"/>
-<rectangle x1="0.425" y1="-1.8" x2="0.575" y2="-1.1" layer="31"/>
-<rectangle x1="-0.075" y1="-1.8" x2="0.075" y2="-1.1" layer="31"/>
-<rectangle x1="-0.575" y1="-1.8" x2="-0.425" y2="-1.1" layer="31"/>
-<rectangle x1="-1.075" y1="-1.8" x2="-0.925" y2="-1.1" layer="31"/>
-<rectangle x1="-1.8" y1="-0.075" x2="-0.5" y2="0.075" layer="31"/>
-<rectangle x1="-1.8" y1="-0.575" x2="-0.5" y2="-0.425" layer="31"/>
-<rectangle x1="0.5" y1="-0.575" x2="1.8" y2="-0.425" layer="31"/>
-<rectangle x1="0.5" y1="-0.075" x2="1.8" y2="0.075" layer="31"/>
-<rectangle x1="0.5" y1="0.425" x2="1.8" y2="0.575" layer="31"/>
+<rectangle x1="-1.1" y1="1.2375" x2="-0.9" y2="1.7625" layer="31"/>
+<rectangle x1="-1.694971875" y1="-0.11263125" x2="-0.808228125" y2="0.11263125" layer="31"/>
+<rectangle x1="0.808228125" y1="0.38736875" x2="1.694971875" y2="0.61263125" layer="31"/>
+<rectangle x1="0.808228125" y1="-0.61263125" x2="1.694971875" y2="-0.38736875" layer="31"/>
+<rectangle x1="0.808228125" y1="-0.11263125" x2="1.694971875" y2="0.11263125" layer="31"/>
+<rectangle x1="-1.694971875" y1="0.38736875" x2="-0.808228125" y2="0.61263125" layer="31"/>
+<rectangle x1="-1.694971875" y1="-0.61263125" x2="-0.808228125" y2="-0.38736875" layer="31"/>
+<rectangle x1="-0.6" y1="1.2375" x2="-0.4" y2="1.7625" layer="31"/>
+<rectangle x1="-0.1" y1="1.2375" x2="0.1" y2="1.7625" layer="31"/>
+<rectangle x1="0.4" y1="1.2375" x2="0.6" y2="1.7625" layer="31"/>
+<rectangle x1="0.9" y1="1.2375" x2="1.1" y2="1.7625" layer="31"/>
+<rectangle x1="-1.1" y1="-1.7625" x2="-0.9" y2="-1.2375" layer="31"/>
+<rectangle x1="-0.6" y1="-1.7625" x2="-0.4" y2="-1.2375" layer="31"/>
+<rectangle x1="-0.1" y1="-1.7625" x2="0.1" y2="-1.2375" layer="31"/>
+<rectangle x1="0.4" y1="-1.7625" x2="0.6" y2="-1.2375" layer="31"/>
+<rectangle x1="0.9" y1="-1.7625" x2="1.1" y2="-1.2375" layer="31"/>
 </package>
 <package name="SRN5040TA">
 <smd name="P$1" x="-1.8" y="0" dx="1.5" dy="4.2" layer="1"/>
