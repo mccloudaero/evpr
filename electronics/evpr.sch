@@ -1048,7 +1048,6 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <wire x1="-0.3048" y1="4.3688" x2="-1.9812" y2="4.3688" width="0.1524" layer="51"/>
 <wire x1="-1.9812" y1="4.3688" x2="-1.9812" y2="-4.3688" width="0.1524" layer="51"/>
 <wire x1="0.3048" y1="4.3688" x2="-0.3048" y2="4.3688" width="0.1524" layer="51" curve="-180"/>
-<wire x1="-2.1336" y1="-4.4958" x2="2.1336" y2="-4.4958" width="0.1524" layer="21"/>
 <wire x1="2.1336" y1="4.4958" x2="-2.1336" y2="4.4958" width="0.1524" layer="21"/>
 <wire x1="-3.7084" y1="-4.3434" x2="-3.7084" y2="4.3434" width="0.1524" layer="39"/>
 <wire x1="-3.7084" y1="4.3434" x2="-2.2352" y2="4.3434" width="0.1524" layer="39"/>
@@ -1079,7 +1078,7 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <smd name="13" x="2.4638" y="2.54" dx="1.9812" dy="0.5588" layer="1"/>
 <smd name="14" x="2.4638" y="3.81" dx="1.9812" dy="0.5588" layer="1"/>
 <text x="-2.1844" y="3.0226" size="1.27" layer="51" ratio="6" rot="SR0">*</text>
-<text x="-3.302" y="4.2418" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
+<text x="-1.832" y="3.9418" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
 <text x="-3.2766" y="-0.635" size="1.27" layer="25" ratio="6" rot="SR0">&gt;Name</text>
 <polygon width="0.0254" layer="21">
 <vertex x="3.9624" y="-1.0795"/>
@@ -1325,7 +1324,7 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <smd name="15" x="2.2352" y="1.25095" dx="1.7018" dy="0.2794" layer="1"/>
 <smd name="16" x="2.2352" y="1.75133125" dx="1.7018" dy="0.2794" layer="1"/>
 <text x="-1.7526" y="0.7112" size="1.27" layer="51" ratio="6" rot="SR0">*</text>
-<text x="-3.0734" y="1.905" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
+<text x="-1.8034" y="1.905" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
 <text x="-3.2766" y="-0.635" size="1.27" layer="25" ratio="6" rot="SR0">&gt;Name</text>
 <polygon width="0.0254" layer="21">
 <vertex x="3.5941" y="-1.06045"/>
@@ -2190,6 +2189,10 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <rectangle x1="0.4318" y1="-0.4318" x2="0.8382" y2="0.4318" layer="51"/>
 <rectangle x1="-0.8382" y1="-0.4318" x2="-0.4318" y2="0.4318" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.4001" x2="0.1999" y2="0.4001" layer="35"/>
+<wire x1="-1" y1="0.6" x2="1" y2="0.6" width="0.127" layer="21"/>
+<wire x1="1" y1="0.6" x2="1" y2="-0.6" width="0.127" layer="21"/>
+<wire x1="1" y1="-0.6" x2="-1" y2="-0.6" width="0.127" layer="21"/>
+<wire x1="-1" y1="-0.6" x2="-1" y2="0.6" width="0.127" layer="21"/>
 </package>
 <package name="POWERPAK_SO8DUAL">
 <smd name="D$1B" x="2.795" y="0.635" dx="1.02" dy="0.61" layer="1"/>
@@ -2265,13 +2268,15 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <rectangle x1="0.39" y1="2" x2="0.88" y2="3.1" layer="51"/>
 <rectangle x1="-0.88" y1="2" x2="-0.39" y2="3.1" layer="51"/>
 <rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.1" layer="51"/>
-<circle x="-2" y="-1" radius="0.1" width="0.1" layer="21"/>
+<circle x="-3.27" y="-1" radius="0.1" width="0.1" layer="21"/>
 <polygon width="0.127" layer="39">
 <vertex x="-3.5" y="4"/>
 <vertex x="-3.5" y="-4"/>
 <vertex x="3.5" y="-4"/>
 <vertex x="3.5" y="4"/>
 </polygon>
+<wire x1="-2.54" y1="1.27" x2="-2.54" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="2.54" y1="1.27" x2="2.54" y2="-1.27" width="0.127" layer="21"/>
 </package>
 <package name="QFN16">
 <smd name="SW" x="-1.15" y="0.5" dx="1.3" dy="0.25" layer="1" cream="no"/>
@@ -2290,11 +2295,11 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <smd name="TMR" x="0" y="1.45" dx="0.7" dy="0.25" layer="1" rot="R90" cream="no"/>
 <smd name="BST" x="-0.5" y="1.45" dx="0.7" dy="0.25" layer="1" rot="R90" cream="no"/>
 <smd name="PGND" x="-1" y="1.45" dx="0.7" dy="0.25" layer="1" rot="R90" cream="no"/>
-<wire x1="-1.5" y1="1.5" x2="1.5" y2="1.5" width="0.127" layer="51"/>
-<wire x1="1.5" y1="1.5" x2="1.5" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.5" width="0.127" layer="51"/>
-<circle x="-1.15" y="1.15" radius="0.05" width="0.127" layer="51"/>
+<wire x1="-1.5" y1="1.5" x2="1.5" y2="1.5" width="0.127" layer="21"/>
+<wire x1="1.5" y1="1.5" x2="1.5" y2="-1.5" width="0.127" layer="21"/>
+<wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.127" layer="21"/>
+<wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.5" width="0.127" layer="21"/>
+<circle x="-1.05" y="0.85" radius="0.05" width="0.127" layer="21"/>
 <text x="2.2" y="0.85" size="1.27" layer="51">&gt;NAME</text>
 <polygon width="0.127" layer="39" spacing="1.4224">
 <vertex x="-2.54" y="1.27"/>
@@ -2336,6 +2341,7 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <vertex x="3.5" y="-3.5"/>
 <vertex x="3.5" y="3.5"/>
 </polygon>
+<text x="0.7" y="-2.9" size="1.27" layer="25" rot="R90">&gt;NAME</text>
 </package>
 </packages>
 <symbols>

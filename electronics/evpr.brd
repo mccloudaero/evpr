@@ -8,7 +8,7 @@
 </settings>
 <grid distance="10" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="1" altunitdist="mil" altunit="mil"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="yes"/>
 <layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
 <layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
@@ -23,23 +23,23 @@
 <layer number="13" name="Route13" color="21" fill="1" visible="no" active="no"/>
 <layer number="14" name="Route14" color="22" fill="1" visible="no" active="yes"/>
 <layer number="15" name="Route15" color="23" fill="1" visible="no" active="yes"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
-<layer number="20" name="Dimension" color="24" fill="1" visible="no" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
-<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
-<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
 <layer number="35" name="tGlue" color="7" fill="4" visible="no" active="yes"/>
@@ -47,7 +47,7 @@
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
-<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="no" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="no" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
@@ -1487,7 +1487,6 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <wire x1="-0.3048" y1="4.3688" x2="-1.9812" y2="4.3688" width="0.1524" layer="51"/>
 <wire x1="-1.9812" y1="4.3688" x2="-1.9812" y2="-4.3688" width="0.1524" layer="51"/>
 <wire x1="0.3048" y1="4.3688" x2="-0.3048" y2="4.3688" width="0.1524" layer="51" curve="-180"/>
-<wire x1="-2.1336" y1="-4.4958" x2="2.1336" y2="-4.4958" width="0.1524" layer="21"/>
 <wire x1="2.1336" y1="4.4958" x2="-2.1336" y2="4.4958" width="0.1524" layer="21"/>
 <wire x1="-3.7084" y1="-4.3434" x2="-3.7084" y2="4.3434" width="0.1524" layer="39"/>
 <wire x1="-3.7084" y1="4.3434" x2="-2.2352" y2="4.3434" width="0.1524" layer="39"/>
@@ -1518,7 +1517,7 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <smd name="13" x="2.4638" y="2.54" dx="1.9812" dy="0.5588" layer="1"/>
 <smd name="14" x="2.4638" y="3.81" dx="1.9812" dy="0.5588" layer="1"/>
 <text x="-2.1844" y="3.0226" size="1.27" layer="51" ratio="6" rot="SR0">*</text>
-<text x="-3.302" y="4.2418" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
+<text x="-1.832" y="3.9418" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
 <text x="-3.2766" y="-0.635" size="1.27" layer="25" ratio="6" rot="SR0">&gt;Name</text>
 <polygon width="0.0254" layer="21">
 <vertex x="3.9624" y="-1.0795"/>
@@ -1746,7 +1745,7 @@ Source: http://cds.linear.com/docs/Datasheet/5598f.pdf</description>
 <smd name="15" x="2.2352" y="1.25095" dx="1.7018" dy="0.2794" layer="1"/>
 <smd name="16" x="2.2352" y="1.75133125" dx="1.7018" dy="0.2794" layer="1"/>
 <text x="-1.7526" y="0.7112" size="1.27" layer="51" ratio="6" rot="SR0">*</text>
-<text x="-3.0734" y="1.905" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
+<text x="-1.8034" y="1.905" size="1.27" layer="21" ratio="6" rot="SR0">*</text>
 <text x="-3.2766" y="-0.635" size="1.27" layer="25" ratio="6" rot="SR0">&gt;Name</text>
 <polygon width="0.0254" layer="21">
 <vertex x="3.5941" y="-1.06045"/>
@@ -1986,6 +1985,10 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <rectangle x1="0.4318" y1="-0.4318" x2="0.8382" y2="0.4318" layer="51"/>
 <rectangle x1="-0.8382" y1="-0.4318" x2="-0.4318" y2="0.4318" layer="51"/>
 <rectangle x1="-0.1999" y1="-0.4001" x2="0.1999" y2="0.4001" layer="35"/>
+<wire x1="-1" y1="0.6" x2="1" y2="0.6" width="0.127" layer="21"/>
+<wire x1="1" y1="0.6" x2="1" y2="-0.6" width="0.127" layer="21"/>
+<wire x1="1" y1="-0.6" x2="-1" y2="-0.6" width="0.127" layer="21"/>
+<wire x1="-1" y1="-0.6" x2="-1" y2="0.6" width="0.127" layer="21"/>
 </package>
 <package name="POWERPAK_SO8DUAL">
 <smd name="D$1B" x="2.795" y="0.635" dx="1.02" dy="0.61" layer="1"/>
@@ -2061,13 +2064,15 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <rectangle x1="0.39" y1="2" x2="0.88" y2="3.1" layer="51"/>
 <rectangle x1="-0.88" y1="2" x2="-0.39" y2="3.1" layer="51"/>
 <rectangle x1="-2.15" y1="2" x2="-1.66" y2="3.1" layer="51"/>
-<circle x="-2" y="-1" radius="0.1" width="0.1" layer="21"/>
+<circle x="-3.27" y="-1" radius="0.1" width="0.1" layer="21"/>
 <polygon width="0.127" layer="39">
 <vertex x="-3.5" y="4"/>
 <vertex x="-3.5" y="-4"/>
 <vertex x="3.5" y="-4"/>
 <vertex x="3.5" y="4"/>
 </polygon>
+<wire x1="-2.54" y1="1.27" x2="-2.54" y2="-1.27" width="0.127" layer="21"/>
+<wire x1="2.54" y1="1.27" x2="2.54" y2="-1.27" width="0.127" layer="21"/>
 </package>
 <package name="QFN16">
 <smd name="SW" x="-1.15" y="0.5" dx="1.3" dy="0.25" layer="1" cream="no"/>
@@ -2086,11 +2091,11 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <smd name="TMR" x="0" y="1.45" dx="0.7" dy="0.25" layer="1" rot="R90" cream="no"/>
 <smd name="BST" x="-0.5" y="1.45" dx="0.7" dy="0.25" layer="1" rot="R90" cream="no"/>
 <smd name="PGND" x="-1" y="1.45" dx="0.7" dy="0.25" layer="1" rot="R90" cream="no"/>
-<wire x1="-1.5" y1="1.5" x2="1.5" y2="1.5" width="0.127" layer="51"/>
-<wire x1="1.5" y1="1.5" x2="1.5" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.5" width="0.127" layer="51"/>
-<circle x="-1.15" y="1.15" radius="0.05" width="0.127" layer="51"/>
+<wire x1="-1.5" y1="1.5" x2="1.5" y2="1.5" width="0.127" layer="21"/>
+<wire x1="1.5" y1="1.5" x2="1.5" y2="-1.5" width="0.127" layer="21"/>
+<wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.127" layer="21"/>
+<wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.5" width="0.127" layer="21"/>
+<circle x="-1.05" y="0.85" radius="0.05" width="0.127" layer="21"/>
 <text x="2.2" y="0.85" size="1.27" layer="51">&gt;NAME</text>
 <polygon width="0.127" layer="39" spacing="1.4224">
 <vertex x="-2.54" y="1.27"/>
@@ -2132,6 +2137,7 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <vertex x="3.5" y="-3.5"/>
 <vertex x="3.5" y="3.5"/>
 </polygon>
+<text x="0.7" y="-2.9" size="1.27" layer="25" rot="R90">&gt;NAME</text>
 </package>
 </packages>
 </library>
@@ -3689,18 +3695,18 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="C.DS6" library="mccloud" package="C0603" value="22uF" x="40.6654" y="-16.8148" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="CL10A226MO7JZNC" x="40.6654" y="-16.8148" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="42.0878" y="-14.8336" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
+<attribute name="NAME" x="39.9796" y="-15.5702" size="0.8128" layer="26" font="vector" ratio="15" rot="MR270"/>
 <attribute name="VALUE" x="38.7604" y="-17.4498" size="1.27" layer="28" rot="MR90"/>
 </element>
 <element name="C.DS7" library="mccloud" package="C0603" value="10uF" x="47.2186" y="-15.3416" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="GRM188R61A106KE69D" x="47.2186" y="-15.3416" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="45.8216" y="-16.7386" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
+<attribute name="NAME" x="45.5676" y="-16.7386" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
 <attribute name="VALUE" x="45.3136" y="-15.9766" size="1.27" layer="28" rot="MR90"/>
 </element>
 <element name="F.DS1" library="mccloud" package="C1-M" value="1A" x="43.4086" y="-24.5872" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="C1Q 1" x="43.4086" y="-24.5872" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="C1Q 1" x="156.4386" y="4.6228" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="41.7576" y="-25.3238" size="0.8128" layer="25" font="vector" ratio="15" rot="SR90"/>
+<attribute name="NAME" x="42.2656" y="-25.8318" size="0.8128" layer="25" font="vector" ratio="15" rot="SR90"/>
 <attribute name="VENDOR" value="BelFuse" x="156.4386" y="4.6228" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
 <element name="X.USB1" library="mccloud" package="FCI_10118193-0001LF" value="10118193-0001LF" x="38.1" y="-38.862" smashed="yes" rot="R45">
@@ -3710,7 +3716,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="DIGI-KEY_PURCHASE_URL" value="https://www.digikey.com/product-detail/en/amphenol-icc-fci/10118193-0001LF/609-4616-1-ND/2785380?utm_source=snapeda&amp;utm_medium=aggregator&amp;utm_campaign=symbol" x="118.02426875" y="-55.924475" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="MF" value="Amphenol ICC" x="118.02426875" y="-55.924475" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="MP" value="10118193-0001LF" x="118.02426875" y="-55.924475" size="1.778" layer="27" rot="R45" display="off"/>
-<attribute name="NAME" x="32.6493875" y="-38.862346875" size="0.8128" layer="25" font="vector" ratio="15" rot="R45"/>
+<attribute name="NAME" x="33.6653875" y="-37.592346875" size="0.8128" layer="25" font="vector" ratio="15" rot="R45"/>
 <attribute name="PACKAGE" value="None" x="118.02426875" y="-55.924475" size="1.778" layer="27" rot="R45" display="off"/>
 <attribute name="VALUE" x="38.466021875" y="-44.723771875" size="1.27" layer="27" rot="R45"/>
 </element>
@@ -3777,14 +3783,14 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="R.VI2" library="mccloud" package="R0603" value="100k" x="-13.716" y="-24.13" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-13.716" y="-24.13" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-15.113" y="-24.765" size="0.8128" layer="26" font="vector" ratio="15" rot="MR180"/>
+<attribute name="NAME" x="-15.113" y="-21.971" size="0.8128" layer="26" font="vector" ratio="15" rot="MR180"/>
 <attribute name="POPULARITY" value="77" x="-13.716" y="-24.13" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-13.716" y="-24.13" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="VALUE" x="-14.351" y="-22.225" size="1.27" layer="28" rot="MR180"/>
 </element>
 <element name="R.VI3" library="mccloud" package="R0603" value="22.1k" x="-16.9418" y="-22.352" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="RMCF0603FT22K1" x="-16.9418" y="-22.352" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-17.5768" y="-22.987" size="0.8128" layer="26" font="vector" ratio="15" rot="MR180"/>
+<attribute name="NAME" x="-18.3388" y="-22.987" size="0.8128" layer="26" font="vector" ratio="15" rot="MR180"/>
 <attribute name="POPULARITY" value="77" x="-16.9418" y="-22.352" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-16.9418" y="-22.352" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="VALUE" x="-17.5768" y="-20.447" size="1.27" layer="28" rot="MR180"/>
@@ -3805,14 +3811,14 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="R.BI1" library="mccloud" package="R0603" value="47.5k" x="-31.242" y="-34.6964" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="RMCF0603FT47K5" x="-31.242" y="-34.6964" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-32.7914" y="-33.655" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
+<attribute name="NAME" x="-29.845" y="-36.0934" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
 <attribute name="POPULARITY" value="77" x="-31.242" y="-34.6964" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-31.242" y="-34.6964" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" x="-30.607" y="-36.6014" size="1.27" layer="28" rot="MR0"/>
 </element>
 <element name="R.BI2" library="mccloud" package="R0603" value="22.1k" x="-31.2674" y="-36.7792" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="RMCF0603FT22K1" x="-31.2674" y="-36.7792" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-29.8704" y="-36.1442" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
+<attribute name="NAME" x="-29.8704" y="-38.1762" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
 <attribute name="POPULARITY" value="77" x="-31.2674" y="-36.7792" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-31.2674" y="-36.7792" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" x="-30.6324" y="-38.6842" size="1.27" layer="28" rot="MR0"/>
@@ -3833,21 +3839,21 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="R.ESP2" library="mccloud" package="R0603" value="10k" x="28.702" y="-23.622" smashed="yes" rot="R300">
 <attribute name="COMPONENT" value="RMCF0603FT10K0" x="28.702" y="-23.622" size="1.778" layer="27" rot="R300" display="off"/>
-<attribute name="NAME" x="28.451825" y="-21.281371875" size="0.8128" layer="25" font="vector" ratio="15" rot="R300"/>
+<attribute name="NAME" x="29.409371875" y="-23.364175" size="0.8128" layer="25" font="vector" ratio="15" rot="R30"/>
 <attribute name="POPULARITY" value="77" x="28.702" y="-23.622" size="1.778" layer="27" rot="R300" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="28.702" y="-23.622" size="1.778" layer="27" rot="R300" display="off"/>
 <attribute name="VALUE" x="26.73471875" y="-24.024571875" size="1.27" layer="27" rot="R300"/>
 </element>
 <element name="R.BC1" library="mccloud" package="R0603" value="100k" x="-32.004" y="-41.402" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-32.004" y="-41.402" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="-30.099" y="-39.751" size="0.8128" layer="26" font="vector" ratio="15" rot="MR270"/>
+<attribute name="NAME" x="-30.607" y="-40.513" size="0.8128" layer="26" font="vector" ratio="15" rot="MR240"/>
 <attribute name="POPULARITY" value="77" x="-32.004" y="-41.402" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-32.004" y="-41.402" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="VALUE" x="-30.099" y="-40.767" size="1.27" layer="28" rot="MR270"/>
 </element>
 <element name="R.BC2" library="mccloud" package="R0603" value="100k" x="-31.2674" y="-38.8366" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="RMCF0603FT100K" x="-31.2674" y="-38.8366" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="-29.8704" y="-38.2016" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
+<attribute name="NAME" x="-29.8704" y="-40.2336" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
 <attribute name="POPULARITY" value="77" x="-31.2674" y="-38.8366" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="-31.2674" y="-38.8366" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="VALUE" x="-30.6324" y="-40.7416" size="1.27" layer="28" rot="MR0"/>
@@ -3927,7 +3933,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <element name="U.EC1" library="mccloud" package="MOL0024A" value="TPSM84824MOLR" x="-11.684" y="-36.576" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="TPSM84824MOLR" x="-11.684" y="-36.576" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="TPSM84824MOLR" x="-11.684" y="-36.576" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-6.477" y="-35.2806" size="0.8128" layer="26" font="vector" ratio="15" rot="SMR90"/>
+<attribute name="NAME" x="-17.145" y="-35.5346" size="0.8128" layer="26" font="vector" ratio="15" rot="SMR90"/>
 <attribute name="VENDOR" value="Texas Instruments" x="-11.684" y="-36.576" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
 <element name="R.EC1" library="mccloud" package="R0603" value="10k 0.1%" x="-15.875" y="-33.6296" smashed="yes" rot="R270">
@@ -4019,17 +4025,17 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="U.DS2" library="mccloud" package="TSOT23-6" value="" x="43.7388" y="-17.0434" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="AP63205WU-7" x="43.7388" y="-17.0434" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="42.1513" y="-18.6309" size="0.8128" layer="26" font="vector" ratio="15" rot="MR180"/>
+<attribute name="NAME" x="42.4053" y="-14.5669" size="0.8128" layer="26" font="vector" ratio="15" rot="MR180"/>
 <attribute name="VALUE" x="42.1513" y="-14.1859" size="1.016" layer="28" ratio="10" rot="MR180"/>
 </element>
 <element name="C.DS5" library="mccloud" package="C0603" value="0.1uF" x="46.8122" y="-20.0152" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="46.8122" y="-20.0152" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="45.9232" y="-19.8882" size="0.8128" layer="25" font="vector" ratio="15" rot="R90"/>
+<attribute name="NAME" x="45.9232" y="-20.9042" size="0.8128" layer="25" font="vector" ratio="15" rot="R90"/>
 <attribute name="VALUE" x="48.7172" y="-20.6502" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C.DS8" library="mccloud" package="C0603" value="22uF" x="40.6654" y="-20.0152" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="CL10A226MO7JZNC" x="40.6654" y="-20.0152" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="40.0304" y="-18.6182" size="0.8128" layer="26" font="vector" ratio="15" rot="MR270"/>
+<attribute name="NAME" x="40.0304" y="-18.8722" size="0.8128" layer="26" font="vector" ratio="15" rot="MR270"/>
 <attribute name="VALUE" x="42.5704" y="-19.3802" size="1.27" layer="28" rot="MR270"/>
 </element>
 <element name="X.ESP2" library="mccloud" package="PTS645" value="RSTBTN" x="33.9977375" y="-28.014728125" smashed="yes" rot="R300">
@@ -4038,7 +4044,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="Q.BI1" library="mccloud" package="SOT23" value="BSS84-7-F" x="-22.8092" y="-23.4442" smashed="yes" rot="R270">
 <attribute name="COMPONENT" value="BSS84-7-F" x="-22.8092" y="-23.4442" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="-23.0886" y="-24.9936" size="0.8128" layer="25" font="vector" ratio="15"/>
+<attribute name="NAME" x="-24.4856" y="-25.1714" size="0.8128" layer="25" font="vector" ratio="15" rot="R270"/>
 <attribute name="VALUE" x="-25.9842" y="-21.5392" size="1.27" layer="27" rot="R270"/>
 </element>
 <element name="Q.BI2" library="mccloud" package="SOT23" value="BSS84-7-F" x="-31.0388" y="-26.7208" smashed="yes" rot="MR180">
@@ -4053,7 +4059,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="C.DS1" library="mccloud" package="810RADCAN" value="  1000µF " x="40.132" y="-30.734" smashed="yes" rot="MR0">
 <attribute name="COMPONENT" value="UWT0J102MNL1GS" x="40.132" y="-30.734" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="44.022" y="-35.846" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
+<attribute name="NAME" x="43.514" y="-35.846" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
 <attribute name="VALUE" x="35.132" y="-30.734" size="1.27" layer="28" rot="MR0"/>
 </element>
 <element name="TP1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-28.956" y="-24.892" smashed="yes" rot="R90">
@@ -4124,7 +4130,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="Q.VI1" library="mccloud" package="SOT23" value="" x="-10.16" y="-26.162" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="VESD16A2-03G-G3-08" x="-10.16" y="-26.162" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-9.271" y="-24.003" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
+<attribute name="NAME" x="-9.271" y="-24.765" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
 <attribute name="VALUE" x="-13.335" y="-28.067" size="1.27" layer="28" rot="MR90"/>
 </element>
 <element name="C.USB2" library="mccloud" package="C0603" value="0.1uF" x="30.8864" y="-23.9522" smashed="yes" rot="MR270">
@@ -4159,7 +4165,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="U.ZZ1" library="mccloud" package="TSOT23-6" value="" x="17.114390625" y="-30.2023875" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="AP63203WU-7" x="21.37768125" y="-25.394625" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="17.010221875" y="-33.536346875" size="0.8128" layer="25" font="vector" ratio="15" rot="R30"/>
+<attribute name="NAME" x="16.772346875" y="-33.027778125" size="0.8128" layer="25" font="vector" ratio="15" rot="R120"/>
 <attribute name="VALUE" x="13.845971875" y="-30.256321875" size="1.016" layer="27" ratio="10" rot="R300"/>
 </element>
 <element name="C.ZZ3" library="mccloud" package="C0603" value="0.1uF" x="22.035640625" y="-31.225396875" smashed="yes" rot="R30">
@@ -4210,7 +4216,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="C.ZZ5" library="mccloud" package="C0603" value="0.1uF" x="15.944846875" y="-27.23205625" smashed="yes" rot="R210">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="15.944846875" y="-27.23205625" size="1.778" layer="27" rot="R210" display="off"/>
-<attribute name="NAME" x="17.701271875" y="-27.21048125" size="0.8128" layer="25" font="vector" ratio="15" rot="R210"/>
+<attribute name="NAME" x="16.431271875" y="-25.43248125" size="0.8128" layer="25" font="vector" ratio="15" rot="R210"/>
 <attribute name="VALUE" x="15.542271875" y="-25.264775" size="1.27" layer="27" rot="R210"/>
 </element>
 <element name="C.DS9" library="mccloud" package="C0603" value="0.1uF" x="46.9646" y="-15.3416" smashed="yes" rot="R270">
@@ -4258,7 +4264,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="X.SI3" library="mccloud" package="BM03B-PASS-1-TFT(LF)(SN)" value="BM03B-PASS-1-TFT(LF)(SN)" x="5.731284375" y="-41.96063125" smashed="yes" rot="MR240">
 <attribute name="COMPONENT" value="BM03B-PASS-1-TFT(LF)(SN)" x="5.731284375" y="-41.96063125" size="1.778" layer="28" rot="MR240" display="off"/>
-<attribute name="NAME" x="6.446221875" y="-48.205453125" size="0.8128" layer="26" font="vector" ratio="15" rot="MR150"/>
+<attribute name="NAME" x="3.398221875" y="-36.013453125" size="0.8128" layer="26" font="vector" ratio="15" rot="MR150"/>
 </element>
 <element name="X.DS1" library="mccloud" package="BM04B-PASS-1-TFT(LF)(SN)" value="BM04B-PASS-1-TFT(LF)(SN)" x="38.1508" y="-18.161" smashed="yes" rot="R180">
 <attribute name="COMPONENT" value="BM04B-PASS-1-TFT(LF)(SN)" x="38.1508" y="-18.161" size="1.778" layer="27" rot="R180" display="off"/>
@@ -4266,12 +4272,12 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="C.VI1" library="mccloud" package="C0603" value="0.1uF" x="-18.796" y="-25.4" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-18.796" y="-25.4" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="-18.161" y="-26.543" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
+<attribute name="NAME" x="-18.161" y="-27.051" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
 <attribute name="VALUE" x="-20.701" y="-26.035" size="1.27" layer="28" rot="MR90"/>
 </element>
 <element name="C.VI3" library="mccloud" package="C0603" value="0.1uF" x="-7.5438" y="-27.8892" smashed="yes" rot="MR180">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="-7.5438" y="-27.8892" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="-7.0358" y="-31.2928" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
+<attribute name="NAME" x="-5.7912" y="-27.3558" size="0.8128" layer="26" font="vector" ratio="15" rot="MR0"/>
 <attribute name="VALUE" x="-8.1788" y="-25.9842" size="1.27" layer="28" rot="MR180"/>
 </element>
 <element name="C.EC7" library="mccloud" package="C0603" value="0.1uF" x="-18.034" y="-41.656" smashed="yes" rot="MR90">
@@ -4301,7 +4307,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="C.DS10" library="mccloud" package="C0603" value="0.1uF" x="46.609" y="-23.2664" smashed="yes" rot="R90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="46.609" y="-23.2664" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="45.974" y="-24.4094" size="0.8128" layer="25" font="vector" ratio="15" rot="R90"/>
+<attribute name="NAME" x="45.974" y="-25.1714" size="0.8128" layer="25" font="vector" ratio="15" rot="R90"/>
 <attribute name="VALUE" x="48.514" y="-23.9014" size="1.27" layer="27" rot="R90"/>
 </element>
 <element name="C.DS11" library="mccloud" package="C0603" value="0.1uF" x="46.863" y="-31.5976" smashed="yes" rot="R90">
@@ -4379,7 +4385,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="44.831" y="-34.036" size="0.0254" layer="27"/>
 </element>
 <element name="TP3" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="30.6578" y="-23.876" smashed="yes">
-<attribute name="NAME" x="30.6657" y="-22.6657" size="0.8128" layer="25" font="vector" ratio="15"/>
+<attribute name="NAME" x="31.1737" y="-24.1897" size="0.8128" layer="25" font="vector" ratio="15"/>
 <attribute name="POPULARITY" value="0" x="30.6578" y="-23.876" size="1.778" layer="27" display="off"/>
 <attribute name="TP_SIGNAL_NAME" value="" x="30.6578" y="-25.781" size="1" layer="37"/>
 <attribute name="VALUE" x="30.2768" y="-24.384" size="0.0254" layer="27"/>
@@ -4416,7 +4422,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="Q.YY1" library="mccloud" package="POWERPAK_SO8DUAL" value="SI7997DP" x="-21.59" y="-34.798" smashed="yes" rot="MR270">
 <attribute name="COMPONENT" value="SI7997DP" x="-21.59" y="-34.798" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="-20.828" y="-39.116" size="0.8128" layer="26" font="vector" ratio="15" rot="MR180"/>
+<attribute name="NAME" x="-19.05" y="-39.116" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
 </element>
 <element name="Q.YY2" library="mccloud" package="SOIC8" value="CSD88537NDT" x="-18.034" y="-41.402" smashed="yes" rot="R225">
 <attribute name="COMPONENT" value="CSD88537NDT" x="-18.034" y="-41.402" size="1.778" layer="27" rot="R225" display="off"/>
@@ -4441,6 +4447,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="L.BC1" library="mccloud" package="SRN5040TA" value="33uH" x="-28.4734" y="-40.1574" smashed="yes">
 <attribute name="COMPONENT" value="SRN5040TA-330M" x="-28.4734" y="-40.1574" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-29.1226" y="-37.7146" size="1.27" layer="25" rot="R270"/>
 </element>
 <element name="SJ.BC1" library="jumper" library_urn="urn:adsk.eagle:library:252" package="SJ" package3d_urn="urn:adsk.eagle:package:15471/1" value="" x="-27.686" y="-44.958" smashed="yes">
 <attribute name="NAME" x="-29.845" y="-46.863" size="0.8128" layer="25" font="vector" ratio="15"/>
@@ -5681,6 +5688,23 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="12.363" y1="-39.85211875" x2="11.32111875" y2="-40.894" width="0.254" layer="1"/>
 <wire x1="11.32111875" y1="-40.894" x2="10.668" y2="-40.894" width="0.254" layer="1"/>
 <via x="10.668" y="-40.894" extent="1-16" drill="0.254"/>
+<wire x1="-16.002" y1="-45.72" x2="-16.852" y2="-50.292" width="0" layer="19" extent="16-16"/>
+<wire x1="-15.494" y1="-45.212" x2="-16.002" y2="-45.72" width="0" layer="19" extent="1-1"/>
+<wire x1="-14.986" y1="-44.704" x2="-15.494" y2="-45.212" width="0" layer="19" extent="1-1"/>
+<wire x1="-14.478" y1="-44.196" x2="-14.986" y2="-44.704" width="0" layer="19" extent="1-1"/>
+<wire x1="-13.97" y1="-43.688" x2="-14.478" y2="-44.196" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.746509375" y1="-42.7914625" x2="-14.478" y2="-44.196" width="0" layer="19" extent="1-1"/>
+<wire x1="-16.644534375" y1="-43.6894875" x2="-15.746509375" y2="-42.7914625" width="0" layer="19" extent="1-1"/>
+<wire x1="-17.542559375" y1="-44.587515625" x2="-16.644534375" y2="-43.6894875" width="0" layer="19" extent="1-1"/>
+<wire x1="-14.84848125" y1="-41.8934375" x2="-15.746509375" y2="-42.7914625" width="0" layer="19" extent="1-1"/>
+<wire x1="2.566221875" y1="-41.478578125" x2="-13.97" y2="-43.688" width="0" layer="19" extent="16-16"/>
+<wire x1="10.668" y1="-40.894" x2="5.334" y2="-40.132" width="0" layer="19" extent="1-1"/>
+<wire x1="4.572" y1="-46.736" x2="2.566221875" y2="-41.478578125" width="0" layer="19" extent="16-16"/>
+<wire x1="5.08" y1="-46.736" x2="4.572" y2="-46.736" width="0" layer="19" extent="1-1"/>
+<wire x1="5.588" y1="-46.736" x2="5.08" y2="-46.736" width="0" layer="19" extent="1-1"/>
+<wire x1="4.318" y1="-47.244" x2="4.572" y2="-46.736" width="0" layer="19" extent="1-1"/>
+<wire x1="5.1656" y1="-48.935" x2="4.318" y2="-47.244" width="0" layer="19" extent="1-1"/>
+<wire x1="42.4388" y1="-17.0434" x2="12.363" y2="-39.85211875" width="0" layer="19" extent="1-16"/>
 </signal>
 <signal name="5.0V">
 <contactref element="U.DS1" pad="14"/>
