@@ -16552,15 +16552,6 @@ thermal monitoring, so a
 <wire x1="111.76" y1="124.46" x2="114.3" y2="124.46" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="USING_BAT" class="0">
-<segment>
-<pinref part="U.YY1" gate="A" pin="!ONST1"/>
-<label x="-35.56" y="-30.48" size="1.778" layer="95" rot="MR180" xref="yes"/>
-<wire x1="-40.64" y1="-15.24" x2="-38.1" y2="-15.24" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="-15.24" x2="-38.1" y2="-30.48" width="0.1524" layer="91"/>
-<wire x1="-38.1" y1="-30.48" x2="-35.56" y2="-30.48" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$32" class="0">
 <segment>
 <pinref part="U.YY1" gate="A" pin="VCC"/>
@@ -17193,10 +17184,50 @@ thermal monitoring, so a
 <wire x1="96.52" y1="139.7" x2="96.52" y2="152.4" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="152.4" x2="114.3" y2="152.4" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="U.YY1" gate="A" pin="!ONST1"/>
+<label x="-35.56" y="-30.48" size="1.778" layer="95" rot="MR180" xref="yes"/>
+<wire x1="-40.64" y1="-15.24" x2="-38.1" y2="-15.24" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="-15.24" x2="-38.1" y2="-30.48" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="-30.48" x2="-35.56" y2="-30.48" width="0.1524" layer="91"/>
+</segment>
 </net>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="104,1,73.66,149.86,U.ESP1,3V3,ESP_POWER,,,"/>
+<approved hash="104,1,218.44,30.48,U.DS1,VCC,5.0V,,,"/>
+<approved hash="104,1,-213.36,-17.78,U.EC1,AGND_2,AGND,,,"/>
+<approved hash="104,1,-259.08,-17.78,U.EC1,AGND_3,AGND,,,"/>
+<approved hash="202,1,-259.08,2.54,U.EC1,EN,,,,"/>
+<approved hash="104,1,-213.36,20.32,U.EC1,PGND,GND,,,"/>
+<approved hash="104,1,-213.36,22.86,U.EC1,PGND_2,GND,,,"/>
+<approved hash="104,1,-259.08,22.86,U.EC1,PGND_3,GND,,,"/>
+<approved hash="104,1,-259.08,20.32,U.EC1,PGND_4,GND,,,"/>
+<approved hash="104,1,-259.08,17.78,U.EC1,PGND_5,GND,,,"/>
+<approved hash="104,1,-259.08,15.24,U.EC1,PGND_6,GND,,,"/>
+<approved hash="104,1,-259.08,12.7,U.EC1,PGND_7,GND,,,"/>
+<approved hash="104,1,-259.08,10.16,U.EC1,PGND_8,GND,,,"/>
+<approved hash="104,1,-259.08,33.02,U.EC1,VIN,VRAW,,,"/>
+<approved hash="104,1,-259.08,35.56,U.EC1,VIN_2,VRAW,,,"/>
+<approved hash="104,1,-213.36,33.02,U.EC1,VOUT,VCONV,,,"/>
+<approved hash="104,1,-213.36,35.56,U.EC1,VOUT_2,VCONV,,,"/>
+<approved hash="104,1,-40.64,-2.54,U.YY1,VCC,N$32,,,"/>
+<approved hash="206,1,-213.36,12.7,N$15,,,,,"/>
+<approved hash="206,1,-213.36,10.16,N$15,,,,,"/>
+<approved hash="206,1,-40.64,-12.7,SYS_POWER,,,,,"/>
+<approved hash="206,1,-106.68,-12.7,SYS_POWER,,,,,"/>
+<approved hash="113,1,-32.5284,214.63,D.USB1,,,,,"/>
+<approved hash="113,1,-394.969,3.81,D.VI1,,,,,"/>
+<approved hash="113,1,39.2024,190.5,SJ.ESP1,,,,,"/>
+<approved hash="113,1,30.4377,113.289,X.ESP1,,,,,"/>
+<approved hash="113,1,71.12,46.1505,U.DS2,,,,,"/>
+<approved hash="113,1,-370.84,25.6794,Q.VI1,,,,,"/>
+<approved hash="113,1,-60.96,99.4905,U.ZZ1,,,,,"/>
+<approved hash="113,1,-16.2262,67.31,D.ZZ1,,,,,"/>
+<approved hash="113,1,-434.34,115.23,SJ.BC1,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>
