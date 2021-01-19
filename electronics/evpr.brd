@@ -28,7 +28,7 @@
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
@@ -425,7 +425,7 @@ Many² thanks to Andrew Greenberg</text>
 <text x="34.0614" y="-42.6212" size="0.7112" layer="21" font="vector" ratio="15" distance="20" rot="R30" align="bottom-right">Peter McCloud
 Georges Oates Larsen
 </text>
-<text x="25.9334" y="-43.0022" size="0.889" layer="21" font="vector" ratio="15" rot="R30">EVPR MKII C</text>
+<text x="25.9334" y="-43.0022" size="0.889" layer="21" font="vector" ratio="15" rot="R30">EVPR MKII D</text>
 <wire x1="-39.37" y1="-56.134" x2="-28.448" y2="-56.134" width="0.0254" layer="20"/>
 <wire x1="42.672" y1="-56.134" x2="53.848" y2="-56.134" width="0.0254" layer="20"/>
 <wire x1="53.848" y1="-56.134" x2="53.848" y2="-25.4" width="0.0254" layer="20"/>
@@ -437,7 +437,7 @@ Georges Oates Larsen
 <wire x1="44.196" y1="-37.084" x2="46.736" y2="-34.544" width="0.762" layer="20"/>
 <wire x1="44.196" y1="-37.084" x2="46.736" y2="-34.544" width="0.762" layer="46"/>
 <text x="18.6436" y="-47.1678" size="0.6858" layer="21" font="vector" ratio="20" rot="R30">MCCLOUD AERO</text>
-<text x="28.6258" y="-42.3164" size="0.5588" layer="21" font="vector" ratio="27" rot="R30">2020 10 10</text>
+<text x="28.6258" y="-42.3164" size="0.5588" layer="21" font="vector" ratio="27" rot="R30">2021 01 18</text>
 <wire x1="48.26" y1="-17.78" x2="48.26" y2="-13.462" width="0.0254" layer="20"/>
 <wire x1="50.292" y1="-17.78" x2="48.26" y2="-17.78" width="0.0254" layer="20"/>
 <wire x1="50.292" y1="-24.892" x2="49.784" y2="-24.892" width="0.0254" layer="20"/>
