@@ -481,22 +481,10 @@ Georges Oates Larsen
 <text x="5.588" y="-53.594" size="0.8128" layer="21" font="vector" ratio="15" rot="R270">GND</text>
 <text x="9.906" y="-43.434" size="0.8128" layer="22" font="vector" ratio="15" rot="MR330">GND</text>
 <text x="8.128" y="-37.846" size="0.8128" layer="22" font="vector" ratio="15" rot="MR330">GND</text>
-<wire x1="-39.37" y1="-11.176" x2="69.342" y2="-11.176" width="0.0254" layer="20"/>
-<wire x1="69.342" y1="-11.176" x2="69.342" y2="5.08" width="0.0254" layer="20"/>
-<wire x1="69.342" y1="5.08" x2="-39.37" y2="5.08" width="0.0254" layer="20"/>
-<wire x1="-39.37" y1="5.08" x2="-39.37" y2="-11.176" width="0.0254" layer="20"/>
-<wire x1="55.372" y1="-13.462" x2="55.372" y2="-56.134" width="0.0254" layer="20"/>
-<wire x1="55.372" y1="-56.134" x2="69.342" y2="-56.134" width="0.0254" layer="20"/>
-<wire x1="69.342" y1="-56.134" x2="69.342" y2="-13.462" width="0.0254" layer="20"/>
-<wire x1="69.342" y1="-13.462" x2="55.372" y2="-13.462" width="0.0254" layer="20"/>
 <rectangle x1="-40.894" y1="-12.192" x2="74.93" y2="9.652" layer="2"/>
-<rectangle x1="54.864" y1="-60.198" x2="81.026" y2="-9.144" layer="16"/>
 <rectangle x1="-40.894" y1="-11.938" x2="74.93" y2="9.906" layer="15"/>
-<rectangle x1="54.864" y1="-60.198" x2="81.026" y2="-9.144" layer="1"/>
 <rectangle x1="54.864" y1="-60.452" x2="81.026" y2="-9.398" layer="15"/>
 <rectangle x1="54.61" y1="-60.198" x2="80.772" y2="-9.144" layer="2"/>
-<rectangle x1="-40.894" y1="-11.938" x2="74.93" y2="9.906" layer="1"/>
-<rectangle x1="-40.894" y1="-11.938" x2="74.93" y2="9.906" layer="16"/>
 </plain>
 <libraries>
 <library name="mccloud">
