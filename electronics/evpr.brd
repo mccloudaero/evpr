@@ -4094,12 +4094,12 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 </element>
 <element name="C.DS3" library="mccloud" package="C0603" value="0.1uF" x="46.7614" y="-31.5722" smashed="yes" rot="MR90">
 <attribute name="COMPONENT" value="06033C104JAT2A" x="46.7614" y="-31.5722" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="45.1104" y="-32.9692" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
+<attribute name="NAME" x="46.3804" y="-29.9212" size="0.8128" layer="26" font="vector" ratio="15" rot="MR90"/>
 <attribute name="VALUE" x="44.8564" y="-32.2072" size="1.27" layer="28" rot="MR90"/>
 </element>
 <element name="C.DS1" library="mccloud" package="810RADCAN" value="  1000µF " x="41.148" y="-30.734" smashed="yes" rot="MR340">
 <attribute name="COMPONENT" value="UWT0J102MNL1GS" x="41.148" y="-30.734" size="1.778" layer="28" rot="MR340" display="off"/>
-<attribute name="NAME" x="46.07444375" y="-34.38099375" size="0.8128" layer="26" font="vector" ratio="15" rot="MR340"/>
+<attribute name="NAME" x="45.30299375" y="-26.82355625" size="0.8128" layer="26" font="vector" ratio="15" rot="MR250"/>
 <attribute name="VALUE" x="36.449534375" y="-32.4441" size="1.27" layer="28" rot="MR340"/>
 </element>
 <element name="TP1" library="testpad" library_urn="urn:adsk.eagle:library:385" package="TP10R" package3d_urn="urn:adsk.eagle:package:27959/1" value="PTR1TP10R" x="-28.956" y="-24.892" smashed="yes" rot="R90">
