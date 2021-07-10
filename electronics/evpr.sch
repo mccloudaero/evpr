@@ -791,7 +791,7 @@
 <wire x1="-9.75" y1="-13.5" x2="-9.75" y2="6" width="0.05" layer="39"/>
 <wire x1="-9.75" y1="6" x2="-9.25" y2="6" width="0.05" layer="39"/>
 <wire x1="-9.25" y1="6" x2="-9.25" y2="13" width="0.05" layer="39"/>
-<rectangle x1="-2.58366875" y1="-3.824909375" x2="0.5811" y2="-0.6589" layer="31"/>
+<rectangle x1="-2.18" y1="-3.58" x2="0.82" y2="-0.58" layer="31"/>
 <smd name="1" x="-8.5" y="5.26" dx="2" dy="0.9" layer="1"/>
 <smd name="2" x="-8.5" y="3.99" dx="2" dy="0.9" layer="1"/>
 <smd name="3" x="-8.5" y="2.72" dx="2" dy="0.9" layer="1"/>
@@ -830,7 +830,7 @@
 <smd name="36" x="8.5" y="2.72" dx="2" dy="0.9" layer="1" rot="R180"/>
 <smd name="37" x="8.5" y="3.99" dx="2" dy="0.9" layer="1" rot="R180"/>
 <smd name="38" x="8.5" y="5.26" dx="2" dy="0.9" layer="1" rot="R180"/>
-<smd name="39" x="-1" y="-2.24" dx="5" dy="5" layer="1" cream="no"/>
+<smd name="39" x="-0.68" y="-2.08" dx="4.1" dy="4.1" layer="1" cream="no"/>
 <text x="-8.2833" y="13.8419" size="1.27341875" layer="25">&gt;NAME</text>
 <text x="-8.966959375" y="-15.6155" size="1.2738" layer="27">&gt;VALUE</text>
 <text x="-5.72471875" y="8.65068125" size="1.78101875" layer="51">ANTENNA</text>
@@ -2057,8 +2057,8 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <wire x1="-1.397" y1="-1.397" x2="-0.762" y2="-1.397" width="0.127" layer="25"/>
 </package>
 <package name="810RADCAN">
-<smd name="A$1" x="0" y="3" dx="1.3" dy="3.3" layer="1"/>
-<smd name="C$2" x="0" y="-3" dx="1.3" dy="3.3" layer="1"/>
+<smd name="A$1" x="0" y="3.556" dx="1.3" dy="3.3" layer="1"/>
+<smd name="C$2" x="0" y="-3.556" dx="1.3" dy="3.3" layer="1"/>
 <wire x1="-3" y1="4.15" x2="3" y2="4.15" width="0.127" layer="21"/>
 <wire x1="3" y1="4.15" x2="4.15" y2="3" width="0.127" layer="21"/>
 <wire x1="4.15" y1="3" x2="4.15" y2="-4.15" width="0.127" layer="21"/>
