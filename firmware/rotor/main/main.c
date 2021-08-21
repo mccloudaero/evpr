@@ -53,11 +53,11 @@ uint16_t voltage_bat_2 = 0; // mV
 // ADC channels
 static esp_adc_cal_characteristics_t *bat_adc_chars;
 static esp_adc_cal_characteristics_t *vraw_adc_chars;
-static const adc_channel_t bat_1_channel = ADC_CHANNEL_0;     // SENSOR_VP, GPIO36, ADC 1, C0
-static const adc_channel_t bat_2_channel = ADC_CHANNEL_3;     // SENSOR_VN, GPIO39, ADC 1, C3
+static const adc_channel_t bat_1_channel = ADC_CHANNEL_3;     // SENSOR_VN, GPIO39, ADC 1, C3
+static const adc_channel_t bat_2_channel = ADC_CHANNEL_0;     // SENSOR_VP, GPIO36, ADC 1, C0
 static const adc_channel_t vraw_channel = ADC_CHANNEL_6;      // IO34,      GPIO34, ADC 1, C6
 static const adc_atten_t bat_atten = ADC_ATTEN_DB_2_5;
-static const adc_atten_t vraw_atten = ADC_ATTEN_DB_2_5;
+static const adc_atten_t vraw_atten = ADC_ATTEN_DB_11;
 #define DEFAULT_VREF    1100        // Use adc2_vref_to_gpio() to obtain a better estimate
 #define NO_OF_SAMPLES   64          // Multisampling
 #define BAT_VOLTAGE_FACTOR 3.149    // Resistor values (47.5+22.1)/22.1
@@ -370,7 +370,6 @@ void servo_self_test(void *arg)
     }
 }
 
-#if (ROTOR_MODE == 0 || ROTOR_MODE == 1)
 static void servo_control(void *pvParameters)
 {
     // Enable servo power
@@ -385,7 +384,6 @@ static void servo_control(void *pvParameters)
         vTaskDelay(1);
     }
 }
-#endif
 
 static void status_check(void *pvParameters)
 {
@@ -411,8 +409,8 @@ static void status_check(void *pvParameters)
    	// Power Management
 	// Note: Status signal from power management switch is inversed
 	// HIGH when inactive and LOW when active
-        USING_BAT = gpio_get_level(USING_BAT_GPIO);
-	USING_ENG = gpio_get_level(USING_ENG_GPIO);
+        USING_BAT = !gpio_get_level(USING_BAT_GPIO);
+	USING_ENG = !gpio_get_level(USING_ENG_GPIO);
 
 	// Read Voltages
 	bat_1_adc_reading = 0;
@@ -443,6 +441,7 @@ static void status_check(void *pvParameters)
 
         // Print Info
 	ESP_LOGI(TAG, "Power Management: Battery %d, Engine %d", USING_BAT, USING_ENG);
+        ESP_LOGI(TAG, "Vraw: %d Bat 1: %d Bat 2: %d", vraw_adc_reading, bat_1_adc_reading, bat_2_adc_reading);
         ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV", voltage_vraw, voltage_bat_1, voltage_bat_2);
         ESP_LOGI(TAG, "RPM :%f, Counter: %d, Delta_t: %f", rpm, tach_count, delta_t);
         ESP_LOGI(TAG, "Free Heap Size: %d\n", xPortGetFreeHeapSize());
@@ -652,6 +651,7 @@ void app_main()
     #if ROTOR_MODE == 2 
       ESP_LOGI(TAG,"Nominal Mode (2)");
       xTaskCreate(servo_control, "servo control task", 4096, NULL, 5, NULL);
+      xTaskCreate(status_check, "status task", 4096, NULL, 5, NULL);
       xTaskCreate(espnow_event_task, "espnow_event_task", 2048, NULL, 4, NULL);
     #endif
 }
