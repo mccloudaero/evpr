@@ -45,15 +45,17 @@
 // Status Variables
 bool USING_BAT = 0;
 bool USING_ENG = 0;
-uint16_t voltage_vraw = 0;  // mV
-uint16_t voltage_bat_1 = 0; // mV
-uint16_t voltage_bat_2 = 0; // mV
+uint16_t voltage_vraw = 0;      // mV
+uint16_t voltage_bat_total = 0; // mV
+uint16_t voltage_bat_1 = 0;     // mV
+uint16_t voltage_bat_2 = 0;     // mV
+uint16_t voltage_bat_diff = 0;  // mV
 
 
 // ADC channels
 static esp_adc_cal_characteristics_t *bat_adc_chars;
 static esp_adc_cal_characteristics_t *vraw_adc_chars;
-static const adc_channel_t bat_1_channel = ADC_CHANNEL_3;     // SENSOR_VN, GPIO39, ADC 1, C3
+static const adc_channel_t bat_total_channel = ADC_CHANNEL_3;     // SENSOR_VN, GPIO39, ADC 1, C3
 static const adc_channel_t bat_2_channel = ADC_CHANNEL_0;     // SENSOR_VP, GPIO36, ADC 1, C0
 static const adc_channel_t vraw_channel = ADC_CHANNEL_6;      // IO34,      GPIO34, ADC 1, C6
 static const adc_atten_t bat_atten = ADC_ATTEN_DB_11;
@@ -239,7 +241,7 @@ void espnow_data_prepare(espnow_send_param_t *send_param)
     buf->rpm = rpm;
     buf->crc = 0;
     buf->crc = crc16_le(UINT16_MAX, (uint8_t const *)buf, send_param->len);
-    //printf("Test Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_1, voltage_bat_2);
+    //printf("Test Vraw: %dmV Bat 1: %dmV Bat 2: %dmV\n", voltage_vraw, voltage_bat_total, voltage_bat_2);
 }
 
 static void espnow_event_task(void *pvParameter)
@@ -387,7 +389,7 @@ static void servo_control(void *pvParameters)
 
 static void status_check(void *pvParameters)
 {
-    uint32_t bat_1_adc_reading;
+    uint32_t bat_total_adc_reading;
     uint32_t bat_2_adc_reading;
     uint32_t vraw_adc_reading;
     int16_t tach_count;
@@ -413,22 +415,24 @@ static void status_check(void *pvParameters)
 	USING_ENG = !gpio_get_level(USING_ENG_GPIO);
 
 	// Read Voltages
-	bat_1_adc_reading = 0;
+	bat_total_adc_reading = 0;
 	bat_2_adc_reading = 0;
 	vraw_adc_reading = 0;
         // Read ADC using Multisampling
         for (uint8_t i = 0; i < NO_OF_SAMPLES; i++) {
-            bat_1_adc_reading += adc1_get_raw((adc1_channel_t)bat_1_channel);
+            bat_total_adc_reading += adc1_get_raw((adc1_channel_t)bat_total_channel);
             bat_2_adc_reading += adc1_get_raw((adc1_channel_t)bat_2_channel);
             vraw_adc_reading += adc1_get_raw((adc1_channel_t)vraw_channel);
         }
-        bat_1_adc_reading /= NO_OF_SAMPLES;
+        bat_total_adc_reading /= NO_OF_SAMPLES;
         bat_2_adc_reading /= NO_OF_SAMPLES;
         vraw_adc_reading /= NO_OF_SAMPLES;
 	//Convert adc_reading to voltage in mV
-        voltage_bat_1 = esp_adc_cal_raw_to_voltage(bat_1_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
+        voltage_bat_total = esp_adc_cal_raw_to_voltage(bat_total_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
         voltage_bat_2 = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
         voltage_vraw = esp_adc_cal_raw_to_voltage(vraw_adc_reading, vraw_adc_chars)*VRAW_VOLTAGE_FACTOR;
+        voltage_bat_1 = voltage_bat_total - voltage_bat_2; 
+        voltage_bat_diff = abs(voltage_bat_1 - voltage_bat_2); 
 
         // Check PCNT for Tach
         pcnt_get_counter_value(pcnt_unit, &tach_count);
@@ -441,8 +445,9 @@ static void status_check(void *pvParameters)
 
         // Print Info
 	ESP_LOGI(TAG, "Power Management: Battery %d, Engine %d", USING_BAT, USING_ENG);
-        ESP_LOGI(TAG, "Vraw: %d Bat 1: %d Bat 2: %d", vraw_adc_reading, bat_1_adc_reading, bat_2_adc_reading);
-        ESP_LOGI(TAG, "Vraw: %dmV Bat 1: %dmV Bat 2: %dmV", voltage_vraw, voltage_bat_1, voltage_bat_2);
+        ESP_LOGI(TAG, "Raw: %d Bat Total: %d Bat 2: %d", vraw_adc_reading, bat_total_adc_reading, bat_2_adc_reading);
+        ESP_LOGI(TAG, "Vraw: %dmV Bat Total: %dmV Bat 1: %dmV Bat 2: %dmV", voltage_vraw, voltage_bat_total, voltage_bat_1, voltage_bat_2);
+        ESP_LOGI(TAG, "Vdiff: %dmV", voltage_bat_diff);
         ESP_LOGI(TAG, "RPM :%f, Counter: %d, Delta_t: %f", rpm, tach_count, delta_t);
         ESP_LOGI(TAG, "Free Heap Size: %d\n", xPortGetFreeHeapSize());
 
@@ -565,7 +570,7 @@ static void initialize_adc(void)
 
     // Configure ADC
     adc1_config_width(ADC_WIDTH_BIT_12);
-    adc1_config_channel_atten(bat_1_channel, bat_atten);
+    adc1_config_channel_atten(bat_total_channel, bat_atten);
     adc1_config_channel_atten(bat_2_channel, bat_atten);
     adc1_config_channel_atten(vraw_channel, vraw_atten);
 
