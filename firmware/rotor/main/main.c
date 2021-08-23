@@ -428,11 +428,24 @@ static void status_check(void *pvParameters)
         bat_2_adc_reading /= NO_OF_SAMPLES;
         vraw_adc_reading /= NO_OF_SAMPLES;
 	//Convert adc_reading to voltage in mV
-        voltage_bat_total = esp_adc_cal_raw_to_voltage(bat_total_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
-        voltage_bat_2 = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
-        voltage_vraw = esp_adc_cal_raw_to_voltage(vraw_adc_reading, vraw_adc_chars)*VRAW_VOLTAGE_FACTOR;
-        voltage_bat_1 = voltage_bat_total - voltage_bat_2; 
-        voltage_bat_diff = abs(voltage_bat_1 - voltage_bat_2); 
+        if (bat_total_adc_reading == 0) {
+	    voltage_bat_total = 0; 
+        } else {
+	    voltage_bat_total = esp_adc_cal_raw_to_voltage(bat_total_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
+        }
+        if (bat_2_adc_reading == 0) {
+    	    voltage_bat_2 = 0; 
+        } else {
+    	    voltage_bat_2 = esp_adc_cal_raw_to_voltage(bat_2_adc_reading, bat_adc_chars)*BAT_VOLTAGE_FACTOR;
+        }
+        if (vraw_adc_reading == 0) {
+    	    voltage_vraw = 0; 
+        } else {
+    	    voltage_vraw = esp_adc_cal_raw_to_voltage(vraw_adc_reading, vraw_adc_chars)*VRAW_VOLTAGE_FACTOR;
+        }
+        // Derived Voltages
+	voltage_bat_1 = voltage_bat_total - voltage_bat_2; 
+	voltage_bat_diff = abs(voltage_bat_1 - voltage_bat_2); // Needs to be fixed to account for usigned int 
 
         // Check PCNT for Tach
         pcnt_get_counter_value(pcnt_unit, &tach_count);
