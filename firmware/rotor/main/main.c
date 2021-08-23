@@ -56,7 +56,7 @@ static esp_adc_cal_characteristics_t *vraw_adc_chars;
 static const adc_channel_t bat_1_channel = ADC_CHANNEL_3;     // SENSOR_VN, GPIO39, ADC 1, C3
 static const adc_channel_t bat_2_channel = ADC_CHANNEL_0;     // SENSOR_VP, GPIO36, ADC 1, C0
 static const adc_channel_t vraw_channel = ADC_CHANNEL_6;      // IO34,      GPIO34, ADC 1, C6
-static const adc_atten_t bat_atten = ADC_ATTEN_DB_2_5;
+static const adc_atten_t bat_atten = ADC_ATTEN_DB_11;
 static const adc_atten_t vraw_atten = ADC_ATTEN_DB_11;
 #define DEFAULT_VREF    1100        // Use adc2_vref_to_gpio() to obtain a better estimate
 #define NO_OF_SAMPLES   64          // Multisampling
@@ -537,22 +537,24 @@ static void initialize_io(void)
 {
     // Input pins (USING_BAT, USING_ENG) 
     gpio_config_t input_io_conf;
-    input_io_conf.intr_type = GPIO_INTR_DISABLE; //disable interrupt
-    input_io_conf.mode = GPIO_MODE_INPUT;        //set as input mode
-    input_io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;   //bit mask of the pins to set
-    input_io_conf.pull_down_en = 0;              //disable pull-down mode
-    input_io_conf.pull_up_en = 0;                //enable pull-up mode
-    //configure GPIO with the given settings
+    input_io_conf.intr_type = GPIO_INTR_DISABLE;       // disable interrupt
+    input_io_conf.mode = GPIO_MODE_INPUT;              // set as input mode
+    input_io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;   // bit mask of the pins to set
+    input_io_conf.pull_down_en = 0;                    // disable pull-down mode
+    input_io_conf.pull_up_en = 0;                      // enable pull-up mode
+    // configure GPIO with the given settings
     gpio_config(&input_io_conf);
 
     // Enable pins (BAT_EN, ENG_EN) 
+    // Note: BAT_EN needs to be set high to read battery voltages
+    // BAT_EN is set low to disable power drain for sleep
     gpio_config_t output_io_conf;
-    output_io_conf.intr_type = GPIO_INTR_DISABLE; //disable interrupt
-    output_io_conf.mode = GPIO_MODE_OUTPUT;       //set as output mode
-    output_io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;   //bit mask of the pins to set
-    output_io_conf.pull_down_en = 0;              //disable pull-down mode
-    output_io_conf.pull_up_en = 0;                //enable pull-up mode
-    //configure GPIO with the given settings
+    output_io_conf.intr_type = GPIO_INTR_DISABLE;        // disable interrupt
+    output_io_conf.mode = GPIO_MODE_OUTPUT;              // set as output mode
+    output_io_conf.pin_bit_mask = GPIO_OUTPUT_PIN_SEL;   // bit mask of the pins to set
+    output_io_conf.pull_down_en = 0;                     // disable pull-down mode
+    output_io_conf.pull_up_en = 0;                       // enable pull-up mode
+    // configure GPIO with the given settings
     gpio_config(&output_io_conf);
 }
 

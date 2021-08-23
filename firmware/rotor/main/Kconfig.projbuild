@@ -60,7 +60,7 @@ config BAT_EN_GPIO
     int "Battery Power Enable GPIO Pin"
     default 21 
     help
-	GPIO pin to check if on battery power.
+	GPIO pin to enable battery power sensing.
 
 config TACH_GPIO 
     int "Tachometer GPIO Pin"
