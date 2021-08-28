@@ -9,7 +9,7 @@
 <grid distance="10" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
-<layer number="2" name="Route2" color="16" fill="1" visible="no" active="yes"/>
+<layer number="2" name="Route2" color="16" fill="1" visible="yes" active="yes"/>
 <layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
 <layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
 <layer number="5" name="Route5" color="19" fill="1" visible="no" active="no"/>
@@ -34,7 +34,7 @@
 <layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
@@ -733,6 +733,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="33.147" y="36.195" size="0.8128" layer="27" font="vector" ratio="15" rot="R90"/>
 </element>
 <element name="C4" library="mccloud" package="C0603" value="1uF" x="37.465" y="39.37" smashed="yes" rot="R180">
+<attribute name="COMPONENT" value="CL10A105KB8NNNC" x="37.465" y="39.37" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="NAME" x="38.1" y="38.227" size="0.8128" layer="25" font="vector" ratio="15" rot="R180"/>
 <attribute name="VALUE" x="38.1" y="41.275" size="0.8128" layer="27" font="vector" ratio="15" rot="R180"/>
 </element>
@@ -783,6 +784,7 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <attribute name="VALUE" x="43.307" y="46.863" size="0.8128" layer="27" font="vector" ratio="15"/>
 </element>
 <element name="R4" library="mccloud" package="R0603" value="1M" x="32.004" y="55.118" smashed="yes" rot="R90">
+<attribute name="COMPONENT" value="CR0603-JW-105ELF" x="32.004" y="55.118" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="NAME" x="31.369" y="54.483" size="0.8128" layer="25" font="vector" ratio="15" rot="R90"/>
 <attribute name="POPULARITY" value="77" x="75.184" y="70.358" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="SPICEPREFIX" value="R" x="75.184" y="70.358" size="1.778" layer="27" rot="R90" display="off"/>
@@ -945,10 +947,9 @@ Note, that not all DRC settings must be set by the manufacturer. Several can be 
 <wire x1="38.1787375" y1="43.446" x2="35.986" y2="43.446" width="0.254" layer="1"/>
 <wire x1="58.154" y1="44.97" x2="39.7027375" y2="44.97" width="0.254" layer="1"/>
 <wire x1="39.7027375" y1="44.97" x2="38.1787375" y2="43.446" width="0.254" layer="1"/>
-<wire x1="57.7596" y1="46.75555" x2="57.785" y2="46.78095" width="0.254" layer="16"/>
-<wire x1="57.785" y1="46.78095" x2="57.785" y2="49.911" width="0.254" layer="16"/>
+<wire x1="57.7596" y1="49.8856" x2="57.785" y2="49.911" width="0.254" layer="16"/>
+<wire x1="57.7596" y1="49.8856" x2="57.7596" y2="45.3644" width="0.254" layer="16"/>
 <wire x1="59.69" y1="43.434" x2="57.7596" y2="45.3644" width="0.254" layer="16"/>
-<wire x1="57.7596" y1="45.3644" x2="57.7596" y2="46.75555" width="0.254" layer="16"/>
 </signal>
 <signal name="TX">
 <contactref element="U$1" pad="21"/>
