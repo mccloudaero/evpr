@@ -65,7 +65,7 @@
 <hole x="0" y="0" drill="22.352"/>
 <circle x="0" y="0" radius="16.256" width="15.24" layer="29"/>
 <text x="31.496" y="-10.16" size="1.016" layer="21" distance="40" rot="R90">EVPR Brush Power Board Rev.B</text>
-<rectangle x1="-30.734" y1="-2.794" x2="-26.924" y2="8.636" layer="29"/>
+<rectangle x1="-30.734" y1="-2.714584375" x2="-26.924" y2="2.714584375" layer="30"/>
 <wire x1="-6.7818" y1="34.035996875" x2="6.273796875" y2="34.035996875" width="0.1524" layer="20" curve="-60"/>
 <wire x1="-6.7818" y1="34.035996875" x2="-26.339140625" y2="22.45126875" width="0.1524" layer="20"/>
 <wire x1="26.085140625" y1="22.891209375" x2="6.273796875" y2="34.035996875" width="0.1524" layer="20"/>
@@ -78,8 +78,11 @@
 <wire x1="32.866940625" y1="-11.1447875" x2="32.612940625" y2="11.584728125" width="0.1524" layer="20"/>
 <wire x1="6.7818" y1="-34.036" x2="-6.2738" y2="-34.036" width="0.1524" layer="20" curve="-60"/>
 <wire x1="6.7818" y1="-34.036" x2="26.339140625" y2="-22.45126875" width="0.1524" layer="20"/>
-<rectangle x1="-30.734" y1="-2.794" x2="-26.924" y2="8.636" layer="30"/>
+<rectangle x1="-30.734" y1="-2.714496875" x2="-26.924" y2="7.62" layer="29"/>
 <circle x="0" y="0" radius="16.256" width="15.24" layer="30"/>
+<text x="-31.242" y="-1.524" size="1.016" layer="21" distance="40" rot="R90">12V</text>
+<text x="-31.242" y="3.302" size="1.016" layer="21" distance="40" rot="R90">TACH</text>
+<text x="-32.004" y="-1.778" size="1.016" layer="21" distance="40" rot="MR90">GND</text>
 </plain>
 <libraries>
 </libraries>
