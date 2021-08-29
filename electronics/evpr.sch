@@ -1572,10 +1572,8 @@
 <description>&lt;b&gt;S6 Package 6-Lead Plastic TSOT-23&lt;/b&gt;&lt;p&gt;
 Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <circle x="-1.15" y="-0.5" radius="0.1" width="0" layer="21"/>
-<wire x1="1.422" y1="-0.781" x2="-1.423" y2="-0.781" width="0.1524" layer="51"/>
 <wire x1="-1.423" y1="-0.781" x2="-1.423" y2="0.781" width="0.1524" layer="21"/>
-<wire x1="-1.423" y1="0.781" x2="1.422" y2="0.781" width="0.1524" layer="51"/>
-<wire x1="1.422" y1="0.781" x2="1.422" y2="-0.781" width="0.1524" layer="21"/>
+<wire x1="1.422" y1="0.508" x2="1.422" y2="-0.508" width="0.1524" layer="21"/>
 <rectangle x1="-1.175" y1="-1.4" x2="-0.725" y2="-0.8" layer="51"/>
 <rectangle x1="-0.225" y1="-1.4" x2="0.225" y2="-0.8" layer="51"/>
 <rectangle x1="0.725" y1="-1.4" x2="1.175" y2="-0.8" layer="51"/>
@@ -2110,7 +2108,7 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.127" layer="21"/>
 <wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.5" width="0.127" layer="21"/>
 <circle x="-1.05" y="0.85" radius="0.05" width="0.127" layer="21"/>
-<text x="2.2" y="1.35" size="1.27" layer="51">&gt;NAME</text>
+<text x="2.2" y="1.35" size="1.27" layer="25">&gt;NAME</text>
 <polygon width="0.127" layer="39" spacing="1.4224">
 <vertex x="-2.54" y="1.27"/>
 <vertex x="-1.27" y="2.54"/>
@@ -2172,6 +2170,36 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <wire x1="-2.54" y1="-6.35" x2="2.54" y2="-6.35" width="0.127" layer="51"/>
 <wire x1="-2.54" y1="3.175" x2="2.54" y2="3.175" width="0.127" layer="51"/>
 <wire x1="-2.54" y1="-3.175" x2="2.54" y2="-3.175" width="0.127" layer="51"/>
+</package>
+<package name="B3P-VH(LF)(SN)">
+<circle x="-3.81" y="1.905" radius="0.127" width="0.127" layer="21"/>
+<wire x1="7" y1="-4.7" x2="-7" y2="-4.7" width="0.2032" layer="51"/>
+<wire x1="-7" y1="-4.7" x2="-7" y2="5" width="0.2032" layer="51"/>
+<wire x1="7" y1="5" x2="7" y2="-4.7" width="0.2032" layer="51"/>
+<wire x1="7" y1="5" x2="-7" y2="5" width="0.2032" layer="51"/>
+<pad name="1" x="-4" y="0" drill="1.7"/>
+<pad name="2" x="0" y="0" drill="1.7"/>
+<pad name="3" x="4" y="0" drill="1.7"/>
+<text x="-1.75006875" y="5.500240625" size="1.27005" layer="25">&gt;NAME</text>
+<text x="-0.751375" y="-6.51191875" size="1.27233125" layer="27">&gt;VALUE</text>
+</package>
+<package name="B2P-VH(LF)(SN)">
+<circle x="-4.875" y="1.25" radius="0.254" width="0" layer="21"/>
+<wire x1="3.93" y1="-4.8" x2="-3.93" y2="-4.8" width="0.2032" layer="51"/>
+<wire x1="-3.93" y1="-4.8" x2="-3.93" y2="2" width="0.2032" layer="51"/>
+<wire x1="3.93" y1="2" x2="3.93" y2="-4.8" width="0.2032" layer="51"/>
+<wire x1="3.93" y1="2" x2="-3.93" y2="2" width="0.2032" layer="51"/>
+<wire x1="-3.93" y1="3.7" x2="3.93" y2="3.7" width="0.127" layer="51"/>
+<wire x1="-3.93" y1="2" x2="-3.93" y2="3.7" width="0.127" layer="51"/>
+<wire x1="3.93" y1="2" x2="3.93" y2="3.7" width="0.127" layer="51"/>
+<wire x1="-4.25" y1="4" x2="4.25" y2="4" width="0.127" layer="39"/>
+<wire x1="4.25" y1="4" x2="4.25" y2="-5.125" width="0.127" layer="39"/>
+<wire x1="4.25" y1="-5.125" x2="-4.25" y2="-5.125" width="0.127" layer="39"/>
+<wire x1="-4.25" y1="-5.125" x2="-4.25" y2="4" width="0.127" layer="39"/>
+<pad name="1" x="-1.98" y="0" drill="1.7" shape="square"/>
+<pad name="2" x="1.98" y="0" drill="1.7"/>
+<text x="-4.25606875" y="4.130890625" size="1.271809375" layer="25">&gt;NAME</text>
+<text x="-4.252540625" y="-6.628959375" size="1.270759375" layer="27">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -2568,6 +2596,34 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <pin name="6" x="-7.62" y="0" visible="pad" length="middle" direction="pas" swaplevel="1"/>
 <pin name="7" x="7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="8" x="-7.62" y="2.54" visible="pad" length="middle" direction="pas" swaplevel="1"/>
+</symbol>
+<symbol name="B3P-VH(LF)(SN)">
+<wire x1="0.254" y1="2.54" x2="-1.524" y2="2.54" width="0.4064" layer="94"/>
+<wire x1="0.254" y1="-2.54" x2="-1.524" y2="-2.54" width="0.4064" layer="94"/>
+<wire x1="-2.54" y1="5.08" x2="-2.54" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-10.16" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-10.16" x2="5.08" y2="5.08" width="0.254" layer="94"/>
+<wire x1="5.08" y1="5.08" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0.254" y1="-7.62" x2="-1.524" y2="-7.62" width="0.4064" layer="94"/>
+<pin name="1" x="-5.08" y="2.54" visible="pad" length="middle" direction="pas"/>
+<pin name="2" x="-5.08" y="-2.54" visible="pad" length="middle" direction="pas"/>
+<pin name="3" x="-5.08" y="-7.62" visible="pad" length="middle" direction="pas"/>
+<text x="-10.1756" y="-15.2633" size="1.78071875" layer="95">&gt;NAME</text>
+<text x="-10.1642" y="-17.7874" size="1.778740625" layer="96">&gt;VALUE</text>
+</symbol>
+<symbol name="B2P-VH(LF)(SN)">
+<wire x1="-2.54" y1="2.54" x2="-2.54" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="1.27" x2="-2.54" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-1.27" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="2.54" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="2.54" x2="-2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="1.27" x2="0" y2="1.27" width="0.762" layer="94"/>
+<wire x1="-2.54" y1="-1.27" x2="0" y2="-1.27" width="0.762" layer="94"/>
+<pin name="1" x="-7.62" y="1.27" length="middle" direction="pas"/>
+<pin name="2" x="-7.62" y="-1.27" length="middle" direction="pas"/>
+<text x="-2.54163125" y="2.54163125" size="1.27081875" layer="95">&gt;NAME</text>
+<text x="-2.54071875" y="-3.81106875" size="1.270359375" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -3239,47 +3295,13 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 </device>
 </devices>
 </deviceset>
-</devicesets>
-</library>
-<library name="B3P-VH_LF__SN_">
-<packages>
-<package name="B3P-VH">
-<wire x1="7" y1="-4.7" x2="-7" y2="-4.7" width="0.2032" layer="21"/>
-<wire x1="-7" y1="-4.7" x2="-7" y2="5" width="0.2032" layer="21"/>
-<wire x1="7" y1="5" x2="7" y2="-4.7" width="0.2032" layer="21"/>
-<wire x1="7" y1="5" x2="-7" y2="5" width="0.2032" layer="21"/>
-<text x="-1.75006875" y="5.500240625" size="1.27005" layer="25">&gt;NAME</text>
-<text x="-0.751375" y="-6.51191875" size="1.27233125" layer="27">&gt;VALUE</text>
-<circle x="-3.81" y="1.905" radius="0.127" width="0.127" layer="21"/>
-<pad name="2" x="0" y="0" drill="1.7"/>
-<pad name="3" x="4" y="0" drill="1.7"/>
-<pad name="1" x="-4" y="0" drill="1.7"/>
-</package>
-</packages>
-<symbols>
-<symbol name="B3P-VH(LF)(SN)">
-<wire x1="0.254" y1="2.54" x2="-1.524" y2="2.54" width="0.4064" layer="94"/>
-<wire x1="0.254" y1="-2.54" x2="-1.524" y2="-2.54" width="0.4064" layer="94"/>
-<wire x1="-2.54" y1="5.08" x2="-2.54" y2="-10.16" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="-10.16" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
-<wire x1="5.08" y1="-10.16" x2="5.08" y2="5.08" width="0.254" layer="94"/>
-<wire x1="5.08" y1="5.08" x2="-2.54" y2="5.08" width="0.254" layer="94"/>
-<text x="-10.1756" y="-15.2633" size="1.78071875" layer="95">&gt;NAME</text>
-<text x="-10.1642" y="-17.7874" size="1.778740625" layer="96">&gt;VALUE</text>
-<wire x1="0.254" y1="-7.62" x2="-1.524" y2="-7.62" width="0.4064" layer="94"/>
-<pin name="1" x="-5.08" y="2.54" visible="pad" length="middle" direction="pas"/>
-<pin name="2" x="-5.08" y="-2.54" visible="pad" length="middle" direction="pas"/>
-<pin name="3" x="-5.08" y="-7.62" visible="pad" length="middle" direction="pas"/>
-</symbol>
-</symbols>
-<devicesets>
 <deviceset name="B3P-VH(LF)(SN)" prefix="X">
 <description>http://octopart.com/b3p-vh%28lf%29%28sn%29-jst-248804</description>
 <gates>
 <gate name="G$1" symbol="B3P-VH(LF)(SN)" x="2.54" y="2.54"/>
 </gates>
 <devices>
-<device name="" package="B3P-VH">
+<device name="" package="B3P-VH(LF)(SN)">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
@@ -3291,6 +3313,30 @@ Source: http://cds.linear.com/docs/Datasheet/623012fb.pdf</description>
 <attribute name="DESCRIPTION" value=" VH Series 3 Position 3.96 mm Pitch Through Hole Crimp Locking Header "/>
 <attribute name="MF" value="JST Sales"/>
 <attribute name="MP" value="B3P-VH_LF__SN_"/>
+<attribute name="PACKAGE" value="FakePackage u"/>
+<attribute name="PRICE" value="None"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="B2P-VH(LF)(SN)" prefix="XA">
+<description>VH Series 3.96 mm Pitch, Compact, Lock Mechanism also Prevents Misinsertion</description>
+<gates>
+<gate name="G$1" symbol="B2P-VH(LF)(SN)" x="2.54" y="0"/>
+</gates>
+<devices>
+<device name="" package="B2P-VH(LF)(SN)">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="Unavailable"/>
+<attribute name="DESCRIPTION" value=" VH Series 3.96 mm Pitch, Compact, Lock Mechanism also Prevents Misinsertion "/>
+<attribute name="MF" value="JST Sales"/>
+<attribute name="MP" value="B2P-VH_LF__SN_"/>
 <attribute name="PACKAGE" value="FakePackage u"/>
 <attribute name="PRICE" value="None"/>
 </technology>
@@ -3329,70 +3375,6 @@ In this library the device names are the same as the pin names of the symbols, t
 <device name="">
 <technologies>
 <technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
-<library name="B2P-VH_LF__SN_">
-<packages>
-<package name="JST_B2P-VH(LF)(SN)">
-<wire x1="3.93" y1="-4.8" x2="-3.93" y2="-4.8" width="0.2032" layer="21"/>
-<wire x1="-3.93" y1="-4.8" x2="-3.93" y2="2" width="0.2032" layer="21"/>
-<wire x1="3.93" y1="2" x2="3.93" y2="-4.8" width="0.2032" layer="21"/>
-<wire x1="3.93" y1="2" x2="-3.93" y2="2" width="0.2032" layer="21"/>
-<text x="-4.25606875" y="4.130890625" size="1.271809375" layer="25">&gt;NAME</text>
-<text x="-4.252540625" y="-6.628959375" size="1.270759375" layer="27">&gt;VALUE</text>
-<wire x1="-3.93" y1="3.7" x2="3.93" y2="3.7" width="0.127" layer="21"/>
-<wire x1="-3.93" y1="2" x2="-3.93" y2="3.7" width="0.127" layer="21"/>
-<wire x1="3.93" y1="2" x2="3.93" y2="3.7" width="0.127" layer="21"/>
-<wire x1="-4.25" y1="4" x2="4.25" y2="4" width="0.127" layer="39"/>
-<wire x1="4.25" y1="4" x2="4.25" y2="-5.125" width="0.127" layer="39"/>
-<wire x1="4.25" y1="-5.125" x2="-4.25" y2="-5.125" width="0.127" layer="39"/>
-<wire x1="-4.25" y1="-5.125" x2="-4.25" y2="4" width="0.127" layer="39"/>
-<circle x="-4.875" y="1.25" radius="0.254" width="0" layer="21"/>
-<pad name="1" x="-1.98" y="0" drill="1.7" shape="square"/>
-<pad name="2" x="1.98" y="0" drill="1.7"/>
-</package>
-</packages>
-<symbols>
-<symbol name="B2P-VH(LF)(SN)">
-<wire x1="-2.54" y1="2.54" x2="-2.54" y2="1.27" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="1.27" x2="-2.54" y2="-1.27" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="-1.27" x2="-2.54" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="-2.54" y1="-2.54" x2="2.54" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.254" layer="94"/>
-<wire x1="2.54" y1="2.54" x2="-2.54" y2="2.54" width="0.254" layer="94"/>
-<text x="-2.54163125" y="2.54163125" size="1.27081875" layer="95">&gt;NAME</text>
-<text x="-2.54071875" y="-3.81106875" size="1.270359375" layer="96">&gt;VALUE</text>
-<wire x1="-2.54" y1="1.27" x2="0" y2="1.27" width="0.762" layer="94"/>
-<wire x1="-2.54" y1="-1.27" x2="0" y2="-1.27" width="0.762" layer="94"/>
-<pin name="1" x="-7.62" y="1.27" length="middle" direction="pas"/>
-<pin name="2" x="-7.62" y="-1.27" length="middle" direction="pas"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="B2P-VH(LF)(SN)" prefix="XA">
-<description>VH Series 3.96 mm Pitch, Compact, Lock Mechanism also Prevents Misinsertion</description>
-<gates>
-<gate name="G$1" symbol="B2P-VH(LF)(SN)" x="2.54" y="0"/>
-</gates>
-<devices>
-<device name="" package="JST_B2P-VH(LF)(SN)">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="AVAILABILITY" value="Unavailable"/>
-<attribute name="DESCRIPTION" value=" VH Series 3.96 mm Pitch, Compact, Lock Mechanism also Prevents Misinsertion "/>
-<attribute name="MF" value="JST Sales"/>
-<attribute name="MP" value="B2P-VH_LF__SN_"/>
-<attribute name="PACKAGE" value="FakePackage u"/>
-<attribute name="PRICE" value="None"/>
-</technology>
 </technologies>
 </device>
 </devices>
@@ -11341,7 +11323,7 @@ W = angled&lt;p&gt;
 </class>
 </classes>
 <parts>
-<part name="X.VI1" library="B3P-VH_LF__SN_" deviceset="B3P-VH(LF)(SN)" device="">
+<part name="X.VI1" library="mccloud" deviceset="B3P-VH(LF)(SN)" device="">
 <attribute name="COMPONENT" value="B3P-VH(LF)(SN)"/>
 </part>
 <part name="SUPPLY1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
@@ -11372,10 +11354,10 @@ W = angled&lt;p&gt;
 </spice>
 <attribute name="COMPONENT" value="RMCF0603FT100K"/>
 </part>
-<part name="X.BI1" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device="">
+<part name="X.BI1" library="mccloud" deviceset="B2P-VH(LF)(SN)" device="">
 <attribute name="COMPONENT" value="B2P-VH(LF)(SN)"/>
 </part>
-<part name="X.BI2" library="B2P-VH_LF__SN_" deviceset="B2P-VH(LF)(SN)" device="">
+<part name="X.BI2" library="mccloud" deviceset="B2P-VH(LF)(SN)" device="">
 <attribute name="COMPONENT" value="B2P-VH(LF)(SN)"/>
 </part>
 <part name="U.ESP1" library="mccloud" deviceset="ESP32-WROOM-32D" device="">
