@@ -462,7 +462,6 @@ Georges Oates Larsen
 <wire x1="-33.782" y1="-38.608" x2="-33.782" y2="-44.196" width="0.762" layer="20"/>
 <wire x1="-33.274" y1="-45.212" x2="-30.226" y2="-48.006" width="0.762" layer="20"/>
 <wire x1="-30.226" y1="-48.006" x2="-29.21" y2="-48.006" width="0.762" layer="20"/>
-<text x="6.858" y="-37.846" size="0.8128" layer="21" font="vector" ratio="15" rot="R30">SIG</text>
 <text x="0" y="-39.116" size="0.8128" layer="21" font="vector" ratio="15" rot="R30">GND</text>
 <text x="3.048" y="-40.386" size="0.8128" layer="22" font="vector" ratio="15" rot="MR330">SYS</text>
 <text x="4.064" y="-42.672" size="0.8128" layer="22" font="vector" ratio="15" rot="MR330">SIG</text>
