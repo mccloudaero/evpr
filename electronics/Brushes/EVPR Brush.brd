@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="10" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="10" altunitdist="mil" altunit="mil"/>
+<grid distance="10" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="0.1" altunitdist="mil" altunit="mil"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
@@ -80,9 +80,9 @@
 <wire x1="6.7818" y1="-34.036" x2="26.339140625" y2="-22.45126875" width="0.1524" layer="20"/>
 <rectangle x1="-30.734" y1="-2.714496875" x2="-26.924" y2="7.62" layer="29"/>
 <circle x="0" y="0" radius="16.256" width="15.24" layer="30"/>
-<text x="-31.242" y="-1.016" size="1.016" layer="21" distance="40" rot="R90">12V</text>
-<text x="-31.242" y="3.302" size="1.016" layer="21" distance="40" rot="R90">TACH</text>
-<text x="-31.75" y="-1.524" size="1.016" layer="22" distance="40" rot="MR90">GND</text>
+<text x="-31.160721875" y="-1.0287" size="1.016" layer="21" distance="40" rot="R90">12V</text>
+<text x="-31.219140625" y="3.39598125" size="1.016" layer="21" distance="40" rot="R90">TACH</text>
+<text x="-32.1411625" y="-1.272540625" size="1.016" layer="22" distance="40" rot="MR90">GND</text>
 </plain>
 <libraries>
 </libraries>
