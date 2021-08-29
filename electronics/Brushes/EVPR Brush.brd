@@ -64,7 +64,7 @@
 <plain>
 <hole x="0" y="0" drill="22.352"/>
 <circle x="0" y="0" radius="16.256" width="15.24" layer="29"/>
-<text x="31.496" y="-10.16" size="1.016" layer="21" distance="40" rot="R90">EVPR Brush Power Board V2</text>
+<text x="31.496" y="-10.16" size="1.016" layer="21" distance="40" rot="R90">EVPR Brush Power Board Rev.B</text>
 <rectangle x1="-30.734" y1="-2.794" x2="-26.924" y2="8.636" layer="29"/>
 <wire x1="-6.7818" y1="34.035996875" x2="6.273796875" y2="34.035996875" width="0.1524" layer="20" curve="-60"/>
 <wire x1="-6.7818" y1="34.035996875" x2="-26.339140625" y2="22.45126875" width="0.1524" layer="20"/>
