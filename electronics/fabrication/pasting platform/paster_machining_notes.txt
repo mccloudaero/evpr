@@ -1,0 +1,19 @@
+CAD->CAM
+Stock 8.7350" x 6.7450"
+1. Setup, Rough Holes (End Mill)
+	* Add bit width to sides of stock (0.125")
+    * Set retract height (0.1")
+	* Set circular machining regions to machine holes only
+	* Leave 0.02, Depth 0.03125, Stepover 0.03125, Feed 5 IPM, Plunge 2.0 IPM
+	* Set "Climb"
+2. Finish Holes (End MIll)
+	* Pencil, Feed 4 IPM, Plunge 1.5 IPM
+3. Rough Remaiing 3 (End Mill)
+    * Set Retract Height to 0.5"
+	* Clear Machining Regions
+	* Exclude Holes
+	* Leave 0.00, Depth 0.25, Stepover 0.03125, Feed 7 IPM, Plunge 2.0 IPM
+
+
+Step 1 - Rough Holes, 0:XX:00, Feed 5 IPM, Plunge 2 IPM
+Step 2 - Pencil Holes, 0:XX:00, Feed 5 IPM, Plunge 2 IPM
