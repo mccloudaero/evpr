@@ -1,0 +1,1 @@
+This file is to make Git respect my folder structure until I have actual files to put here.
