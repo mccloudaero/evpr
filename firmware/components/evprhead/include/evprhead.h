@@ -3,5 +3,8 @@
 #include "stdint.h"
 #include "evprcomms.h"
 void EVPRH_main();
+void EVPRH_init_comms();
+void EVPRH_init_UART();
 void EVPRH_handle_rotorstatus(uint8_t nodeid, EVPRC_RotorStatus data);
+void EVPRH_handle_UART(void* pvParameters);
 #endif

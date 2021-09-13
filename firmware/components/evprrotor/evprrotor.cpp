@@ -7,7 +7,7 @@
 #include "evprrotor.h"
 
 
-#define DTAG "ROTOR"
+#define EVPRH_DTAG "ROTOR"
 
 /**
  * Currently a dummy test for general EVPR rotor functionalities.
@@ -16,7 +16,7 @@
 //We keep track of total run time. This is soas to keep track of control packet receipt rate.
 int64_t starttime = 0;
 void EVPRR_main() {
-    ESP_LOGI(DTAG, "EVPRHead Init");
+    ESP_LOGI(EVPRH_DTAG, "EVPRHead Init");
 
     //Configure EVPRComms
     EVPRC_Config cfg;
@@ -42,7 +42,7 @@ void EVPRR_main() {
     //drop about 10% of its packets. This is in order to test packet loss detection. Thus, it is perfectly normal
     //to see a significant quantity of dropped packets reported by the print_packet_stats() function.
     while (true) {
-        ESP_LOGI(DTAG, "Sending Status!");
+        ESP_LOGI(EVPRH_DTAG, "Sending Status!");
         EVPRC_RotorStatus status;
         status.a = 1;
         status.b = 2;
@@ -64,13 +64,13 @@ void EVPRR_handle_rotordata(uint8_t nodeid, uint16_t data) {
         pings += 1;
         if (cnt++ == 100) {
             cnt = 0;
-            ESP_LOGI(DTAG, "Approximate rate: %2.6f", ((float) pings)/((float)((esp_timer_get_time() - starttime)/1000000L)));
+            ESP_LOGI(EVPRH_DTAG, "Approximate rate: %2.6f", ((float) pings) / ((float)((esp_timer_get_time() - starttime) / 1000000L)));
         }
     }
 }
 
 void EVPRR_handle_loss(uint8_t nodeid) {
     if (nodeid == 0) {
-        ESP_LOGE(DTAG, "WATCHDOG HAS LOST HEAD NODE!");
+        ESP_LOGE(EVPRH_DTAG, "WATCHDOG HAS LOST HEAD NODE!");
     }
 }
