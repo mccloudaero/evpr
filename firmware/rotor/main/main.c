@@ -15,6 +15,7 @@
 #include "esp_event_loop.h"
 #include "esp_log.h"
 #include "esp_now.h"
+#include "esp_sleep.h"
 #include "esp_wifi.h"
 #include "nvs_flash.h"
 #include "esp32/rom/crc.h"
@@ -72,7 +73,6 @@ uint8_t pcnt_unit = PCNT_UNIT_0;
 #define TIMER_DIVIDER         16  //  Hardware timer clock divider
 #define TIMER_SCALE           (TIMER_BASE_CLK / TIMER_DIVIDER)  // convert counter value to seconds
 uint16_t rpm = 0;
-
 
 // ESPNOW
 espnow_send_param_t *send_hb_param;
@@ -394,7 +394,7 @@ static void status_check(void *pvParameters)
     uint32_t vraw_adc_reading;
     int16_t tach_count;
     double delta_t;
-    double rpm;
+    double rpm_double;
     esp_err_t err;
     // Start timer
     timer_start(TIMER_GROUP_0, TIMER_0);
@@ -450,19 +450,21 @@ static void status_check(void *pvParameters)
         // Check PCNT for Tach
         pcnt_get_counter_value(pcnt_unit, &tach_count);
         timer_get_counter_time_sec(TIMER_GROUP_0, TIMER_0, &delta_t);
-        rpm = tach_count/delta_t;
-	// Reset PCNT and Timer for Tach
-        pcnt_counter_clear(pcnt_unit);
-        tach_count = 0;
-        timer_set_counter_value(TIMER_GROUP_0, TIMER_0,0);
+        rpm_double = tach_count/delta_t;
+        rpm = (int)rpm_double;
 
         // Print Info
 	ESP_LOGI(TAG, "Power Management: Battery %d, Engine %d", USING_BAT, USING_ENG);
         ESP_LOGI(TAG, "Raw: %d Bat Total: %d Bat 2: %d", vraw_adc_reading, bat_total_adc_reading, bat_2_adc_reading);
         ESP_LOGI(TAG, "Vraw: %dmV Bat Total: %dmV Bat 1: %dmV Bat 2: %dmV", voltage_vraw, voltage_bat_total, voltage_bat_1, voltage_bat_2);
         ESP_LOGI(TAG, "Vdiff: %dmV", voltage_bat_diff);
-        ESP_LOGI(TAG, "RPM :%f, Counter: %d, Delta_t: %f", rpm, tach_count, delta_t);
+        ESP_LOGI(TAG, "RPM :%d,%f Counter: %d, Delta_t: %f", rpm, rpm_double, tach_count, delta_t);
         ESP_LOGI(TAG, "Free Heap Size: %d\n", xPortGetFreeHeapSize());
+
+	// Reset PCNT and Timer for Tach
+        pcnt_counter_clear(pcnt_unit);
+        tach_count = 0;
+        timer_set_counter_value(TIMER_GROUP_0, TIMER_0,0);
 
 	// Send Data
 	espnow_data_prepare(send_hb_param);
@@ -604,9 +606,9 @@ static void initialize_pcnt(int unit)
 {
     // Prepare configuration for the PCNT unit
     pcnt_config_t pcnt_config = {
-        // Set PCNT input signal
+        // Set PCNT input signal pin
         .pulse_gpio_num = TACH_GPIO,
-        // Set PCNT as Not used (controls up/down)
+        // Set PCNT control pin as not used (controls up/down)
         .ctrl_gpio_num = PCNT_PIN_NOT_USED,
         .channel = PCNT_CHANNEL_0,
         .unit = unit,
@@ -614,7 +616,7 @@ static void initialize_pcnt(int unit)
         .pos_mode = PCNT_COUNT_INC,   // Count up on the positive edge
         .neg_mode = PCNT_COUNT_DIS,   // Keep the counter value on the negative edge
         // What to do when control input is low or high?
-        .lctrl_mode = PCNT_MODE_REVERSE, // Reverse counting direction if low
+        .lctrl_mode = PCNT_MODE_KEEP, // Reverse counting direction if low
         .hctrl_mode = PCNT_MODE_KEEP,    // Keep the primary counter mode if high
         // Set the maximum and minimum limit values to watch
         .counter_h_lim = PCNT_H_LIM_VAL,
@@ -622,6 +624,10 @@ static void initialize_pcnt(int unit)
     };
     // Initialize PCNT unit, starts counting
     pcnt_unit_config(&pcnt_config);
+
+    // Setup Filter
+    pcnt_set_filter_value(unit, 200);
+    pcnt_filter_enable(unit);
 
 }
 
@@ -654,6 +660,16 @@ void app_main()
     initialize_timer(TIMER_0);     // Timer for Tach
 
     ESP_ERROR_CHECK( initialize_espnow() );
+
+    /*
+    esp_sleep_enable_ext0_wakeup((gpio_num_t) 34, 1);
+
+    ESP_LOGI(TAG,"Going to Sleep");
+    gpio_hold_en((gpio_num_t) 21);
+    gpio_deep_sleep_hold_en();
+    vTaskDelay(1000);
+    esp_deep_sleep_start();
+    */
 
     // Choose Run Mode
     #if ROTOR_MODE == 0
