@@ -1,0 +1,1 @@
+uart_out start /dev/ttyS2 230400 0

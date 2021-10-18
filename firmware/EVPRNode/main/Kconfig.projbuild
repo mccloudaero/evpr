@@ -7,44 +7,28 @@ config EVPR_NODETYPE
     help
         0 -> Head, 1 -> Rotor, 2 -> Listener
 
+config EVPR_NODEID
+    int "EVPR Node ID. The node ID 0 is reserved for head. This setting is ignored if in head mode."
+    default 1
+    range 1 12
+
 config ESPNOW_PMK
-    string "ESPNOW primary master key"
+    string "ESPNOW primary master key (NOT IMPLEMENTED)"
     default "pmk1234567890123"
     help
         ESPNOW primary master for the example to use. The length of ESPNOW primary master must be 16 bytes.
 
 config ESPNOW_LMK
-    string "ESPNOW local master key"
+    string "ESPNOW local master key (NOT IMPLEMENTED)"
     default "lmk1234567890123"
     help
         ESPNOW local master for the example to use. The length of ESPNOW local master must be 16 bytes.
 
 config ESPNOW_CHANNEL
-    int "Channel"
+    int "Channel (NOT IMPLEMENTED)"
     default 1
     range 1 13
     help
         The channel on which sending and receiving ESPNOW data.
-
-config ESPNOW_SEND_COUNT
-    int "Send count"
-    default 100
-    range 1 65535
-    help
-        Total count of unicast ESPNOW data to be sent.
-
-config ESPNOW_SEND_DELAY
-    int "Send delay"
-    default 1000
-    range 0 65535
-    help
-        Delay between sending two ESPNOW data, unit: ms.
-
-config ESPNOW_SEND_LEN
-    int "Send len"
-    range 10 250
-    default 200
-    help
-        Length of ESPNOW data to be sent, unit: byte.
 
 endmenu

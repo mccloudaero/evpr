@@ -44,3 +44,21 @@ Each node type has its own component implementing behavior that is specific to t
 However, the communications protocol programming is unified and implemented in a single component: ESPComms, which is used by the other components.
 
 The Main component serves only to load in one of the other components based on the configured node type.
+
+
+## To compile (from the IDF command line):
+`idf.py build`
+
+followed by
+
+`idf.py -p PORT flash`
+
+## To monitor (from the IDF command line):
+
+`idf.py -p PORT monitor`
+
+## To configure (from the IDF command line):
+`idf.py menuconfig`
+
+
+## [More info](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/)

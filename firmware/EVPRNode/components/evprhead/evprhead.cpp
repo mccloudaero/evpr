@@ -20,34 +20,25 @@
 #define EVPRH_UART_MAX_MESSAGE_SIZE 128
 #define EVPRH_UART_QUEUE_SIZE 10
 #define EVPRH_UART_PRIORITY 12
+#define EVPRH_UART_START_BYTE 0xfe
+#define EVPRH_MAX_ROTORS 12
+#define EVPRH_MAX_DATARATE_HZ 150
 
-typedef enum {
-    HEAD,
-    LEN,
-    ID,
-    DATA,
-    CRC,
-} EVPRH_PARSER_STATE;
-typedef  struct {
-    uint8_t head;
-    uint8_t payload_len;
-    uint8_t payload[16];  //For now just using 8 bytes
-    uint8_t crc_data;     //To be implemented
-} EVPRH_pwm_packet;
+#if configTICK_RATE_HZ < 250
+    #error You MUST set a higher freeRTOS tick rate in order to keep up with PX4. At least 250 is necessary.
+    //This is in menuconfig->Component config->FreeRTOS->Tick rate (Hz)
+#endif
 
-/*
- * This is untested code! Mainly because I do not have a platform to test it with!
- */
+static QueueHandle_t EVPRH_UART_queue;
+static bool message_ever_received;
 
-bool message_received = false;//DRAGONHERE: Required by verbatim copy
-QueueHandle_t EVPRH_UART_queue;
 void EVPRH_main() {
     ESP_LOGI(EVPRH_DTAG, "EVPRHead Init");
 
     EVPRH_init_comms();
     EVPRH_init_UART();
 
-    while (message_received == false)
+    while (message_ever_received == false)
     {
         vTaskDelay(500 / portTICK_RATE_MS);
         ESP_LOGI(EVPRH_DTAG, "Waiting...");
@@ -81,6 +72,7 @@ void EVPRH_init_UART() {
             .stop_bits = UART_STOP_BITS_1,
             .flow_ctrl = UART_HW_FLOWCTRL_CTS_RTS,
             .rx_flow_ctrl_thresh = 122,
+            .use_ref_tick = false,
     };
     //Configure an unused UART controller (FC_UART_CTRL) with the above config
     uart_param_config(EVPRH_FC_UART_CTRL, &cfg);
@@ -98,101 +90,138 @@ void EVPRH_init_UART() {
 
 //Task for handling UART queue entries
 void EVPRH_handle_UART(void* pvParameters) {
-    //Create a buffer (on the stack) for receiving incoming UART payloads.
-    uint8_t payloadbuf[EVPRH_UART_MAX_MESSAGE_SIZE];
-    EVPRH_pwm_packet data_packet;   //DRAGONHERE: required by verbatim copy of parser
-    uint8_t data_index = 0;         //DRAGONHERE: required by verbatim copy of parser
-    size_t availablebytes;          //DRAGONHERE: verbatim recreation of UART parser requires this variable to be outside the switch
     while (true) {
         uart_event_t event;//Incoming UART event
         //Wait (effectively) forever for an incoming UART event
         if (xQueueReceive(EVPRH_UART_queue, &event, portMAX_DELAY)) {
             switch(event.type) {
-                case UART_DATA:
+                case UART_DATA: {
                     //There is data available on the UART channel; attempt to read it.
                     //uart_read_bytes takes a target buffer read amount, and returns the amount successfully read
-                    availablebytes = 0;
+                    size_t availablebytes = 0;
+                    uint8_t payloadbuf[EVPRH_UART_MAX_MESSAGE_SIZE];
                     ESP_ERROR_CHECK(uart_get_buffered_data_len(EVPRH_FC_UART_CTRL, &availablebytes));
                     //Do NOT attempt to read more than our allocated buffer amount.
                     if (availablebytes > sizeof(payloadbuf)) {
                         availablebytes = sizeof(payloadbuf);
                     }
                     //Read the maximum amount of bytes possible, wait zero ticks for success.
-                    uart_read_bytes(EVPRH_FC_UART_CTRL, payloadbuf, availablebytes, 0);
-                    //What follows is pretty much verbatim the original UART parser
-                    //Long term, we will want to completely re-do this parser. It will need to be totally restructured
-                    //Hence, I deemed it pointless to redo the original logic in the area until such time total restructuring is feasible
-                    static EVPRH_PARSER_STATE parse_state = HEAD;
-                    for(uint16_t position=0;position<EVPRH_UART_MAX_MESSAGE_SIZE;position++)
-                    {
-                        uint8_t current_byte = payloadbuf[position];
-                        switch (parse_state) {
-                            case HEAD:
-                                if (current_byte == 0xFE){
-                                    parse_state = LEN;
-                                    data_packet.head = current_byte;
-                                }
-                                break;
-                            case LEN:
-                                data_packet.payload_len = current_byte;
-                                if(data_packet.payload_len != 8) {
-                                    // Wrong payload size, restart
-                                    //ESP_LOGE(TAG, "Packet has wrong payload size!");
-                                    parse_state = HEAD;
-                                    break;
-                                }
-                                data_index = 0;
-                                parse_state = DATA;
-                                break;
-                            case DATA:
-                                data_packet.payload[data_index++] = current_byte;
-                                if (data_index >= data_packet.payload_len){
-                                    // End of data reached
-                                    uint16_t servos[4];
-                                    memcpy(servos,&data_packet.payload, sizeof(uint16_t) * 4);
-                                    ESP_LOGV(EVPRH_DTAG, "NOTE! The following messages WILL cause a bottleneck! But I have included them in this version for testing purposes");
-                                    ESP_LOGV(EVPRH_DTAG, "bytes: %x,%x",data_packet.payload[0],data_packet.payload[1]);
-                                    ESP_LOGV(EVPRH_DTAG, "servo1: %d",(int)servos[0]);
-                                    ESP_LOGV(EVPRH_DTAG, "servo2: %d",(int)servos[1]);
-                                    ESP_LOGV(EVPRH_DTAG, "servo3: %d",(int)servos[2]);
-                                    ESP_LOGV(EVPRH_DTAG, "servo4: %d",(int)servos[3]);
-                                    parse_state = HEAD; //Change to CRC later
-                                    message_received = true;  // message recieved from FC
-                                    EVPRComms::broadcast_rotors_control(4, servos);
-                                }
-                                break;
-                            default:
-                                parse_state = HEAD;
-                            break;
-                        }
+                    int received = uart_read_bytes(EVPRH_FC_UART_CTRL, payloadbuf, availablebytes, 0);
+
+                    //Parse received bytes
+                    for (int i = 0; i < received; i++) {
+                        EVPRH_parse_UART(payloadbuf[i]);
                     }
+                }
                 break;
-                case UART_FIFO_OVF:
+                case UART_FIFO_OVF: {
                     ESP_LOGI(EVPRH_DTAG, "UART FIFO overflow");
                     uart_flush(EVPRH_FC_UART_CTRL);
+                }
                 break;
-                case UART_BUFFER_FULL:
+                case UART_BUFFER_FULL: {
                     ESP_LOGI(EVPRH_DTAG, "UART ring buffer full");
                     uart_flush(EVPRH_FC_UART_CTRL);
+                }
                 break;
-                case UART_BREAK:
+                case UART_BREAK: {
                     ESP_LOGI(EVPRH_DTAG, "UART rx break");
+                }
                 break;
-                case UART_PARITY_ERR:
+                case UART_PARITY_ERR: {
                     ESP_LOGI(EVPRH_DTAG, "UART parity error");
+                }
                 break;
-                case UART_FRAME_ERR:
+                case UART_FRAME_ERR: {
                     ESP_LOGI(EVPRH_DTAG, "UART frame error");
+                }
                 break;
-                case UART_PATTERN_DET:
+                case UART_PATTERN_DET: {
                     ESP_LOGI(EVPRH_DTAG, "UART pattern detected");
+                }
                 break;
-                default:
+                default: {
                     ESP_LOGI(EVPRH_DTAG, "Unhandled UART Event: %d", event.type);
+                }
                 break;
 
             }
         }
+    }
+}
+
+//Buffer for stitching together UART payloads.
+static uint8_t uart_buf[EVPRH_UART_MAX_MESSAGE_SIZE];
+enum EVPRH_PARSER_STATE {STANDBY, HEADER, READING};
+static enum EVPRH_PARSER_STATE pstate = STANDBY;
+static int message_readhead = 0;//Readhead for the incoming message
+static int message_length = 0;//The expected length of the incoming message (in actuators, NOT bytes!)
+
+
+void EVPRH_parse_UART(uint8_t symbol) {
+    if (pstate == STANDBY) {
+        //Each payload is signalled by a START byte. Await this byte.
+        if (symbol == EVPRH_UART_START_BYTE) {
+            pstate = HEADER;
+        }
+    }
+    else if (pstate == HEADER) {
+        //We are reading the header, which is just a single byte indicating the message length.
+        message_length = symbol;
+        message_readhead = 0;
+
+        //Reject outright ridiculous rotor counts (this is a sign of a bad start)
+        if (message_length > EVPRH_MAX_ROTORS) {
+            pstate = STANDBY;
+        }
+
+        //After jotting this down, switch to reading mode.
+        pstate = READING;
+    }
+    else if (pstate == READING) {
+        //When reading, we will write bytes to the uart buffer until we reach the end (writehead is 2x the message_length)
+        if (message_readhead == sizeof(uint16_t) * 2 * message_length) {
+            //When we reach the end of the message, process it, and reset.
+            EVPRH_handle_payload(uart_buf, message_length);
+            pstate = STANDBY;
+        }
+        else {
+            uart_buf[message_readhead++] = symbol;
+        }
+    }
+}
+
+
+static int64_t starttime = 0;
+static int64_t lastbroadcast = 0;
+static int64_t pings = 0;
+static int counter = 0;
+void EVPRH_handle_payload(uint8_t * payload, int payload_length) {
+    //This is really easy, it's just an array of uint16_t. We can simply cast it and dump it straight to the EVPRCOMMS protocol.
+
+    //Simple data rate limiting.
+    if (esp_timer_get_time() - lastbroadcast < 1000000L/EVPRH_MAX_DATARATE_HZ) {
+        return;
+    }
+    lastbroadcast += 1000000L/EVPRH_MAX_DATARATE_HZ;
+
+    //Reset the timer if it lags behind for whatever reason.
+    if (esp_timer_get_time() - lastbroadcast > 1000000L/EVPRH_MAX_DATARATE_HZ * 5) {
+        lastbroadcast = esp_timer_get_time();
+    }
+
+    EVPRComms::broadcast_rotors_control(payload_length, (uint16_t*)((void*)payload));
+
+    if (starttime == 0) {
+        starttime = esp_timer_get_time();
+    }
+    message_ever_received = true;
+    pings += 1;
+    //Generally, we observe around 200hz.
+    //In order for the EVPR system to keep up, we will need to increase the tick rate to around 250 or 300hz.
+    if (counter++ == 1000) {
+        counter = 0;
+        ESP_LOGI(EVPRH_DTAG, "Approximate rate: %2.6f", ((float) pings) / ((float)((esp_timer_get_time() - starttime) / 1000000L)));
     }
 }
 

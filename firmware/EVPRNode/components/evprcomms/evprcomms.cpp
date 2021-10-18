@@ -538,7 +538,7 @@ void EVPRComms::receive_rs_packet(const uint8_t* data, int len) {
  * @return
  */
 esp_err_t EVPRComms::send_espnow(const uint8_t* peer_addr, const uint8_t* data, size_t len) {
-    if (EVPRComms::failure_chance == 0 || esp_random()%100 < EVPRComms::failure_chance) {
+    if (EVPRComms::failure_chance != 0 && esp_random()%100 < EVPRComms::failure_chance) {
         return ESP_OK;
     }
     return esp_now_send(peer_addr, data, len);

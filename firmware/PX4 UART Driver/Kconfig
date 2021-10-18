@@ -1,0 +1,5 @@
+ menuconfig DRIVERS_UART_OUT
+	bool "uart_out"
+	default n
+	---help---
+		Enable UART actuator output (support for uart_out)

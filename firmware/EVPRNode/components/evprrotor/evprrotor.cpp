@@ -6,17 +6,17 @@
 #include "esp_log.h"
 #include "evprrotor.h"
 
-
-#define EVPRH_DTAG "ROTOR"
-
+#if configTICK_RATE_HZ < 250
+#error You MUST set a higher freeRTOS tick rate in order to keep up with PX4. At least 250 is necessary.
+    //This is in menuconfig->Component config->FreeRTOS->Tick rate (Hz)
+#endif
+#define EVPRR_DTAG "ROTOR"
 /**
  * Currently a dummy test for general EVPR rotor functionalities.
  */
 
-//We keep track of total run time. This is soas to keep track of control packet receipt rate.
-int64_t starttime = 0;
 void EVPRR_main() {
-    ESP_LOGI(EVPRH_DTAG, "EVPRHead Init");
+    ESP_LOGI(EVPRR_DTAG, "EVPRHead Init");
 
     //Configure EVPRComms
     EVPRC_Config cfg;
@@ -42,35 +42,38 @@ void EVPRR_main() {
     //drop about 10% of its packets. This is in order to test packet loss detection. Thus, it is perfectly normal
     //to see a significant quantity of dropped packets reported by the print_packet_stats() function.
     while (true) {
-        ESP_LOGI(EVPRH_DTAG, "Sending Status!");
+        ESP_LOGI(EVPRR_DTAG, "Sending Status!");
         EVPRC_RotorStatus status;
         status.a = 1;
         status.b = 2;
         status.c = 3;
-        EVPRComms::broadcast_rotor_status(2, status);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        EVPRComms::broadcast_rotor_status(CONFIG_EVPR_NODEID, status);
+        vTaskDelay(pdMS_TO_TICKS(2000));
         EVPRComms::print_packet_stats();
     }
 }
 
-int cnt = 0;
-int64_t pings = 0;
 
+
+//We keep track of total run time. This is soas to keep track of control packet receipt rate.
+static int64_t starttime = 0;
+static int cnt = 0;
+static int64_t pings = 0;
 void EVPRR_handle_rotordata(uint8_t nodeid, uint16_t data) {
     if (starttime == 0) {
         starttime = esp_timer_get_time();
     }
-    if (nodeid == 1) {
+    if (nodeid == CONFIG_EVPR_NODEID) {
         pings += 1;
-        if (cnt++ == 100) {
+        if (cnt++ == 1000) {
             cnt = 0;
-            ESP_LOGI(EVPRH_DTAG, "Approximate rate: %2.6f", ((float) pings) / ((float)((esp_timer_get_time() - starttime) / 1000000L)));
+            ESP_LOGI(EVPRR_DTAG, "Approximate rate: %2.6f. My last value: %d", ((float) pings) / ((float)((esp_timer_get_time() - starttime) / 1000000L)), data);
         }
     }
 }
 
 void EVPRR_handle_loss(uint8_t nodeid) {
     if (nodeid == 0) {
-        ESP_LOGE(EVPRH_DTAG, "WATCHDOG HAS LOST HEAD NODE!");
+        ESP_LOGE(EVPRR_DTAG, "WATCHDOG HAS LOST HEAD NODE!");
     }
 }
