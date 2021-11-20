@@ -41,7 +41,8 @@
 #define SERVO_MAX_PULSEWIDTH 2100 // Maximum pulse width in microsecond
 
 #define GPIO_INPUT_PIN_SEL  ((1ULL<<USING_BAT_GPIO) | (1ULL<<USING_ENG_GPIO))
-#define GPIO_OUTPUT_PIN_SEL  ((1ULL<<BAT_EN_GPIO) | (1ULL<<ENG_EN_GPIO))
+//#define GPIO_OUTPUT_PIN_SEL  ((1ULL<<BAT_EN_GPIO) | (1ULL<<ENG_EN_GPIO))
+#define GPIO_OUTPUT_PIN_SEL  ((1ULL<<BAT_EN_GPIO) | (1ULL<<ENG_EN_GPIO) | (1ULL<<14))
 
 // Status Variables
 bool USING_BAT = 0;
@@ -377,6 +378,7 @@ static void servo_control(void *pvParameters)
     // Enable servo power
     gpio_set_level(BAT_EN_GPIO,1);
     gpio_set_level(ENG_EN_GPIO,1);
+    gpio_set_level(14,1);
 
     // Loop for setting servo positions
     while (1) {
@@ -450,7 +452,7 @@ static void status_check(void *pvParameters)
         // Check PCNT for Tach
         pcnt_get_counter_value(pcnt_unit, &tach_count);
         timer_get_counter_time_sec(TIMER_GROUP_0, TIMER_0, &delta_t);
-        rpm_double = tach_count/delta_t;
+        rpm_double = tach_count/(delta_t/60);  // delta_t in seconds, convert to min to get RPM
         rpm = (int)rpm_double;
 
         // Print Info
